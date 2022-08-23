@@ -33,11 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
                * */
               Container(
                   height: 115,
-                  decoration: BoxDecoration(
-                      border: Border(
-                        bottom:  BorderSide(width: 1.0, color: Colors.grey.shade200),
-                      )
-                  ),
+                  decoration: containerDecoration(),
                   child:  Column(children: [
                     Column(
                       children: [
@@ -78,11 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 //
                   height: 200,
-                  decoration: BoxDecoration(
-                      border: Border(
-                        bottom:  BorderSide(width: 1.0, color: Colors.grey.shade200),
-                      )
-                  ),
+                  decoration: containerDecoration(),
                   child:  Column(children: [
                     Column(
                       children: [
@@ -147,11 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 //
                   height: 80,
-                  decoration: BoxDecoration(
-                      border: Border(
-                        bottom:  BorderSide(width: 1.0, color: Colors.grey.shade200),
-                      )
-                  ),
+                  decoration: containerDecoration(),
                   child:  Column(children: [
                     Column(
                       children: [
@@ -183,11 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 //
                   height: 200,
-                  decoration: BoxDecoration(
-                      border: Border(
-                        bottom:  BorderSide(width: 1.0, color: Colors.grey.shade200),
-                      )
-                  ),
+                  decoration: containerDecoration(),
                   child:  Column(children: [
                     Column(
                       children: [
@@ -261,6 +245,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
         ),
       ),
+    );
+  }
+
+  // Decoration
+  BoxDecoration containerDecoration() {
+    return  BoxDecoration(
+        border: Border(
+          bottom:  BorderSide(width: 1.0, color: Colors.grey.shade200),
+        )
     );
   }
 }
