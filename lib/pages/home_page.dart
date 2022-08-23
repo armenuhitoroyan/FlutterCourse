@@ -38,9 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   child:  Column(children: [
                     Column(
                       children: [
-                        Row(children: const [
+                        Row(children:  [
                           AddTextWidget(
                               text: 'Common',
+                              color: Colors.deepOrange,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold
                           )
                         ]),
                         Row(
@@ -49,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: [
                             Container(
                               margin: const EdgeInsets.only(bottom: 10),
-                              child: const AddIconWidget( icon: Icons.code )
+                              child: AddIconWidget( icon: Icons.language )
                             ),
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 40),
@@ -93,11 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: [
                             Container(
                                 margin: const EdgeInsets.only(bottom: 10),
-                                child: const Icon(
-                                  Icons.cloud_outlined,
-                                  size: 30,
-                                  color: Colors.grey,
-                                )
+                                child: AddIconWidget( icon: Icons.cloud_outlined )
                             ),
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 30),
@@ -125,9 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
                          margin: const EdgeInsets.only(top: 35),
                          child:
                          Row(
-                             children: const [
+                             children: [
                                AddTextWidget(
                                  text: 'Account',
+                                 color: Colors.deepOrange,
+                                 fontSize: 18,
+                                   fontWeight: FontWeight.bold
                                )
                              ]),
                        ),
@@ -178,11 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: [
                             Container(
                                 margin: const EdgeInsets.only(top: 5),
-                                child: const Icon(
-                                  Icons.email,
-                                  size: 30,
-                                  color: Colors.grey,
-                                )
+                                child: AddIconWidget( icon: Icons.email )
                             ),
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 30),
@@ -220,12 +218,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: [
                             Container(
                                 margin: const EdgeInsets.only(top: 5),
-                                child: const Icon(
-                                  Icons.assignment_return_rounded,
-                                  size: 30,
-                                  color: Colors.grey,
-                                )
-                            ),
+                                child: AddIconWidget( icon: Icons.assignment_return_rounded )
+        ),
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 30),
                                 child: Column(
@@ -246,9 +240,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           margin: const EdgeInsets.only(top: 35),
                           child:
                           Row(
-                              children: const [
+                              children: [
                                 AddTextWidget(
                                   text: 'Security',
+                                  color: Colors.deepOrange,
+                                  fontSize: 18,
+                                    fontWeight: FontWeight.bold
                                 )
                               ]),
                         ),
@@ -257,11 +254,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Container(margin: const EdgeInsets.only(top: 5),
-                                child: const Icon(
-                                  Icons.phonelink_lock,
-                                  size: 30,
-                                  color: Colors.grey,
-                                )
+                                child: AddIconWidget( icon: Icons.phonelink_lock )
                             ),
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 40),

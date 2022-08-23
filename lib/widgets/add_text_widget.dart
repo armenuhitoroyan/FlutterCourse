@@ -1,11 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddTextWidget extends StatelessWidget {
-  final String text;
+  String text;
+  Color color;
+  double fontSize;
+  FontWeight fontWeight;
 
-    const AddTextWidget({Key? key,
+  AddTextWidget({Key? key,
      required this.text,
+     required this.color,
+     required this.fontSize,
+     required this.fontWeight
 
    }) : super(key: key);
 
@@ -14,10 +19,10 @@ class AddTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
         text,
-      style: const TextStyle(
-        color: Colors.deepOrange,
-        fontSize: 18,
-        fontWeight: FontWeight.bold
+      style: TextStyle(
+          color: color,
+        fontSize: fontSize,
+        fontWeight: fontWeight
       ),
     );
   }
