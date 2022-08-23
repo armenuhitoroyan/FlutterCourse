@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ui_settings/widgets/add_icon_widget.dart';
 
 import '../widgets/add_text_widget.dart';
+import '../widgets/switch_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -223,15 +224,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             Container(
                               margin: const EdgeInsets.only(left: 70, top: 10),
-                              child: const Switch(
-                                // onChanged: true,
-                                value: true,
-                                onChanged: ArgumentError.value,
-                                activeColor: Colors.deepOrange,
-                                activeTrackColor: Colors.pinkAccent,
-                                inactiveThumbColor: Colors.black54,
-                                inactiveTrackColor: Colors.blueGrey,
-                              ),
+                              /**
+                               * Switch
+                               **/
+                              child: SwitchWidget(
+                                activeColor: Colors.pinkAccent,
+                                activeTrackColor: Colors.deepOrange,
+                              )
                             )
                           ],
 
