@@ -45,11 +45,11 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.all(3.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                Container(
-                   // margin: const EdgeInsets.only(top:20),
-                    height: 100,
+                   //
+                    height: 115,
                    decoration: BoxDecoration(
                        border: Border(
                          bottom:  BorderSide(width: 1.0, color: Colors.grey.shade200),
@@ -72,37 +72,49 @@ class _MyHomePageState extends State<MyHomePage> {
                      mainAxisAlignment: MainAxisAlignment.start,
                      crossAxisAlignment: CrossAxisAlignment.end,
                      children: [
-                       Row(children: const [
-                         Icon(
+                       Container(
+                         margin: const EdgeInsets.only(bottom: 10),
+                         child:
+                         const Icon(
                            Icons.language,
                            size: 30,
                            color: Colors.grey,
                          ),
-                       ],),
-                       Row(
-                         children: const [
-                         Text(
-                           'Language',
-                           style: TextStyle(
-                             fontSize: 15,
+                       ),
+                       Container(
+                            margin: const EdgeInsets.only(left: 50, top: 40),
+                         child: Column(
+                           children: const [
+                             Text(
+                               'Language',
+                               style: TextStyle(
+                                 fontSize: 15,
 
-                           ),
+                               ),
+                             ),
+                             Text(
+                                 'English',
+                               style: TextStyle(
+                                 color: Colors.grey
+                               ),
+                             )
+                           ],
                          )
-                       ],)
+                       )
                      ],
                    )
                  ],)
                ],)
                ),
                 Column(children: [
-                  Row(children: [Text('1'), Text('2'), Text('3')],),
+                  Row(children: const [Text('1'), Text('2'), Text('3')],),
                 ],
                 ),
                 Column(children: [
-                  Row(children: [Text('1'), Text('2'), Text('3')],)
+                  Row(children: const [Text('1'), Text('2'), Text('3')],)
                 ],),
                 Column(children: [
-                  Row(children: [Text('1'), Text('2'), Text('3')],)
+                  Row(children: const [Text('1'), Text('2'), Text('3')],)
                 ],),
               ],
             ),
