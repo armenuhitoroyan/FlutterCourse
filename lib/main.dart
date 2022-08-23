@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui_settings/pages/home_page_statse.dart';
+import 'package:ui_settings/pages/home_page.dart';
+import 'package:ui_settings/widgets/add_text_widget.dart';
 //import 'package:flutter/lib/src/painting/box_border.dart';
 
 void main() {

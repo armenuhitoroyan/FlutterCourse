@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/add_text_widget.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -37,13 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     Column(
                       children: [
                         Row(children: const [
-                          Text(
-                            'Common',
-                            style: TextStyle(
-                                color: Colors.deepOrange,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18
-                            ),
+                          AddTextWidget(
+                              text: 'Common',
                           )
                         ]),
                         Row(
@@ -85,7 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],)
               ),
               Column(children: [
-                Row(children: const [Text('1'), Text('2'), Text('3')],),
+                Row(children: const [
+
+                ], ),
               ],
               ),
               Column(children: [
