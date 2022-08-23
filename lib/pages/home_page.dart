@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_settings/widgets/add_icon_widget.dart';
 
@@ -204,7 +203,99 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],)
                   ],)
               ),
-             
+              Container(
+                //
+                  height: 200,
+                  decoration: BoxDecoration(
+                      border: Border(
+                        bottom:  BorderSide(width: 1.0, color: Colors.grey.shade200),
+                      )
+                  ),
+                  child:  Column(children: [
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                                margin: const EdgeInsets.only(top: 5),
+                                child: const Icon(
+                                  Icons.assignment_return_rounded,
+                                  size: 30,
+                                  color: Colors.grey,
+                                )
+                            ),
+                            Container(
+                                margin: const EdgeInsets.only(left: 50, top: 30),
+                                child: Column(
+                                  children: const [
+                                    Text(
+                                      'Sign aut',
+                                      style: TextStyle(
+                                        fontSize: 15,
+
+                                      ),
+                                    ),
+                                  ],
+                                )
+                            )
+                          ],
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 35),
+                          child:
+                          Row(
+                              children: const [
+                                AddTextWidget(
+                                  text: 'Security',
+                                )
+                              ]),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(margin: const EdgeInsets.only(top: 5),
+                                child: const Icon(
+                                  Icons.phonelink_lock,
+                                  size: 30,
+                                  color: Colors.grey,
+                                )
+                            ),
+                            Container(
+                                margin: const EdgeInsets.only(left: 50, top: 40),
+                                child: Column(
+                                  children: const [
+                                    Text(
+                                      'Lock upp in background',
+                                      style: TextStyle(
+                                        fontSize: 15,
+
+                                      ),
+                                    ),
+                                  ],
+                                )
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 70, top: 10),
+                              child: const Switch(
+                                // onChanged: true,
+                                value: true,
+                                onChanged: ArgumentError.value,
+                                activeColor: Colors.deepOrange,
+                                activeTrackColor: Colors.pinkAccent,
+                                inactiveThumbColor: Colors.black54,
+                                inactiveTrackColor: Colors.blueGrey,
+                              ),
+                            )
+                          ],
+
+                        ),
+
+                      ],)
+                  ],)
+              ),
             ],
           ),
 
