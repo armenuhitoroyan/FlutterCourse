@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ui_settings/widgets/add_icon_widget.dart';
 
 import '../widgets/add_text_widget.dart';
 
@@ -49,12 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: [
                             Container(
                               margin: const EdgeInsets.only(bottom: 10),
-                              child:
-                              const Icon(
-                                Icons.language,
-                                size: 30,
-                                color: Colors.grey,
-                              ),
+                              child: const AddIconWidget( icon: Icons.code )
                             ),
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 40),
@@ -81,18 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],)
                   ],)
               ),
-              Column(children: [
-                Row(children: const [
 
-                ], ),
-              ],
-              ),
-              Column(children: [
-                Row(children: const [Text('1'), Text('2'), Text('3')],)
-              ],),
-              Column(children: [
-                Row(children: const [Text('1'), Text('2'), Text('3')],)
-              ],),
             ],
           ),
 
