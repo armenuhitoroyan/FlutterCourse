@@ -8,9 +8,9 @@ class AddTextWidget extends StatelessWidget {
 
   AddTextWidget({Key? key,
      required this.text,
-     required this.color,
-     required this.fontSize,
-     required this.fontWeight
+     this.color = Colors.black,
+     this.fontSize = 15,
+     this.fontWeight = FontWeight.normal
 
    }) : super(key: key);
 

@@ -27,8 +27,11 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              
+              /**
+               * Common
+               * */
               Container(
-                //
                   height: 115,
                   decoration: BoxDecoration(
                       border: Border(
@@ -57,20 +60,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 40),
                                 child: Column(
-                                  children: const [
-                                    Text(
-                                      'Language',
-                                      style: TextStyle(
-                                        fontSize: 15,
-
-                                      ),
-                                    ),
-                                    Text(
-                                      'English',
-                                      style: TextStyle(
-                                          color: Colors.grey
-                                      ),
-                                    )
+                                  children: [
+                                    AddTextWidget(text: 'Language'),
+                                    AddTextWidget(text: 'English', color: Colors.grey,)
                                   ],
                                 )
                             )
@@ -79,6 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],)
                   ],)
               ),
+
+              /**
+               * Account
+               * */
               Container(
                 //
                   height: 200,
@@ -101,20 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 30),
                                 child: Column(
-                                  children: const [
-                                    Text(
-                                      'Environment',
-                                      style: TextStyle(
-                                        fontSize: 15,
-
-                                      ),
-                                    ),
-                                    Text(
-                                      'Production',
-                                      style: TextStyle(
-                                          color: Colors.grey
-                                      ),
-                                    )
+                                  children:  [
+                                   AddTextWidget(text: 'Environment'),
+                                   AddTextWidget(text: 'Production', color: Colors.grey)
                                   ],
                                 )
                             )
@@ -138,23 +123,15 @@ class _MyHomePageState extends State<MyHomePage> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Container(margin: const EdgeInsets.only(top: 5),
-                                child: const Icon(
-                                  Icons.call,
-                                  size: 30,
-                                  color: Colors.grey,
+                                child: AddIconWidget(
+                                  icon: Icons.call,
                                 )
                             ),
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 40),
                                 child: Column(
-                                  children: const [
-                                    Text(
-                                      'Phone number',
-                                      style: TextStyle(
-                                        fontSize: 15,
-
-                                      ),
-                                    ),
+                                  children: [
+                                   AddTextWidget(text: 'Phone number')
                                   ],
                                 )
                             )
@@ -163,6 +140,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],)
                   ],)
               ),
+
+              /**
+               * Email
+               * */
               Container(
                 //
                   height: 80,
@@ -185,14 +166,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 30),
                                 child: Column(
-                                  children: const [
-                                    Text(
-                                      'Email',
-                                      style: TextStyle(
-                                        fontSize: 15,
-
-                                      ),
-                                    ),
+                                  children: [
+                                    AddTextWidget(text: 'Email')
                                   ],
                                 )
                             )
@@ -201,6 +176,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],)
                   ],)
               ),
+
+              /**
+               * Security
+               * */
               Container(
                 //
                   height: 200,
@@ -223,14 +202,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 30),
                                 child: Column(
-                                  children: const [
-                                    Text(
-                                      'Sign aut',
-                                      style: TextStyle(
-                                        fontSize: 15,
-
-                                      ),
-                                    ),
+                                  children: [
+                                   AddTextWidget(text: 'Sign aut')
                                   ],
                                 )
                             )
@@ -259,14 +232,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Container(
                                 margin: const EdgeInsets.only(left: 50, top: 40),
                                 child: Column(
-                                  children: const [
-                                    Text(
-                                      'Lock upp in background',
-                                      style: TextStyle(
-                                        fontSize: 15,
-
-                                      ),
-                                    ),
+                                  children: [
+                                   AddTextWidget(text: 'Lock app in background')
                                   ],
                                 )
                             ),
