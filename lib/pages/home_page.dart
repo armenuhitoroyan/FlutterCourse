@@ -77,6 +77,91 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],)
                   ],)
               ),
+              Container(
+                //
+                  height: 200,
+                  decoration: BoxDecoration(
+                      border: Border(
+                        bottom:  BorderSide(width: 1.0, color: Colors.grey.shade200),
+                      )
+                  ),
+                  child:  Column(children: [
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                                margin: const EdgeInsets.only(bottom: 10),
+                                child: const Icon(
+                                  Icons.cloud_outlined,
+                                  size: 30,
+                                  color: Colors.grey,
+                                )
+                            ),
+                            Container(
+                                margin: const EdgeInsets.only(left: 50, top: 30),
+                                child: Column(
+                                  children: const [
+                                    Text(
+                                      'Environment',
+                                      style: TextStyle(
+                                        fontSize: 15,
+
+                                      ),
+                                    ),
+                                    Text(
+                                      'Production',
+                                      style: TextStyle(
+                                          color: Colors.grey
+                                      ),
+                                    )
+                                  ],
+                                )
+                            )
+                          ],
+                        ),
+                       Container(
+                         margin: const EdgeInsets.only(top: 35),
+                         child:
+                         Row(
+                             children: const [
+                               AddTextWidget(
+                                 text: 'Account',
+                               )
+                             ]),
+                       ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(margin: const EdgeInsets.only(top: 5),
+                                child: const Icon(
+                                  Icons.call,
+                                  size: 30,
+                                  color: Colors.grey,
+                                )
+                            ),
+                            Container(
+                                margin: const EdgeInsets.only(left: 50, top: 40),
+                                child: Column(
+                                  children: const [
+                                    Text(
+                                      'Phone number',
+                                      style: TextStyle(
+                                        fontSize: 15,
+
+                                      ),
+                                    ),
+                                  ],
+                                )
+                            )
+                          ],
+                        )
+                      ],)
+                  ],)
+              )
 
             ],
           ),
