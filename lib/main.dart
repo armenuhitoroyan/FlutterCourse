@@ -44,28 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
        
         title: Text(widget.title),
       ),
-      body: Center(
-          // ignore: avoid_unnecessary_containers
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
-              child: Column(
-              // ignore: sort_child_properties_last, prefer_const_literals_to_create_immutables
-              children: <Widget>[
-                CardWidget(),
-                CardWidget(),
-                CardWidget()
-              ], //<Widget>[]
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-            ), //Column
-          ) //Padding
-              ), //Container
-        ) //Center
-   //Scaffold
-
-//MaterialApp
-     
+      body: CardWidget(),
     );
   }
 }
