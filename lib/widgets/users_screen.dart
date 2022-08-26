@@ -45,6 +45,13 @@ class UsersScreen extends StatelessWidget  {
           );
         }),
       ),
+         floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        backgroundColor: Colors.green,
+        child: const Icon(Icons.message),
+      ),
     );
   }
 }
