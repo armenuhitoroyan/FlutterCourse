@@ -1,5 +1,5 @@
 
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 // import 'package:whatsapp/examples/_app_bar.dart';
@@ -14,15 +14,34 @@ class UsersScreen extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
    
-    return Scaffold(
+    return DefaultTabController(
+    length: 4,
+    child: Scaffold(
       appBar: AppBar(
         title: const Text('WhatsApp'), 
-        backgroundColor: Colors.teal.shade900,     
+        backgroundColor: Colors.teal.shade900,   
+        // ignore: prefer_const_literals_to_create_immutables
+        actions: [
+          // ignore: prefer_const_constructors
+          Icon(Icons.search),
+          // ignore: prefer_const_constructors
+          Icon(Icons.more_vert),
+        ], 
+
+      bottom: const TabBar(    
+        tabs: [
+          Tab(icon: Icon(Icons.camera_alt_rounded)),
+          Tab(text: 'CHATS'),
+          Tab(text: 'STATUS'),
+                Tab(text: 'CALLS'),
+        ],
+      ),
+        
       ),
       body: ListView.builder(
         itemCount: users.length,
         itemBuilder: ((context, index) {
-           print('images: ${users[index].urlImg}');
+
           return ListTile(
             title: Text(users[index].name),
             subtitle: Text(users[index].status),
@@ -52,6 +71,7 @@ class UsersScreen extends StatelessWidget  {
         backgroundColor: Colors.green,
         child: const Icon(Icons.message),
       ),
+    ),
     );
   }
 }

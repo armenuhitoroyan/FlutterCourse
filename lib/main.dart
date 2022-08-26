@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp/examples/json.dart';
 import 'package:whatsapp/widgets/ex.dart';
 
 import 'widgets/user.dart';
@@ -7,13 +8,15 @@ import 'widgets/users_screen.dart';
 
 void main() {
   // runApp(const ExPageWidget());
+  
   List<Map<String, String>> listUsers = [
     {
       'image': 'https://openclipart.org/image/800px/295783', 
       'name': 'Mammy',
       'status': 'I am using WhatsApp',
       'date': '2013'
-    }, {
+    }, 
+    {
       'image': 'https://openclipart.org/image/800px/251611', 
       'name': 'Daddy',
       'status': 'I am using WhatsApp',
@@ -23,7 +26,8 @@ void main() {
       'name': 'sister',
       'status': 'I am using WhatsApp',
       'date': '2015'
-    }, {
+    }, 
+    {
       'image': 'https://openclipart.org/image/800px/279929', 
       'name': 'brother',
       'status': 'I am using WhatsApp',
@@ -64,10 +68,34 @@ void main() {
       'name': 'uncle',
       'status': 'I am using WhatsApp',
       'date': '2013'
-    }
+    },
+    {
+      'image': 'https://openclipart.org/image/800px/251611', 
+      'name': 'Daddy',
+      'status': 'I am using WhatsApp',
+      'date': '2011'
+    }, {
+      'image': 'https://openclipart.org/image/800px/196108', 
+      'name': 'sister',
+      'status': 'I am using WhatsApp',
+      'date': '2015'
+    }, 
+    {
+      'image': 'https://openclipart.org/image/800px/279929', 
+      'name': 'brother',
+      'status': 'I am using WhatsApp',
+      'date': '2017'
+    }, 
+    {
+      'image': 'https://openclipart.org/image/800px/162481', 
+      'name': 'Grandmother',
+      'status': 'I am using WhatsApp',
+      'date': '2020'
+    }, 
   ];
 
 var result = listUsers.map((e) => e.values);
+// var result = Json().getJson(listUsers.map((e) => e.values));
 
   runApp(
     MaterialApp(  
@@ -90,12 +118,3 @@ var result = listUsers.map((e) => e.values);
     )
   );
 }
-
-/*
-  
-result.any((element) => element),
- */
-
-
-
-
