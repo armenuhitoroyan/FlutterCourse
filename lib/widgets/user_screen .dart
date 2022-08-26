@@ -18,10 +18,19 @@ class UserScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(user.status),
-            Image(image: AssetImage(user.urlImg)),
-            Text(user.date)
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(user.status),
+              ],
+            ),
+            Row(
+              children: [
+                Image(image: NetworkImage(user.urlImg), height: 100)
+              ],
+            ),
           ],
         ),
       ),
