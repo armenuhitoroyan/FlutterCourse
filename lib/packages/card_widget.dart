@@ -1,6 +1,8 @@
-// ignore_for_file: unused_local_variable, prefer_for_elements_to_map_fromiterable
+// ignore_for_file: unused_local_variable, prefer_for_elements_to_map_fromiterable, depend_on_referenced_packages
 
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:collection/collection.dart';
 
 // ignore: must_be_immutable
 
@@ -38,11 +40,8 @@ class CardWidget extends StatelessWidget {
 Widget flexaible_c() {
   
   var result = listProducts.map((e) => e.values);
-  // ignore: avoid_print
-  print(result);
-  for (var i = 0; i < result.length; i++) {
-      // ignore: avoid_print
-      // print(listProducts[i]['image']);
+  // result.forEach((element) {print(element.first);});
+ 
        return Row( 
           children: <Widget>[
             Expanded(
@@ -57,8 +56,11 @@ Widget flexaible_c() {
                 child: SizedBox(
                   height: 200,
                   // ignore: prefer_const_constructors
-                  child: i % 2 == 0 ? Text("${listProducts[i]['image']}") : Text("listProducts")
-                  // i%2 == 0 ? Text(listProducts[i]['Username'])
+                  // child: Text('https://davinci.am/image/cache/catalog/tea%20new/F67E7D38-5069-4D28-BB0B-A48C5F6F29FE-228x228.jpg')
+                  // i%2 == 0 ? Text("${listProducts[i]['image']}") : 'Text'
+                 // ignore: avoid_function_literals_in_foreach_calls, unused_label, avoid_print
+                 // result.forEach((Iterable<String> img) => print(img))
+                //  result.forEach((element) {child: element.first;}),
                 ), 
               ),
             ),
@@ -81,8 +83,7 @@ Widget flexaible_c() {
             ),
           ],
         );
-    }
- // ignore: prefer_const_constructors
+ // ignore: prefer_const_constructors, dead_code
  return Text('data');
 }
 
