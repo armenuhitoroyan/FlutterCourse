@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp/widgets/tab_bar_widget.dart';
 
 class HomePageWidget extends StatelessWidget {
   const HomePageWidget({super.key});
@@ -197,4 +196,20 @@ class HomePageWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+
+Widget listWiewidget() {
+  return ListView.builder(
+      itemCount: 25,
+      itemBuilder: (BuildContext context, int index) {
+        return ListTile(
+            leading: const Icon(Icons.list),
+            trailing: const Text(
+              "GFG",
+              style: TextStyle(color: Colors.green, fontSize: 15),
+            ),
+            title: Text("List item $index"));
+      }
+  );
 }
