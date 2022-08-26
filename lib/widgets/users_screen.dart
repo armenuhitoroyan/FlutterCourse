@@ -13,6 +13,7 @@ class UsersScreen extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       appBar: AppBar(
         title: const Text('WhatsApp'), 
@@ -21,13 +22,14 @@ class UsersScreen extends StatelessWidget  {
       body: ListView.builder(
         itemCount: users.length,
         itemBuilder: ((context, index) {
+           print('images: ${users[index].urlImg}');
           return ListTile(
             title: Text(users[index].name),
             subtitle: Text(users[index].status),
             // ignore: prefer_const_constructors
             leading: CircleAvatar(
               // ignore: prefer_const_constructors
-              backgroundImage: AssetImage(
+              backgroundImage: NetworkImage(
                users[index].urlImg
               ), 
             ),
