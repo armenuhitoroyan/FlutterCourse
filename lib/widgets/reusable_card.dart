@@ -23,13 +23,17 @@ class ReusableCardW extends StatelessWidget {
        this.sizeIconData,
        this.text
     }) : super(key: key);
+
+    static bool isTap = false;
   
   @override
   Widget build(BuildContext context) {
     // print(FontAwesomeIcons.mars.runtimeType);
     return GestureDetector(
       // ignore: avoid_print
-      onTap: () => print('On Tap!'),
+      onTap: () => {
+        isTap = true
+      },
       child:  Container(
         padding: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
