@@ -1,8 +1,8 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/pages/second_page.dart';
 import 'package:bmi_calculator/widgets/reusable_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'container_card_widget.dart';
@@ -10,10 +10,10 @@ import 'container_card_widget.dart';
 class HomeBodyW extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-   return bodyHomePage();
+   return bodyHomePage(context);
   }
 
-  Widget bodyHomePage() {
+  Widget bodyHomePage(BuildContext context) {
     return Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
@@ -38,7 +38,12 @@ class HomeBodyW extends StatelessWidget {
           SizedBox(
             height: 50.0,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SecondPage()),
+                );
+              },
               child: const Text('Click'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: kBottomContainerColor,
