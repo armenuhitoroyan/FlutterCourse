@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'BMI Calculator',
+      title: 'Online Shop',
       theme: ThemeData.dark(),
        onGenerateRoute: AppRoutes.onGenerateRoute,
-      home: const HomePage(title: 'BMI CALCULATOR'),
+      home: const HomePage(title: 'ONLINE SHOP'),
     );
   }
 }
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
 
   void _incrementCounter() {
     setState(() {
-    
+      
     });
   }
 
