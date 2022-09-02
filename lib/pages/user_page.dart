@@ -49,6 +49,10 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
+    return userW();
+  }
+
+  Widget userW() {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kBG,

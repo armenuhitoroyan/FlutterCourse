@@ -25,10 +25,10 @@ class HomeBodyW extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Expanded(
+                  Expanded(   
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5, right: 5),
-                      child: ReusableCardW(iconData: Icons.smoke_free, text: 'Some Text',),
+                      child: ReusableCardW(iconData: Icons.money_rounded, text: 'It has been ordered',),
                     ),
                   ),
                 ],
@@ -41,7 +41,8 @@ class HomeBodyW extends StatelessWidget {
                  onPressed: () {
                     Navigator.pushNamed(
                       context,
-                      AppRoutes.users,
+                      AppRoutes.products,
+                      // ContainerCardW.page == 'people' ? AppRoutes.users : AppRoutes.home,
                     );
                   },
                 child: const Text('Click'),
