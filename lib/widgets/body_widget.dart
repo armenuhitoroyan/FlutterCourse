@@ -1,5 +1,6 @@
 // ignore_for_file: sort_child_properties_last
 
+import 'package:bmi_calculator/base/routes.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/pages/second_page.dart';
 import 'package:bmi_calculator/widgets/reusable_card.dart';
@@ -38,15 +39,25 @@ class HomeBodyW extends StatelessWidget {
           SizedBox(
             height: 50.0,
             child: ElevatedButton(
-              onPressed: () {
+             /* onPressed: () {
 
                 if (ReusableCardW.isTap) {
-                  Navigator.push(
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const SecondPage()),
+                   
+                  // );
+
+                  //  Navigator.pushNamed(context, '/second');
+                  //  print(AppRoutes.second);
+                }
+              }, */
+               onPressed: () {
+                  Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(builder: (context) => const SecondPage()),
+                    AppRoutes.second,
                   );
-                } 
-              },
+                },
               child: const Text('Click'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: kBottomContainerColor,

@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/widgets/body_widget.dart';
 import 'package:flutter/material.dart';
+import 'base/routes.dart';
 import 'constants.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'BMI Calculator',
       theme: ThemeData.dark(),
+       onGenerateRoute: AppRoutes.onGenerateRoute,
       home: const HomePage(title: 'BMI CALCULATOR'),
     );
   }
