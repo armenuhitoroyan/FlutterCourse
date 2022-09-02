@@ -39,23 +39,10 @@ class HomeBodyW extends StatelessWidget {
           SizedBox(
             height: 50.0,
             child: ElevatedButton(
-             /* onPressed: () {
-
-                if (ReusableCardW.isTap) {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const SecondPage()),
-                   
-                  // );
-
-                  //  Navigator.pushNamed(context, '/second');
-                  //  print(AppRoutes.second);
-                }
-              }, */
                onPressed: () {
                   Navigator.pushNamed(
                     context,
-                    AppRoutes.second,
+                    AppRoutes.users,
                   );
                 },
               child: const Text('Click'),

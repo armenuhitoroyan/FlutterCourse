@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
   },
 ]; */
 String userJson =
-    r'[{ "name": "Peter", "age": 18, "gender": "male","hobbies": ["footbal", "basketball" ], is_work": false,"image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png" }, { "name": "Peter", "age": 18, "gender": "male","hobbies": ["footbal", "basketball" ], is_work": false,"image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png" }, { "name": "Peter", "age": 18, "gender": "male","hobbies": ["footbal", "basketball" ], is_work": false,"image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png" },]';
+    r'[{ "name": "Peter", "age": 18, "gender": "male","hobbies": ["footbal", "basketball" ], "is_work": false,"image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png" }]';
 
 class UserPage extends StatefulWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -29,12 +29,14 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   List<User> users = [];
 
+   List<User> uss = [];
+
   @override
   void initState() {
     var data = jsonDecode(userJson);
 
     if (data is List) {
-      users = data
+      uss = data
           .map<User>(
             (p) => User.fromJson(p),
           )
@@ -49,9 +51,9 @@ class _UserPageState extends State<UserPage> {
     return Scaffold(
       appBar: AppBar(),
       body: ListView.builder(
-        itemCount: users.length,
+        itemCount: uss.length,
         itemBuilder: (context, index) {
-          return Text(users[index].gender);
+          return Text(uss[index].gender);
         },
       ),
     );
