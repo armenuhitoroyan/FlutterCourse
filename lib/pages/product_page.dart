@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../models/product_model.dart';
 
 String productsJson =
-    r'[{"product_name":"","price":100,"type":"shoes","is_available":true,"materials":["cotton","jeans"]},{"product_name":"","price":100,"type":"shoes","is_available":true,"materials":["cotton","jeans"]},{"product_name":"","price":100,"type":"shoes","is_available":true,"materials":["cotton","jeans"]},{"product_name":"","price":100,"type":"shoes","is_available":true,"materials":["cotton","jeans"]}]';
+    r'[{"product_name":"T-Shirt","price":100,"is_available":true, "image":"https://openclipart.org/image/800px/218167", "materials":["cotton"]},{"product_name":"Jacket","price":30,"is_available":true, "image":"https://openclipart.org/image/800px/311614", "materials":["jeans"]},{"product_name":"Pants","price":120,"is_available":false, "image":"https://openclipart.org/image/800px/27639", "materials":["cotton","jeans"]},{"product_name":"Top","price":10,"is_available":true, "image":"https://openclipart.org/image/800px/3647", "materials":["cotton"]}]';
 
 class ProductsPage extends StatefulWidget {
   const ProductsPage({Key? key}) : super(key: key);
@@ -37,7 +37,6 @@ class _ProductsPageState extends State<ProductsPage> {
     return productW();
   }
 
-
     Widget productW() {
     return Scaffold(
       appBar: AppBar(
@@ -56,23 +55,23 @@ class _ProductsPageState extends State<ProductsPage> {
               children: [
                 ListTile(
                   leading: const Icon(Icons.production_quantity_limits_rounded),
-                  title: Text('${products[index].productName}: ${products[index].price}'),
+                  // ignore: unnecessary_string_interpolations
+                  title: Text('${products[index].productName}'),
                   subtitle: Text(
                     // ignore: unnecessary_string_interpolations
-                    '${products[index].type}',
+                    '${products[index].price}',
                     style: TextStyle(color: Colors.white.withOpacity(0.6)),
                   ),
-                ),  
+                ), 
+                Image(image: NetworkImage(products[index].image), height: 100), 
                  Padding(
                   padding: const EdgeInsets.all(16.0),
+                  // Image(image: NetworkImage(products[index].image)),
                   child: Text(
                     'It is made of ${products[index].materials.map((e) => e)}',
                     style: TextStyle(color: Colors.white.withOpacity(0.6)),
                   ),
-                ),
-              
-                // Image.asset('assets/armath_robot.png'),
-                // Image(image: NetworkImage(products[index].image), height: 100)
+                ), 
               ],
             ),
             color: kBG,
