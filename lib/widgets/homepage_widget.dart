@@ -39,11 +39,24 @@ class HomeBodyW extends StatelessWidget {
               height: 50.0,
               child: ElevatedButton(
                  onPressed: () {
-                    Navigator.pushNamed(
+                  if (ReusableCardW.isTap) {
+                   Navigator.pushNamed(
                       context,
-                       ReusableCardW.isTap ? AppRoutes.users : AppRoutes.home
+                      AppRoutes.users
                       //  ReusableCardW.isTap && ReusableCardW.page=='products' ? AppRoutes.products : AppRoutes.home
                     );
+                  } else {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.home
+                    );
+                    Navigator.pop(context);
+                  }
+                    // Navigator.pushNamed(
+                    //   context,
+                    //    ReusableCardW.isTap ? AppRoutes.users : AppRoutes.home
+                    //   //  ReusableCardW.isTap && ReusableCardW.page=='products' ? AppRoutes.products : AppRoutes.home
+                    // );
                     // Navigator.pop(context);
                   },
                 style: ElevatedButton.styleFrom(
