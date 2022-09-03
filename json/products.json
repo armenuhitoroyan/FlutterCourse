@@ -1,0 +1,6 @@
+[
+    {"product_name":"T-Shirt","price":100,"is_available":true, "image":"https://openclipart.org/image/800px/218167", "materials":["cotton"]},
+    {"product_name":"Jacket","price":30,"is_available":true, "image":"https://openclipart.org/image/800px/311614", "materials":["jeans"]},
+    {"product_name":"Pants","price":120,"is_available":false, "image":"https://openclipart.org/image/800px/27639", "materials":["cotton","jeans"]},
+    {"product_name":"Top","price":10,"is_available":true, "image":"https://openclipart.org/image/800px/3647", "materials":["cotton"]}
+]
