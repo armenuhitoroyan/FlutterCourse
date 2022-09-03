@@ -11,25 +11,33 @@
       "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
     },
     {
-      "name": "Peter",
-      "age": 18,
+      "name": "Jane",
+      "age": 27,
+      "gender": "female",
+      "hobbies": [
+        "dance"
+      ],
+      "is_work": false,
+      "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359554_960_720.png"
+    },
+    {
+      "name": "John",
+      "age": 25,
       "gender": "male",
       "hobbies": [
-        "footbal",
-        "basketball"
+        "footbal"
       ],
       "is_work": false,
       "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
     },
     {
-      "name": "Peter",
-      "age": 18,
-      "gender": "male",
+      "name": "Ann",
+      "age": 29,
+      "gender": "female",
       "hobbies": [
-        "footbal",
-        "basketball"
+        "dance"
       ],
       "is_work": false,
-      "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
+      "image": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359554_960_720.png"
     }
   ]
