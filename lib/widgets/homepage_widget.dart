@@ -19,7 +19,9 @@ class HomeBodyW extends StatelessWidget {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
+            
             const ContainerCardW(),
+
             Expanded( child: Padding(
               padding: const EdgeInsets.only(left: 5, right: 5),
               child: Row(
@@ -40,11 +42,18 @@ class HomeBodyW extends StatelessWidget {
               child: ElevatedButton(
                  onPressed: () {
                   if (ReusableCardW.isTap) {
-                   Navigator.pushNamed(
-                      context,
-                      AppRoutes.users
-                      //  ReusableCardW.isTap && ReusableCardW.page=='products' ? AppRoutes.products : AppRoutes.home
-                    );
+                    if (ReusableCardW.page == 'products') {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.products
+                      );
+                    } else if(ReusableCardW.page == 'users') {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.users
+                      );
+                    }
+                   
                   } else {
                     Navigator.pushNamed(
                       context,
@@ -52,12 +61,6 @@ class HomeBodyW extends StatelessWidget {
                     );
                     Navigator.pop(context);
                   }
-                    // Navigator.pushNamed(
-                    //   context,
-                    //    ReusableCardW.isTap ? AppRoutes.users : AppRoutes.home
-                    //   //  ReusableCardW.isTap && ReusableCardW.page=='products' ? AppRoutes.products : AppRoutes.home
-                    // );
-                    // Navigator.pop(context);
                   },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kBottomContainerColor,

@@ -25,12 +25,13 @@ class ReusableCardW extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    // print(FontAwesomeIcons.mars.runtimeType);
+   
     return GestureDetector(
       // ignore: avoid_print
       onTap: () => {
         isTap = true,
-        iconData == Icons.supervised_user_circle_sharp ? page = 'products' : page
+        text == 'Products' ? page = 'products' : page,
+        text == 'People' ? page = 'users' : page,
       },
       child:  Container(
         padding: const EdgeInsets.all(20),
