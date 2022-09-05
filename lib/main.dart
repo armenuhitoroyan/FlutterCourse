@@ -1,7 +1,8 @@
-import 'package:bmi_calculator/widgets/homepage_widget.dart';
+import 'package:shop/pages/registration/registration_page.dart';
+import 'package:shop/widgets/homepage_widget.dart';
 import 'package:flutter/material.dart';
 import 'base/routes.dart';
-import 'constants.dart';
+import 'styles/style.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text(widget.title, style: kBodyTextStyle),
       ),
-      body: const HomeBodyW() 
+      body: const RegistrationPage() 
     );
     
   }

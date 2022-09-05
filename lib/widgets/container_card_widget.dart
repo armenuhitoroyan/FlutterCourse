@@ -1,10 +1,10 @@
-import 'package:bmi_calculator/widgets/reusable_card.dart';
+import 'package:shop/widgets/reusable_card_widget.dart';
 import 'package:flutter/material.dart';
 
-class ContainerCardW extends StatelessWidget {
+class ContainerCardWidget extends StatelessWidget {
   static String page = '';
 
-  const ContainerCardW({super.key});
+  const ContainerCardWidget({super.key});
   @override
   Widget build(BuildContext context) {
    return cardWidget();
@@ -19,13 +19,13 @@ class ContainerCardW extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 5, right: 5),
-                child: ReusableCardW(iconData: Icons.supervised_user_circle_sharp, text: 'People',),
+                child: ReusableCardWidget(iconData: Icons.supervised_user_circle_sharp, text: 'People',),
               ),
             ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 5, right: 5),
-                child: ReusableCardW(iconData: Icons.production_quantity_limits, text: 'Products',),
+                child: ReusableCardWidget(iconData: Icons.production_quantity_limits, text: 'Products',),
               ),
             ),
           ],

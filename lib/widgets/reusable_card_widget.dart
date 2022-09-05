@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../constants.dart';
+import '../styles/style.dart';
 
 // ignore: must_be_immutable
-class ReusableCardW extends StatelessWidget {
+class ReusableCardWidget extends StatelessWidget {
    Color? color;
    Widget? child;
    Function? onTap ;
@@ -10,7 +10,7 @@ class ReusableCardW extends StatelessWidget {
    double? sizeIconData;
    String? text;
    
-    ReusableCardW({
+    ReusableCardWidget({
       Key? key,
        this.color,
        this.child,
