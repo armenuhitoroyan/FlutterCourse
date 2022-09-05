@@ -81,32 +81,31 @@ class _LoginPageState extends State<LoginPage> {
         bottom: 50,
       ),
       child: Column(
-        children: const [
-          Text(
+        children: [
+          const Text(
             'Log In',
             style: TextStyle(
              
             ),
           ),
-           SizedBox(height: 25),
-          
-         TextField(
-            decoration: InputDecoration(  
-              border: OutlineInputBorder(),  
-              labelText: 'Enter Email',  
-              hintText: 'Enter Your Email'  
-            ),  
-          ),
-          SizedBox(height: 15),
-         TextField(
-            decoration: InputDecoration(  
-              border: OutlineInputBorder(),  
-              labelText: 'Enter Password',  
-              hintText: 'Enter Your Password'  
-            ),  
-          ),
+          const SizedBox(height: 25),
+          TextFieldWidget('Enter Email', 'Enter Your Email'),
+          const SizedBox(height: 15),
+          TextFieldWidget('Enter Password', 'Enter Your Password'),
         ],
       ),
+    );
+  }
+
+
+  // ignore: non_constant_identifier_names
+  Widget TextFieldWidget(String labelText, String hintText) {
+    return  TextField(
+      decoration: InputDecoration(  
+        border: const OutlineInputBorder(),  
+        labelText: labelText,  
+        hintText: hintText  
+      ),  
     );
   }
 }
