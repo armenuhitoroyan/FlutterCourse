@@ -16,7 +16,7 @@ class HomePageWidget extends StatelessWidget {
   }
 
   Widget bodyHomePage(BuildContext context) {
-    bool isC = false;
+
     String _formPage = '';
     return Padding(
       padding: const EdgeInsets.all(10),
@@ -32,12 +32,17 @@ class HomePageWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  // Text('Registrtion'),
-                   Row(
-                    children: const [
-                      Icon(Icons.app_registration),
-                      Text('Registrtion', style: kBodyTextStyle,)
-                    ],
+                    GestureDetector(
+                    onTap: () {
+                      // Navigator.popAndPushNamed(context, AppRoutes.home);
+                      _formPage = 'Registration';
+                    },
+                    child: Row(
+                      children: const [
+                        Icon(Icons.app_registration),
+                        Text('Registration', style: kBodyTextStyle,)
+                      ],
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -51,30 +56,6 @@ class HomePageWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // GestureDetector(
-                  //     onTap: (){
-                  //       isC = true;     
-                  //     },
-                  //     child: Container(
-                  //         padding: const EdgeInsets.all(20),
-                  //         decoration: const BoxDecoration(
-                  //         color: kActivateCardColor,
-                  //         borderRadius: BorderRadius.all(Radius.circular(15))
-                  //       ),
-                  //       height: 150,
-                  //       child: Row(
-                  //         children: [
-                  //           // Text('Registrtion'),
-                  //           Column(
-                  //             children: const [
-                  //               Icon(Icons.login),
-                  //               Text('Login', style: kBodyTextStyle,)
-                  //             ],
-                  //           ),
-                  //         ],
-                  //       )
-                  //     ),
-                  // )
                 ],
               ),
             ),    
@@ -104,10 +85,15 @@ class HomePageWidget extends StatelessWidget {
                        
                   } 
                   else if(_formPage == 'Login') {
-                    print(_formPage);
                     Navigator.pushNamed(
                       context, 
                       AppRoutes.login
+                    );
+                  }
+                  else if(_formPage == 'Registration') {
+                    Navigator.pushNamed(
+                      context, 
+                      AppRoutes.registration
                     );
                   }
                   else {
@@ -129,6 +115,5 @@ class HomePageWidget extends StatelessWidget {
           ],
         ),
     ); 
-  }
-  
+  } 
 }

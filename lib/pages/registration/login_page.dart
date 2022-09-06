@@ -38,28 +38,35 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildBody(BuildContext context) {
     return Container(
       // color: LoginStyles.cLogin.withOpacity(0.1),
-      child: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _fields(context),
-            const SizedBox(height: 50),
-            ElevatedButton(
-              onPressed: () {
-               // ignore: avoid_print
-               print('Log In');
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: kBG
-              ),
-              child: const Text(
-                'Log In',
-                style: TextStyle(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: kBG,
+          centerTitle: true,
+          title: const Text('', style: kBodyTextStyle),
+        ),
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _fields(context),
+              const SizedBox(height: 50),
+              ElevatedButton(
+                onPressed: () {
+                 // ignore: avoid_print
+                 print('Log In');
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kBG
                 ),
-              ),
-              
-            )
-          ],
+                child: const Text(
+                  'Log In',
+                  style: TextStyle(
+                  ),
+                ),
+                
+              )
+            ],
+          ),
         ),
       ),
     );
