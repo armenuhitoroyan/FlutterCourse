@@ -3,6 +3,7 @@ import 'package:shop/base/routes.dart';
 
 import '../../styles/login_styles.dart';
 import '../../styles/style.dart';
+import '../../widgets/form_widget.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -89,30 +90,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
              
             ),
           ),
-           const SizedBox(height: 25),
-          TextFieldWidget('Enter Name', 'Enter Your Name'),
+          const SizedBox(height: 25),
+          FormWidget( labelText: 'Enter Name',  hintText: 'Enter Your Name',),
           const SizedBox(height: 15),
-          TextFieldWidget('Enter Lastname', 'Enter Your Lastname'),
+          FormWidget( labelText: 'Enter Lastname',  hintText: 'Enter Your Lastname',),
           const SizedBox(height: 15),
-          TextFieldWidget('Enter Email', 'Enter Your Email'),
+          FormWidget( labelText: 'Enter Email',  hintText: 'Enter Your Email',),
           const SizedBox(height: 15),
-          TextFieldWidget('Enter Password', 'Enter Your Password'),
+          FormWidget( labelText: 'Enter Password',  hintText: 'Enter Your Password',),
           const SizedBox(height: 15),
-          TextFieldWidget('Comfirm Password', 'Enter Your Password'),
+          FormWidget( labelText: 'Comfirm Password',  hintText: 'Comfirm Your Password',),
         ],
       ),
     );
   }
-
-    // ignore: non_constant_identifier_names
-  Widget TextFieldWidget(String labelText, String hintText) {
-    return  TextField(
-      decoration: InputDecoration(  
-        border: const OutlineInputBorder(),  
-        labelText: labelText,  
-        hintText: hintText  
-      ),  
-    );
-  }
-
 }

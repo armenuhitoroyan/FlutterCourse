@@ -11,7 +11,8 @@ class FormWidget extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Text('data');
+    return textFieldWidget(labelText,  hintText);
+  }
 
   // ignore: non_constant_identifier_names
   Widget textFieldWidget(String labelText, String hintText) {
@@ -23,6 +24,5 @@ class FormWidget extends StatelessWidget {
       ),  
     );
   }
-
   
 }

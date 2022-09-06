@@ -3,6 +3,7 @@ import 'package:shop/base/routes.dart';
 
 import '../../styles/login_styles.dart';
 import '../../styles/style.dart';
+import '../../widgets/form_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -89,23 +90,13 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           const SizedBox(height: 25),
-          TextFieldWidget('Enter Email', 'Enter Your Email'),
+          FormWidget( labelText: 'Enter Email',  hintText: 'Enter Your Email',),
           const SizedBox(height: 15),
-          TextFieldWidget('Enter Password', 'Enter Your Password'),
+          FormWidget( labelText: 'Enter Password',  hintText: 'Enter Your Password',),
         ],
       ),
     );
   }
 
 
-  // ignore: non_constant_identifier_names
-  Widget TextFieldWidget(String labelText, String hintText) {
-    return  TextField(
-      decoration: InputDecoration(  
-        border: const OutlineInputBorder(),  
-        labelText: labelText,  
-        hintText: hintText  
-      ),  
-    );
-  }
 }
