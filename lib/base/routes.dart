@@ -23,7 +23,7 @@ class AppRoutes {
     }
 
     var routes = <String, WidgetBuilder>{
-      AppRoutes.home: (context) =>  const HomeBodyW(),
+      AppRoutes.home: (context) =>  const HomePageWidget(),
       AppRoutes.users: (context) => const UsersPage(),
       AppRoutes.products: (context) => const ProductsPage(),
       AppRoutes.registration: (context) => const RegistrationPage(),

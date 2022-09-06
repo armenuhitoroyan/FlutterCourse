@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 
 import 'container_card_widget.dart';
 
-class HomeBodyW extends StatelessWidget {
-  const HomeBodyW({super.key});
+class HomePageWidget extends StatelessWidget {
+  const HomePageWidget({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class HomeBodyW extends StatelessWidget {
 
   Widget bodyHomePage(BuildContext context) {
     bool isC = false;
+    String _formPage = '';
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -23,53 +25,56 @@ class HomeBodyW extends StatelessWidget {
           children: <Widget>[
             
             const ContainerCardWidget(),
+            
 
             Expanded( child: Padding(
               padding: const EdgeInsets.only(left: 5, right: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                 /*  Expanded(  
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5, right: 5),
-                      child: GestureDetector(  
-                        // onTap: () {
-                        //   Navigator.pushNamed(
-                        //     context,
-                        //     AppRoutes.registration,
-                              
-                        //   );
-                        //     print('Ooooooooooooppppppppsssssssssss!');
-                        // },
-   
-                        child: ReusableCardWidget(
-                          iconData: Icons.app_registration, text: 'Registration/Login',
-                        )
-                      ),
+                  // Text('Registrtion'),
+                   Row(
+                    children: const [
+                      Icon(Icons.app_registration),
+                      Text('Registrtion', style: kBodyTextStyle,)
+                    ],
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // Navigator.popAndPushNamed(context, AppRoutes.home);
+                      _formPage = 'Login';
+                    },
+                    child: Row(
+                      children: const [
+                        Icon(Icons.login),
+                        Text('Login', style: kBodyTextStyle,)
+                      ],
                     ),
-                  ), */
-
-     GestureDetector(
-        onTap: (){
-          print("Container clicked");
-          isC = true;
-            
-        },
-        child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: const BoxDecoration(
-            color: kActivateCardColor,
-            borderRadius: BorderRadius.all(Radius.circular(15))
-          ),
-          height: 150,
-          child: Column(
-            children: const [
-              Icon(Icons.app_registration),
-              Text('Registrtion/Login', style: kBodyTextStyle,)
-            ],
-          ),
-        ),
-    )
+                  ),
+                  // GestureDetector(
+                  //     onTap: (){
+                  //       isC = true;     
+                  //     },
+                  //     child: Container(
+                  //         padding: const EdgeInsets.all(20),
+                  //         decoration: const BoxDecoration(
+                  //         color: kActivateCardColor,
+                  //         borderRadius: BorderRadius.all(Radius.circular(15))
+                  //       ),
+                  //       height: 150,
+                  //       child: Row(
+                  //         children: [
+                  //           // Text('Registrtion'),
+                  //           Column(
+                  //             children: const [
+                  //               Icon(Icons.login),
+                  //               Text('Login', style: kBodyTextStyle,)
+                  //             ],
+                  //           ),
+                  //         ],
+                  //       )
+                  //     ),
+                  // )
                 ],
               ),
             ),    
@@ -84,21 +89,25 @@ class HomeBodyW extends StatelessWidget {
                         context,
                         AppRoutes.products
                       );
-                      return; 
+                    
                     } else if(ReusableCardWidget.page == 'users') {
                       Navigator.pushNamed(
                         context,
                         AppRoutes.users
                       ); 
-                      return; 
-                    }  
-                                
+
+                    } 
+
+                    if (Navigator.defaultRouteName == AppRoutes.home) {
+                        ReusableCardWidget.isTap = false;
+                    }
+                       
                   } 
-                  else if(isC == true) {
-                    print(isC);
+                  else if(_formPage == 'Login') {
+                    print(_formPage);
                     Navigator.pushNamed(
                       context, 
-                      AppRoutes.registration
+                      AppRoutes.login
                     );
                   }
                   else {

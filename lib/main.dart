@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text(widget.title, style: kBodyTextStyle),
       ),
-      body: const RegistrationPage() 
+      body: const HomePageWidget()
     );
     
   }
