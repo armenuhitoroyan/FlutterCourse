@@ -31,27 +31,6 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
           'Settings',
         ),
         actions: [
-          // PopupMenuButton(
-          //   itemBuilder: (context){
-          //     return [
-          //       const PopupMenuItem<int>(
-          //         value: 0,
-          //         child: Text("My Account"),
-          //       ),
-
-          //       const PopupMenuItem<int>(
-          //         value: 1,
-          //         child: Text("Settings"),
-          //       ),
-
-          //       const PopupMenuItem<int>(
-          //         value: 2,
-          //         child: Text("Logout"),
-          //       ),
-          //     ];
-          //   },
-          // )
-
           popupBtnWidget()
         ],
         automaticallyImplyLeading: false,
@@ -72,7 +51,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
 
           return ListView.separated(
             itemBuilder: (context, index) {
-              return Text(settings[index].setting_name ?? '');
+              return Row(
+                children: [
+                  Text(settings[index].setting_name ?? ''),
+                  SwitchWidget()
+                ],
+              );
             },
             separatorBuilder: (context, index) => const Divider(),
             itemCount: settings.length,
