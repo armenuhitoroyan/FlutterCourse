@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop/base/routes.dart';
 
+import '../../../base/reg_exp.dart';
 import '../../../styles/login_styles.dart';
 import '../../../styles/style.dart';
 import '../../../widgets/form_widget.dart';
@@ -57,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                  // ignore: avoid_print
                  print('Log In');
-                 Navigator.pushReplacementNamed(context, AppRoutes.settings);
+                _onLogin(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kBG
@@ -107,6 +108,60 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+    Widget _dialog(
+    context, {
+    required String title,
+    String? content,
+  }) {
+    return AlertDialog(
+      title: Text(title),
+      content: Text(content ?? 'Some of the credentials are empty'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('OK'),
+        ),
+      ],
+    );
+  }
+
+    void _onLogin(context) {
+    final regExp = RegExp(RegularExpressions.email);
+
+    Navigator.of(context).pushReplacementNamed(AppRoutes.settings);
+   
+    if (usernameCtrl.text.isNotEmpty && passwordCtrl.text.isNotEmpty) {
+      if (regExp.hasMatch(usernameCtrl.text)) {
+        Navigator.of(context).pushReplacementNamed(AppRoutes.settings);
+      } else {
+        Navigator.of(context).pushReplacementNamed(AppRoutes.login);
+        showDialog(
+          context: context,
+          builder: (context) {
+            return _dialog(
+              context,
+              title: 'Error',
+              content: 'Username is invalid',
+            );
+          },
+        );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return _dialog(
+            context,
+            title: 'Error',
+            content: 'Some of the credentials are empty',
+          );
+        },
+      );
+    }
   }
 
 
