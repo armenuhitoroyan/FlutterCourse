@@ -14,6 +14,10 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   late TextEditingController _controller;
+  TextEditingController nameCtrl = TextEditingController();
+  TextEditingController lastNameCtrl = TextEditingController();
+  TextEditingController usernameCtrl = TextEditingController();
+  TextEditingController passwordCtrl = TextEditingController();
 
   @override
   void initState() {
@@ -98,15 +102,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
             ),
           ),
           const SizedBox(height: 25),
-          FormWidget( labelText: 'Enter Name',  hintText: 'Enter Your Name',),
+          FormWidget(controller: nameCtrl, labelText: 'Enter Name',  hintText: 'Enter Your Name',),
           const SizedBox(height: 15),
-          FormWidget( labelText: 'Enter Lastname',  hintText: 'Enter Your Lastname',),
+          FormWidget(controller: lastNameCtrl, labelText: 'Enter Lastname',  hintText: 'Enter Your Lastname',),
           const SizedBox(height: 15),
-          FormWidget( labelText: 'Enter Email',  hintText: 'Enter Your Email',),
+          FormWidget(controller: usernameCtrl, labelText: 'Enter Email',  hintText: 'Enter Your Email',),
           const SizedBox(height: 15),
-          FormWidget( labelText: 'Enter Password',  hintText: 'Enter Your Password',),
+          FormWidget(controller: passwordCtrl, labelText: 'Enter Password',  hintText: 'Enter Your Password',),
           const SizedBox(height: 15),
-          FormWidget( labelText: 'Comfirm Password',  hintText: 'Comfirm Your Password',),
+          FormWidget(controller: passwordCtrl, labelText: 'Comfirm Password',  hintText: 'Comfirm Your Password',),
         ],
       ),
     );

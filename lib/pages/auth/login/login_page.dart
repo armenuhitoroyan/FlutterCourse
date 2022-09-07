@@ -14,6 +14,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   late TextEditingController _controller;
+  bool showPassword = false;
+  TextEditingController usernameCtrl = TextEditingController();
+  TextEditingController passwordCtrl = TextEditingController();
 
   @override
   void initState() {
@@ -98,9 +101,9 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           const SizedBox(height: 25),
-          FormWidget( labelText: 'Enter Email',  hintText: 'Enter Your Email',),
+          FormWidget(controller: usernameCtrl, labelText: 'Enter Email',  hintText: 'Enter Your Email', ),
           const SizedBox(height: 15),
-          FormWidget( labelText: 'Enter Password',  hintText: 'Enter Your Password',),
+          FormWidget(controller: passwordCtrl, labelText: 'Enter Password',  hintText: 'Enter Your Password',),
         ],
       ),
     );
