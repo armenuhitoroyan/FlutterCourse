@@ -7,6 +7,8 @@ import 'package:shop/api/shop_api.dart';
 import 'package:shop/base/routes.dart';
 import 'package:shop/models/setting_model.dart';
 
+import '../../widgets/switch_widget.dart';
+
 
 class SettingsPageWidget extends StatefulWidget {
   const SettingsPageWidget({Key? key}) : super(key: key);
@@ -100,22 +102,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             child: Column(
               children: [
                 Row(
-                  children: [
-                    const Text('Settings'),
-                      customSwitch()
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Text('Settings'),
-                      customSwitch()
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Text('Settings'),
-                      customSwitch()
-                  ],
+                children: [
+                  const Text('Settings'),
+                    SwitchWidget()
+                ],
                 ),
               ]
             )
@@ -126,16 +116,18 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
   }
 
   Widget customSwitch () {
+    bool isSwitched = false;
    return Switch(
-      value: false,
+      value: isSwitched,
+     
       onChanged: (value) {
         setState(() {
-          value;
+           isSwitched = value;
                 
         });
       },
-            activeTrackColor: Colors.lightGreenAccent,
-            activeColor: Colors.green,
+      activeTrackColor: Colors.lightGreenAccent,
+      activeColor: Colors.green,
     );
   }
 
