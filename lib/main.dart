@@ -1,4 +1,4 @@
-import 'package:shop/pages/registration/registration_page.dart';
+
 import 'package:shop/widgets/homepage_widget.dart';
 import 'package:flutter/material.dart';
 import 'base/routes.dart';
@@ -44,7 +44,14 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: kBG,
         centerTitle: true,
         title: Text(widget.title, style: kBodyTextStyle),
+        leading: GestureDetector(
+          onTap: () { Navigator.pushNamed(context, AppRoutes.settings);},
+          child: const Icon(
+            Icons.more_vert,  // add custom icons also
+          ),
+  ),
       ),
+      
       body: const HomePageWidget()
     );
     

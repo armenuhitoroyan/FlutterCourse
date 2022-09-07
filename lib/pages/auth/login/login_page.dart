@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shop/base/routes.dart';
 
-import '../../styles/login_styles.dart';
-import '../../styles/style.dart';
-import '../../widgets/form_widget.dart';
+import '../../../styles/login_styles.dart';
+import '../../../styles/style.dart';
+import '../../../widgets/form_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -54,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                  // ignore: avoid_print
                  print('Log In');
+                 Navigator.pushReplacementNamed(context, AppRoutes.settings);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kBG

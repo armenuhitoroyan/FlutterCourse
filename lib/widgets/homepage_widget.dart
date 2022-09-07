@@ -22,11 +22,8 @@ class HomePageWidget extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            
+          children: <Widget>[        
             const ContainerCardWidget(),
-            
-
             Expanded( child: Padding(
               padding: const EdgeInsets.only(left: 5, right: 5),
               child: Row(

@@ -3,7 +3,7 @@ import 'package:shop/styles/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../models/product_model.dart';
+import '../../models/product_model.dart';
 
 
 class ProductsPage extends StatefulWidget {

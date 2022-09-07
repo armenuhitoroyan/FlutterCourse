@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shop/base/routes.dart';
 
-import '../../styles/login_styles.dart';
-import '../../styles/style.dart';
-import '../../widgets/form_widget.dart';
+import '../../../styles/login_styles.dart';
+import '../../../styles/style.dart';
+import '../../../widgets/form_widget.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
