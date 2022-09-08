@@ -115,6 +115,7 @@ class _LoginPageState extends State<LoginPage> {
     required String title,
     String? content,
   }) {
+    
     return AlertDialog(
       title: Text(title),
       content: Text(content ?? 'Some of the credentials are empty'),
@@ -151,6 +152,7 @@ class _LoginPageState extends State<LoginPage> {
         );
       }
     } else {
+      Navigator.of(context).pushReplacementNamed(AppRoutes.login);
       showDialog(
         context: context,
         builder: (context) {

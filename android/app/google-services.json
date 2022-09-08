@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "251325387889",
+    "project_id": "productsat-fd67a",
+    "storage_bucket": "productsat-fd67a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251325387889:android:3e6adaf0e1ca3c54ea37d0",
+        "android_client_info": {
+          "package_name": "com.example.online_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251325387889-79ijfo4mtp7te5fif6p4pn6guerd1df8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEosfu9sEjRPoJ1lyPYY7XU32-9EnmiUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251325387889-79ijfo4mtp7te5fif6p4pn6guerd1df8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
