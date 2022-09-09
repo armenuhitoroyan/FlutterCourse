@@ -9,7 +9,7 @@ import '../../../styles/login_styles.dart';
 import '../../../styles/style.dart';
 import '../../../widgets/form_widget.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatefulWidget with ConnectFirebase{
   const LoginPage({super.key});
 
   @override
@@ -22,17 +22,10 @@ class _LoginPageState extends State<LoginPage>  {
   TextEditingController usernameCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();
 
-
-void initFirebase() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
-  }
-
-
   @override
   void initState() {
     super.initState();
-    initFirebase();
+    ConnectFirebase().initFirebase();
     
     _controller = TextEditingController();
 
@@ -148,8 +141,6 @@ void initFirebase() async {
 
     Navigator.of(context).pushReplacementNamed(AppRoutes.settings);
 
-    return;
-   
     if (usernameCtrl.text.isNotEmpty && passwordCtrl.text.isNotEmpty) {
       if (regExp.hasMatch(usernameCtrl.text)) {
         Navigator.of(context).pushReplacementNamed(AppRoutes.settings);

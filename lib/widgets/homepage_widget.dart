@@ -31,7 +31,6 @@ class HomePageWidget extends StatelessWidget {
                 children: <Widget>[
                     GestureDetector(
                     onTap: () {
-                      // Navigator.popAndPushNamed(context, AppRoutes.home);
                       _formPage = 'Registration';
                     },
                     child: Row(
@@ -43,7 +42,6 @@ class HomePageWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // Navigator.popAndPushNamed(context, AppRoutes.home);
                       _formPage = 'Login';
                     },
                     child: Row(
