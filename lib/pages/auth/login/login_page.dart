@@ -147,6 +147,8 @@ void initFirebase() async {
     final regExp = RegExp(RegularExpressions.email);
 
     Navigator.of(context).pushReplacementNamed(AppRoutes.settings);
+
+    return;
    
     if (usernameCtrl.text.isNotEmpty && passwordCtrl.text.isNotEmpty) {
       if (regExp.hasMatch(usernameCtrl.text)) {
