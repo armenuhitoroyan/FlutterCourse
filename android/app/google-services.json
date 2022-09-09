@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:251325387889:android:3e6adaf0e1ca3c54ea37d0",
+        "mobilesdk_app_id": "1:251325387889:android:626092e90316b8d0ea37d0",
         "android_client_info": {
-          "package_name": "com.example.online_shop"
+          "package_name": "com.example.bmi_calculator"
         }
       },
       "oauth_client": [
@@ -29,6 +29,13 @@
             {
               "client_id": "251325387889-79ijfo4mtp7te5fif6p4pn6guerd1df8.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "251325387889-150vvn243h9hu6nmtg5sgo79h8mcpmev.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shop"
+              }
             }
           ]
         }

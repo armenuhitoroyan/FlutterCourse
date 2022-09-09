@@ -16,6 +16,7 @@ class SettingsApi {
       'https://my-json-server.typicode.com/narekpog/my-json/settings',
     );
 
+
     if (result.data is List) {
       settings = result.data
       

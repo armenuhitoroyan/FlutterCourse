@@ -18,9 +18,11 @@ class SettingsPageWidget extends StatefulWidget {
 }
 
 class _SettingsPageWidgetState extends State<SettingsPageWidget> {
+  late Text text;
   @override
   void initState() {
     super.initState();
+    
   }
 
   @override
@@ -31,7 +33,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
           'Settings',
         ),
         actions: [
-          popupBtnWidget()
+           popupBtnWidget()
         ],
         automaticallyImplyLeading: false,
       ),
@@ -45,15 +47,17 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
       builder: (context, snapshot) {
         //  print(snapshot);
         if (snapshot.hasData) {
+          // print(snapshot.runtimeType);
          
           final settings = snapshot.data as List<SettingModel>;
           // print(settings);
 
           return ListView.separated(
             itemBuilder: (context, index) {
+              text = Text(settings[index].setting_name ?? '');
               return Row(
                 children: [
-                  Text(settings[index].setting_name ?? ''),
+                  text,
                   SwitchWidget()
                 ],
               );
@@ -61,6 +65,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             separatorBuilder: (context, index) => const Divider(),
             itemCount: settings.length,
           );
+
         } else {
           return const Center(
             child: Text('No Items'),
@@ -72,31 +77,66 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
 
 
   Widget popupBtnWidget() {
-    Future<List<SettingModel>> future = ShopAPI().settings.getSettingsData();
+    String? text;
+    bool? val;
+    List<String>? texts;
+   return FutureBuilder(
+    future: ShopAPI().settings.getSettingsData(),
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        final settings = snapshot.data as List<SettingModel>;
+        // print('settings: ${settings.map((e) => e.setting_name)}');
+        print('type: ${settings.map((e) { 
+          text = e.setting_name as String;
+          return text; 
+        })}');
+
+        
+      }
+      return PopupMenuButton(
+        itemBuilder: (context) {
+          return [
+                  // ignore: prefer_const_constructors
+            PopupMenuItem(
+              value: 'edit',
+                // ignore: prefer_const_constructors
+              child: Text('$text'),
+            ),
+  
+          ];
+        },
+        onSelected: (String value){
+          print('You Click on po up menu item');
+        },
+      );
+    },
+  );
    
-    print('--------------------');
+  
+
+   
     
-    List<SettingModel> list = [];
+    // List<SettingModel> list = [];
     // list = future.then((value) => value.map((e) => e.id));
-    return PopupMenuButton(
-       itemBuilder: (context) {  
-         return [  
-           PopupMenuItem<int>(
-            value: 1,
-            child: Column(
-              children: [
-                Row(
-                children: [
-                  const Text('Settings'),
-                    SwitchWidget()
-                ],
-                ),
-              ]
-            )
-          ),
-         ];
-       },
-    );  
+    // return   PopupMenuButton(
+    //    itemBuilder: (context) {  
+    //      return [  
+    //        PopupMenuItem<int>(
+    //         value: 1,
+    //         child: Column(
+    //           children: [
+    //             Row(
+    //             children: [
+    //                Text('Text'),
+    //                 SwitchWidget()
+    //             ],
+    //             ),
+    //           ]
+    //         )
+    //       ),
+        //  ];
+      //  },
+    // );
   }
 
   Widget customSwitch () {

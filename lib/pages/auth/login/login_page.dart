@@ -1,4 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shop/base/firebase/connectbase.dart';
 import 'package:shop/base/routes.dart';
 
 import '../../../base/reg_exp.dart';
@@ -13,16 +16,26 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage>  {
   late TextEditingController _controller;
   bool showPassword = false;
   TextEditingController usernameCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();
 
+
+void initFirebase() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+  }
+
+
   @override
   void initState() {
     super.initState();
+    initFirebase();
+    
     _controller = TextEditingController();
+
   }
 
    @override
