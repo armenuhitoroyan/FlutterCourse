@@ -29,7 +29,7 @@ class _PopupBtnWidgetState extends State<PopupBtnWidget> {
 
           print(dataList);
          
-          return text; 
+          return dataList; 
         })}');
 
         
@@ -38,16 +38,13 @@ class _PopupBtnWidgetState extends State<PopupBtnWidget> {
         itemBuilder: (context) {
           int length = dataList.length;
           print('------- $dataList');
-          dataList.map(
-            (e) => e
-          );
           return [
                   // ignore: prefer_const_constructors
                   
             PopupMenuItem(
               value: 'edit',
                 // ignore: prefer_const_constructors
-              child: Text('$text'),
+              child: Text('${dataList.map((e) => e)}'),
             ),
   
           ];
