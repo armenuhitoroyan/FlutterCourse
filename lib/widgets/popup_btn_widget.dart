@@ -26,7 +26,6 @@ class _PopupBtnWidgetState extends State<PopupBtnWidget> {
         print('type: ${settings.map((e) { 
           text = e.setting_name as String;
           dataList.add(text);
-
           print(dataList);
          
           return dataList; 
@@ -36,7 +35,6 @@ class _PopupBtnWidgetState extends State<PopupBtnWidget> {
       }
       return PopupMenuButton(
         itemBuilder: (context) {
-          int length = dataList.length;
           print('------- $dataList');
           return [
                   // ignore: prefer_const_constructors
