@@ -1,9 +1,4 @@
-import 'dart:html';
-import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class InnerCaruselContainerWidget extends StatelessWidget {
   const InnerCaruselContainerWidget({super.key});
@@ -20,10 +15,19 @@ class InnerCaruselContainerWidget extends StatelessWidget {
       children: [
         // ignore: prefer_const_constructors
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            
-            const Text('Credit Card',
+          children: [ 
+            const Text('Ararat Bank',
+              // ignore: prefer_const_constructors
+              style: TextStyle(
+                color: Colors.white54,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic
+              ),
+            ),
+            const Text('VISA',
               // ignore: prefer_const_constructors
               style: TextStyle(
                 color: Colors.white54,
@@ -34,10 +38,6 @@ class InnerCaruselContainerWidget extends StatelessWidget {
             ),
           ],
         ),
-        // ignore: prefer_const_constructors
-        Image(image: AssetImage('assets/images/earth.png'),
-          height: 55,
-        ),
                            
         setText(
           '2 3 4 8 x x x x x x x x 6 9 2 0',
@@ -46,10 +46,42 @@ class InnerCaruselContainerWidget extends StatelessWidget {
            20
         ),
         setText(
-          'Name  Username',
+          'Թարմացվել է 01․01․2022',
            const TextStyle(), 
-           Colors.black26,
-           20
+           Colors.white38,
+           12
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [ 
+            Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              // ignore: prefer_const_constructors
+              Icon(
+                Icons.remove_red_eye_rounded,
+                color: Colors.white38,
+              ),
+              setText(
+                'Username',
+                const TextStyle(), 
+                Colors.white38,
+                20
+              ),
+            ]
+          ), 
+           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              setText(
+                '06.27',
+                const TextStyle(), 
+                Colors.white38,
+                16
+              ),
+            ]
+          ),
+          ]
         )
       ],
     );
@@ -60,10 +92,10 @@ class InnerCaruselContainerWidget extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-            color: color,
-            fontSize: fontSize,
-            fontWeight: FontWeight.w500,
-          )
+        color: color,
+        fontSize: fontSize,
+        fontWeight: FontWeight.w500,
+       )
     );
   }
 }

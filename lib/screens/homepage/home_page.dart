@@ -31,7 +31,7 @@ class _HomePAgeState extends State<HomePAge> {
       body: Center(
         child: CarouselSlider.builder(
           itemCount: ColorS.colors().length,
-          options: CarouselOptions(aspectRatio: 1.2, height: 200,),
+          options: CarouselOptions(aspectRatio: 1.2, height: 180,),
           itemBuilder: (context, index, realIndex){
             return Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
