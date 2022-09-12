@@ -19,7 +19,7 @@ class _HomePAgeState extends State<HomePAge> {
   @override
   Widget build(BuildContext context) {
     ColorS.colors();
-    print(Colors.primaries);
+   
     return Container(
       child: CarouselSliderWideget(),
     );
