@@ -24,6 +24,7 @@ class _FeedBackState extends State<FeedBack> {
 
   void getData() async {
     feedbackData = await IndigoAPI().feedback.getFeedbackData();
+    int i = 0;
    
     setState(() {
        print('feedbackData => $feedbackData');
@@ -68,7 +69,7 @@ class _FeedBackState extends State<FeedBack> {
                               onPressed: () {
                                 print('Clicked $index');
                               }, 
-                              child: Text('${feedbackData[index]['answers'][index]['answer_text']}')
+                              child: Text('${feedbackData[0]['answers'][index]['answer_text']}')
                             )
                           ],
                         ),
@@ -79,7 +80,7 @@ class _FeedBackState extends State<FeedBack> {
                               onPressed: () {
                                 print('Clicked $index');
                               }, 
-                              child: Text('${feedbackData[index]['answers'][index+=1]['answer_text']}')
+                              child: Text('${feedbackData[0]['answers'][index+=1]['answer_text']}')
                             )
                           ],
                         ),
@@ -90,7 +91,7 @@ class _FeedBackState extends State<FeedBack> {
                               onPressed: () {
                                 print('Clicked $index');
                               }, 
-                              child: Text('${feedbackData[index]['answers'][index+=1]['answer_text']}')
+                              child: Text('${feedbackData[0]['answers'][index < feedbackData[0]['answers'].length-2 ? index+=1 : index]['answer_text']}')
                             )
                           ],
                         ),
