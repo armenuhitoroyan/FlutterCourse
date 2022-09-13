@@ -145,8 +145,10 @@ class _FeedBackState extends State<FeedBack> {
     for (var i = 0; i < list.length-1; i++) {
       if (list[i] < list[i+1]) {
         correctId = list.reduce(min);
+        break;
       } else {
         correctId = list.reduce(max);
+        break;
       }
     }
     return correctId;
