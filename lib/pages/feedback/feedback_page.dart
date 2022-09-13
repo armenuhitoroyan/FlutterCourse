@@ -53,7 +53,7 @@ class _FeedBackState extends State<FeedBack> {
         appBar: AppBar(actions: [Text('QUESTIONS')]),
         body: Container(   
           margin: const EdgeInsets.all(10),
-          child: ListView.separated(
+          child: ListView.builder(
             itemBuilder: (context, index) {
              return Column(
                 children: [
@@ -68,46 +68,32 @@ class _FeedBackState extends State<FeedBack> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Row(
+                  
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemBuilder: (context, i) {
+                          return Row(
                           children: [
                             ElevatedButton(
                               onPressed: () {
                                 print('Clicked $index');
                               }, 
-                              child: Text('feedbackData0')
+                              child: Text('${questionsData[index].answers[i].answerText}')
                             )
                           ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                print('Clicked $index');
-                              }, 
-                              child: Text('feedbackData1')
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                print('Clicked $index');
-                              }, 
-                              child: Text('feedbackData2')
-                            )
-                          ],
-                        ),
+                        );
+                        const SizedBox(height: 10);
+                        },
+                        itemCount: questionsData[index].answers.length,
+                      )
                       ]
                     ),
                   )
                 ],
               );
             }, 
-            separatorBuilder: (context, index) => const Divider(),
-            itemCount: questionsData != null ? questionsData.length : 0
+            // separatorBuilder: (context, index) => const Divider(),
+            itemCount: questionsData.length
           )
         ),
       ),
