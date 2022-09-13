@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 
 import '../../models/feedback/feedback_model.dart';
@@ -10,18 +12,24 @@ class FeedbackApi {
     this.appDioClient,
   );
 
-  Future<List<dynamic>> getFeedbackData() async {
-    List<dynamic> questions = [];
+Future<List<Question>> getQuestionsData() async {
+    List<Question> questions = [];
 
     final result = await appDioClient.get(
       'https://my-json-server.typicode.com/narekpog/my-json/feedback',
     );
 
-    var r = result.data as Map;
-    if (r.values.first is List) {
-      questions = r.values.firstWhere((element) => true);
-    }
+    var res = result.data as Map<String, dynamic>;
+    // print(res.values.first);
+ 
+      questions = res.values.first
+          .map<Question>(
+            (e) => Question.fromJson(e),
+          )
+          .toList();
+          // print(questions);
 
+    print(questions);
     return questions;
   }
 }

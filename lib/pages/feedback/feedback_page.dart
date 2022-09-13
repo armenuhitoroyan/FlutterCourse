@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:indigo/models/feedback/feedback_model.dart';
 
 import '../../api/indigo_api.dart';
 
@@ -13,7 +14,9 @@ class FeedBack extends StatefulWidget {
 }
 
 class _FeedBackState extends State<FeedBack> {
-  var feedbackData;
+ 
+   List<Question> questionsData = [];
+   int length = 0;
 
     @override
   void initState() {
@@ -22,25 +25,25 @@ class _FeedBackState extends State<FeedBack> {
     super.initState();
   }
 
-  void getData() async {
-    feedbackData = await IndigoAPI().feedback.getFeedbackData();
-    int i = 0;
-   
+   void getData() async {
+    questionsData = await IndigoAPI().feedback.getQuestionsData().then((value) => value);
+
+    print(await IndigoAPI().feedback.getQuestionsData().then((value) => value.first.questionText));
+    
     setState(() {
-       print('feedbackData => $feedbackData');
+      length = questionsData.length;
     });
   }
 
   @override
   Widget build(BuildContext context) {
 
-    if (feedbackData == null) {
+    if (questionsData == null) {
       return const Center(
         child: CircularProgressIndicator(),
       );
-    } else {
-      print(feedbackData);
-    }
+    } 
+
     // print('data => ${IndigoAPI().feedback.getFeedbackData().then((value) => value.map((e) => e.questions.first.toJson().values.first))}');
     return Container(
      child: SafeArea(
@@ -54,7 +57,7 @@ class _FeedBackState extends State<FeedBack> {
                 children: [
                   Row(
                     children: [
-                      Text('${feedbackData[index]['question_text']}')
+                      Text('{feedbackData[index]}')
                     ],
                   ),
                   Padding(
@@ -69,7 +72,7 @@ class _FeedBackState extends State<FeedBack> {
                               onPressed: () {
                                 print('Clicked $index');
                               }, 
-                              child: Text('${feedbackData[0]['answers'][index]['answer_text']}')
+                              child: Text('feedbackData0')
                             )
                           ],
                         ),
@@ -80,7 +83,7 @@ class _FeedBackState extends State<FeedBack> {
                               onPressed: () {
                                 print('Clicked $index');
                               }, 
-                              child: Text('${feedbackData[0]['answers'][index+=1]['answer_text']}')
+                              child: Text('feedbackData1')
                             )
                           ],
                         ),
@@ -91,7 +94,7 @@ class _FeedBackState extends State<FeedBack> {
                               onPressed: () {
                                 print('Clicked $index');
                               }, 
-                              child: Text('${feedbackData[0]['answers'][index < feedbackData[0]['answers'].length-2 ? index+=1 : index]['answer_text']}')
+                              child: Text('feedbackData2')
                             )
                           ],
                         ),
@@ -102,7 +105,7 @@ class _FeedBackState extends State<FeedBack> {
               );
             }, 
             separatorBuilder: (context, index) => const Divider(),
-            itemCount: feedbackData.length
+            itemCount: questionsData != null ? questionsData.length : 0
           )
         ),
       ),
