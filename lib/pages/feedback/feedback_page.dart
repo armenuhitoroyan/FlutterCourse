@@ -26,9 +26,11 @@ class _FeedBackState extends State<FeedBack> {
   }
 
    void getData() async {
-    questionsData = await IndigoAPI().feedback.getQuestionsData().then((value) => value);
+    await IndigoAPI().feedback.getQuestionsData().then((value) => {
+      questionsData = value
+    });
 
-    print(await IndigoAPI().feedback.getQuestionsData().then((value) => value.first.questionText));
+    print(await IndigoAPI().feedback.getQuestionsData().then((value) => value.first));
     
     setState(() {
       length = questionsData.length;
@@ -57,7 +59,7 @@ class _FeedBackState extends State<FeedBack> {
                 children: [
                   Row(
                     children: [
-                      Text('{feedbackData[index]}')
+                      Text('${questionsData[index].questionText}')
                     ],
                   ),
                   Padding(
