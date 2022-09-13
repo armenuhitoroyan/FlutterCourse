@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:indigo/base/routes.dart';
 import 'package:indigo/models/feedback/feedback_model.dart';
 
 import '../../api/indigo_api.dart';
@@ -18,6 +19,8 @@ class _FeedBackState extends State<FeedBack> {
    List<Question> questionsData = [];
    int length = 0;
    int count = 0;
+   int correctId = 0;
+   List<int> ids = [];
 
     @override
   void initState() {
@@ -31,7 +34,7 @@ class _FeedBackState extends State<FeedBack> {
       questionsData = value
     });
 
-    print(await IndigoAPI().feedback.getQuestionsData().then((value) => value.first));
+    print(await IndigoAPI().feedback.getQuestionsData().then((value) => value.first.questionText));
     
     setState(() {
       length = questionsData.length;
@@ -41,23 +44,23 @@ class _FeedBackState extends State<FeedBack> {
   @override
   Widget build(BuildContext context) {
 
-    if (questionsData == null) {
+    if (questionsData.isEmpty) {
       return const Center(
         child: CircularProgressIndicator(),
       );
     } 
 
-    // print('data => ${IndigoAPI().feedback.getFeedbackData().then((value) => value.map((e) => e.questions.first.toJson().values.first))}');
+    // print('data => ${IndigoAPI().feedback.getQuestionsData().then((value) => value.first.questionText}');
     return Container(
      child: SafeArea(
       child: Scaffold(
-        appBar: AppBar(actions: [Text('QUESTIONS')]),
+        appBar: AppBar(actions: const [Text('QUESTIONS')]),
         body: Container(   
           margin: const EdgeInsets.all(10),
           child: ListView.builder(
             itemBuilder: (context, index) {
               // ignore: dead_code
-              if(index == count) {
+            if(index == count && index < questionsData.length) {
              return Column(
                 children: [
                   Row(
@@ -75,14 +78,19 @@ class _FeedBackState extends State<FeedBack> {
                       ListView.builder(
                         shrinkWrap: true,
                         itemBuilder: (context, i) {
+                          ids.add(questionsData[index].answers[i].answerId);
+                          print('ids => $ids');
+                         
                           return Row(
                           children: [
                             ElevatedButton(
                               onPressed: () {
                                 print('Clicked $index');
+                                print('id => ${questionsData[index].answers[i].answerId}');
                                 
                                 setState(() {
                                   count+=1;
+                                  ids = [];
                                 });
 
                                 print(count);
@@ -101,15 +109,37 @@ class _FeedBackState extends State<FeedBack> {
                   )
                 ],
               );
-            }
-             return Container();
+            } 
+            // else {
+            //  return const AlertDialog(
+            //     icon: Icon(Icons.comment),
+            //     backgroundColor: Colors.indigo,
+            //     title: Text('Դուք հավաքել եք 1 միավոր'),
+            //     titlePadding: EdgeInsets.all(10),
+            //     iconColor: Colors.white,
+            //   );
+            //   // Navigator.pushReplacementNamed(context, AppRoutes.homepage);
+            // }
+            return Container();
             }, 
-            // separatorBuilder: (context, index) => const Divider(),
             itemCount: questionsData.length
           )
         ),
       ),
     )
     );
+  }
+
+
+  void searchCorrectDataMin( List<int> list) {
+  
+    for (var i = length-1; i > 0; i--) {
+      if (list[i] < list[i-1]) {
+        list[i-1] = list[i];
+        list[i] = list[i-1];
+      } else {
+        print('Correct id is $i');
+      }
+    }
   }
 }
