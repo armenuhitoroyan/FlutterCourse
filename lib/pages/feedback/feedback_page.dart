@@ -20,6 +20,7 @@ class _FeedBackState extends State<FeedBack> {
    int length = 0;
    int count = 0;
    int correctId = 0;
+   int points = 0;
    List<int> identificators = [];
 
     @override
@@ -86,14 +87,15 @@ class _FeedBackState extends State<FeedBack> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                print('Clicked $i');
-                                print('id => ${questionsData[index].answers[i].answerId}');
+                                // print('Clicked $i');
+                                // print('id => ${questionsData[index].answers[i].answerId}');
 
                                 if (questionsData[index].answers[i].answerId == correctId) {
                                   print('The answer is correct ${questionsData[index].answers[i].answerId} == $correctId');
+                                  points += 1;
                                  
                                 } else {
-                                  print('The answer is wrong ${questionsData[index].answers[i].answerId} == $correctId');
+                                  print('The answer is wrong ${questionsData[index].answers[i].answerId} != $correctId');
                                  
                                 }
                                 
@@ -101,8 +103,6 @@ class _FeedBackState extends State<FeedBack> {
                                   count+=1;
                                   identificators = [];
                                 });
-
-                                print(count);
 
                               }, 
                               child: Text('${questionsData[index].answers[i].answerText}')
@@ -119,16 +119,12 @@ class _FeedBackState extends State<FeedBack> {
                 ],
               );
             } 
-            // else {
-            //  return const AlertDialog(
-            //     icon: Icon(Icons.comment),
-            //     backgroundColor: Colors.indigo,
-            //     title: Text('Դուք հավաքել եք 1 միավոր'),
-            //     titlePadding: EdgeInsets.all(10),
-            //     iconColor: Colors.white,
-            //   );
-            //   // Navigator.pushReplacementNamed(context, AppRoutes.homepage);
-            // }
+            else if (index == questionsData.length-1) {
+             
+              return showDialog();
+              print('index => $index');
+              
+            }
             return Container();
             }, 
             itemCount: questionsData.length
@@ -139,6 +135,19 @@ class _FeedBackState extends State<FeedBack> {
     );
   }
 
+
+
+  Widget showDialog() {
+    // ignore: prefer_const_constructors
+    return AlertDialog(
+      icon: const Icon(Icons.comment),
+      backgroundColor: Colors.indigo,
+      // ignore: prefer_const_constructors
+      title: Text('Դուք հավաքել եք $points միավոր'),
+      titlePadding: const EdgeInsets.all(10),
+      iconColor: Colors.white,
+    );
+  }
 
   int searchCorrectDataMin( List<int> list) {
   
