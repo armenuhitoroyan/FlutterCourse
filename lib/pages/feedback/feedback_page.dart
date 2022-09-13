@@ -17,6 +17,7 @@ class _FeedBackState extends State<FeedBack> {
  
    List<Question> questionsData = [];
    int length = 0;
+   int count = 0;
 
     @override
   void initState() {
@@ -55,6 +56,8 @@ class _FeedBackState extends State<FeedBack> {
           margin: const EdgeInsets.all(10),
           child: ListView.builder(
             itemBuilder: (context, index) {
+              // ignore: dead_code
+              if(index == count) {
              return Column(
                 children: [
                   Row(
@@ -77,6 +80,13 @@ class _FeedBackState extends State<FeedBack> {
                             ElevatedButton(
                               onPressed: () {
                                 print('Clicked $index');
+                                
+                                setState(() {
+                                  count+=1;
+                                });
+
+                                print(count);
+
                               }, 
                               child: Text('${questionsData[index].answers[i].answerText}')
                             )
@@ -91,6 +101,8 @@ class _FeedBackState extends State<FeedBack> {
                   )
                 ],
               );
+            }
+             return Container();
             }, 
             // separatorBuilder: (context, index) => const Divider(),
             itemCount: questionsData.length

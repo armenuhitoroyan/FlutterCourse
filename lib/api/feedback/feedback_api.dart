@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 
 import '../../models/feedback/feedback_model.dart';
@@ -20,16 +18,12 @@ Future<List<Question>> getQuestionsData() async {
     );
 
     var res = result.data as Map<String, dynamic>;
-    // print(res.values.first);
  
       questions = res.values.first
           .map<Question>(
             (e) => Question.fromJson(e),
           )
           .toList();
-          // print(questions);
-
-    print(questions);
     return questions;
   }
 }
