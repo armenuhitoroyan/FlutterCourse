@@ -52,86 +52,87 @@ class _FeedBackState extends State<FeedBack> {
     } 
 
     // print('data => ${IndigoAPI().feedback.getQuestionsData().then((value) => value.first.questionText}');
-    return Container(
-     child: SafeArea(
+    return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.amber,
         appBar: AppBar(actions: const [Text('QUESTIONS')]),
-        body: Container(   
-          margin: const EdgeInsets.all(10),
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              // ignore: dead_code
-            if(index == count && index < questionsData.length) {
-             return Column(
-                children: [
-                  Row(
-                    children: [
-                      Text('${questionsData[index].questionText}')
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+        body: Center(
+          child: Container(   
+            margin: const EdgeInsets.all(10),
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                // ignore: dead_code
+              if(index == count && index < questionsData.length) {
+               return Column(
+                  children: [
+                    Row(
                       children: [
-                  
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemBuilder: (context, i) {
-                          identificators.add(questionsData[index].answers[i].answerId);
-                          print('ids => $identificators');
-                          searchCorrectDataMin(identificators);
-                          print(correctId);
-                          return Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                // print('Clicked $i');
-                                // print('id => ${questionsData[index].answers[i].answerId}');
-
-                                if (questionsData[index].answers[i].answerId == correctId) {
-                                  print('The answer is correct ${questionsData[index].answers[i].answerId} == $correctId');
-                                  points += 1;
-                                 
-                                } else {
-                                  print('The answer is wrong ${questionsData[index].answers[i].answerId} != $correctId');
-                                 
-                                }
-                                
-                                setState(() {
-                                  count+=1;
-                                  identificators = [];
-                                });
-
-                              }, 
-                              child: Text('${questionsData[index].answers[i].answerText}')
-                            )
-                          ],
-                        );
-                        const SizedBox(height: 10);
-                        },
-                        itemCount: questionsData[index].answers.length,
-                      )
-                      ]
+                        Text(questionsData[index].questionText)
+                      ],
                     ),
-                  )
-                ],
-              );
-            } 
-            else if (index == questionsData.length-1) {
-             
-              return showDialog();
-              print('index => $index');
-              
-            }
-            return Container();
-            }, 
-            itemCount: questionsData.length
-          )
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                    
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemBuilder: (context, i) {
+                            identificators.add(questionsData[index].answers[i].answerId);
+                            print('ids => $identificators');
+                            searchCorrectDataMin(identificators);
+                            print(correctId);
+                            return Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  // print('Clicked $i');
+                                  // print('id => ${questionsData[index].answers[i].answerId}');
+        
+                                  if (questionsData[index].answers[i].answerId == correctId) {
+                                    print('The answer is correct ${questionsData[index].answers[i].answerId} == $correctId');
+                                    points += 1;
+                                   
+                                  } else {
+                                    print('The answer is wrong ${questionsData[index].answers[i].answerId} != $correctId');
+                                   
+                                  }
+                                  
+                                  setState(() {
+                                    count+=1;
+                                    identificators = [];
+                                  });
+        
+                                }, 
+                                child: Text(questionsData[index].answers[i].answerText)
+                              )
+                            ],
+                          );
+                          const SizedBox(height: 10);
+                          },
+                          itemCount: questionsData[index].answers.length,
+                        )
+                        ]
+                      ),
+                    )
+                  ],
+                );
+              } 
+              else if (index == questionsData.length-1) {
+               
+                return showDialog();
+                print('index => $index');
+                
+              }
+              return Container();
+              }, 
+              itemCount: questionsData.length
+            )
+          ),
         ),
       ),
-    )
     );
   }
 
