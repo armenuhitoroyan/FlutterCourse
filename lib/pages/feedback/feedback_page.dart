@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: dead_code
+
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:indigo/base/routes.dart';
 import 'package:indigo/models/feedback/feedback_model.dart';
 
 import '../../api/indigo_api.dart';
@@ -20,7 +20,7 @@ class _FeedBackState extends State<FeedBack> {
    int length = 0;
    int count = 0;
    int correctId = 0;
-   List<int> ids = [];
+   List<int> identificators = [];
 
     @override
   void initState() {
@@ -78,19 +78,28 @@ class _FeedBackState extends State<FeedBack> {
                       ListView.builder(
                         shrinkWrap: true,
                         itemBuilder: (context, i) {
-                          ids.add(questionsData[index].answers[i].answerId);
-                          print('ids => $ids');
-                         
+                          identificators.add(questionsData[index].answers[i].answerId);
+                          print('ids => $identificators');
+                          searchCorrectDataMin(identificators);
+                          print(correctId);
                           return Row(
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                print('Clicked $index');
+                                print('Clicked $i');
                                 print('id => ${questionsData[index].answers[i].answerId}');
+
+                                if (questionsData[index].answers[i].answerId == correctId) {
+                                  print('The answer is correct ${questionsData[index].answers[i].answerId} == $correctId');
+                                 
+                                } else {
+                                  print('The answer is wrong ${questionsData[index].answers[i].answerId} == $correctId');
+                                 
+                                }
                                 
                                 setState(() {
                                   count+=1;
-                                  ids = [];
+                                  identificators = [];
                                 });
 
                                 print(count);
@@ -131,15 +140,15 @@ class _FeedBackState extends State<FeedBack> {
   }
 
 
-  void searchCorrectDataMin( List<int> list) {
+  int searchCorrectDataMin( List<int> list) {
   
-    for (var i = length-1; i > 0; i--) {
-      if (list[i] < list[i-1]) {
-        list[i-1] = list[i];
-        list[i] = list[i-1];
+    for (var i = 0; i < list.length-1; i++) {
+      if (list[i] < list[i+1]) {
+        correctId = list.reduce(min);
       } else {
-        print('Correct id is $i');
+        correctId = list.reduce(max);
       }
     }
+    return correctId;
   }
 }
