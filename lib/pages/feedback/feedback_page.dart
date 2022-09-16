@@ -36,10 +36,6 @@ class _FeedBackState extends State<FeedBack> {
         questionsData = data.questions;
         i = questionsData.length;
       });
-
-      _pageController.addListener(() { 
-          
-      });
     });
 
 
@@ -63,7 +59,7 @@ class _FeedBackState extends State<FeedBack> {
             )
           : showResult
               ? _resultView()
-              : _buildContent()
+              : viewPager()
     );
   }
 
@@ -120,13 +116,11 @@ class _FeedBackState extends State<FeedBack> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: viewPager,
-        // () {
-        //   viewPager();
-        //   // onAnswerPressed(answerData.answerId);
-        //   print('object');
-     
-        // },
+        onPressed: () {
+          onAnswerPressed(answerData.answerId);
+          viewPager();
+        },
+       
         child: Text(answerData.answerText),
       ),
     );
@@ -167,8 +161,7 @@ class _FeedBackState extends State<FeedBack> {
         // return Text('data${currentQuestionIndex < questionsData.length - 1 ? 
         //   currentQuestionIndex++ : currentQuestionIndex--}');
 
-        if (_pageController.hasClients) {
-           
+        if (_pageController.hasClients) {     
           _pageController.animateToPage(
             questionsData.length,
             duration: const Duration(milliseconds: 20000),
