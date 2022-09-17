@@ -11,6 +11,8 @@ class FeedBack extends StatefulWidget {
 
   @override
   State<FeedBack> createState() => _FeedBackState();
+  
+  void updateBody(Widget viewPager) {}
 }
 
 class _FeedBackState extends State<FeedBack> {
@@ -19,6 +21,7 @@ class _FeedBackState extends State<FeedBack> {
   int currentQuestionIndex = 0;
   bool showResult = false;
   late int i;
+  Function? updateBody;
 
   final PageController _pageController = PageController(initialPage: 0);
 
@@ -59,7 +62,7 @@ class _FeedBackState extends State<FeedBack> {
             )
           : showResult
               ? _resultView()
-              : viewPager()
+              : _buildContent()
     );
   }
 
@@ -118,7 +121,10 @@ class _FeedBackState extends State<FeedBack> {
       child: ElevatedButton(
         onPressed: () {
           onAnswerPressed(answerData.answerId);
-          viewPager();
+           
+           setState(() {
+             widget.updateBody(viewPager());
+           });
         },
        
         child: Text(answerData.answerText),
@@ -154,25 +160,29 @@ class _FeedBackState extends State<FeedBack> {
 
   Widget viewPager() {
 
-    return PageView.builder(
-      controller: _pageController,
-      onPageChanged: (value) => questionsData.length-1,
-      itemBuilder: (context, index) {
-        // return Text('data${currentQuestionIndex < questionsData.length - 1 ? 
-        //   currentQuestionIndex++ : currentQuestionIndex--}');
-
-        if (_pageController.hasClients) {     
-          _pageController.animateToPage(
-            questionsData.length,
-            duration: const Duration(milliseconds: 20000),
-            curve: Curves.easeIn,
-          );
-        }
-
-        return _buildQuestion(currentQuestionIndex < questionsData.length - 1 ? 
-        questionsData[currentQuestionIndex++] : questionsData[currentQuestionIndex--]);
-      },
-      itemCount: i, 
+    return Center(
+      child: Container(
+        child: PageView.builder(
+          controller: _pageController,
+          onPageChanged: (value) => questionsData.length-1,
+          itemBuilder: (context, index) {
+            // return Text('data${currentQuestionIndex < questionsData.length - 1 ? 
+            //   currentQuestionIndex++ : currentQuestionIndex--}');
+      
+            if (_pageController.hasClients) {     
+              _pageController.animateToPage(
+                questionsData.length,
+                duration: const Duration(milliseconds: 20000),
+                curve: Curves.easeIn,
+              );
+            }
+      
+            return _buildQuestion(currentQuestionIndex < questionsData.length - 1 ? 
+            questionsData[currentQuestionIndex++] : questionsData[currentQuestionIndex--]);
+          },
+          itemCount: i, 
+        ),
+      ),
     );  
   }
 
