@@ -14,6 +14,7 @@ class ProductsPage extends StatefulWidget {
 
 class _ProductsPageState extends State<ProductsPage> {
   List<ProductModel>? productsData = [];
+  bool isClickedIcon = false;
  
   @override
   void initState() {
@@ -37,18 +38,37 @@ class _ProductsPageState extends State<ProductsPage> {
     return Scaffold(
       backgroundColor: Colors.indigo.shade100,
       appBar: AppBar(
-        title: const Text('QUESTIONS'),
+        // ignore: prefer_const_literals_to_create_immutables
+        actions: [
+          // ignore: prefer_const_constructors
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            // ignore: prefer_const_constructors
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isClickedIcon = !isClickedIcon;
+                });
+              },
+              child: !isClickedIcon ? Icon(Icons.list) : Icon(Icons.list_alt_sharp)
+            )
+          )
+        ],
+        title: const Text('SHRINE'),
+        
       ),
       body: productsData == null
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : _buildContent()
+          : !isClickedIcon
+              ? listView()
+              : gridview(),
               
     );
   }
 
-  Widget _buildContent() {
+    Widget listView() {
     return ListView.builder(
       itemBuilder: (context, index) {
         return GestureDetector (
@@ -74,6 +94,39 @@ class _ProductsPageState extends State<ProductsPage> {
       itemCount: productsData?.length,
     );
   }
+
+  Widget gridview() {
+  return MediaQuery.removePadding(
+    context: context,
+    removeTop: true,
+    child: GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+      ),
+      itemCount: productsData!.length,
+      itemBuilder: (BuildContext context, int index) {
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => productPage(productsData![index]),)); 
+          },
+          child: Card(
+            color: Colors.white,
+            child: Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [  
+                    Expanded(child: Image.network('${productsData?[index].imgUrl}')),
+                    Text('${productsData?[index].productName}'),
+                    Text('${productsData?[index].price}')
+                  ],
+                ),
+            ),
+          ),
+        );
+      }
+    ),
+  );
+}
 
   Widget productPage(ProductModel product) {
     return Scaffold(
