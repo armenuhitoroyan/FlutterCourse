@@ -4,6 +4,8 @@ import 'package:indigo/api/indigo_api.dart';
 
 import 'package:indigo/models/product_model.dart';
 
+import '../../widgets/heart_widget.dart';
+
 class ProductsPage extends StatefulWidget {
   const ProductsPage({super.key});
 
@@ -51,7 +53,7 @@ class _ProductsPageState extends State<ProductsPage> {
                   isClickedIcon = !isClickedIcon;
                 });
               },
-              child: !isClickedIcon ? Icon(Icons.list) : Icon(Icons.list_alt_sharp)
+              child: !isClickedIcon ? Icon(Icons.list) : Icon(Icons.drag_indicator_outlined )
             )
           )
         ],
@@ -76,71 +78,85 @@ class _ProductsPageState extends State<ProductsPage> {
           onTap: () { 
             Navigator.push(context, MaterialPageRoute(builder: (context) => productPage(productsData![index]),));    
           },
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Image.network(
-                      '${productsData?[index].imgUrl}',
-                      height: 150,
-                      // fit:BoxFit.fill 
-                    )
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [  
-                          Text(
-                            '${productsData?[index].productName}',
-                            style: const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                          Text(
-                            '${productsData?[index].materials?.first}',
-                            style: const TextStyle(
-                              fontSize: 15,
-                              color: Colors.grey
-                            ),
-                          ),
-                          RatingBar.builder(
-                            initialRating: 3,
-                            minRating: 1,
-                            direction: Axis.horizontal,
-                            allowHalfRating: true,
-                            itemCount: 5,
-                            itemPadding: const EdgeInsets.symmetric(horizontal: 3.0),
-                            // ignore: prefer_const_constructors
-                            itemBuilder: (context, _) => Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            onRatingUpdate: (rating) {
-                              print(rating);
-                            },
-                            itemSize: 15,
-                          ),
-                          Text(
-                            '${productsData?[index].price}\$',
-                            style: const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold
-                            ),
-                          )
-                        ],
+          child: 
+              Stack(
+                
+                children: <Widget>[   
+                Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Image.network(
+                          '${productsData?[index].imgUrl}',
+                          height: 150,
+                          // fit:BoxFit.fill 
+                        )
                       ),
-                    ),
-                  )],
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [  
+                              Text(
+                                '${productsData?[index].productName}',
+                                style: const TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              Text(
+                                '${productsData?[index].materials?.first}',
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.grey
+                                ),
+                              ),
+                              RatingBar.builder( //
+                                initialRating: 3,
+                                minRating: 1,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemPadding: const EdgeInsets.symmetric(horizontal: 3.0),
+                                // ignore: prefer_const_constructors
+                                itemBuilder: (context, _) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                onRatingUpdate: (rating) {
+                                  print(rating);
+                                },
+                                itemSize: 15,
+                              ),
+                              Text(
+                                '${productsData?[index].price}\$',
+                                style: const TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )],
+                  ),
+                ),
               ),
-            ),
-          ),
+              Align(
+                  alignment: Alignment.topRight,
+                  child: HeartWidget()
+                )
+              
+              ]
+              ),
+            // ignore: prefer_const_constructors
+            // HeartWidget()
+           
         );
       
       },
