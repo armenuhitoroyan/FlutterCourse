@@ -52,11 +52,8 @@ class _ProductsPageState extends State<ProductsPage> {
     return ListView.builder(
       itemBuilder: (context, index) {
         return GestureDetector (
-          onTap: () {
-            // Navigator.pushNamed(context, productPage(productsData![index]));\
-            Navigator.push(context, MaterialPageRoute(builder: (context) => productPage(productsData![index]),));
-            
-          
+          onTap: () { 
+            Navigator.push(context, MaterialPageRoute(builder: (context) => productPage(productsData![index]),));    
           },
           child: Card(
             child: Padding(
@@ -72,16 +69,26 @@ class _ProductsPageState extends State<ProductsPage> {
             ),
           ),
         );
-        // Text('${productsData[index].productName}');
+      
       },
       itemCount: productsData?.length,
     );
   }
 
   Widget productPage(ProductModel product) {
-    return Center(
-      child: Container(
-        child: Image.network('${product.imgUrl}'),
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(15),
+        child: Center(
+          child: Container(
+            child: Column(
+              children: [
+                Image.network('${product.imgUrl}'),
+                Text('${product.description}')
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

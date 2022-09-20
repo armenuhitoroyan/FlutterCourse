@@ -3,6 +3,7 @@ class ProductModel {
   int? price;
   String? imgUrl;
   bool? isAvailable;
+  String? description;
   List<String>? materials;
 
   ProductModel({
@@ -10,6 +11,7 @@ class ProductModel {
     this.price,
     this.imgUrl,
     this.isAvailable,
+    this.description,
     this.materials,
   });
 
@@ -18,6 +20,7 @@ class ProductModel {
     price = json['price'];
     imgUrl = json['image_url'];
     isAvailable = json['is_available'];
+    description = json['description'];
     materials = json['materials'].cast<String>();
   }
 
@@ -27,6 +30,7 @@ class ProductModel {
     data['price'] = price;
     data['image_url'] = imgUrl;
     data['is_available'] = isAvailable;
+    data['description'] = description;
     data['materials'] = materials;
     return data;
   }
