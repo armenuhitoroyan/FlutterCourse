@@ -1,10 +1,12 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:indigo/api/indigo_api.dart';
 
 import 'package:indigo/models/product_model.dart';
 
-import '../../widgets/heart_widget.dart';
+import '../../widgets/like_widget.dart';
 import '../../widgets/ratingbar-widget.dart';
 
 class ProductsPage extends StatefulWidget {
@@ -119,7 +121,7 @@ class _ProductsPageState extends State<ProductsPage> {
                                   color: Colors.grey
                                 ),
                               ),
-                              Raitingbar(),
+                              Raitingbar(5, Colors.amber, Icons.star),
                               Text(
                                 '${productsData?[index].price}\$',
                                 style: const TextStyle(
@@ -137,7 +139,7 @@ class _ProductsPageState extends State<ProductsPage> {
               // ignore: prefer_const_constructors
               Align(
                 alignment: Alignment.topRight,
-                child: HeartWidget()
+                child: LikeWidget()
               )
               
               ]
@@ -217,61 +219,82 @@ class _ProductsPageState extends State<ProductsPage> {
           padding: const EdgeInsets.only(top: 15, bottom: 15, left: 30, right: 30),
           child: Center(
             // ignore: avoid_unnecessary_containers
-            child: Card(
-               color: Colors.white,
-              child: Column(
-                children: [
-                  Expanded(child: Image.network(
-                    '${product.imgUrl}',
-                  ),),
-                  Row(
-                   
+            child: Column(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children:  [
+                   Container(     
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                          Center(
+                            child: Image.network(
+                            '${product.imgUrl}',
+                                                  ),
+                          ),
+                        Raitingbar(4, Colors.indigo, Icons.circle),
+                        
+                      ],
+                    ),
+                   )
+                  ],
+                ),
+                Column(
+                  children:  [
+                   Row( 
                     children: [ 
                       Text(
-                      '${product.productName}',
-                      style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold
-                      ),
-                    ), 
-                    ]
-                  ),
-                  Text('${product.description}'),
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [ 
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(children: [Text('Total')]),
-                          Row(children: [Text('Amount')]),
-                        ],
-                      ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      child: Text(  
-                        '\$${product.price}.0',
+                        '${product.productName}',
                         style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold
                         ),
-                      )
+                      ), 
+                      ]
                     ),
-                    // Spacer(),
-                    ElevatedButton(
-                      child: const Text('REMOVE CART'),
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo,
-                      ),
-                    ),
-                  ])
+                    Text('${product.description}'),
+                  ],
+                ),
+                Spacer(),
+                Column(
                  
-                ],
-              ),
-            ),
+                  children: [
+                    Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(children: [Text('Total')]),
+                            Row(children: [Text('Amount')]),
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 15, right: 15),
+                          child: Text(  
+                            '\$${product.price}.0',
+                            style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold
+                            ),
+                          )
+                        ),
+                        ElevatedButton(
+                          child: const Text('REMOVE CART'),
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.indigo,
+                          ),
+                      ),
+                      ],
+                    )
+                  ],
+                )
+              ],
+            )
           ),
         ),
       ),

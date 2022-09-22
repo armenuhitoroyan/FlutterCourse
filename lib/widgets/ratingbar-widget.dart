@@ -3,25 +3,31 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 
 class Raitingbar  extends StatelessWidget{
-  const Raitingbar({super.key});
+  int count;
+  Color color;
+  IconData icon;
+
+  Raitingbar(this.count, this.color, this.icon);
+
+   
   
   @override
   Widget build(BuildContext context) {
-    return ratingBar ();
+    return ratingBar (count, color, icon);
   }
 
-  Widget ratingBar () {
+  Widget ratingBar (int count, Color color, IconData icon) {
     return RatingBar.builder( //
-      initialRating: 3,
+      initialRating: 0.0,
       minRating: 1,
       direction: Axis.horizontal,
       allowHalfRating: true,
-      itemCount: 5,
+      itemCount: count,
       itemPadding: const EdgeInsets.symmetric(horizontal: 3.0),
       // ignore: prefer_const_constructors
       itemBuilder: (context, _) => Icon(
-        Icons.star,
-        color: Colors.amber,
+        icon,
+        color: color,
       ),
       onRatingUpdate: (rating) {
         print(rating);

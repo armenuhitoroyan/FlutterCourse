@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class HeartWidget extends StatefulWidget{
-  const HeartWidget({super.key});
+class LikeWidget extends StatefulWidget{
+  const LikeWidget({super.key});
 
   @override
-  State<HeartWidget> createState() => _HeartWidgetState();
+  State<LikeWidget> createState() => _LikeWidgetState();
 }
 
-class _HeartWidgetState extends State<HeartWidget> {
+class _LikeWidgetState extends State<LikeWidget> {
   bool isChangedColor = false;
   @override
   Widget build(BuildContext context) {
-   return heartWidget();
+   return likeWidget();
   }
 
-  Widget heartWidget() {
+  Widget likeWidget() {
     return 
     Padding(
       padding: const EdgeInsets.all(15),
@@ -28,10 +28,7 @@ class _HeartWidgetState extends State<HeartWidget> {
             setState(() {
               isChangedColor = !isChangedColor;
             });
-      
-            // if (!isChangedColor) {
-              
-            // }
+    
           },
           child: !isChangedColor ? Icon(Icons.thumb_up) : Icon(Icons.thumb_down),
         ),
