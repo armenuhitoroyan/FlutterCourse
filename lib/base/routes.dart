@@ -3,6 +3,7 @@ import 'package:indigo/pages/feedback/feedback_page.dart';
 import 'package:indigo/pages/homepage/home_page.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/products/product_page.dart';
 import '../pages/products/products_page.dart';
 
 

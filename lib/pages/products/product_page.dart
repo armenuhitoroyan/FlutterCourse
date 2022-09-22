@@ -41,6 +41,7 @@ class _ProductPageState extends State<ProductPage> {
                             child: Expanded(
                               child: Image.network(
                               '${product.imgUrl}',
+                               height: 200,
                               ),
                             ),
                           ),
