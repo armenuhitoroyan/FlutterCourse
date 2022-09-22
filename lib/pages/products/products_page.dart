@@ -5,6 +5,7 @@ import 'package:indigo/api/indigo_api.dart';
 import 'package:indigo/models/product_model.dart';
 
 import '../../widgets/heart_widget.dart';
+import '../../widgets/ratingbar-widget.dart';
 
 class ProductsPage extends StatefulWidget {
   const ProductsPage({super.key});
@@ -38,36 +39,38 @@ class _ProductsPageState extends State<ProductsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.indigo.shade100,
-      appBar: AppBar(
-        // ignore: prefer_const_literals_to_create_immutables
-        actions: [
-          // ignore: prefer_const_constructors
-          Padding(
-            padding: const EdgeInsets.only(right: 15),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.indigo.shade100,
+        appBar: AppBar(
+          // ignore: prefer_const_literals_to_create_immutables
+          actions: [
             // ignore: prefer_const_constructors
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isClickedIcon = !isClickedIcon;
-                });
-              },
-              child: !isClickedIcon ? Icon(Icons.list) : Icon(Icons.drag_indicator_outlined )
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              // ignore: prefer_const_constructors
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isClickedIcon = !isClickedIcon;
+                  });
+                },
+                child: !isClickedIcon ? Icon(Icons.list) : Icon(Icons.drag_indicator_outlined )
+              )
             )
-          )
-        ],
-        title: const Text('SHRINE'),
-        
+          ],
+          title: const Text('SHRINE'),
+          
+        ),
+        body: productsData == null
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : !isClickedIcon
+                ? listView()
+                : gridview(),
+                
       ),
-      body: productsData == null
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : !isClickedIcon
-              ? listView()
-              : gridview(),
-              
     );
   }
 
@@ -110,29 +113,13 @@ class _ProductsPageState extends State<ProductsPage> {
                                 ),
                               ),
                               Text(
-                                '${productsData?[index].materials?.first}',
+                                '${productsData?[index].materials?.map((e) => e)}',
                                 style: const TextStyle(
                                   fontSize: 15,
                                   color: Colors.grey
                                 ),
                               ),
-                              RatingBar.builder( //
-                                initialRating: 3,
-                                minRating: 1,
-                                direction: Axis.horizontal,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                itemPadding: const EdgeInsets.symmetric(horizontal: 3.0),
-                                // ignore: prefer_const_constructors
-                                itemBuilder: (context, _) => Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                onRatingUpdate: (rating) {
-                                  print(rating);
-                                },
-                                itemSize: 15,
-                              ),
+                              Raitingbar(),
                               Text(
                                 '${productsData?[index].price}\$',
                                 style: const TextStyle(
@@ -147,10 +134,11 @@ class _ProductsPageState extends State<ProductsPage> {
                   ),
                 ),
               ),
+              // ignore: prefer_const_constructors
               Align(
-                  alignment: Alignment.topRight,
-                  child: HeartWidget()
-                )
+                alignment: Alignment.topRight,
+                child: HeartWidget()
+              )
               
               ]
               ),
@@ -180,17 +168,41 @@ class _ProductsPageState extends State<ProductsPage> {
           },
           child: Card(
             color: Colors.white,
-            child: Center(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [  
-                    Expanded(child: Image.network('${productsData?[index].imgUrl}')),
-                    Text('${productsData?[index].productName}'),
-                    Text('${productsData?[index].price}')
+                    Expanded(child: Image.network(
+                      '${productsData?[index].imgUrl}',
+                      // height: 200,
+                    ),),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15),
+                      child: Row(
+                        children: [ Text(
+                          '${productsData?[index].productName}',
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ), ]
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15, bottom: 30),
+                      child: Row(
+                        children: [
+                          Text(
+                            '\$${productsData?[index].price?.toDouble()}',
+                            style: const TextStyle(
+                              fontSize: 30,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
             ),
-          ),
         );
       }
     ),
@@ -198,16 +210,67 @@ class _ProductsPageState extends State<ProductsPage> {
   }
 
   Widget productPage(ProductModel product) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Center(
-          child: Container(
-            child: Column(
-              children: [
-                Image.network('${product.imgUrl}'),
-                Text('${product.description}')
-              ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 15, bottom: 15, left: 30, right: 30),
+          child: Center(
+            // ignore: avoid_unnecessary_containers
+            child: Card(
+               color: Colors.white,
+              child: Column(
+                children: [
+                  Expanded(child: Image.network(
+                    '${product.imgUrl}',
+                  ),),
+                  Row(
+                   
+                    children: [ 
+                      Text(
+                      '${product.productName}',
+                      style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold
+                      ),
+                    ), 
+                    ]
+                  ),
+                  Text('${product.description}'),
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [ 
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(children: [Text('Total')]),
+                          Row(children: [Text('Amount')]),
+                        ],
+                      ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15, right: 15),
+                      child: Text(  
+                        '\$${product.price}.0',
+                        style: const TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold
+                        ),
+                      )
+                    ),
+                    // Spacer(),
+                    ElevatedButton(
+                      child: const Text('REMOVE CART'),
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo,
+                      ),
+                    ),
+                  ])
+                 
+                ],
+              ),
             ),
           ),
         ),

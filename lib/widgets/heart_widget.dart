@@ -33,7 +33,7 @@ class _HeartWidgetState extends State<HeartWidget> {
               
             // }
           },
-          child: Icon(Icons.thumb_up),
+          child: !isChangedColor ? Icon(Icons.thumb_up) : Icon(Icons.thumb_down),
         ),
       ),
     );
