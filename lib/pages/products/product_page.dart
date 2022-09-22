@@ -6,7 +6,8 @@ import '../../widgets/ratingbar-widget.dart';
 
 
 class ProductPage extends StatefulWidget {
-  ProductModel productModel;
+  final ProductModel productModel;
+  // ignore: prefer_const_constructors_in_immutables
   ProductPage({super.key, required this.productModel});
 
   @override
@@ -40,11 +41,16 @@ class _ProductPageState extends State<ProductPage> {
                             child: Expanded(
                               child: Image.network(
                               '${product.imgUrl}',
-                                                       ),
+                              ),
                             ),
                           ),
                         Raitingbar(4, Colors.indigo, Icons.circle),
-                        // const LikeWidget()
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: const [
+                            LikeWidget()
+                          ],
+                        )
                       ],
                     ),
                    )
@@ -66,9 +72,8 @@ class _ProductPageState extends State<ProductPage> {
                     Text('${product.description}'),
                   ],
                 ),
-                Spacer(),
-                Column(
-                 
+                const Spacer(),
+                Column(  
                   children: [
                     Row(
                      mainAxisAlignment: MainAxisAlignment.center,
@@ -77,12 +82,12 @@ class _ProductPageState extends State<ProductPage> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(children: [Text('Total')]),
-                            Row(children: [Text('Amount')]),
+                            Row(children: const [Text('Total')]),
+                            Row(children: const [Text('Amount')]),
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 15, right: 15),
+                          padding: const EdgeInsets.only(left: 15, right: 15),
                           child: Text(  
                             '\$${product.price}.0',
                             style: const TextStyle(
@@ -91,13 +96,15 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           )
                         ),
-                        ElevatedButton(
-                          child: const Text('REMOVE CART'),
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.indigo,
-                          ),
-                      ),
+                        Expanded(
+                          child: ElevatedButton(
+                            child: const Text('REMOVE CART'),
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.indigo,
+                            ),
+                                              ),
+                        ),
                       ],
                     )
                   ],
@@ -109,9 +116,4 @@ class _ProductPageState extends State<ProductPage> {
       ),
     );
   }
-
-
-  // Widget productPage(ProductModel product) {
-    
-  // }
 }
