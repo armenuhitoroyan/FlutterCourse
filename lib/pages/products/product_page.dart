@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:indigo/pages/products/products_page.dart';
+import 'package:indigo/widgets/like_widget.dart';
 
 import '../../models/product_model.dart';
 import '../../widgets/ratingbar-widget.dart';
@@ -37,12 +37,14 @@ class _ProductPageState extends State<ProductPage> {
                     child: Column(
                       children: [
                           Center(
-                            child: Image.network(
-                            '${product.imgUrl}',
-                                                  ),
+                            child: Expanded(
+                              child: Image.network(
+                              '${product.imgUrl}',
+                                                       ),
+                            ),
                           ),
                         Raitingbar(4, Colors.indigo, Icons.circle),
-                        
+                        // const LikeWidget()
                       ],
                     ),
                    )

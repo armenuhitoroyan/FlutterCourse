@@ -1,12 +1,7 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:indigo/api/indigo_api.dart';
-
 import 'package:indigo/models/product_model.dart';
 import 'package:indigo/pages/products/product_page.dart';
-
 import '../../widgets/like_widget.dart';
 import '../../widgets/ratingbar-widget.dart';
 
@@ -29,9 +24,7 @@ class _ProductsPageState extends State<ProductsPage> {
       setState(() {
         productsData = data;
       });
-
     });
-
 
     super.initState();
   }
@@ -62,8 +55,7 @@ class _ProductsPageState extends State<ProductsPage> {
               )
             )
           ],
-          title: const Text('SHRINE'),
-          
+          title: const Text('SHRINE'),   
         ),
         body: productsData == null
             ? const Center(
@@ -71,8 +63,7 @@ class _ProductsPageState extends State<ProductsPage> {
               )
             : !isClickedIcon
                 ? listView()
-                : gridview(),
-                
+                : gridview(),        
       ),
     );
   }
@@ -102,7 +93,6 @@ class _ProductsPageState extends State<ProductsPage> {
                         child: Image.network(
                           '${productsData?[index].imgUrl}',
                           height: 150,
-                          // fit:BoxFit.fill 
                         )
                       ),
                       Expanded(
@@ -143,17 +133,14 @@ class _ProductsPageState extends State<ProductsPage> {
                 ),
               ),
               // ignore: prefer_const_constructors
-              Align(
-                alignment: Alignment.topRight,
-                child: LikeWidget()
-              )
-              
-              ]
-              ),
-            // ignore: prefer_const_constructors
-           
-        );
-      
+              Padding(
+                padding: EdgeInsets.only(top: 120),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: const LikeWidget()
+                ),
+              )]),        
+        );   
       },
       itemCount: productsData?.length,
     );
@@ -189,7 +176,7 @@ class _ProductsPageState extends State<ProductsPage> {
                       // height: 200,
                     ),),
                     Padding(
-                      padding: EdgeInsets.only(left: 15),
+                      padding: const EdgeInsets.only(left: 15),
                       child: Row(
                         children: [ Text(
                           '${productsData?[index].productName}',
@@ -201,7 +188,7 @@ class _ProductsPageState extends State<ProductsPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 15, bottom: 30),
+                      padding: const EdgeInsets.only(left: 15, bottom: 30),
                       child: Row(
                         children: [
                           Text(

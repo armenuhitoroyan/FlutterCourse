@@ -19,7 +19,7 @@ class _LikeWidgetState extends State<LikeWidget> {
     Padding(
       padding: const EdgeInsets.all(15),
       child: Container(
-        margin: const EdgeInsets.only(top: 120.0),
+        // margin: const EdgeInsets.only(top: 120.0),
         child: FloatingActionButton(
           // fit: BoxFit.cover,
           backgroundColor: Colors.white,
@@ -30,7 +30,7 @@ class _LikeWidgetState extends State<LikeWidget> {
             });
     
           },
-          child: !isChangedColor ? Icon(Icons.thumb_up) : Icon(Icons.thumb_down),
+          child: Icon(Icons.thumb_up),
         ),
       ),
     );
