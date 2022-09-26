@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:indigo/base/controllers/pages_provider.dart';
 import 'package:provider/provider.dart';
-import '../../base/controllers/products_data_provider.dart';
 import 'gridview_products.dart';
 import 'listview_products.dart';
 
@@ -9,11 +9,11 @@ class ProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ProductsDataProvider(),
-      child: Consumer<ProductsDataProvider>( 
+      create: (context) => PagesProvider(),
+      child: Consumer<PagesProvider>( 
         builder: (context, value, child) {
         return Scaffold(
-            backgroundColor: Color.fromARGB(255, 37, 47, 116),
+            backgroundColor: const Color.fromARGB(255, 37, 47, 116),
             appBar: AppBar(
               // ignore: prefer_const_literals_to_create_immutables
               actions: [
@@ -24,9 +24,10 @@ class ProductsPage extends StatelessWidget {
                   child: 
                      GestureDetector(
                       onTap: () {
-                       
+                        value.onChange();
                       },
-                      child: !value.isClickedIcon ? Icon(Icons.list) : Icon(Icons.drag_indicator_outlined )
+                      child: !value.isClickedIcon ? Icon(Icons.list) 
+                        : Icon(Icons.drag_indicator_outlined )
                   
                   )
                 )
@@ -41,7 +42,7 @@ class ProductsPage extends StatelessWidget {
                     ? listView()
                     : gridview(context),        
           );
-  }),
+        }),
     );
   }
 }

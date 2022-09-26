@@ -7,7 +7,6 @@ import '../../api/indigo_api.dart';
 
 class ProductsDataProvider extends ChangeNotifier {
   List<ProductModel> items = [];
-  bool isClickedIcon = false;
 
   ProductsDataProvider(){
     getData();
@@ -15,7 +14,6 @@ class ProductsDataProvider extends ChangeNotifier {
 
   getData() async {
       
-      isClickedIcon = !isClickedIcon;
       final result = await IndigoAPI().products.getProductsData();
       items = result;
       
