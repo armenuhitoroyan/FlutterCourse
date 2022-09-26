@@ -45,38 +45,38 @@ class HomePageWidget extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Home'),
+              title: const Text('Home'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              title: Text('Settings'),
+              title: const Text('Settings'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
+             ListTile(
+              title: const Text(
+                'Products',
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, AppRoutes.products);
+                // Navigator.pushNamed(context, AppRoutes.products);
+              },
+            ),
             ListTile(
-              title: Text(
+              title: const Text(
                 'Feedback',
               ),
               onTap: () {
                 Navigator.pushNamed(context, AppRoutes.feedback);
               },
             ),
-            ListTile(
-              title: Text(
-                'Products',
-              ),
-              onTap: () {
-                print('object');
-                Navigator.pushNamed(context, AppRoutes.products);
-                // Navigator.pushNamed(context, AppRoutes.products);
-              },
-            ),
+           
             const Spacer(),
             ListTile(
-              title: Text('Log Out'),
+              title: const Text('Log Out'),
               onTap: () {
                 Navigator.pop(context);
               },

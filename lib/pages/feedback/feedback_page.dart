@@ -1,80 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:indigo/api/indigo_api.dart';
 import 'package:indigo/models/feedback/feedback_model.dart';
+import 'package:provider/provider.dart';
 
-class FeedBack extends StatefulWidget {
-  const FeedBack({super.key});
+import '../../base/controllers/feedback_provider.dart';
 
-  @override
-  State<FeedBack> createState() => _FeedBackState();
-}
+class FeedBack extends StatelessWidget {
+   FeedBack({super.key});
 
-class _FeedBackState extends State<FeedBack> {
-  FeedBackModel? feedbackData;
-  List<Question> questionsData = [];
   int currentQuestionIndex = 0;
-  bool showResult = false;
   PageController pageController = PageController();
 
-  @override
-  void initState() {
-    getData().then((data) {
-      setState(() {
-        feedbackData = data;
-        questionsData = data.questions;
-      });
-    });
-
-    super.initState();
-  }
-
-  Future<FeedBackModel> getData() async {
-    return await IndigoAPI().feedback.getFeedbackData();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.indigo.shade100,
-      appBar: AppBar(
-        title: const Text('QUESTIONS'),
-      ),
-      body: feedbackData == null
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : showResult
-              ? _resultView()
-              : _buildContent(),
+    return ChangeNotifierProvider(
+      create: (context) => FeedBackProvider(),
+      builder: (context, child) {
+      return Consumer<FeedBackProvider>(
+        builder: (context, value, child) {
+        return Scaffold(
+          backgroundColor: Colors.indigo.shade100,
+          appBar: AppBar(
+            title: const Text('QUESTIONS'),
+          ),
+          body: value.feedbackData == null
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : value.showResult
+                  ? _resultView()
+                  : _buildContent(),
+        );}
+      );}
     );
   }
 
   Widget _buildContent() {
-    return Column(
-      children: [
-        // ignore: prefer_const_constructors
-        LinearProgressIndicator(
-          value: (currentQuestionIndex + 1) / (questionsData.length),
-          color: Colors.red,
-        ),
-        Expanded(
-          child: PageView.builder(
-            onPageChanged: (value) {
-              currentQuestionIndex = value;
+    return ChangeNotifierProvider(
+      create: (context) => FeedBackProvider(),
+      builder: (context, child) {
+      return Consumer<FeedBackProvider>(
+        builder: (context, value, child) {
+          return Column(
+            children: [
+              // ignore: prefer_const_constructors
+              LinearProgressIndicator(
+                value: (currentQuestionIndex + 1) / (value.questionsData.length),
+                color: Colors.red,
+              ),
+              Expanded(
+                child: PageView.builder(
+                  onPageChanged: (value) {
+                    currentQuestionIndex = value;
 
-              setState(() {});
-            },
-            itemBuilder: (context, index) {
-              return _buildQuestion(context, questionsData[index]);
-            },
-            itemCount: questionsData.length,
-            scrollDirection: Axis.horizontal,
-            controller: pageController,
-          ),
-        ),
-        //_buildQuestion(questionsData[currentQuestionIndex])
-      ],
-    );
+                  },
+                  itemBuilder: (context, index) {
+                    return _buildQuestion(context, value.questionsData[index]);
+                  },
+                  itemCount: value.questionsData.length,
+                  scrollDirection: Axis.horizontal,
+                  controller: pageController,
+                ),
+              ),
+            ],
+          );
+        }
+      );
+    });
   }
 
   Widget _buildQuestion(BuildContext context, Question questionData) {
@@ -149,10 +141,10 @@ class _FeedBackState extends State<FeedBack> {
   }
 
   void answerPressed(int answerId) {
-    if (currentQuestionIndex == questionsData.length - 1) {
-      setState(() {
-        showResult = true;
-      });
+    FeedBackProvider fbProvider = FeedBackProvider();
+
+    if (currentQuestionIndex == fbProvider.questionsData.length - 1) {
+      fbProvider.onChange();
     }
     pageController.animateToPage(currentQuestionIndex + 1,
         curve: Curves.easeInOut, duration: const Duration(milliseconds: 700));

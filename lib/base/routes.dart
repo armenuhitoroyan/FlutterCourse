@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../pages/products/product_page.dart';
 import '../pages/products/products_page.dart';
+import 'controllers/feedback_provider.dart';
 
 class AppRoutes {
   static const login = '/';
@@ -33,8 +34,12 @@ class AppRoutes {
             child: ProductsPage(),
       ),
 
+      AppRoutes.feedback: (context) => ChangeNotifierProvider(
+            create: (context) => FeedBackProvider(),
+            child: FeedBack(),
+      ),
 
-      AppRoutes.feedback: (context) => const FeedBack(),
+      // AppRoutes.feedback: (context) =>  FeedBack(),
       // AppRoutes.products: (context) => ProductsPage(),
     };
 
