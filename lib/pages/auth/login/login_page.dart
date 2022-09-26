@@ -1,9 +1,7 @@
 import 'package:indigo/base/reg_exp.dart';
 import 'package:indigo/base/routes.dart';
 import 'package:indigo/pages/auth/login/login_styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

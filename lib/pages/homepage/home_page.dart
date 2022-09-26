@@ -1,29 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:indigo/api/indigo_api.dart';
-import 'package:indigo/models/product_model.dart';
+import 'package:provider/provider.dart';
 
+import '../../base/controllers/products_data_provider.dart';
 import '../../base/routes.dart';
 
-class HomePageWidget extends StatefulWidget {
+class HomePageWidget extends StatelessWidget {
   const HomePageWidget({Key? key}) : super(key: key);
-
-  @override
-  State<HomePageWidget> createState() => _HomePageWidgetState();
-}
-
-class _HomePageWidgetState extends State<HomePageWidget> {
-  final GlobalKey<ScaffoldState> _key = GlobalKey(); //
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // drawerEnableOpenDragGesture: false,
-      key: _key,
       floatingActionButton: Builder(
         builder: (context) {
           return FloatingActionButton(
@@ -77,7 +64,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 Navigator.pushNamed(context, AppRoutes.feedback);
               },
             ),
-             ListTile(
+            ListTile(
               title: Text(
                 'Products',
               ),
@@ -102,24 +89,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return FutureBuilder(
-      future: IndigoAPI().products.getProductsData(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final products = snapshot.data as List<ProductModel>;
-
-          return ListView.separated(
-            itemBuilder: (context, index) {
-              return Text(products[index].productName ?? '');
-            },
-            separatorBuilder: (context, index) => const Divider(),
-            itemCount: products.length,
-          );
-        } else {
-          return const Center(
-            child: Text('No Items'),
-          );
-        }
+    return ChangeNotifierProvider(
+      create: (context) => ProductsDataProvider(),
+      builder: (context, child) {
+        return Consumer<ProductsDataProvider>(
+          builder: (context, value, child) {
+            return ListView.builder(
+              itemBuilder: ((context, index) {
+                return Text('${value.items[index].productName}');
+              }),
+              itemCount: value.items.length,
+            );
+          },
+        );
       },
     );
   }

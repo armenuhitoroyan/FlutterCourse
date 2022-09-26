@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:indigo/widgets/like_widget.dart';
-
 import '../../models/product_model.dart';
-import '../../widgets/ratingbar-widget.dart';
-
+import '../../widgets/products_widgets/like_widget.dart';
+import '../../widgets/products_widgets/ratingbar-widget.dart';
 
 class ProductPage extends StatefulWidget {
   final ProductModel productModel;
