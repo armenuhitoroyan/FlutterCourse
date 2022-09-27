@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:indigo/base/routes.dart';
 import 'package:indigo/models/feedback/feedback_model.dart';
 import 'package:provider/provider.dart';
 
@@ -114,7 +115,7 @@ class FeedBack extends StatelessWidget {
 
           if (fbProvider.showResult) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => _resultView()));
+                MaterialPageRoute(builder: (context) => _resultView(context)));
           }
         },
         child: Text(answerData.answerText),
@@ -122,7 +123,7 @@ class FeedBack extends StatelessWidget {
     );
   }
 
-  Widget _resultView() {
+  Widget _resultView(BuildContext context) {
     return Center(
       child: Container(
         padding: const EdgeInsets.all(40),
@@ -148,7 +149,9 @@ class FeedBack extends StatelessWidget {
             ),
             const SizedBox(height: 50),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, AppRoutes.homepage);
+              },
               child: const Text('Send'),
             )
           ],
