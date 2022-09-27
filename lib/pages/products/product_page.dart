@@ -18,59 +18,61 @@ class _ProductPageState extends State<ProductPage> {
  
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(),
         body: Padding(
           padding: const EdgeInsets.only(top: 15, bottom: 15, left: 30, right: 30),
           child: Center(
             // ignore: avoid_unnecessary_containers
             child: Column(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children:  [
-                   Container(     
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                          Center(
-                            child: Expanded(
-                              child: Image.network(
-                              '${product.imgUrl}',
-                               height: 200,
+              children: [ Column(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children:  [
+                     Container(     
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                            Center(
+                              child: Expanded(
+                                child: Image.network(
+                                '${product.imgUrl}',
+                                 height: 200,
+                                ),
                               ),
                             ),
+                          Raitingbar(4, Colors.indigo, Icons.circle),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: const [
+                              LikeWidget()
+                            ],
+                          )
+                        ],
+                      ),
+                     )
+                    ],
+                  ),
+                  Column(
+                    children:  [
+                     Row( 
+                      children: [ 
+                        Text(
+                          '${product.productName}',
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold
                           ),
-                        Raitingbar(4, Colors.indigo, Icons.circle),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
-                            LikeWidget()
-                          ],
-                        )
-                      ],
-                    ),
-                   )
-                  ],
-                ),
-                Column(
-                  children:  [
-                   Row( 
-                    children: [ 
-                      Text(
-                        '${product.productName}',
-                        style: const TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold
-                        ),
-                      ), 
-                      ]
-                    ),
-                    Text('${product.description}'),
-                  ],
-                ),
+                        ), 
+                        ]
+                      ),
+                      Text('${product.description}'),
+                    ],
+                  ),
+                ],
+              ),
                 const Spacer(),
                 Column(  
                   children: [
@@ -108,11 +110,11 @@ class _ProductPageState extends State<ProductPage> {
                     )
                   ],
                 )
-              ],
-            )
+              ]
+            ) 
+
           ),
         ),
-      ),
-    );
+      );
   }
 }
