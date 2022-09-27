@@ -5,69 +5,66 @@ import 'package:provider/provider.dart';
 import '../../base/controllers/feedback_provider.dart';
 
 class FeedBack extends StatelessWidget {
-   FeedBack({super.key});
+  FeedBack({super.key});
 
   int currentQuestionIndex = 0;
   PageController pageController = PageController();
   FeedBackProvider fbProvider = FeedBackProvider();
 
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => FeedBackProvider(),
-      builder: (context, child) {
-      return Consumer<FeedBackProvider>(
-        builder: (context, value, child) {
-        return Scaffold(
-          backgroundColor: Colors.indigo.shade100,
-          appBar: AppBar(
-            title: const Text('QUESTIONS'),
-          ),
-          body: value.feedbackData == null
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : value.showResult
-                  ? _resultView()
+        create: (context) => FeedBackProvider(),
+        builder: (context, child) {
+          return Consumer<FeedBackProvider>(builder: (context, value, child) {
+            return Scaffold(
+              backgroundColor: Colors.indigo.shade100,
+              appBar: AppBar(
+                title: const Text('QUESTIONS'),
+              ),
+              body: value.feedbackData == null
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
                   : _buildContent(),
-        );}
-      );}
-    );
+            );
+          });
+        });
   }
 
   Widget _buildContent() {
     return ChangeNotifierProvider(
-      create: (context) => FeedBackProvider(),
-      builder: (context, child) {
-      return Consumer<FeedBackProvider>(
-        builder: (context, value, child) {
-          return Column(
-            children: [
-              // ignore: prefer_const_constructors
-              LinearProgressIndicator(
-                value: (currentQuestionIndex) / (value.questionsData.length),
-                color: Colors.red,
-              ),
-              Expanded(
-                child: PageView.builder(
-                  onPageChanged: (value) {
-                    currentQuestionIndex = value;
-
-                  },
-                  itemBuilder: (context, index) {
-                    return _buildQuestion(context, value.questionsData[index]);
-                  },
-                  itemCount: value.questionsData.length,
-                  scrollDirection: Axis.horizontal,
-                  controller: pageController,
+        create: (context) => FeedBackProvider(),
+        builder: (context, child) {
+          return Consumer<FeedBackProvider>(builder: (context, value, child) {
+            return Column(
+              children: [
+                // ignore: prefer_const_constructors
+                // LinearProgressIndicator(
+                //   value: (currentQuestionIndex = currentQuestionIndex + 1) / (value.questionsData.length),
+                //   color: Colors.red,
+                // ),
+                Expanded(
+                  child: PageView.builder(
+                    onPageChanged: (value) {
+                      print('value => $value');
+                      currentQuestionIndex = value;
+                      print('currentQuestionIndex => $currentQuestionIndex');
+                      print('showData => ${fbProvider.showResult}');
+                    },
+                    itemBuilder: (context, index) {
+                      return _buildQuestion(
+                          context, value.questionsData[index]);
+                    },
+                    itemCount: value.questionsData.length,
+                    scrollDirection: Axis.horizontal,
+                    controller: pageController,
+                  ),
                 ),
-              ),
-            ],
-          );
-        }
-      );
-    });
+              ],
+            );
+          });
+        });
   }
 
   Widget _buildQuestion(BuildContext context, Question questionData) {
@@ -90,6 +87,7 @@ class FeedBack extends StatelessWidget {
             children: questionData.answers
                 .map<Widget>(
                   (a) => _answerOption(
+                    context,
                     a,
                     answerPressed,
                   ),
@@ -103,6 +101,7 @@ class FeedBack extends StatelessWidget {
   }
 
   Widget _answerOption(
+    BuildContext context,
     Answer answerData,
     Function(int) onAnswerPressed,
   ) {
@@ -110,10 +109,13 @@ class FeedBack extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          currentQuestionIndex += 1;
-          print(currentQuestionIndex);
-          // fbProvider.onChangeQuestion();
+          print('questionIndex = $currentQuestionIndex');
           onAnswerPressed(answerData.answerId);
+
+          if (fbProvider.showResult) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => _resultView()));
+          }
         },
         child: Text(answerData.answerText),
       ),
@@ -131,8 +133,19 @@ class FeedBack extends StatelessWidget {
             )),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text('Thank you for your feedback'),
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: const Text(
+                'Thank you for your feedback',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white
+                ),
+              ),
+            ),
             const SizedBox(height: 50),
             TextButton(
               onPressed: () {},
@@ -145,15 +158,19 @@ class FeedBack extends StatelessWidget {
   }
 
   void answerPressed(int answerId) {
-  
-    print(fbProvider.questionsData.length);
-
     if (currentQuestionIndex == fbProvider.questionsData.length - 1) {
-      fbProvider.onChange();
-    }
-    pageController.animateToPage(currentQuestionIndex,
-        curve: Curves.easeInOut, duration: const Duration(milliseconds: 700));
-  }
+      fbProvider.showResult = true;
+      // fbProvider.onChangeQuestion;
+      print('index: ${currentQuestionIndex}');
+      // _resultView();
 
-  
+      // print(fbProvider.showResult );
+    }
+    pageController.animateToPage(
+        currentQuestionIndex = currentQuestionIndex + 1,
+        curve: Curves.easeInOut,
+        duration: const Duration(milliseconds: 700));
+
+    print('CQI: $currentQuestionIndex');
+  }
 }

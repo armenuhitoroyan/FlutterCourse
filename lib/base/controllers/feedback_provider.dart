@@ -23,12 +23,14 @@ class FeedBackProvider extends ChangeNotifier {
   }
 
   void onChange() {
-    showResult = true;
     notifyListeners();
   }
 
   void onChangeQuestion() {
-    
+
+    showResult = true;
+
+    showResult;
     notifyListeners();
   }
 }

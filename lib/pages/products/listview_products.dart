@@ -21,8 +21,8 @@ Widget listView() {
                   MaterialPageRoute(
                     builder: (context) => 
                       ProductPage(productModel: value.items[index]),
-                    )
-                  );    
+                  )
+                );    
               },
               child: 
                   Stack(   
