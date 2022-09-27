@@ -7,6 +7,7 @@ class FeedBackProvider extends ChangeNotifier {
   FeedBackModel? feedbackData;
   List<Question> questionsData = [];
   bool showResult = false;
+  int length = 0;
 
   FeedBackProvider (){
     getData();
@@ -14,12 +15,20 @@ class FeedBackProvider extends ChangeNotifier {
 
   getData() async {   
     final result = await IndigoAPI().feedback.getFeedbackData();
-    questionsData = result.questions;    
+    feedbackData = result;
+    questionsData = result.questions;   
+
+    print(questionsData.map((e) => e.answers.map((a) => a.answerText))) ;
     notifyListeners();     
   }
 
   void onChange() {
-    showResult = !showResult;
+    showResult = true;
+    notifyListeners();
+  }
+
+  void onChangeQuestion() {
+    
     notifyListeners();
   }
 }

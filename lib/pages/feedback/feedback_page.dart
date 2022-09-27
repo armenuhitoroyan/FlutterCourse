@@ -9,6 +9,7 @@ class FeedBack extends StatelessWidget {
 
   int currentQuestionIndex = 0;
   PageController pageController = PageController();
+  FeedBackProvider fbProvider = FeedBackProvider();
 
 
   @override
@@ -45,7 +46,7 @@ class FeedBack extends StatelessWidget {
             children: [
               // ignore: prefer_const_constructors
               LinearProgressIndicator(
-                value: (currentQuestionIndex + 1) / (value.questionsData.length),
+                value: (currentQuestionIndex) / (value.questionsData.length),
                 color: Colors.red,
               ),
               Expanded(
@@ -109,6 +110,9 @@ class FeedBack extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
+          currentQuestionIndex += 1;
+          print(currentQuestionIndex);
+          // fbProvider.onChangeQuestion();
           onAnswerPressed(answerData.answerId);
         },
         child: Text(answerData.answerText),
@@ -141,12 +145,13 @@ class FeedBack extends StatelessWidget {
   }
 
   void answerPressed(int answerId) {
-    FeedBackProvider fbProvider = FeedBackProvider();
+  
+    print(fbProvider.questionsData.length);
 
     if (currentQuestionIndex == fbProvider.questionsData.length - 1) {
       fbProvider.onChange();
     }
-    pageController.animateToPage(currentQuestionIndex + 1,
+    pageController.animateToPage(currentQuestionIndex,
         curve: Curves.easeInOut, duration: const Duration(milliseconds: 700));
   }
 
