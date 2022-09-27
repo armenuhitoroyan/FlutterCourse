@@ -5,7 +5,13 @@ import 'package:provider/provider.dart';
 
 import '../../base/controllers/products_data_provider.dart';
 
-Widget gridview(BuildContext context) {
+class GridViewProducts extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return gridview(context);
+  }
+
+  Widget gridview(BuildContext context) {
   return MediaQuery.removePadding(
     context: context,
     removeTop: true,
@@ -73,3 +79,5 @@ Widget gridview(BuildContext context) {
     ),
   );
   }
+}
+

@@ -39,8 +39,8 @@ class ProductsPage extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   )
                 : !value.isClickedIcon
-                    ? listView()
-                    : gridview(context),        
+                    ? ListViewProducts()
+                    : GridViewProducts(),        
           );
         }),
     );

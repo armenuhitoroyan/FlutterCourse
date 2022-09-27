@@ -7,7 +7,13 @@ import '../../base/controllers/products_data_provider.dart';
 import '../../widgets/products_widgets/like_widget.dart';
 import '../../widgets/products_widgets/ratingbar-widget.dart';
 
-Widget listView() {
+class ListViewProducts extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return listView();
+  }
+
+  Widget listView() {
     return ChangeNotifierProvider(
       create: (context) => ProductsDataProvider(),
       child: Consumer<ProductsDataProvider>(
@@ -91,3 +97,6 @@ Widget listView() {
       ),
     );
   }
+  
+}
+

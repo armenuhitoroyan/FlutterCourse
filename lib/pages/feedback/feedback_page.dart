@@ -1,71 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:indigo/base/routes.dart';
-import 'package:indigo/models/feedback/feedback_model.dart';
+import 'package:indigo/pages/feedback/result_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../base/controllers/feedback_provider.dart';
+import '../../models/feedback/feedback_model.dart';
 
 class FeedBack extends StatelessWidget {
-  FeedBack({super.key});
-
-  int currentQuestionIndex = 0;
-  PageController pageController = PageController();
-  FeedBackProvider fbProvider = FeedBackProvider();
+  const FeedBack({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => FeedBackProvider(),
-        builder: (context, child) {
-          return Consumer<FeedBackProvider>(builder: (context, value, child) {
-            return Scaffold(
-              backgroundColor: Colors.indigo.shade100,
-              appBar: AppBar(
-                title: const Text('QUESTIONS'),
-              ),
-              body: value.feedbackData == null
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : _buildContent(),
-            );
-          });
-        });
+      create: ((context) => FeedBackProvider()),
+      child: Scaffold(
+        backgroundColor: Colors.indigo.shade100,
+        appBar: AppBar(
+          title: const Text('QUESTIONS'),
+        ),
+        body: Consumer<FeedBackProvider>(
+          builder: ((context, value, child) {
+            if (value.isLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return value.showResult
+                ? ResultViewQuestions()
+                : _buildContent(value);
+            }
+          }),
+        ),
+      ),
+    );
   }
 
-  Widget _buildContent() {
-    return ChangeNotifierProvider(
-        create: (context) => FeedBackProvider(),
-        builder: (context, child) {
-          return Consumer<FeedBackProvider>(builder: (context, value, child) {
-            return Column(
-              children: [
-                // ignore: prefer_const_constructors
-                // LinearProgressIndicator(
-                //   value: (currentQuestionIndex = currentQuestionIndex + 1) / (value.questionsData.length),
-                //   color: Colors.red,
-                // ),
-                Expanded(
-                  child: PageView.builder(
-                    onPageChanged: (value) {
-                      print('value => $value');
-                      currentQuestionIndex = value;
-                      print('currentQuestionIndex => $currentQuestionIndex');
-                      print('showData => ${fbProvider.showResult}');
-                    },
-                    itemBuilder: (context, index) {
-                      return _buildQuestion(
-                          context, value.questionsData[index]);
-                    },
-                    itemCount: value.questionsData.length,
-                    scrollDirection: Axis.horizontal,
-                    controller: pageController,
-                  ),
-                ),
-              ],
-            );
-          });
-        });
+  Widget _buildContent(feedbackProvider) {
+    return Column(
+      children: [
+        LinearProgressIndicator(
+          color: Colors.indigoAccent[100],
+          value: (feedbackProvider.currentQuestionIndex + 1) /
+              (feedbackProvider.questionsData.length),
+        ),
+        Expanded(
+          child: PageView.builder(
+            onPageChanged: ((value) => feedbackProvider.onChangeIndex(value)),
+            itemBuilder: (context, index) {
+              return _buildQuestion(context, feedbackProvider.questionsData[index]);
+            },
+            itemCount: feedbackProvider.questionsData.length,
+            scrollDirection: Axis.horizontal,
+            controller: feedbackProvider.pageController,
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildQuestion(BuildContext context, Question questionData) {
@@ -87,11 +77,7 @@ class FeedBack extends StatelessWidget {
           Column(
             children: questionData.answers
                 .map<Widget>(
-                  (a) => _answerOption(
-                    context,
-                    a,
-                    answerPressed,
-                  ),
+                  (a) => _answerOption(a),
                 )
                 .toList(),
           ),
@@ -102,78 +88,23 @@ class FeedBack extends StatelessWidget {
   }
 
   Widget _answerOption(
-    BuildContext context,
     Answer answerData,
-    Function(int) onAnswerPressed,
   ) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          print('questionIndex = $currentQuestionIndex');
-          onAnswerPressed(answerData.answerId);
-
-          if (fbProvider.showResult) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => _resultView(context)));
-          }
-        },
-        child: Text(answerData.answerText),
-      ),
-    );
-  }
-
-  Widget _resultView(BuildContext context) {
-    return Center(
-      child: Container(
-        padding: const EdgeInsets.all(40),
-        decoration: BoxDecoration(
-            color: Colors.indigo.shade400,
-            borderRadius: BorderRadius.circular(
-              15,
-            )),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              margin: const EdgeInsets.all(10),
-              child: const Text(
-                'Thank you for your feedback',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.white
-                ),
-              ),
-            ),
-            const SizedBox(height: 50),
-            TextButton(
+    return Consumer<FeedBackProvider>(
+      builder: (
+        (context, provider, child) {
+          return SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, AppRoutes.homepage);
+                provider.answerPressed(answerData.answerId);
               },
-              child: const Text('Send'),
-            )
-          ],
-        ),
+              child: Text(answerData.answerText),
+            ),
+          );
+        }
       ),
     );
   }
 
-  void answerPressed(int answerId) {
-    if (currentQuestionIndex == fbProvider.questionsData.length - 1) {
-      fbProvider.showResult = true;
-      // fbProvider.onChangeQuestion;
-      print('index: ${currentQuestionIndex}');
-      // _resultView();
-
-      // print(fbProvider.showResult );
-    }
-    pageController.animateToPage(
-        currentQuestionIndex = currentQuestionIndex + 1,
-        curve: Curves.easeInOut,
-        duration: const Duration(milliseconds: 700));
-
-    print('CQI: $currentQuestionIndex');
-  }
 }
