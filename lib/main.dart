@@ -1,18 +1,9 @@
-import 'package:indigo/base/controllers/products_data_provider.dart';
 import 'package:indigo/base/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:indigo/pages/homepage/home_page.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    MultiProvider(
-      providers: [
-        // ChangeNotifierProvider(create: (context) => ProductsData()),
-        Provider(create: (context) => MyApp()),
-      ],
-      child: const MyApp(),
-    ),
+    const MyApp()
   );
 }
 
