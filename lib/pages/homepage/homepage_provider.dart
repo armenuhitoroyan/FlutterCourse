@@ -5,8 +5,8 @@ import '../../api/teamproject_api.dart';
 
 class HomepageProvider extends ChangeNotifier {
   ImgModel? imgModel;
-  // List<Photo>? photos;
-  // List<Src>? src;
+  List<Photo>? photos;
+  MapEntry<String, dynamic>? urls;
   bool isLoading = true;
 
   HomepageProvider() {
@@ -19,8 +19,14 @@ class HomepageProvider extends ChangeNotifier {
     final result = await TeamProjectAPI().imgPages.getNewYearData();
     isLoading = false;
     imgModel = result;
-    // photos = result.photos;
+    photos = result.photos;
+   
+   
 
-    print('imgModel: $imgModel');
+    // print(imgModel.runtimeType);
+    // print(photos.runtimeType);
+    // print(photos!.first.runtimeType);
+
+    notifyListeners();
   }
 }

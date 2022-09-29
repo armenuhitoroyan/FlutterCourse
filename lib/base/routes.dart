@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../pages/homepage/homepage.dart';
+import '../pages/homepage/homepage_provider.dart';
 
 class AppRoutes {
   static const homepage = '/';
@@ -11,7 +13,11 @@ class AppRoutes {
     }
 
     var routes = <String, WidgetBuilder>{
-      AppRoutes.homepage: (context) => HomePage(),
+      // AppRoutes.homepage: (context) => HomePage(),
+      AppRoutes.homepage: (context) => ChangeNotifierProvider(
+        create: (context) => HomepageProvider(),
+        child: HomePage(),
+      ),
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;
