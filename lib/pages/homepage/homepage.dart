@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:team_project/pages/homepage/homepage_provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -36,69 +38,67 @@ class HomePage extends StatelessWidget {
   }
 
   Widget getData() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            CircleAvatar(
-              radius: 56,
-              backgroundColor: Colors.cyan,
-              child: Container(
-                height: double.infinity,
-                alignment: Alignment.center,
-                child: ClipOval(
-                  child: Image.network(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_EZwam8kElu8CYpDDTDLHcp7upEP8MtUlPA&usqp=CAU',
-                  ),
-                ),
-              ),
-            ),
-            const Expanded(
-              flex: 2,
-              child: Center(
-                child: Text(
-                  'Անուն Ազգանուն',
-                ),
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 20),
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              children: [
-                Image.network(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_EZwam8kElu8CYpDDTDLHcp7upEP8MtUlPA&usqp=CAU',
-                ),
-              ],
-            ),
-          ),
-        ),
-        Row(
+    return ChangeNotifierProvider(
+      create: (context) => HomepageProvider(),
+      child: Consumer<HomepageProvider>(
+       builder: (context, value, child) => 
+        Column(
           children: [
             Row(
               // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                const Icon(Icons.favorite_border),
-                const Icon(Icons.message),
+              children: [   
+                // ignore: prefer_const_constructors
+                CircleAvatar(
+                  radius: 48, // Image radius
+                  backgroundImage: NetworkImage('https://images.pexels.com/photos/3257075/pexels-photo-3257075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                ),
+                const Expanded(
+                  flex: 2,
+                  child: Center(
+                    child: Text(
+                      'Անուն Ազգանուն',
+                    ),
+                  ),
+                ),
               ],
             ),
-            Expanded(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  // ignore: prefer_const_constructors
-                  Icon(Icons.share),
-                ],
-              ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 20),
+                  child: Image.network(
+                    'https://images.pexels.com/photos/3257075/pexels-photo-3257075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                    // width: double.infinity,
+                    height: 200,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Row(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    const Icon(Icons.favorite_border),
+                    const Icon(Icons.message),
+                  ],
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      // ignore: prefer_const_constructors
+                      Icon(Icons.share),
+                    ],
+                  ),
+                )
+              ],
             )
           ],
-        )
-      ],
+        ),
+      ),
     );
   }
 }
