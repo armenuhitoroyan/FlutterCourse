@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         title: const Center(
           child: Text(
             'Home',
-            style: TextStyle(color: Colors.cyan),
+            style: TextStyle(color: Colors.red),
           ),
         ),
       ),
@@ -23,14 +23,7 @@ class HomePage extends StatelessWidget {
         child: Container(
           child: Padding(
             padding: const EdgeInsets.all(15),
-            // child: ListView.builder(
-            //   itemCount: 3,
-            //   itemBuilder: (context, index) => 
-            //    Padding(
-            //     padding: const EdgeInsets.only(top: 10, bottom: 10),
-                 child: getData()
-              //  ),
-            // ),
+            child: getData()
           ),
         ),
       ),
@@ -67,37 +60,50 @@ class HomePage extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 20),
-                    child: Image.network(
-                      '${value.photos?[index].src!.medium}',
-                      // width: double.infinity,
-                      height: 200,
+                  Expanded(
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20, bottom: 20),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.redAccent)
+                          ),
+                          child: Image.network(
+                            '${value.photos?[index].src!.medium}',
+                            width: double.infinity,
+                            height: 200,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Row(
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      const Icon(Icons.favorite_border),
-                      const Icon(Icons.message),
-                    ],
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: Row(
+                  children: [
+                    Row(
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        // ignore: prefer_const_constructors
-                        Icon(Icons.share),
+                        const Icon(Icons.favorite_border),
+                        const Icon(Icons.message),
                       ],
                     ),
-                  )
-                ],
+                    Expanded(
+                      flex: 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          // ignore: prefer_const_constructors
+                          Icon(Icons.share),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               )
             ],
           ),
