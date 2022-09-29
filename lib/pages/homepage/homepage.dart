@@ -66,13 +66,14 @@ class HomePage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 20, bottom: 20),
                         child: Container(
+                          height: 200,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.redAccent)
                           ),
                           child: Image.network(
                             '${value.photos?[index].src!.medium}',
                             width: double.infinity,
-                            height: 200,
+                            height: double.infinity,
                           ),
                         ),
                       ),
