@@ -4,6 +4,8 @@ import '../models/img_model.dart';
 
 class PagesImgApi {
   final Dio appDioClient;
+  final String _HEADER_AUTH = 'Authorization';
+  final String YOUR_KEY = 'Bearer 563492ad6f917000010000017806ce8e64d041ef93deaf9be7e08a4b';
 
   PagesImgApi(
     this.appDioClient,
@@ -14,6 +16,7 @@ class PagesImgApi {
 
     final result = await appDioClient.get(
       'https://api.pexels.com//v1/search?query=newyear',
+      options: Options(headers: {_HEADER_AUTH: YOUR_KEY})
     );
 
 
