@@ -60,24 +60,43 @@ class HomePage extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, AppRoutes.profile);
-                        },
-                        style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: const BorderSide(color: Colors.black12),
-                            ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        // child: TextButton.icon(
+                        //   onPressed: () => Navigator.pushNamed(context, AppRoutes.profile),
+                        //   icon: const Icon(
+                        //     Icons.supervised_user_circle_rounded,
+                        //     color: Colors.blueGrey,
+                        //   ), 
+                        //   label: Text(
+                        //     '${value.photos?[index].photographer}',
+                        //   ),
+                        // ),
+                        child: InkWell(
+                          onTap: () => Navigator.pushNamed(context, AppRoutes.profile),
+                          child: Row(
+                            // ignore: prefer_const_literals_to_create_immutables
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.supervised_user_circle_rounded,
+                                color: Colors.blueGrey,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10, right: 10),
+                                child: Text(
+                                  '${value.photos?[index].photographer}',
+                                  style: const TextStyle(
+                                    color: Colors.blueGrey,
+                                    fontSize: 22
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        child: Text(
-                          '${value.photos?[index].photographer}',
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      ),
+                      )
                     ),
                   ),
                 ],
