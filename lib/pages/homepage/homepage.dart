@@ -4,6 +4,7 @@ import 'package:team_project/base/routes.dart';
 import 'package:team_project/pages/homepage/homepage_provider.dart';
 
 import '../../widgets/react_widget.dart';
+import '../profile/profile_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -62,18 +63,17 @@ class HomePage extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
-                        // child: TextButton.icon(
-                        //   onPressed: () => Navigator.pushNamed(context, AppRoutes.profile),
-                        //   icon: const Icon(
-                        //     Icons.supervised_user_circle_rounded,
-                        //     color: Colors.blueGrey,
-                        //   ), 
-                        //   label: Text(
-                        //     '${value.photos?[index].photographer}',
-                        //   ),
-                        // ),
                         child: InkWell(
-                          onTap: () => Navigator.pushNamed(context, AppRoutes.profile),
+                          onTap: () {
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (context) => 
+                                  ProfilePage(photo: value.photos![index],),
+                              )
+                            ); 
+                          },
+                          // Navigator.pushNamed(context, AppRoutes.profile),
                           child: Row(
                             // ignore: prefer_const_literals_to_create_immutables
                             mainAxisAlignment: MainAxisAlignment.center,

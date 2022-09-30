@@ -20,7 +20,7 @@ class AppRoutes {
         create: (context) => HomepageProvider(),
         child: HomePage(),
       ),
-      AppRoutes.profile: (context) => Profile(),
+      // AppRoutes.profile: (context) => ProfilePage(photo: pageArguments?.data?.values.elementAt(0)),
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;
