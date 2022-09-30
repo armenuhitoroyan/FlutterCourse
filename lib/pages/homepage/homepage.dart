@@ -79,17 +79,17 @@ class HomePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              const Icon(
-                                Icons.supervised_user_circle_rounded,
-                                color: Colors.blueGrey,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10, right: 10),
-                                child: Text(
-                                  '${value.photos?[index].photographer}',
-                                  style: const TextStyle(
-                                    color: Colors.blueGrey,
-                                    fontSize: 22
+                              Expanded(
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 10, right: 10),
+                                    child: Text(
+                                      '${value.photos?[index].photographer}',
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 22
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
