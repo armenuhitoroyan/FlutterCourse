@@ -14,7 +14,7 @@ class PagesImgApi {
     ImgModel newYearData;
 
     final result = await appDioClient.get(
-      'https://api.pexels.com//v1/search?query=newyear',
+      'https://api.pexels.com//v1/search?query=people',
       options: Options(headers: {_HEADER_AUTH: _YOUR_KEY})
     );
 

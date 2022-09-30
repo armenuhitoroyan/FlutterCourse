@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:team_project/pages/homepage/homepage_provider.dart';
 
@@ -9,33 +10,43 @@ class HomePage extends StatelessWidget {
   }
 
   Widget homePage() {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Home',
-            style: TextStyle(color: Colors.red),
+    return ChangeNotifierProvider(
+      create: (context) => HomepageProvider(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Center(
+            child: Text(
+              'Home',
+              style: TextStyle(color: Colors.red),
+            ),
           ),
         ),
-      ),
-      body: SafeArea(
-        // ignore: avoid_unnecessary_containers
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: getData()
-          ),
+        body: SafeArea(
+            child: Consumer<HomepageProvider>(
+              builder: (context, value, child) => 
+              Container(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: _buildContent()
+                ),
+              ),
+            ),
+          // ),
         ),
       ),
     );
   }
 
-  Widget getData() {
-    return ChangeNotifierProvider(
-      create: (context) => HomepageProvider(),
-      child: Consumer<HomepageProvider>(
-       builder: (context, value, child) => 
-        ListView.builder(
+  Widget _buildContent() {
+    return Consumer<HomepageProvider>(
+       builder: (context, value, child) { 
+        if (value.isLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+        return ListView.builder(
           itemCount: value.photos?.length,
           itemBuilder: (context, index) => 
           Column(
@@ -48,6 +59,7 @@ class HomePage extends StatelessWidget {
                     radius: 48, // Image radius
                     backgroundImage: NetworkImage('${value.photos?[index].src!.medium}'),
                   ),
+                  
                   Expanded(
                     flex: 2,
                     child: Center(
@@ -66,14 +78,15 @@ class HomePage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 20, bottom: 20),
                         child: Container(
-                          height: 200,
+                          // height: 200,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.redAccent)
                           ),
                           child: Image.network(
                             '${value.photos?[index].src!.medium}',
-                            width: double.infinity,
-                            height: double.infinity,
+                            // width: double.infinity,
+                            // height: double.infinity,
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),
@@ -108,8 +121,9 @@ class HomePage extends StatelessWidget {
               )
             ],
           ),
-        ),
-      ),
+        ); 
+      } }
     );
+    // );
   }
 }
