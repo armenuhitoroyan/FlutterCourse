@@ -11,7 +11,7 @@ class PagesImgApi {
   );
 
   Future<ImgModel> getNewYearData() async {
-    ImgModel newYearData;
+    ImgModel imgData;
 
     final result = await appDioClient.get(
       'https://api.pexels.com//v1/search?query=people',
@@ -19,9 +19,9 @@ class PagesImgApi {
     );
 
     var res = result.data as Map<String, dynamic>;
-    newYearData = ImgModel.fromJson(res);
+    imgData = ImgModel.fromJson(res);
 
-    return newYearData;
+    return imgData;
   }
 
 }

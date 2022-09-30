@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:team_project/pages/profile/profile_page.dart';
 import '../pages/homepage/homepage.dart';
 import '../pages/homepage/homepage_provider.dart';
 
 class AppRoutes {
   static const homepage = '/';
+  static const profile = '/profile';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -18,6 +20,7 @@ class AppRoutes {
         create: (context) => HomepageProvider(),
         child: HomePage(),
       ),
+      AppRoutes.profile: (context) => Profile(),
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

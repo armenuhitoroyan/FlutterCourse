@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:team_project/base/routes.dart';
 import 'package:team_project/pages/homepage/homepage_provider.dart';
+
+import '../../widgets/react_widget.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -17,54 +19,64 @@ class HomePage extends StatelessWidget {
           title: const Center(
             child: Text(
               'Home',
-              style: TextStyle(color: Colors.red),
+              style: TextStyle(color: Colors.blueGrey),
             ),
           ),
         ),
         body: SafeArea(
-            child: Consumer<HomepageProvider>(
-              builder: (context, value, child) => 
-              Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: _buildContent()
-                ),
-              ),
+          child: Consumer<HomepageProvider>(
+            builder: (context, value, child) => Container(
+              color: Colors.white,
+              child: Padding(
+                  padding: const EdgeInsets.all(15), child: _buildContent()),
             ),
-          // ),
+          ),
         ),
       ),
     );
   }
 
   Widget _buildContent() {
-    return Consumer<HomepageProvider>(
-       builder: (context, value, child) { 
-        if (value.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else {
+    return Consumer<HomepageProvider>(builder: (context, value, child) {
+      if (value.isLoading) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      } else {
         return ListView.builder(
           itemCount: value.photos?.length,
-          itemBuilder: (context, index) => 
-          Column(
+          itemBuilder: (context, index) => Column(
             children: [
               Row(
                 // ignore: prefer_const_literals_to_create_immutables
-                children: [   
+                children: [
                   // ignore: prefer_const_constructors
                   CircleAvatar(
                     radius: 48, // Image radius
-                    backgroundImage: NetworkImage('${value.photos?[index].src!.medium}'),
+                    backgroundImage:
+                        NetworkImage('${value.photos?[index].src!.medium}'),
                   ),
-                  
+
                   Expanded(
                     flex: 2,
                     child: Center(
-                      child: Text(
-                        '${value.photos?[index].photographer}',
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoutes.profile);
+                        },
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              side: const BorderSide(color: Colors.black12),
+                            ),
+                          ),
+                        ),
+                        child: Text(
+                          '${value.photos?[index].photographer}',
+                          style: const TextStyle(color: Colors.black),
+                        ),
                       ),
                     ),
                   ),
@@ -78,15 +90,15 @@ class HomePage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 20, bottom: 20),
                         child: Container(
-                          // height: 200,
+                          height: 200,
+                          width: double.infinity,
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.redAccent)
-                          ),
-                          child: Image.network(
-                            '${value.photos?[index].src!.medium}',
-                            // width: double.infinity,
-                            // height: double.infinity,
-                            fit: BoxFit.fill,
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                '${value.photos?[index].src!.medium}',
+                              ),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -101,7 +113,7 @@ class HomePage extends StatelessWidget {
                     Row(
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        const Icon(Icons.favorite_border),
+                        ReactWidget(),
                         const Icon(Icons.message),
                       ],
                     ),
@@ -121,9 +133,8 @@ class HomePage extends StatelessWidget {
               )
             ],
           ),
-        ); 
-      } }
-    );
-    // );
+        );
+      }
+    });
   }
 }
