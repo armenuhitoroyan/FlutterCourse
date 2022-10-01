@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:team_project/pages/profile/viewpager/photos/photos_provider.dart';
 
 class Photos extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
@@ -13,7 +14,7 @@ class Photos extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
           ),
-          itemCount: 15,
+          itemCount: value.photos?.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(3),

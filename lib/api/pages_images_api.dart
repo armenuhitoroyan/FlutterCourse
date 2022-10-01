@@ -1,11 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:team_project/api/token/token_interceptor.dart';
 import '../models/img_model.dart';
 
-class PagesImgApi {
+class PagesImgApi extends TokenInterceptor{
   final Dio appDioClient;
-  final String _HEADER_AUTH = 'Authorization';
-  final String _YOUR_KEY =
-      'Bearer 563492ad6f917000010000017806ce8e64d041ef93deaf9be7e08a4b';
 
   PagesImgApi(
     this.appDioClient,
@@ -16,7 +14,7 @@ class PagesImgApi {
 
     final result = await appDioClient.get(
         'https://api.pexels.com//v1/search?query=people',
-        options: Options(headers: {_HEADER_AUTH: _YOUR_KEY}));
+        options: Options(headers: {super.getHeaderAuth: super.getKey}));
 
     var res = result.data as Map<String, dynamic>;
     imgData = ImgModel.fromJson(res);
