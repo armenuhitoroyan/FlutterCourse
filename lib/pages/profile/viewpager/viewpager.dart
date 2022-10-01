@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:team_project/pages/profile/viewpager/pictures.dart';
-import 'package:team_project/pages/profile/viewpager/videos.dart';
+import 'package:team_project/pages/profile/viewpager/photos/photos.dart';
+import 'package:team_project/pages/profile/viewpager/videos/videos.dart';
 
 class ViewPager extends StatefulWidget {
   @override
@@ -8,7 +8,6 @@ class ViewPager extends StatefulWidget {
 }
 
 class _ViewPagerState extends State<ViewPager> {
-
   // ignore: prefer_final_fields
   PageController _controller = PageController(
     initialPage: 0,
@@ -20,7 +19,6 @@ class _ViewPagerState extends State<ViewPager> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,10 +27,7 @@ class _ViewPagerState extends State<ViewPager> {
         margin: const EdgeInsets.symmetric(),
         child: PageView(
           controller: _controller,
-          children: [
-            Pictures(),
-            Videos()
-          ],
+          children: [Photos(), Videos()],
         ),
       ),
     );

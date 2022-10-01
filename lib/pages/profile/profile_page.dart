@@ -64,9 +64,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
-                  // ignore: avoid_unnecessary_containers
+                  // ignore: avoid_unnecessary_containers, sized_box_for_whitespace
                   Container(
-                    height: 300,
+                    height: 500,
                     // ignore: prefer_const_constructors
                     child: ViewPager(),
                   )

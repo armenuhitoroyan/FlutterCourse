@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/models/img_model.dart';
 
-import '../../api/teamproject_api.dart';
+import '../../../../api/teamproject_api.dart';
 
 class HomepageProvider extends ChangeNotifier {
   ImgModel? imgModel;
@@ -17,21 +17,18 @@ class HomepageProvider extends ChangeNotifier {
     isLoading = true;
     if (!initial) notifyListeners();
 
-    final result = await TeamProjectAPI().imgPages.getImagesData();
+    final result = await TeamProjectAPI().cityImgApi.getCityPhotosData();
 
     if (result.photos!.isEmpty) {
-    } else {
+    }
+    else {
       isLoading = false;
       imgModel = result;
       photos = result.photos;
 
       notifyListeners();
     }
-
-    // print(imgModel.runtimeType);
-    // print(photos.runtimeType);
-    // print(photos!.first.runtimeType);
-
+    
     notifyListeners();
   }
 }
