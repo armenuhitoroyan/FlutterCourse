@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/models/img_model.dart';
+import 'package:team_project/pages/profile/viewpager/viewpager.dart';
 
 class ProfilePage extends StatefulWidget {
   final Photo photo;
@@ -62,6 +63,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
+                  ),
+                  // ignore: avoid_unnecessary_containers
+                  Container(
+                    height: 300,
+                    // ignore: prefer_const_constructors
+                    child: ViewPager(),
                   )
                 ],
               ),
