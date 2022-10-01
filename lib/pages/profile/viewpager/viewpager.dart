@@ -13,8 +13,9 @@ class _ViewPagerState extends State<ViewPager> {
   // ignore: prefer_final_fields
   PageController _controller = PageController(
     initialPage: 0,
-    // viewportFraction: 0.8
+  
   );
+  // TabController _controllerTab = TabController(length: 2, vsync: this);
 
   @override
   void dispose() {
@@ -24,34 +25,37 @@ class _ViewPagerState extends State<ViewPager> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // ignore: avoid_unnecessary_containers
-      body: ChangeNotifierProvider(
-        create: (context) => PhotosProvider(),
-        child: Container(
-          margin: const EdgeInsets.symmetric(),
-          child: PageView(
-            controller: _controller,
-            children: [Photos(), Videos()],
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          toolbarHeight: 15,
+          // ignore: prefer_const_constructors
+          bottom: TabBar(
+            indicatorColor: Colors.deepPurple,
+            // ignore: prefer_const_literals_to_create_immutables
+            tabs: [
+              const Tab(
+                icon: Icon(Icons.camera_rear_outlined),
+              ),
+              const Tab(
+                icon: Icon(Icons.video_call_outlined),
+              ),
+            ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.greenAccent,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.camera,
+        // ignore: avoid_unnecessary_containers
+        body: ChangeNotifierProvider(
+          create: (context) => PhotosProvider(),
+          child: Container(
+            margin: const EdgeInsets.symmetric(),
+            child: PageView(
+              controller: _controller,
+              children: [Photos(), Videos()],
             ),
-            label: 'Camera',  
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.video_camera_front_outlined,
-            ),
-            label: 'Video',
-          ),
-        ],
+        ),
       ),
     );
   }

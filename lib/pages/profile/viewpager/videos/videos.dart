@@ -5,7 +5,12 @@ class Videos extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
     return Container(
-      child: const Text('Page 2'),
+      child: const Center(
+        child: Icon(
+          Icons.video_camera_front_outlined,
+          color: Colors.black,
+        ),
+      ),
     );
   }
 }
