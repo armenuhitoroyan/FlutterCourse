@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:team_project/pages/profile/viewpager/photos/photos.dart';
+import 'package:team_project/pages/profile/viewpager/photos/photos_provider.dart';
 import 'package:team_project/pages/profile/viewpager/videos/videos.dart';
 
 class ViewPager extends StatefulWidget {
@@ -23,11 +25,14 @@ class _ViewPagerState extends State<ViewPager> {
   Widget build(BuildContext context) {
     return Scaffold(
       // ignore: avoid_unnecessary_containers
-      body: Container(
-        margin: const EdgeInsets.symmetric(),
-        child: PageView(
-          controller: _controller,
-          children: [Photos(), Videos()],
+      body: ChangeNotifierProvider(
+        create: (context) => PhotosProvider(),
+        child: Container(
+          margin: const EdgeInsets.symmetric(),
+          child: PageView(
+            controller: _controller,
+            children: [Photos(), Videos()],
+          ),
         ),
       ),
     );

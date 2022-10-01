@@ -3,13 +3,13 @@ import 'package:team_project/models/img_model.dart';
 
 import '../../../../api/teamproject_api.dart';
 
-class HomepageProvider extends ChangeNotifier {
+class PhotosProvider extends ChangeNotifier {
   ImgModel? imgModel;
   List<Photo>? photos;
   MapEntry<String, dynamic>? urls;
   bool isLoading = false;
 
-  HomepageProvider() {
+  PhotosProvider() {
     getData();
   }
 
