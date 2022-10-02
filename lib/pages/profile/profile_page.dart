@@ -46,14 +46,19 @@ class _ProfilePageState extends State<ProfilePage> {
                             NetworkImage('${photo.src?.medium}'),
                         ),
                         // ignore: avoid_unnecessary_containers
-                        Container(
-                          width: double.maxFinite,
-                          child: Center(
-                            child: Text(
-                              '${photo.photographer}',
+                       Expanded(
+                         child: Container(
+                          height: 100,
+                          child: SizedBox(
+                            width: double.maxFinite,
+                            child: Center(
+                              child: Text(
+                                '${photo.photographer}',
+                              ),
                             ),
                           ),
-                        ),
+                         ),
+                       )
                       ],
                     ),
                   ),
