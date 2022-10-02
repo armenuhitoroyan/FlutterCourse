@@ -19,7 +19,7 @@ class Photos extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(3),
               child: Container(
-                height: 300,
+                height: 450,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(

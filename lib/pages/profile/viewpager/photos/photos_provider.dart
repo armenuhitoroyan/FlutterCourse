@@ -8,6 +8,9 @@ class PhotosProvider extends ChangeNotifier {
   List<Photo>? photos;
   MapEntry<String, dynamic>? urls;
   bool isLoading = false;
+  bool isChecked = false;
+  String? camera;
+  String? video;
 
   PhotosProvider() {
     getData();
@@ -20,15 +23,35 @@ class PhotosProvider extends ChangeNotifier {
     final result = await TeamProjectAPI().cityImgApi.getCityPhotosData();
 
     if (result.photos!.isEmpty) {
-    }
-    else {
+    } else {
       isLoading = false;
       imgModel = result;
       photos = result.photos;
+      isChecked = true;
+
+      video = 'Video';
 
       notifyListeners();
     }
-    
+
+    // get onClickedCamera {
+    //   camera = 'Camera';
+    //   notifyListeners();
+    //   return camera;
+    // }
+
     notifyListeners();
+  }
+
+  onClickedCamera() {
+    camera = 'Camera';
+    notifyListeners();
+    return camera;
+  }
+
+  onClickedVideo() {
+    video = 'Video';
+    notifyListeners();
+    return video;
   }
 }

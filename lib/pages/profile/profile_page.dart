@@ -38,28 +38,32 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   // ignore: avoid_unnecessary_containers
                   Container(
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 48, // Image radius
-                          backgroundImage:
-                            NetworkImage('${photo.src?.medium}'),
-                        ),
-                        // ignore: avoid_unnecessary_containers
-                       Expanded(
-                         child: Container(
-                          height: 100,
-                          child: SizedBox(
-                            width: double.maxFinite,
-                            child: Center(
-                              child: Text(
-                                '${photo.photographer}',
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 48, // Image radius
+                            backgroundImage:
+                              NetworkImage('${photo.src?.medium}'),
+                          ),
+                          // ignore: avoid_unnecessary_containers
+                         Expanded(
+                           child: Container(
+                            height: 100,
+                            child: SizedBox(
+                              width: double.maxFinite,
+                              child: Center(
+                                child: Text(
+                                  '${photo.photographer}',
+                                ),
                               ),
                             ),
-                          ),
-                         ),
-                       )
-                      ],
+                           ),
+                         )
+                        ],
+                      ),
                     ),
                   ),
 
