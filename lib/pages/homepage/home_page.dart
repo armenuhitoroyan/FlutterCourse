@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_project/pages/homepage/homepage_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../widgets/react_widget.dart';
@@ -59,8 +60,7 @@ class HomePage extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 2,
-                    child: 
-                    Center(
+                    child: Center(
                         child: Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: InkWell(
@@ -133,7 +133,17 @@ class HomePage extends StatelessWidget {
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         ReactWidget(),
-                        const Icon(Icons.message),
+                        InkWell(
+                          onTap: () async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString('comment2', "def");
+                            print('comments');
+                          },
+                          child: const Icon(
+                            Icons.message,
+                          ),
+                        ),
                       ],
                     ),
                     Expanded(
