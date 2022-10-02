@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:team_project/pages/profile/profile_page.dart';
-import '../pages/homepage/homepage.dart';
+
+import '../pages/homepage/home_page.dart';
 import '../pages/homepage/homepage_provider.dart';
 
 class AppRoutes {
   static const homepage = '/';
   static const profile = '/profile';
+  static var index = 0;
+  var i;
+
+  AppRoutes({required this.i});
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -14,13 +18,20 @@ class AppRoutes {
       pageArguments = (settings.arguments as PageArguments);
     }
 
+    dynamic setIndex(int i) {
+      index = i;
+      return index;
+    }
+
     var routes = <String, WidgetBuilder>{
       // AppRoutes.homepage: (context) => HomePage(),
       AppRoutes.homepage: (context) => ChangeNotifierProvider(
-        create: (context) => HomepageProvider(),
-        child: HomePage(),
-      ),
-      // AppRoutes.profile: (context) => ProfilePage(photo: pageArguments?.data?.values.elementAt(0)),
+            create: (context) => HomepageProvider(),
+            child: HomePage(),
+          ),
+      // AppRoutes.profile: (context) => ProfilePage(
+      //   photo: pageArguments?.data?.values.elementAt(setIndex(index)),
+      // )
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

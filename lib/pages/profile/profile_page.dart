@@ -17,6 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(photo.photographer);
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -35,41 +36,33 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  // ignore: avoid_unnecessary_containers
                   Container(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        children: [
-                          Center(
-                            child: Expanded(
-                              flex: 1,
-                              child: CircleAvatar(
-                                radius: 48, // Image radius
-                                backgroundImage:
-                                    NetworkImage('${photo.src!.medium}'),
-                              ),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 48, // Image radius
+                          backgroundImage:
+                            NetworkImage('${photo.src?.medium}'),
+                        ),
+                        // ignore: avoid_unnecessary_containers
+                        Container(
+                          width: double.maxFinite,
+                          child: Center(
+                            child: Text(
+                              '${photo.photographer}',
                             ),
                           ),
-                          // ignore: prefer_const_constructors
-                          Expanded(
-                            flex: 1,
-                            child: const Text(''),
-                          ),
-                          const Expanded(
-                            flex: 2,
-                            child: Text('Andrea Piacquadio'),
-                          )
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                 
+
                   // ignore: avoid_unnecessary_containers, sized_box_for_whitespace
                   Container(
                     height: 500,
                     // ignore: prefer_const_constructors
-                    child: ViewPager(),
+                    child: Expanded(child: ViewPager()),
                   )
                 ],
               ),
