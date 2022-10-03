@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:team_project/base/routes.dart';
 import 'package:team_project/pages/homepage/homepage_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../widgets/react_widget.dart';
-import '../../widgets/comments.dart';
 import '../profile/profile_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -174,15 +171,20 @@ class HomePage extends StatelessWidget {
                 visible: value.isVisible,
                 // ignore: prefer_const_constructors
                 child: Card(
-                  child: const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Password',
+                  child: Column(
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(10),
+                        child: TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Write a comment...',
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               )
