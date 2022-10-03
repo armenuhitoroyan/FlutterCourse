@@ -3,10 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:team_project/pages/homepage/homepage_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../api/shared_pref_api.dart';
 import '../../widgets/react_widget.dart';
 import '../profile/profile_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatelessWidget with SharedPrefAPI {
+  TextEditingController commentCtrl = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return homePage();
@@ -174,15 +177,17 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(10),
+                       Padding(
+                        padding: const EdgeInsets.all(10),
                         child: TextField(
+                          controller: commentCtrl,
                           obscureText: true,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Write a comment...',
                           ),
                         ),
+
                       ),
                     ],
                   ),
