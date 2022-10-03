@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/models/img_model.dart';
 
+import '../../api/shared_pref_api.dart';
 import '../../api/teamproject_api.dart';
 
-class HomepageProvider extends ChangeNotifier {
+class HomepageProvider extends ChangeNotifier with SharedPrefAPI {
   ImgModel? imgModel;
   List<Photo>? photos;
   MapEntry<String, dynamic>? urls;
   bool isLoading = false;
   bool isVisible = false;
+  String key = '';
+  String comment = '';
 
   HomepageProvider() {
     getData();
@@ -36,9 +39,14 @@ class HomepageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-   visibleTextField() {
-    isVisible = true;
+  visibleTextField() {
+    isVisible = !isVisible;
     notifyListeners();
     return isVisible;
+  }
+
+  get text {
+    print(sharedPref(key, comment).then((value) => value).runtimeType);
+    return sharedPref(key, comment).then((value) => value);
   }
 }

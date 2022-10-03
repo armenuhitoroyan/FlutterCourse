@@ -6,7 +6,7 @@ class SharedPrefAPI {
     prefs.setString(key, comment);
 
     var getString = prefs.getString(key);
-    print(getString);
+    print('get: $getString');
     return getString;
   }
 }

@@ -3,13 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:team_project/pages/homepage/homepage_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../api/shared_pref_api.dart';
 import '../../widgets/react_widget.dart';
 import '../profile/profile_page.dart';
 
-class HomePage extends StatelessWidget with SharedPrefAPI {
+class HomePage extends StatelessWidget {
   TextEditingController commentCtrl = TextEditingController();
   
+
   @override
   Widget build(BuildContext context) {
     return homePage();
@@ -49,7 +49,8 @@ class HomePage extends StatelessWidget with SharedPrefAPI {
       } else {
         return ListView.builder(
           itemCount: value.photos?.length,
-          itemBuilder: (context, index) => Column(
+          itemBuilder: (context, index) => 
+          Column(
             children: [
               Row(
                 // ignore: prefer_const_literals_to_create_immutables
@@ -177,17 +178,44 @@ class HomePage extends StatelessWidget with SharedPrefAPI {
                   child: Column(
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                       Padding(
+                      Padding(
                         padding: const EdgeInsets.all(10),
                         child: TextField(
                           controller: commentCtrl,
-                          obscureText: true,
+                          // obscureText: true,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Write a comment...',
                           ),
                         ),
-
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(30),
+                        child: Row(children: [
+                          Expanded(
+                            flex: 2,
+                            child: TextButton(
+                              onPressed: () {
+                                value.text('key', commentCtrl.text);
+                              },
+                              style: TextButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                backgroundColor: Colors.blueGrey,
+                              ),
+                              child: const Text('SEND'),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              value.visibleTextField();
+                            },
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.blueGrey,
+                            ),
+                            child: const Text('Ok'),
+                          ),
+                        ]),
                       ),
                     ],
                   ),
