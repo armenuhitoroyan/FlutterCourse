@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:team_project/base/routes.dart';
 import 'package:team_project/pages/homepage/homepage_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../widgets/react_widget.dart';
+import '../../widgets/shared_pref_widget.dart';
 import '../profile/profile_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -134,14 +136,11 @@ class HomePage extends StatelessWidget {
                       children: [
                         ReactWidget(),
                         InkWell(
-                          onTap: () async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString('comment2', "def");
-                            print('comments');
+                          onTap: () {
+                            Navigator.pushNamed(context, AppRoutes.comments);
                           },
                           child: const Icon(
-                            Icons.message,
+                            Icons.comment_outlined,
                           ),
                         ),
                       ],
