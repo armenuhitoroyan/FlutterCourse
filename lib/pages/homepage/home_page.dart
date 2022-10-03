@@ -137,7 +137,8 @@ class HomePage extends StatelessWidget {
                         ReactWidget(),
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, AppRoutes.comments);
+                            // Navigator.pushNamed(context, AppRoutes.comments);
+                            value.visibleTextField();
                           },
                           child: const Icon(
                             Icons.comment_outlined,
@@ -159,12 +160,30 @@ class HomePage extends StatelessWidget {
                                 subject: 'Message',
                               );
                             },
-                            icon: Icon(Icons.share),
+                            icon: const Icon(Icons.share),
                           ),
                         ],
                       ),
                     )
                   ],
+                ),
+              ),
+
+              // ignore: prefer_const_constructors
+              Visibility(
+                visible: value.isVisible,
+                // ignore: prefer_const_constructors
+                child: Card(
+                  child: const Padding(
+                    padding: EdgeInsets.all(10),
+                    child: TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Password',
+                      ),
+                    ),
+                  ),
                 ),
               )
             ],

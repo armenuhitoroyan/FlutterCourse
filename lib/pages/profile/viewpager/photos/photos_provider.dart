@@ -34,12 +34,6 @@ class PhotosProvider extends ChangeNotifier {
       notifyListeners();
     }
 
-    // get onClickedCamera {
-    //   camera = 'Camera';
-    //   notifyListeners();
-    //   return camera;
-    // }
-
     notifyListeners();
   }
 
@@ -54,4 +48,6 @@ class PhotosProvider extends ChangeNotifier {
     notifyListeners();
     return video;
   }
+
+ 
 }

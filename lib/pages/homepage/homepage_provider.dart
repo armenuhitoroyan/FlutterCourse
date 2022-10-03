@@ -8,6 +8,7 @@ class HomepageProvider extends ChangeNotifier {
   List<Photo>? photos;
   MapEntry<String, dynamic>? urls;
   bool isLoading = false;
+  bool isVisible = false;
 
   HomepageProvider() {
     getData();
@@ -33,5 +34,11 @@ class HomepageProvider extends ChangeNotifier {
     // print(photos!.first.runtimeType);
 
     notifyListeners();
+  }
+
+   visibleTextField() {
+    isVisible = true;
+    notifyListeners();
+    return isVisible;
   }
 }
