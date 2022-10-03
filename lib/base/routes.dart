@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:team_project/widgets/shared_pref_widget.dart';
+import 'package:team_project/widgets/comments.dart';
 
 import '../pages/homepage/home_page.dart';
 import '../pages/homepage/homepage_provider.dart';
@@ -34,7 +34,7 @@ class AppRoutes {
       // AppRoutes.profile: (context) => ProfilePage(
       //   photo: pageArguments?.data?.values.elementAt(setIndex(index)),
       // )
-      AppRoutes.comments: (context) => SharedPreferencesWidget(),
+      AppRoutes.comments: (context) => CommentsWidget(),
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

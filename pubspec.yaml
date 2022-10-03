@@ -43,6 +43,7 @@ dependencies:
   share_plus: ^4.4.0
   image_picker: ^0.8.5+3
   shared_preferences: ^2.0.15
+  flutter_local_notifications: ^11.0.1
 
 dev_dependencies:
   flutter_test:

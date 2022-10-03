@@ -1,16 +1,12 @@
-import 'dart:html';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferencesWidget extends StatefulWidget {
+class CommentsWidget extends StatefulWidget {
   @override
-  State<SharedPreferencesWidget> createState() =>
-      _SharedPreferencesWidgetState();
+  State<CommentsWidget> createState() => _CommentsWidgetState();
 }
 
-class _SharedPreferencesWidgetState extends State<SharedPreferencesWidget> {
+class _CommentsWidgetState extends State<CommentsWidget> {
   TextEditingController commentCtrl = TextEditingController();
   int i = 1;
   var key = 'Comment';
@@ -22,12 +18,19 @@ class _SharedPreferencesWidgetState extends State<SharedPreferencesWidget> {
 
   @override
   Widget build(BuildContext context) {
+    return _buildContext();
+  }
+
+  Widget _buildContext() {
     return FutureBuilder(
-        future: sharedPref(key, commentCtrl.text),
-        builder: (context, snapshot) {
+      future: sharedPref(key, commentCtrl.text),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
           var comments = snapshot.data;
-          // if (snapshot.hasData) {
-          return Card(
+        }  
+        return Padding(
+          padding: const EdgeInsets.all(30),
+          child: Card(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,23 +49,36 @@ class _SharedPreferencesWidgetState extends State<SharedPreferencesWidget> {
                   child: TextButton(
                     onPressed: () {
                       sharedPref(key, commentCtrl.text);
-                      Navigator.pop(context);
+                      // Navigator.pop(context);
                       setState(() {
                         key = '${key} ${i + 1}';
                       });
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Colors.blueGrey, // Background Color
+                      backgroundColor: Colors.blueGrey,
                     ),
                     child: const Text('SEND'),
                   ),
                 ),
+                Text(commentCtrl.text),
+                Spacer(),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blueGrey,
+                    ),
+                    child: const Text('Ok'),
+                  ),
               ],
             ),
-          );
-          // }
-        });
+          ),
+        );
+      },
+    );
   }
 
   Future sharedPref(var key, var comment) async {

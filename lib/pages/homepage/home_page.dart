@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../widgets/react_widget.dart';
-import '../../widgets/shared_pref_widget.dart';
+import '../../widgets/comments.dart';
 import '../profile/profile_page.dart';
 
 class HomePage extends StatelessWidget {
