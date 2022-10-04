@@ -138,8 +138,8 @@ class HomePage extends StatelessWidget {
                         ReactWidget(),
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, AppRoutes.comments);
-                            // value.visibleTextField();
+                            // Navigator.pushNamed(context, AppRoutes.comments);
+                            value.visibleTextField();
                           },
                           child: const Icon(
                             Icons.comment_outlined,

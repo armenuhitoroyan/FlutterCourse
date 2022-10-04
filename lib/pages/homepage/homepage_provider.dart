@@ -13,6 +13,7 @@ class HomepageProvider extends ChangeNotifier with SharedPrefAPI {
   String key = '';
   String comment = '';
   bool isShow = false;
+  String getText = '';
   String fieldText = '';
 
   HomepageProvider() {
@@ -48,7 +49,7 @@ class HomepageProvider extends ChangeNotifier with SharedPrefAPI {
   }
 
   get text {
-    return sharedPref(key, comment).then((value) => value);
+    return sharedPref(key, comment);
   }
 
   show() {
@@ -58,5 +59,11 @@ class HomepageProvider extends ChangeNotifier with SharedPrefAPI {
 
   showText(String text) {
     fieldText = text;
+    notifyListeners();
+  }
+
+  getTextData() {
+    getString = super.getString;
+    notifyListeners();
   }
 }
