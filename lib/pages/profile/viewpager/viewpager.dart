@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:team_project/base/routes.dart';
 import 'package:team_project/pages/profile/viewpager/photos/photos.dart';
 import 'package:team_project/pages/profile/viewpager/photos/photos_provider.dart';
 import 'package:team_project/pages/profile/viewpager/videos/videos.dart';
@@ -15,7 +14,6 @@ class _ViewPagerState extends State<ViewPager> {
   PageController _controller = PageController(
     initialPage: 0,
   );
-  // TabController _controllerTab = TabController(length: 2, vsync: this);
 
   @override
   void dispose() {

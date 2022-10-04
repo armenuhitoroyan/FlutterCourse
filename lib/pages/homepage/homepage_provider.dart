@@ -12,6 +12,8 @@ class HomepageProvider extends ChangeNotifier with SharedPrefAPI {
   bool isVisible = false;
   String key = '';
   String comment = '';
+  bool isShow = false;
+  String fieldText = '';
 
   HomepageProvider() {
     getData();
@@ -46,7 +48,15 @@ class HomepageProvider extends ChangeNotifier with SharedPrefAPI {
   }
 
   get text {
-    print(sharedPref(key, comment).then((value) => value).runtimeType);
     return sharedPref(key, comment).then((value) => value);
+  }
+
+  show() {
+    isShow = true;
+    notifyListeners();
+  }
+
+  showText(String text) {
+    fieldText = text;
   }
 }

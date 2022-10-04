@@ -8,7 +8,7 @@ import '../profile/profile_page.dart';
 
 class HomePage extends StatelessWidget {
   TextEditingController commentCtrl = TextEditingController();
-  
+  String? fieldText;
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +49,7 @@ class HomePage extends StatelessWidget {
       } else {
         return ListView.builder(
           itemCount: value.photos?.length,
-          itemBuilder: (context, index) => 
-          Column(
+          itemBuilder: (context, index) => Column(
             children: [
               Row(
                 // ignore: prefer_const_literals_to_create_immutables
@@ -189,6 +188,16 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Visibility(
+                            visible: value.isShow,
+                            child: Text('${fieldText}'),
+                          ),
+                        ],
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(30),
                         child: Row(children: [
@@ -196,7 +205,11 @@ class HomePage extends StatelessWidget {
                             flex: 2,
                             child: TextButton(
                               onPressed: () {
-                                value.text('key', commentCtrl.text);
+                                print(commentCtrl.text);
+                                value.show();
+                                fieldText =
+                                    value.isShow ? commentCtrl.text : '';
+                                commentCtrl.text = '';
                               },
                               style: TextButton.styleFrom(
                                 foregroundColor: Colors.white,

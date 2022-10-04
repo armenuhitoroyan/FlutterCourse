@@ -6,3 +6,4 @@ class TokenInterceptor {
   get getHeaderAuth => _HEADER_AUTH;
   get getKey => _YOUR_KEY;
 }
+ 
