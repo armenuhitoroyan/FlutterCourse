@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:team_project/pages/homepage/homepage_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../base/routes.dart';
 import '../../widgets/react_widget.dart';
 import '../profile/profile_page.dart';
 
@@ -137,8 +138,8 @@ class HomePage extends StatelessWidget {
                         ReactWidget(),
                         InkWell(
                           onTap: () {
-                            // Navigator.pushNamed(context, AppRoutes.comments);
-                            value.visibleTextField();
+                            Navigator.pushNamed(context, AppRoutes.comments);
+                            // value.visibleTextField();
                           },
                           child: const Icon(
                             Icons.comment_outlined,

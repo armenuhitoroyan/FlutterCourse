@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CommentsWidget extends StatefulWidget {
+  var getString;
   @override
   State<CommentsWidget> createState() => _CommentsWidgetState();
 }
 
 class _CommentsWidgetState extends State<CommentsWidget> {
   TextEditingController commentCtrl = TextEditingController();
+  var getString;
   int i = 1;
   var key = 'Comment';
 
@@ -27,7 +29,7 @@ class _CommentsWidgetState extends State<CommentsWidget> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           var comments = snapshot.data;
-        }  
+        }
         return Padding(
           padding: const EdgeInsets.all(30),
           child: Card(
@@ -61,18 +63,19 @@ class _CommentsWidgetState extends State<CommentsWidget> {
                     child: const Text('SEND'),
                   ),
                 ),
-                Text(commentCtrl.text),
-                Spacer(),
+                
+                Text('$getString'),
+                const Spacer(),
                 TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.blueGrey,  
-                    ),
-                    child: const Text('Ok'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.blueGrey,
                   ),
+                  child: const Text('Ok'),
+                ),
               ],
             ),
           ),
@@ -85,7 +88,7 @@ class _CommentsWidgetState extends State<CommentsWidget> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(key, comment);
 
-    var getString = prefs.getString(key);
+    getString = prefs.getString(key);
     print(getString);
   }
 }
