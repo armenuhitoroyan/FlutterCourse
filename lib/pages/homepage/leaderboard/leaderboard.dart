@@ -8,8 +8,8 @@ class LeaderBord extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => LeaderBoarderProvider(),
       child: Consumer<LeaderBoarderProvider>(
-        builder: (context, value, child) => 
-        Text('${value.leaderbordModel}'),
+        builder: (context, value, child) => ListView.builder(
+            itemCount: 2, itemBuilder: (context, index) => Text('${value.leaderbordModel?.firstName}')),
       ),
     );
   }

@@ -1,13 +1,17 @@
 import 'package:exam_at/pages/homepage/homepage.dart';
+import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
 import 'package:exam_at/pages/homepage/pages.dart';
+import 'package:exam_at/pages/homepage/screen/leaderboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../pages/auth/login/login.dart';
 
 class AppRoutes {
   static const login = '/';
   static const homepage = '/homepage';
+  static const leaderBoard = '/leaderboard';
   static const pages = '/pages';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
@@ -20,6 +24,10 @@ class AppRoutes {
       AppRoutes.login: (context) => LoginPage(),
       AppRoutes.pages: (context) => Pages(),
       AppRoutes.homepage: (context) => HomePage(),
+      AppRoutes.leaderBoard: (context) => ChangeNotifierProvider(
+            create: (context) => LeaderBoarderProvider(),
+            child: const Le,
+          ),
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;
