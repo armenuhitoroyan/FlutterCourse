@@ -4,29 +4,29 @@ import 'package:flutter/material.dart';
 
 class LeaderBoarderProvider extends ChangeNotifier {
   bool isLoading = false;
-  LeaderbordModel? leaderbordModel;
+  List<dynamic> list = [];
 
   LeaderBoarderProvider() {
     getData();
   }
 
   void getData({bool initial = true}) async {
-    
     isLoading = true;
     if (!initial) notifyListeners();
 
     final result = await ProjectAPI().leaderbordApi.getLeaderBoardData();
 
-    if (result == null) {
+    if (result.isEmpty) {
     } else {
       isLoading = false;
-      leaderbordModel = result;
+      list = result;
 
       notifyListeners();
     }
 
     // print(imgModel.runtimeType);
-    // print(photos.runtimeType);
-    // print(photos!.first.runtimeType);
+    print(list.runtimeType);
+    print(list.first.runtimeType);
+    print(list.first);
   }
 }

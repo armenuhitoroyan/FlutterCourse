@@ -1,9 +1,5 @@
-
-
 import 'package:dio/dio.dart';
 import 'package:exam_at/models/purchases.dart';
-
-
 
 class PurchasesApi {
   final Dio appDioClient;
@@ -12,18 +8,20 @@ class PurchasesApi {
     this.appDioClient,
   );
 
-  Future<PurchasesModel> getPurchasesData() async {
-    PurchasesModel purchasesData;
+  Future<List<PurchasesModel>> getPurchasesData() async { 
+    List<PurchasesModel> purchasesData = [];
 
     final result = await appDioClient.get(
       'https://my-json-server.typicode.com/narekpog/my-json/purchases',
     );
 
-    var res = result.data as Map<String, dynamic>;
-    purchasesData = PurchasesModel.fromJson(res);
-
+    if (result.data is List) {
+      purchasesData = result.data.first
+          .map<PurchasesModel>(
+            (e) => PurchasesModel.fromJson(e),
+          )
+          .toList();
+    }
     return purchasesData;
   }
-
-  
 }

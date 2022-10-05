@@ -8,18 +8,27 @@ class LeaderbordApi {
     this.appDioClient,
   );
 
-  Future<LeaderbordModel> getLeaderBoardData() async {
-    LeaderbordModel quizData;
+  Future<List<dynamic>> getLeaderBoardData() async {
+    List<dynamic> leaderBordList = [];
 
     final result = await appDioClient.get(
       'https://my-json-server.typicode.com/narekpog/my-json/leaderboard',
     );
 
-    var res = result.data as Map<String, dynamic>;
-    quizData = LeaderbordModel.fromJson(res);
+    print(result.runtimeType);
 
-    print(quizData);
+    // if (result is List) {
+    //   leaderBordList = result.data
+    //       .map<LeaderbordModel>(
+    //         (e) => LeaderbordModel.fromJson(e),
+    //       )
+    //       .toList();
+    // }
 
-    return quizData;
+    leaderBordList = result.data;
+    print(leaderBordList.runtimeType);
+    print(  'first ${leaderBordList.first}');
+
+    return leaderBordList;
   }
 }

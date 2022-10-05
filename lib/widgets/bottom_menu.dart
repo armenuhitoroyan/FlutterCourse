@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../base/routes.dart';
+
 class BottomMenuWidget extends StatelessWidget {
   const BottomMenuWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return menu();
+    return menu(context);
   }
 
-  Widget menu() {
+  Widget menu(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Row(
@@ -35,7 +37,9 @@ class BottomMenuWidget extends StatelessWidget {
                       children: [
                         Center(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, AppRoutes.leaderBoard);
+                            },
                             // ignore: sort_child_properties_last
                             child: const Center(
                               child: Icon(
@@ -75,7 +79,9 @@ class BottomMenuWidget extends StatelessWidget {
                     children: [
                       Center(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, AppRoutes.purchases);
+                          },
                           // ignore: sort_child_properties_last
                           child: const Center(
                             child: Icon(
