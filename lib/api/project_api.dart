@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:exam_at/api/leaderboard/leaderboard_api.dart';
 import 'package:exam_at/api/purchases/purchases_api.dart';
 import 'package:exam_at/api/quiz/quiz_api.dart';
-import 'package:exam_at/pages/homepage/screen/leaderboard.dart';
 
 class ProjectAPI {
   static ProjectAPI? _singleton;

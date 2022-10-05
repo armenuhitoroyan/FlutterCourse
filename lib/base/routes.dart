@@ -1,6 +1,7 @@
 import 'package:exam_at/pages/homepage/homepage.dart';
 import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
 import 'package:exam_at/pages/homepage/pages.dart';
+import 'package:exam_at/pages/homepage/quiz/quiz.dart';
 import 'package:exam_at/pages/homepage/screen/leaderboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class AppRoutes {
   static const homepage = '/homepage';
   static const leaderBoard = '/leaderboard';
   static const pages = '/pages';
+  static const quiz = '/quiz';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -29,7 +31,11 @@ class AppRoutes {
             create: (context) => LeaderBoarderProvider(),
             child: LeaderBord(),
           ),
+
+      AppRoutes.quiz: (context) => Quiz(),
     };
+
+    
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;
     return MaterialPageRoute(builder: (ctx) => builder(ctx));

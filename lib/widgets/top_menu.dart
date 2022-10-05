@@ -1,3 +1,4 @@
+import 'package:exam_at/base/routes.dart';
 import 'package:flutter/material.dart';
 
 class TopMenuWidget extends StatelessWidget {
@@ -5,10 +6,10 @@ class TopMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return menu();
+    return menu(context);
   }
 
-  Widget menu() {
+  Widget menu(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Row(
@@ -75,7 +76,9 @@ class TopMenuWidget extends StatelessWidget {
                     children: [
                       Center(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, AppRoutes.quiz);
+                          },
                           // ignore: sort_child_properties_last
                           child: const Center(
                             child: Icon(
@@ -90,7 +93,7 @@ class TopMenuWidget extends StatelessWidget {
                               backgroundColor: null),
                         ),
                       ),
-                      const Text('Purchases'),
+                      const Text('Profile'),
                     ],
                   ),
                 ),
