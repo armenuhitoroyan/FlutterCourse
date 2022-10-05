@@ -27,6 +27,6 @@ class LeaderBoarderProvider extends ChangeNotifier {
     // print(imgModel.runtimeType);
     print(list.runtimeType);
     print(list.first.runtimeType);
-    print(list.first);
+    print('list: ${list.first}');
   }
 }
