@@ -36,7 +36,9 @@ class TopMenuWidget extends StatelessWidget {
                       children: [
                         Center(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, AppRoutes.leaderBoard);
+                            },
                             // ignore: sort_child_properties_last
                             child: const Center(
                               child: Icon(
@@ -51,7 +53,7 @@ class TopMenuWidget extends StatelessWidget {
                                 backgroundColor: null),
                           ),
                         ),
-                        const Text('Play Now'),
+                        const Text('Leaderboard'),
                       ],
                     ),
                   ),
