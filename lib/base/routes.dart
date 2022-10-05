@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../pages/auth/login/login.dart';
+import '../pages/homepage/leaderboard/leaderboard.dart';
 
 class AppRoutes {
   static const login = '/';
@@ -26,7 +27,7 @@ class AppRoutes {
       AppRoutes.homepage: (context) => HomePage(),
       AppRoutes.leaderBoard: (context) => ChangeNotifierProvider(
             create: (context) => LeaderBoarderProvider(),
-            child: const Le,
+            child: LeaderBord(),
           ),
     };
 
