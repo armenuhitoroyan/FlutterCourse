@@ -26,16 +26,12 @@ class _PagesState extends State<Pages> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: 15,
-        ),
         // ignore: avoid_unnecessary_containers
         body: Container(
-            margin: EdgeInsets.symmetric(),
+            margin: const EdgeInsets.symmetric(),
             child: PageView(
               controller: _controller,
-              children: [Games(), Score(), LeaderBoard(), ClimePrize()],
+              children: const [Games(), Score(), LeaderBoard(), ClimePrize()],
             )),
       ),
     );

@@ -1,5 +1,9 @@
 import 'package:exam_at/base/routes.dart';
+import 'package:exam_at/widgets/top_menu.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/bottom_menu.dart';
+import '../../widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -8,11 +12,55 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        Navigator.pushNamed(context, AppRoutes.leaderBoard);
-      },
-      child: Text('LeaderBoarder'),
+    return
+        // TextButton(
+        //     onPressed: () {
+        //       Navigator.pushNamed(context, AppRoutes.leaderBoard);
+        //     },
+      Scaffold(
+      appBar: AppBar(),
+      endDrawer: DrawerWidget(),
+      body: Center(
+        child: Column(
+          children: [
+            Expanded(
+              child: Image.asset(
+                'assets/asset161.png',
+                height: 70,
+              ),
+            ),
+            Padding(
+                padding: const EdgeInsets.all(5),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 0),
+                  child: Column(
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      // ignore: prefer_const_constructors
+                      Center(child: BottomMenuWidget()),
+                      // ignore: prefer_const_constructors
+                      Center(child: TopMenuWidget())
+                    ],
+                  ),
+                )
+                // ),
+                ),
+            Container(
+              height: 200,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    'assets/group4438.png',
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
+    // );
   }
 }

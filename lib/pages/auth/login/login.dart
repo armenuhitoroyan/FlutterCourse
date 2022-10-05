@@ -1,5 +1,4 @@
 import 'package:exam_at/base/routes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/buttons/button.dart';
@@ -21,12 +20,12 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             // ignore: prefer_const_literals_to_create_immutables
             children: [
-              // Expanded(
-              //   child: Image.asset(
-              //     'assets/Asset 16 1.png',
-              //     height: 100,
-              //   ),
-              // ),
+              Expanded(
+                child: Image.asset(
+                  'assets/asset161.png',
+                  height: 100,
+                ),
+              ),
 
               ElevatedButton(
                 onPressed: () {},
