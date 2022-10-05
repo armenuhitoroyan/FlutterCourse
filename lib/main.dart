@@ -1,15 +1,17 @@
 import 'package:exam_at/pages/auth/login/login.dart';
+import 'package:exam_at/styles/style_of_appbar.dart';
 import 'package:flutter/material.dart';
 
 import 'base/routes.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp( MyApp());
   print(AppRoutes.homepage.runtimeType);
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  AppBarStyle appBarStyle = AppBarStyle();
+  MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -18,7 +20,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: appBarStyle.white,
+        iconTheme: const IconThemeData(color: Colors.redAccent),
       ),
       home: LoginPage(),
       onGenerateRoute: AppRoutes.onGenerateRoute,

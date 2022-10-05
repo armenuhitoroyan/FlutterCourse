@@ -2,10 +2,12 @@ import 'package:exam_at/base/routes.dart';
 import 'package:exam_at/widgets/top_menu.dart';
 import 'package:flutter/material.dart';
 
+import '../../styles/style_of_appbar.dart';
 import '../../widgets/bottom_menu.dart';
 import '../../widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return _buildContent(context);
@@ -13,10 +15,6 @@ class HomePage extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     return
-        // TextButton(
-        //     onPressed: () {
-        //       Navigator.pushNamed(context, AppRoutes.leaderBoard);
-        //     },
       Scaffold(
       appBar: AppBar(),
       endDrawer: DrawerWidget(),

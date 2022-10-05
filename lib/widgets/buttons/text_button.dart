@@ -12,6 +12,9 @@ class TextBtn extends StatelessWidget {
   Widget btn(String text) {
     return TextButton(
       onPressed: () {},
+      style: TextButton.styleFrom(
+        foregroundColor: Colors.redAccent
+      ),
       child: Text('$text'),
     );
   }
