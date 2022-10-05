@@ -10,14 +10,14 @@ class Score extends StatelessWidget {
       body: SafeArea(
         child: Container(
           child: Padding(
-            padding: EdgeInsets.all(30),
+            padding: const EdgeInsets.all(30),
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     const Text(
-                      'Play Game',
+                      'Score',
                       style: TextStyle(
                         fontSize: 30,
                         color: Colors.blue
@@ -26,13 +26,13 @@ class Score extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.all(10),
                       child: Text('''
-                      You will receive 5 free plays a day 
-                      and you can purchase additional 
-                      plays that never expire. 
-                      Questions are progressive, 
-                      increasing in difficulty and value 
-                      from easy to hard and 1 to 10 
-                      points.'''),
+                      If you answer all the questions 
+                      in less than 60 seconds, then 
+                      your remaining time is a 
+                      multiplier against your 
+                      question points. But be careful: 
+                      wrong answers decrease your 
+                      time multiplier.'''),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),

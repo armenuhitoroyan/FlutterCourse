@@ -17,7 +17,7 @@ class LeaderBoard extends StatelessWidget {
                 child: Column(
                   children: [
                     const Text(
-                      'Play Game',
+                      'Leaderboard',
                       style: TextStyle(
                         fontSize: 30,
                         color: Colors.yellow
@@ -26,13 +26,15 @@ class LeaderBoard extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.all(10),
                       child: Text('''
-                      You will receive 5 free plays a day 
-                      and you can purchase additional 
-                      plays that never expire. 
-                      Questions are progressive, 
-                      increasing in difficulty and value 
-                      from easy to hard and 1 to 10 
-                      points.'''),
+                      Your best score during each 24 
+                      hour game period will appear 
+                      on the Leaderboard. The 
+                      highest eligible score each day 
+                      will be the winner of the cash 
+                      prize. Each day's prize pool will 
+                      increase \$0.01 for each game 
+                      played, but we will guarantee 
+                      the first \$100.00.'''),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),

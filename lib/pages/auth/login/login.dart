@@ -13,10 +13,10 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Center(
+        padding: const EdgeInsets.all(5),
+        // child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             // ignore: prefer_const_literals_to_create_immutables
             children: [
@@ -25,11 +25,6 @@ class LoginPage extends StatelessWidget {
                   'assets/asset161.png',
                   height: 100,
                 ),
-              ),
-
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('213 x 157'),
               ),
 
               Padding(
@@ -79,12 +74,12 @@ class LoginPage extends StatelessWidget {
                   )
                 ],
               ),
-              RadButton(page: AppRoutes.pages, textBtn: 'Login',),
+              RadButton(page: AppRoutes.pages, textBtn: 'Login', btnColor: Colors.redAccent,),
               TextBtn(textBtn: 'Forget Passsword',), 
               TextBtn(textBtn: 'Sign up',)
             ],
           ),
-        ),
+        // ),
       ),
     );
   }

@@ -21,22 +21,23 @@ class ClimePrize extends StatelessWidget {
                 child: Column(
                   children: [
                     const Text(
-                      'Play Game',
+                      'Claim prize',
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 30,
                         color: Colors.orange
                       ),
                     ),
                     const Padding(
                       padding: EdgeInsets.all(10),
                       child: Text('''
-                      You will receive 5 free plays a day 
-                      and you can purchase additional 
-                      plays that never expire. 
-                      Questions are progressive, 
-                      increasing in difficulty and value 
-                      from easy to hard and 1 to 10 
-                      points.'''),
+                      If you're good enough to achieve a 
+                      winning score, then you'll win the 
+                      cash prize pool for the day. Go to 
+                      the Claim Prize screen and send 
+                      us your info and we will transfer 
+                      your winnings to your PayPal 
+                      account. Note: you can only win 
+                      once every 30 days.'''),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),
@@ -48,7 +49,7 @@ class ClimePrize extends StatelessWidget {
                             ),
                         ),
                     ),
-                    RadButton(page: AppRoutes.homepage, textBtn: 'Go to HomePage',),
+                    RadButton(page: AppRoutes.homepage, textBtn: 'Go to HomePage', btnColor: Colors.purple,),
                   ],
                 ),
               ),
