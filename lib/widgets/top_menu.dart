@@ -43,7 +43,7 @@ class TopMenuWidget extends StatelessWidget {
                             child: const Center(
                               child: Icon(
                                 Icons.verified_user,
-                                color: Colors.white,
+                                color: Color.fromRGBO(255,102,0, 0.8),
                                 size: 30,
                               ),
                             ),
@@ -84,8 +84,8 @@ class TopMenuWidget extends StatelessWidget {
                           // ignore: sort_child_properties_last
                           child: const Center(
                             child: Icon(
-                              Icons.shopping_basket,
-                              color: Colors.white,
+                              Icons.supervised_user_circle_rounded,
+                              color: Color.fromRGBO(0,51,204, 0.8),
                               size: 30,
                             ),
                           ),

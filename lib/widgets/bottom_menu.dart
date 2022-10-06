@@ -44,7 +44,7 @@ class BottomMenuWidget extends StatelessWidget {
                             child: const Center(
                               child: Icon(
                                 Icons.play_circle_fill,
-                                color: Colors.white,
+                                color: Color.fromRGBO(103, 0, 153, 0.8),
                                 size: 30,
                               ),
                             ),
@@ -86,7 +86,7 @@ class BottomMenuWidget extends StatelessWidget {
                           child: const Center(
                             child: Icon(
                               Icons.shopping_basket,
-                              color: Colors.white,
+                              color: Color.fromRGBO(0,153,0, 0.8),
                               size: 30,
                             ),
                           ),
