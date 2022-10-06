@@ -18,7 +18,7 @@ class Games extends StatelessWidget {
                   children: [
                     const Text(
                       'Play Game',
-                      style: TextStyle(fontSize: 30, color: Colors.green),
+                      style: TextStyle(fontSize: 30, color:  Color.fromRGBO(139,2,2, 0.8)),
                     ),
                     const Padding(
                       padding: EdgeInsets.all(10),

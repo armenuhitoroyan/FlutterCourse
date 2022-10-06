@@ -20,7 +20,7 @@ class Score extends StatelessWidget {
                       'Score',
                       style: TextStyle(
                         fontSize: 30,
-                        color: Colors.blue
+                        color: Color.fromRGBO(0,153,0, 0.8)
                       ),
                     ),
                     const Padding(

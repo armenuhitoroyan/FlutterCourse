@@ -2,21 +2,23 @@ import 'package:exam_at/base/routes.dart';
 import 'package:exam_at/widgets/top_menu.dart';
 import 'package:flutter/material.dart';
 
-import '../../styles/style_of_appbar.dart';
 import '../../widgets/bottom_menu.dart';
 import '../../widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return _buildContent(context);
   }
 
   Widget _buildContent(BuildContext context) {
-    return
-      Scaffold(
-      appBar: AppBar(),
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Color.fromRGBO(139, 2, 2, 0.8),
+        ),
+        automaticallyImplyLeading: false,
+      ),
       endDrawer: DrawerWidget(),
       body: Center(
         child: Column(

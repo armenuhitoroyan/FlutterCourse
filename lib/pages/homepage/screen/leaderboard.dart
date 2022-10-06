@@ -20,7 +20,7 @@ class LeaderBoard extends StatelessWidget {
                       'Leaderboard',
                       style: TextStyle(
                         fontSize: 30,
-                        color: Colors.yellow
+                        color: Color.fromRGBO(255,102,0, 0.8)
                       ),
                     ),
                     const Padding(

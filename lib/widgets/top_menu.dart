@@ -23,7 +23,7 @@ class TopMenuWidget extends StatelessWidget {
                   width: 100,
                   height: 100,
                   decoration: const BoxDecoration(
-                    color: Colors.orange,
+                    color: Color.fromRGBO(255,102,0, 0.8),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20.0),
                       bottomRight: Radius.circular(20.0),
@@ -65,7 +65,7 @@ class TopMenuWidget extends StatelessWidget {
                 width: 100,
                 height: 100,
                 decoration: const BoxDecoration(
-                  color: Colors.blue,
+                  color: Color.fromRGBO(0,51,204, 0.8),
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(20.0),
                     bottomLeft: Radius.circular(20.0),

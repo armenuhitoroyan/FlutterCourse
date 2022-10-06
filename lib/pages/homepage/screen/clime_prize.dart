@@ -1,4 +1,3 @@
-
 import 'package:exam_at/base/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,6 @@ class ClimePrize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
- 
       body: SafeArea(
         child: Container(
           child: Padding(
@@ -24,7 +22,7 @@ class ClimePrize extends StatelessWidget {
                       'Claim prize',
                       style: TextStyle(
                         fontSize: 30,
-                        color: Colors.orange
+                        color: Color.fromRGBO(103, 0, 153, 0.8),
                       ),
                     ),
                     const Padding(
@@ -41,15 +39,19 @@ class ClimePrize extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),
-                       child: SizedBox(
-                          height: 230,
-                            child: Image.asset(
-                              'assets/group4542.png',
-                              fit: BoxFit.cover,
-                            ),
+                      child: SizedBox(
+                        height: 230,
+                        child: Image.asset(
+                          'assets/group4542.png',
+                          fit: BoxFit.cover,
                         ),
+                      ),
                     ),
-                    RadButton(page: AppRoutes.homepage, textBtn: 'Go to HomePage', btnColor: Colors.purple,),
+                    RadButton(
+                      page: AppRoutes.homepage,
+                      textBtn: 'Go to HomePage',
+                      btnColor: const Color.fromRGBO(103, 0, 153, 0.8),
+                    ),
                   ],
                 ),
               ),

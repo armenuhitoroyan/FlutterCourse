@@ -1,4 +1,4 @@
-import 'dart:html';
+
 
 import 'package:exam_at/pages/homepage/purchases/purchases_provider.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class Purchases extends StatelessWidget {
                     child: Text(
                       '${value.purchases![0].runtimeType}',
                       // ignore: prefer_const_constructors
-                      style: TextStyle(color: Colors.redAccent),
+                      style: TextStyle(color: const Color.fromRGBO(139,2,2, 0.8),),
                     ),
                   ),
                 ),

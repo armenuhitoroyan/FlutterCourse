@@ -16,7 +16,7 @@ class DrawerWidget extends StatelessWidget {
               child: const DrawerHeader(
                 child: Icon(
                   Icons.delete,
-                  color: Colors.redAccent,
+                  color:  Color.fromRGBO(139,2,2, 0.8),
                 ),
               ),
             ),
