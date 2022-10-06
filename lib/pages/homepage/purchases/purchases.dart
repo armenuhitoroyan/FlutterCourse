@@ -22,24 +22,126 @@ class Purchases extends StatelessWidget {
                     title: const Center(
                       child: Text(
                         'Purchases',
-                        style: TextStyle(
-                          color: Color.fromRGBO(0,153,0, 0.8)
-                        ),
+                        style: TextStyle(color: Color.fromRGBO(0, 153, 0, 0.8)),
                       ),
                     ),
                     iconTheme: const IconThemeData(
-                    color: Color.fromRGBO(0,153,0, 0.8)
-                  ), 
+                        color: Color.fromRGBO(0, 153, 0, 0.8)),
                   ),
-                  body: ListView.builder(
-                    itemCount: value.purchases?.length,
-                    itemBuilder: (context, index) => Container(
-                      // ignore: prefer_const_constructors
-                      child: Text(
-                        '${value.purchases?.first.price}',
+                  body: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: const Color.fromRGBO(0, 153, 0, 0.8),
+                        width: 5,
+                      ),
+                    ),
+                    child: ListView.builder(
+                      itemCount: value.purchases?.length,
+                      itemBuilder: (context, index) => Container(
                         // ignore: prefer_const_constructors
-                        style: TextStyle(
-                          color: const Color.fromRGBO(139, 2, 2, 0.8),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 15, right: 15, top: 5, bottom: 5),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              side: const BorderSide(
+                                color: Color.fromARGB(255, 189, 187, 187),
+                                //<-- SEE HERE
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: SizedBox(
+                                    width: value.purchases![index].showBadge == true 
+                                        ? 115 : 130,
+                                    height: value.purchases![index].showBadge == true 
+                                        ? 115 : 130,
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12.0),
+                                      ),
+                                      color: const Color.fromRGBO(0, 153, 0, 0.8),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Card(
+                                          color: const Color.fromRGBO(
+                                              0, 153, 0, 0.8),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                            side: const BorderSide(
+                                              color: Colors.white, //<-- SEE HERE
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  '${value.purchases![index].playsCount}',
+                                                  style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 20),
+                                                ),
+                                                const Text(
+                                                  'Plays',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Text(
+                                      '${value.purchases![index].title}',
+                                      style: const TextStyle(
+                                          color: Color.fromRGBO(0, 153, 0, 0.8),
+                                          fontSize: 20),
+                                    ),
+                                    Text(
+                                      value.purchases![index].showBadge == true
+                                        ? '${value.purchases![index].subTitle}'
+                                        : '${value.purchases![index].price}',
+                                      style: const TextStyle(
+                                          color: Colors.grey, fontSize: 20),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: Container(
+                                    child: Text(
+                                      value.purchases![index].showBadge == true 
+                                        ? '${value.purchases![index].price}\$'
+                                        : '',
+                                      style: const TextStyle(
+                                        color: Color.fromRGBO(0, 153, 0, 0.8),
+                                        fontSize: 30,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),

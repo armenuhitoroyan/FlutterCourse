@@ -17,20 +17,20 @@ class LeaderBord extends StatelessWidget {
                   title: const Center(
                     child: Text(
                       'LeaderBoarder',
-                      style: TextStyle(
-                        color: Colors.white
-                      ),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  iconTheme: const IconThemeData(
-                    color: Colors.white
-                  ),  
-                  backgroundColor: const Color.fromRGBO(255,102,0, 0.8),
+                  iconTheme: const IconThemeData(color: Colors.white),
+                  backgroundColor: const Color.fromRGBO(255, 102, 0, 0.8),
                 ),
                 body: ListView.builder(
                   itemCount: value.list.length,
                   itemBuilder: (context, index) => Container(
-                    child: Text('${value.list.first.lastName}'),
+                    child: Container(
+                      child: Text(
+                        '${value.list.first.lastName}',
+                      ),
+                    ),
                   ),
                 ),
               ),
