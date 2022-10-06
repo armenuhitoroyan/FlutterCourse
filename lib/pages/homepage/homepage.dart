@@ -50,22 +50,9 @@ class HomePage extends StatelessWidget {
               )
               // ),
               ),
-          Container(
-            height: 200,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  'assets/group4438.png',
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          Expanded(child: Image.asset('assets/group4438.png'))
         ],
       ),
-      // ),
     );
-    // );
   }
 }
