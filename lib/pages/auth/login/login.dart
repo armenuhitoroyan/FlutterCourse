@@ -70,7 +70,7 @@ class LoginPage extends StatelessWidget {
           RadButton(
             page: AppRoutes.pages,
             textBtn: 'Login',
-            btnColor: const Color.fromRGBO(139,2,2, 0.8),
+            btnColor: const Color.fromRGBO(204,0,1, 0.8),
           ),
           TextBtn(
             textBtn: 'Forget Passsword',

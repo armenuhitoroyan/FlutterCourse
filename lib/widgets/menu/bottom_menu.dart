@@ -1,6 +1,7 @@
+import 'package:exam_at/widgets/text_style.dart';
 import 'package:flutter/material.dart';
 
-import '../base/routes.dart';
+import '../../base/routes.dart';
 
 class BottomMenuWidget extends StatelessWidget {
   const BottomMenuWidget({super.key});
@@ -54,7 +55,7 @@ class BottomMenuWidget extends StatelessWidget {
                                 backgroundColor: null),
                           ),
                         ),
-                        const Text('Play Now'),
+                        StyleText(text: 'Play Now', textColor: Colors.white)
                       ],
                     ),
                   ),
@@ -96,7 +97,7 @@ class BottomMenuWidget extends StatelessWidget {
                               backgroundColor: null),
                         ),
                       ),
-                      const Text('Purchases'),
+                      StyleText(text: 'Purchases', textColor: Colors.white)
                     ],
                   ),
                 ),

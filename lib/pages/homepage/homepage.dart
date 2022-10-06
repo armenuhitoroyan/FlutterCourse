@@ -1,8 +1,8 @@
 import 'package:exam_at/base/routes.dart';
-import 'package:exam_at/widgets/top_menu.dart';
+import 'package:exam_at/widgets/menu/top_menu.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/bottom_menu.dart';
+import '../../widgets/menu/bottom_menu.dart';
 import '../../widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,9 +13,10 @@ class HomePage extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: const IconThemeData(
-          color: Color.fromRGBO(139, 2, 2, 0.8),
+          color: Color.fromRGBO(204,0,1, 0.8),
         ),
         automaticallyImplyLeading: false,
       ),

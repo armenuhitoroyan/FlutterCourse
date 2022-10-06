@@ -13,7 +13,7 @@ class TextBtn extends StatelessWidget {
     return TextButton(
       onPressed: () {},
       style: TextButton.styleFrom(
-        foregroundColor: const Color.fromRGBO(139,2,2, 0.8),
+        foregroundColor: const Color.fromRGBO(204,0,1, 0.8),
       ),
       child: Text('$text'),
     );

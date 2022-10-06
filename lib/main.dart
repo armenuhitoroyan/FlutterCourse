@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: appBarStyle.white,
-        iconTheme: const IconThemeData(color:  Color.fromRGBO(139,2,2, 0.8),),
+        iconTheme: const IconThemeData(color:  Color.fromRGBO(204,0,1, 0.8),),
       ),
       home: LoginPage(),
       onGenerateRoute: AppRoutes.onGenerateRoute,

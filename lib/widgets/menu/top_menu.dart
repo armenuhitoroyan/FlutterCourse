@@ -1,4 +1,5 @@
 import 'package:exam_at/base/routes.dart';
+import 'package:exam_at/widgets/text_style.dart';
 import 'package:flutter/material.dart';
 
 class TopMenuWidget extends StatelessWidget {
@@ -23,7 +24,7 @@ class TopMenuWidget extends StatelessWidget {
                   width: 100,
                   height: 100,
                   decoration: const BoxDecoration(
-                    color: Color.fromRGBO(255,102,0, 0.8),
+                    color: Color.fromRGBO(255, 102, 0, 0.8),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20.0),
                       bottomRight: Radius.circular(20.0),
@@ -37,13 +38,14 @@ class TopMenuWidget extends StatelessWidget {
                         Center(
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, AppRoutes.leaderBoard);
+                              Navigator.pushNamed(
+                                  context, AppRoutes.leaderBoard);
                             },
                             // ignore: sort_child_properties_last
                             child: const Center(
                               child: Icon(
                                 Icons.verified_user,
-                                color: Color.fromRGBO(255,102,0, 0.8),
+                                color: Color.fromRGBO(255, 102, 0, 0.8),
                                 size: 30,
                               ),
                             ),
@@ -53,7 +55,7 @@ class TopMenuWidget extends StatelessWidget {
                                 backgroundColor: null),
                           ),
                         ),
-                        const Text('Leaderboard'),
+                        StyleText(text: 'Leaderboar', textColor: Colors.white)
                       ],
                     ),
                   ),
@@ -65,7 +67,7 @@ class TopMenuWidget extends StatelessWidget {
                 width: 100,
                 height: 100,
                 decoration: const BoxDecoration(
-                  color: Color.fromRGBO(0,51,204, 0.8),
+                  color: Color.fromRGBO(0, 51, 204, 0.8),
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(20.0),
                     bottomLeft: Radius.circular(20.0),
@@ -85,7 +87,7 @@ class TopMenuWidget extends StatelessWidget {
                           child: const Center(
                             child: Icon(
                               Icons.supervised_user_circle_rounded,
-                              color: Color.fromRGBO(0,51,204, 0.8),
+                              color: Color.fromRGBO(0, 51, 204, 0.8),
                               size: 30,
                             ),
                           ),
@@ -95,7 +97,7 @@ class TopMenuWidget extends StatelessWidget {
                               backgroundColor: null),
                         ),
                       ),
-                      const Text('Profile'),
+                      StyleText(text: 'Profile', textColor: Colors.white)
                     ],
                   ),
                 ),
