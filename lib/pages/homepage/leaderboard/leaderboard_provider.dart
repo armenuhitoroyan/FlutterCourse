@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class LeaderBoarderProvider extends ChangeNotifier {
   bool isLoading = false;
-  List<dynamic> list = [];
+  List<LeaderbordModel> list = [];
 
   LeaderBoarderProvider() {
     getData();

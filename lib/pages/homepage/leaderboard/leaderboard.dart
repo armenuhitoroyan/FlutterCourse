@@ -30,7 +30,7 @@ class LeaderBord extends StatelessWidget {
                 body: ListView.builder(
                   itemCount: value.list.length,
                   itemBuilder: (context, index) => Container(
-                    child: Text('${value.list[index]}'),
+                    child: Text('${value.list.first.lastName}'),
                   ),
                 ),
               ),
