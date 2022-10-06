@@ -5,7 +5,7 @@ import '../../../api/project_api.dart';
 
 class PurchasesProvider extends ChangeNotifier {
   PurchasesModel? purchasesModel;
-  List<dynamic>? purchases;
+  List<PurchasesModel>? purchases;
   bool isLoading = false;
 
   PurchasesProvider() {
@@ -25,9 +25,7 @@ class PurchasesProvider extends ChangeNotifier {
     if (result.isEmpty) {
     } else {
       isLoading = false;
-      // quizModel = result;
       purchases = result;
-      print(purchases.runtimeType);
 
       notifyListeners();
     }

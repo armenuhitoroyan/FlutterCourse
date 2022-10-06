@@ -9,14 +9,31 @@ class LeaderBord extends StatelessWidget {
       create: (context) => LeaderBoarderProvider(),
       child: Consumer<LeaderBoarderProvider>(
         builder: (context, value, child) => value.isLoading
-          ? const Center(
-              child: CircularProgressIndicator.adaptive(),
-            )
-          : ListView.builder(
-          itemCount: value.list.length,
-          itemBuilder: (context, index) => 
-            Text('${value.list[index]}'),
-        ),
+            ? const Center(
+                child: CircularProgressIndicator.adaptive(),
+              )
+            : Scaffold(
+                appBar: AppBar(
+                  title: const Center(
+                    child: Text(
+                      'LeaderBoarder',
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
+                  ),
+                  iconTheme: const IconThemeData(
+                    color: Colors.white
+                  ),  
+                  backgroundColor: const Color.fromRGBO(255,102,0, 0.8),
+                ),
+                body: ListView.builder(
+                  itemCount: value.list.length,
+                  itemBuilder: (context, index) => Container(
+                    child: Text('${value.list[index]}'),
+                  ),
+                ),
+              ),
       ),
     );
   }
