@@ -22,8 +22,8 @@ class BottomMenuWidget extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Center(
                 child: Container(
-                  width: 100,
-                  height: 100,
+                  width: 150,
+                  height: 150,
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(103, 0, 153, 0.8),
                     borderRadius: BorderRadius.only(
@@ -46,7 +46,7 @@ class BottomMenuWidget extends StatelessWidget {
                               child: Icon(
                                 Icons.play_circle_fill,
                                 color: Color.fromRGBO(103, 0, 153, 0.8),
-                                size: 30,
+                                size: 60,
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
@@ -64,8 +64,8 @@ class BottomMenuWidget extends StatelessWidget {
             ),
             Center(
               child: Container(
-                width: 100,
-                height: 100,
+                width: 150,
+                height: 150,
                 decoration: const BoxDecoration(
                   color: Color.fromRGBO(0,153,0, 0.8),
                   borderRadius: BorderRadius.only(
@@ -88,7 +88,7 @@ class BottomMenuWidget extends StatelessWidget {
                             child: Icon(
                               Icons.shopping_basket,
                               color: Color.fromRGBO(0,153,0, 0.8),
-                              size: 30,
+                              size: 60,
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
