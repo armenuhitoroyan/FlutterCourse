@@ -143,10 +143,13 @@ class Purchases extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            // Image.asset('assets/group4428.png') 
+                            // ignore: unrelated_type_equality_checks 
                              Align(
-                                alignment: Alignment.topRight,
-                                child: Image.asset('assets/group4428.png') 
+                                alignment: Alignment.topLeft,
+                                child: 
+                                  value.purchases![index].showBadge == true
+                                    ? Image.asset('assets/group4428.png')
+                                    : Container()
                               )
                             ]
                           ),

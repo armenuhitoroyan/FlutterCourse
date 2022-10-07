@@ -87,7 +87,7 @@ class BottomMenuWidget extends StatelessWidget {
                           // ignore: sort_child_properties_last
                           child: const Center(
                             child: Icon(
-                              Icons.shopping_basket,
+                              Icons.add_shopping_cart,
                               color: Color.fromRGBO(0,153,0, 0.8),
                               size: 60,
                             ),

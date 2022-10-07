@@ -44,7 +44,7 @@ class TopMenuWidget extends StatelessWidget {
                             // ignore: sort_child_properties_last
                             child: const Center(
                               child: Icon(
-                                Icons.verified_user,
+                                Icons.bar_chart_outlined,
                                 color: Color.fromRGBO(255, 102, 0, 0.8),
                                 size: 60,
                               ),
@@ -81,12 +81,12 @@ class TopMenuWidget extends StatelessWidget {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, AppRoutes.sign);
+                           
                           },
                           // ignore: sort_child_properties_last
                           child: const Center(
                             child: Icon(
-                              Icons.supervised_user_circle_rounded,
+                              Icons.account_circle,
                               color: Color.fromRGBO(0, 51, 204, 0.8),
                               size: 60,
                             ),
