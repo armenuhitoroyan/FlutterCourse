@@ -81,7 +81,7 @@ class TopMenuWidget extends StatelessWidget {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, AppRoutes.quiz);
+                            Navigator.pushNamed(context, AppRoutes.sign);
                           },
                           // ignore: sort_child_properties_last
                           child: const Center(

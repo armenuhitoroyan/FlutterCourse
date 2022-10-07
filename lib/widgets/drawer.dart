@@ -35,6 +35,7 @@ class DrawerWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              
               MenuDrawer(
                 icon: Icons.scoreboard,
                 text: 'Scores',

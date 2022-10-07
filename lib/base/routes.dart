@@ -3,6 +3,7 @@ import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
 import 'package:exam_at/pages/homepage/pages.dart';
 
 import 'package:exam_at/pages/homepage/quiz/quiz.dart';
+import 'package:exam_at/widgets/sign.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,10 @@ class AppRoutes {
   static const pages = '/pages';
   static const quiz = '/quiz';
   static const purchases = '/purchases';
+
+  //// ------------
+
+  static const sign = '/sign';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -41,9 +46,12 @@ class AppRoutes {
             create: (context) => PurchasesProvider(),
             child: Purchases(),
           ),
-    };
 
-    
+
+          ///////
+        
+        AppRoutes.sign: (context) => Sign(),
+    };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;
     return MaterialPageRoute(builder: (ctx) => builder(ctx));
