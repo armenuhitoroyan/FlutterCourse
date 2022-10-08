@@ -20,16 +20,16 @@ class Quiz extends StatelessWidget {
               // ignore: avoid_unnecessary_containers
               : Container(
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(255, 102, 0, 0.8),
+                    color: value.index-1 > 0 ? value.colors[value.index-1] : value.colors[value.index],
                     border: Border.all(
                       color: Colors.grey,
                       width: 5,
                     ),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      'Get Ready',
-                      style: TextStyle(
+                      '${value.index}',
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 25
                       ),

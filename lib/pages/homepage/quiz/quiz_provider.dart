@@ -17,6 +17,7 @@ class QuizProvider extends ChangeNotifier {
   QuizProvider() {
     getData();
     changeColors();
+    changeIndex();
   }
 
   void getData({bool initial = true}) async {
@@ -42,6 +43,13 @@ class QuizProvider extends ChangeNotifier {
   }
 
   void changeIndex() {
-    index = index - 1;
+
+    for (var i = index; i > 0; i--) {
+      Future.delayed(const Duration(seconds: 4), () {
+        index = index-1;
+        notifyListeners();
+      } );
+
+    }
   }
 }
