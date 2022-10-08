@@ -20,7 +20,9 @@ class Quiz extends StatelessWidget {
               // ignore: avoid_unnecessary_containers
               : Container(
                   decoration: BoxDecoration(
-                    color: value.index-1 > 0 ? value.colors[value.index-1] : value.colors[value.index],
+                    color: value.index-1 > 0 
+                      ? value.colors[value.index-1] 
+                      : value.colors[value.index],
                     border: Border.all(
                       color: Colors.grey,
                       width: 5,
@@ -28,7 +30,7 @@ class Quiz extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      '${value.index}',
+                      value.text,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 25

@@ -9,6 +9,7 @@ class QuizProvider extends ChangeNotifier {
   List<Questions>? questions;
   bool isLoading = false;
   int index = 5;
+  var text = 'Get Ready';
   bool isChangeText = false;
   List<Color> colors = [];
 
@@ -43,13 +44,15 @@ class QuizProvider extends ChangeNotifier {
   }
 
   void changeIndex() async {
-
     for (var i = 5; i > 0; i--) {
-      await Future.delayed(
-        const Duration(seconds: 4), () {
-        index = index-1;
+      await Future.delayed(const Duration(seconds: 4), () {
+        index = index - 1;
+        text = '$index';
+        if (index == 0) {
+          text = 'GO';
+        }
         notifyListeners();
-      } );
+      });
     }
   }
 }
