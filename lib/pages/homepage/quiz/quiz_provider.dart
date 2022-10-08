@@ -42,14 +42,14 @@ class QuizProvider extends ChangeNotifier {
     colors = colorsContainer.colors;
   }
 
-  void changeIndex() {
+  void changeIndex() async {
 
-    for (var i = index; i > 0; i--) {
-      Future.delayed(const Duration(seconds: 4), () {
+    for (var i = 5; i > 0; i--) {
+      await Future.delayed(
+        const Duration(seconds: 4), () {
         index = index-1;
         notifyListeners();
       } );
-
     }
   }
 }
