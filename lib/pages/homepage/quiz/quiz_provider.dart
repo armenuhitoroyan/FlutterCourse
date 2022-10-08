@@ -55,4 +55,9 @@ class QuizProvider extends ChangeNotifier {
       });
     }
   }
+
+  void changeText() {
+    isChangeText = true;
+    notifyListeners();
+  }
 }
