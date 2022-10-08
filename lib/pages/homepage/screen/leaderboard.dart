@@ -36,7 +36,7 @@ class LeaderBoard extends StatelessWidget {
                         increase \$0.01 for each game 
                         played, but we will guarantee 
                         the first \$100.00.''',
-                    style: TextStyle(fontSize: 18),
+                    // style: TextStyle(fontSize: 18),
                   ),
               ),
               Expanded(

@@ -33,7 +33,7 @@ class Games extends StatelessWidget {
                         increasing in difficulty and value 
                         from easy to hard and 1 to 10 
                         points.''',
-                    style: TextStyle(fontSize: 18),
+                    // style: TextStyle(fontSize: 18),
                   ),
                 ),
                 Expanded(

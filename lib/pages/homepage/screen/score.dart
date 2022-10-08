@@ -33,7 +33,7 @@ class Score extends StatelessWidget {
                         question points. But be careful: 
                         wrong answers decrease your 
                         time multiplier.''',
-                    style: TextStyle(fontSize: 18),
+                    // style: TextStyle(fontSize: 18),
                   ),
                 ),
                 Expanded(
