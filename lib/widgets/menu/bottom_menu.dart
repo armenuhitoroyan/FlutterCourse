@@ -39,8 +39,8 @@ class BottomMenuWidget extends StatelessWidget {
                         Center(
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.quiz);
+                              Navigator.pushNamed(context, AppRoutes.quiz);
+                              changeColors();
                             },
                             // ignore: sort_child_properties_last
                             child: const Center(
@@ -68,7 +68,7 @@ class BottomMenuWidget extends StatelessWidget {
                 width: 150,
                 height: 150,
                 decoration: const BoxDecoration(
-                  color: Color.fromRGBO(0,153,0, 0.8),
+                  color: Color.fromRGBO(0, 153, 0, 0.8),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20.0),
                     bottomRight: Radius.circular(20.0),
@@ -88,7 +88,7 @@ class BottomMenuWidget extends StatelessWidget {
                           child: const Center(
                             child: Icon(
                               Icons.add_shopping_cart,
-                              color: Color.fromRGBO(0,153,0, 0.8),
+                              color: Color.fromRGBO(0, 153, 0, 0.8),
                               size: 60,
                             ),
                           ),
@@ -107,4 +107,6 @@ class BottomMenuWidget extends StatelessWidget {
           ]),
     );
   }
+  
+  void changeColors() {}
 }

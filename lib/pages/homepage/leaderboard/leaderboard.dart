@@ -61,7 +61,7 @@ class LeaderBord extends StatelessWidget {
                                   CircleAvatar(
                                     radius: 40,
                                     backgroundColor:
-                                        const Color.fromRGBO(255, 102, 0, 0.8),
+                                        value.colors[index],
                                     child: Text(
                                       // ignore: unnecessary_string_interpolations
                                       '${value.list[index].firstName![0]}',

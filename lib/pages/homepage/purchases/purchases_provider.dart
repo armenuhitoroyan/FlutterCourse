@@ -2,14 +2,19 @@ import 'package:exam_at/models/purchases.dart';
 import 'package:flutter/material.dart';
 
 import '../../../api/project_api.dart';
+import '../../../styles/style_of_container.dart';
 
 class PurchasesProvider extends ChangeNotifier {
   PurchasesModel? purchasesModel;
   List<PurchasesModel>? purchases;
   bool isLoading = false;
+   List<Color> colors = [];
+
+  ColorsContainer colorsContainer = ColorsContainer();
 
   PurchasesProvider() {
     getData();
+    changeColors();
   }
 
   void getData({bool initial = true}) async {
@@ -30,6 +35,11 @@ class PurchasesProvider extends ChangeNotifier {
       notifyListeners();
     }
 
+    notifyListeners();
+  }
+
+   void changeColors() {
+    colors = colorsContainer.colors;
     notifyListeners();
   }
 }

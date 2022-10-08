@@ -14,16 +14,28 @@ class Quiz extends StatelessWidget {
         create: (context) => QuizProvider(),
         child: Consumer<QuizProvider>(
           builder: (context, value, child) => value.isLoading
-            ? const Center(
-                child: CircularProgressIndicator.adaptive(),
-              )
-            : ListView.builder(
-            itemCount: value.questions!.length,
-            itemBuilder: (context, index) => 
-              Container(
-              child: Text('${value.questions![index].questionText}'),
-            ),
-          ),
+              ? const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                )
+              // ignore: avoid_unnecessary_containers
+              : Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(255, 102, 0, 0.8),
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 5,
+                    ),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Get Ready',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25
+                      ),
+                    ),
+                  ),
+                ),
         ),
       ),
     );

@@ -65,12 +65,11 @@ class Purchases extends StatelessWidget {
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(12.0),
                                         ),
-                                        color: const Color.fromRGBO(0, 153, 0, 0.8),
+                                        color: value.colors[index],
                                         child: Padding(
                                           padding: const EdgeInsets.all(10),
                                           child: Card(
-                                            color: const Color.fromRGBO(
-                                                0, 153, 0, 0.8),
+                                            color: value.colors[index],
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
@@ -112,8 +111,8 @@ class Purchases extends StatelessWidget {
                                     children: [
                                       Text(
                                         '${value.purchases![index].title}',
-                                        style: const TextStyle(
-                                            color: Color.fromRGBO(0, 153, 0, 0.8),
+                                        style: TextStyle(
+                                            color: value.colors[index],
                                             fontSize: 20),
                                       ),
                                       Text(
@@ -133,8 +132,8 @@ class Purchases extends StatelessWidget {
                                         value.purchases![index].showBadge == true 
                                           ? '${value.purchases![index].price}\$'
                                           : '',
-                                        style: const TextStyle(
-                                          color: Color.fromRGBO(0, 153, 0, 0.8),
+                                        style: TextStyle(
+                                          color: value.colors[index],
                                           fontSize: 30,
                                         ),
                                       ),
