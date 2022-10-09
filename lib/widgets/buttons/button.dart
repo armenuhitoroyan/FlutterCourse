@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../base/routes.dart';
+import '../../pages/auth/login/login_provider.dart';
 
 class RadButton extends StatelessWidget {
   String page;
   String textBtn;
   Color btnColor;
-  RadButton(
-      {super.key,
-      required this.page,
-      required this.textBtn,
-      required this.btnColor});
+  bool click;
+  var click1;
+
+  RadButton({
+    super.key,
+    required this.click,
+    required this.page,
+    required this.textBtn,
+    required this.btnColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +28,12 @@ class RadButton extends StatelessWidget {
         width: 170,
         height: 40,
         child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, page);
+          onPressed: () async {
+            // Provider.of<LoginProvider>(context).onLogin();
+            // if (click == true) {
+              Navigator.pushNamed(context, page);
+            // }
+            print(click);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: btnColor,

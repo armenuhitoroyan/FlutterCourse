@@ -38,7 +38,7 @@ class LoginPage extends StatelessWidget {
                   child: TextField(
                     controller: value.usernameCtrl,
                     decoration: const InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'Email',    //at@gmail.com
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -83,6 +83,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 RadButton(
+                  click: value.isChangePage,
                   page: AppRoutes.pages,
                   textBtn: 'Login',
                   btnColor: const Color.fromRGBO(204, 0, 1, 0.8),

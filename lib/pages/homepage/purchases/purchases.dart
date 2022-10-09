@@ -42,7 +42,7 @@ class Purchases extends StatelessWidget {
                         // ignore: prefer_const_constructors
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              left: 15, right: 15, top: 5, bottom: 5),
+                              left: 10, right: 10, top: 5, bottom: 5),
                           child: Stack(
                             children: <Widget>[ Card(
                               shape: RoundedRectangleBorder(
@@ -55,19 +55,19 @@ class Purchases extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(7),
                                     child: SizedBox(
                                       width: value.purchases![index].showBadge == true 
-                                          ? 115 : 130,
+                                          ? 110 : 120,
                                       height: value.purchases![index].showBadge == true 
-                                          ? 115 : 130,
+                                          ? 110 : 120,
                                       child: Card(
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(12.0),
                                         ),
                                         color: value.colors[index],
                                         child: Padding(
-                                          padding: const EdgeInsets.all(10),
+                                          padding: const EdgeInsets.all(7),
                                           child: Card(
                                             color: value.colors[index],
                                             shape: RoundedRectangleBorder(
@@ -78,7 +78,7 @@ class Purchases extends StatelessWidget {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10),
+                                              padding: const EdgeInsets.all(7),
                                               child: Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
@@ -89,13 +89,13 @@ class Purchases extends StatelessWidget {
                                                     '${value.purchases![index].playsCount}',
                                                     style: const TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 20),
+                                                        fontSize: 18),
                                                   ),
                                                   const Text(
                                                     'Plays',
                                                     style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 15),
+                                                        fontSize: 13),
                                                   ),
                                                 ],
                                               ),
@@ -118,15 +118,15 @@ class Purchases extends StatelessWidget {
                                       Text(
                                         value.purchases![index].showBadge == true
                                           ? '${value.purchases![index].subTitle}'
-                                          : '${value.purchases![index].price}',
+                                          : '${value.purchases![index].price}\$',
                                         style: const TextStyle(
-                                            color: Colors.grey, fontSize: 20),
+                                            color: Colors.grey, fontSize: 18),
                                       ),
                                     ],
                                   ),
                                   const Spacer(),
                                   Padding(
-                                    padding: const EdgeInsets.only(right: 10),
+                                    padding: const EdgeInsets.only(right: 7),
                                     child: Container(
                                       child: Text(
                                         value.purchases![index].showBadge == true 
@@ -134,7 +134,7 @@ class Purchases extends StatelessWidget {
                                           : '',
                                         style: TextStyle(
                                           color: value.colors[index],
-                                          fontSize: 30,
+                                          fontSize: 18,
                                         ),
                                       ),
                                     ),
