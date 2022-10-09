@@ -67,7 +67,9 @@ class QuizProvider extends ChangeNotifier {
   }
 
   void correctAnswerColor() {
-    correctAnswer = true;
+    if (questions!.first.answers!.first.correctAnswer == true) {
+      correctAnswer = true;
+    }  
   }
 
   onChangeIndex(index) {
@@ -89,4 +91,6 @@ class QuizProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  
 }

@@ -71,10 +71,11 @@ class Quiz extends StatelessWidget {
                                             itemCount: value.questions?.length,
                                             itemBuilder: (context, index) =>
                                                 Container(
-                                              decoration: const BoxDecoration(
-                                                color: Color.fromRGBO(
-                                                    249, 249, 249, 0.8),
-                                                borderRadius: BorderRadius.only(
+                                              decoration: BoxDecoration(
+                                                color: value.correctAnswer != true 
+                                                  ? Color.fromRGBO(249, 249, 249, 0.8)
+                                                  : const Color.fromRGBO(0, 153, 0, 0.8),
+                                                borderRadius: const BorderRadius.only(
                                                   topLeft:
                                                       Radius.circular(20.0),
                                                   bottomRight:
@@ -111,7 +112,8 @@ class Quiz extends StatelessWidget {
                                               fontSize: 20,
                                               color: Colors.black),
                                         ),
-                                        Image.network('${value.questions?[0].questionImageUrl}'),
+                                        Image.network(
+                                            '${value.questions?[0].questionImageUrl}'),
                                         // Expanded(child: Image.network('${value.questions?[0].questionImageUrl}')),
                                         const SizedBox(height: 20),
                                         Column(
@@ -138,12 +140,13 @@ class Quiz extends StatelessWidget {
     Answers answerData,
   ) {
     return Consumer<QuizProvider>(
-      builder: ((context, provider, child) {
+      builder: ((context, value, child) {
         return SizedBox(
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
-              provider.answerPressed(answerData.answerId);
+              value.answerPressed(answerData.answerId);
+              value.correctAnswerColor();
             },
             child: Text('${answerData.answerText}'),
           ),
