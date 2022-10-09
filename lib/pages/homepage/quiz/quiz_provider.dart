@@ -12,6 +12,11 @@ class QuizProvider extends ChangeNotifier {
   var text = 'Get Ready';
   bool isChangeText = false;
   List<Color> colors = [];
+  Color answerColor = Color.fromRGBO(249, 249, 249, 0.8);
+  bool correctAnswer = false;
+  int currentQuestionIndex = 0;
+  bool showResult = false;
+  PageController pageController = PageController();
 
   ColorsContainer colorsContainer = ColorsContainer();
 
@@ -59,5 +64,29 @@ class QuizProvider extends ChangeNotifier {
   void changeText() {
     isChangeText = true;
     notifyListeners();
+  }
+
+  void correctAnswerColor() {
+    correctAnswer = true;
+  }
+
+  onChangeIndex(index) {
+    currentQuestionIndex = index;
+    notifyListeners();
+  }
+
+  onAnswerPressed() {
+    showResult = true;
+    notifyListeners();
+  }
+
+  answerPressed(answerId) {
+    if (currentQuestionIndex == questions!.length - 1) {
+      return onAnswerPressed();
+    } else {
+      pageController.animateToPage(currentQuestionIndex + 1,
+          curve: Curves.easeInOut, duration: const Duration(milliseconds: 700));
+      notifyListeners();
+    }
   }
 }
