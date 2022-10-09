@@ -44,6 +44,7 @@ class ClimePrize extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 25),
                     child: RadButton(
+                      context: context,
                       click: true,
                       page: AppRoutes.homepage,
                       textBtn: 'Go to HomePage',

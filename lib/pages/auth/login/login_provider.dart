@@ -7,22 +7,26 @@ class LoginProvider extends ChangeNotifier {
 
   bool isChacked = false;
   bool isChangePage = false;
+  // var context, page;
 
-  // LoginProvider() {
-  //   // _onLogin();
-  // }
+  LoginProvider() {
+    // onLogin();
+  }
 
   void checkCheckBox() {
     isChacked = true;
     notifyListeners();
   }
 
-  void onLogin() {
+  onLogin() {
     if (usernameCtrl.text.isNotEmpty && passwordCtrl.text.isNotEmpty) {
       isChangePage = true;
+      // Navigator.pushNamed(context, page);
       notifyListeners();
     } else {
-      isChacked = false;
+      isChangePage = false;
     }
+
+    return isChangePage;
   }
 }

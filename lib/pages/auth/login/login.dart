@@ -83,6 +83,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 RadButton(
+                  context: context,
                   click: value.isChangePage,
                   page: AppRoutes.pages,
                   textBtn: 'Login',

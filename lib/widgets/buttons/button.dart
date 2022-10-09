@@ -8,15 +8,16 @@ class RadButton extends StatelessWidget {
   String textBtn;
   Color btnColor;
   bool click;
-  var click1;
+  LoginProvider loginProvider = LoginProvider();
+  BuildContext context;
 
-  RadButton({
-    super.key,
-    required this.click,
-    required this.page,
-    required this.textBtn,
-    required this.btnColor,
-  });
+  RadButton(
+      {super.key,
+      required this.click,
+      required this.page,
+      required this.textBtn,
+      required this.btnColor,
+      required this.context});
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +29,14 @@ class RadButton extends StatelessWidget {
         width: 170,
         height: 40,
         child: ElevatedButton(
-          onPressed: () async {
-            // Provider.of<LoginProvider>(context).onLogin();
-            // if (click == true) {
-              Navigator.pushNamed(context, page);
-            // }
-            print(click);
-          },
+          onPressed: onLogin,
+          // {
+          //   // Provider.of<LoginProvider>(context).onLogin();
+          //   // if (click == true) {
+          //     Navigator.pushNamed(context, page);
+          //   // }
+          //   print(click);
+          // },
           style: ElevatedButton.styleFrom(
             backgroundColor: btnColor,
             foregroundColor: Colors.white,
@@ -49,5 +51,15 @@ class RadButton extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onLogin() {
+    loginProvider.onLogin();
+    // print(loginProvider.isChangePage);
+    if (loginProvider.isChangePage == true) {
+      // Navigator.pushNamed(context, page);
+    }
+
+    Navigator.pushNamed(context, page);
   }
 }
