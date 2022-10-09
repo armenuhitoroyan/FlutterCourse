@@ -8,7 +8,7 @@ class LeaderBord extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => LeaderBoarderProvider(),
       child: Consumer<LeaderBoarderProvider>(
-        builder: (context, value, child) => value.isLoading
+        builder: (context, value, child) => value.isLoading == false
             ? const Center(
                 child: CircularProgressIndicator.adaptive(),
               )

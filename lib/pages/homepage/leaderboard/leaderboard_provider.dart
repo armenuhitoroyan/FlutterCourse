@@ -24,7 +24,7 @@ class LeaderBoarderProvider extends ChangeNotifier {
 
     if (result.isEmpty) {
     } else {
-      isLoading = false;
+      isLoading = true;
       list = result;
 
       notifyListeners();
