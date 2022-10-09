@@ -67,13 +67,12 @@ class QuizProvider extends ChangeNotifier {
   }
 
   void correctAnswerColor() {
-    if (questions!.first.answers!.first.correctAnswer == true) {
-      correctAnswer = true;
-    }  
+    correctAnswer = true;
+    notifyListeners();
   }
 
-  onChangeIndex(index) {
-    currentQuestionIndex = index;
+  onChangeIndex(i) {
+    currentQuestionIndex = i;
     notifyListeners();
   }
 
@@ -91,6 +90,4 @@ class QuizProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  
 }
