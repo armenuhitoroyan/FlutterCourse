@@ -1,6 +1,8 @@
+import 'package:exam_at/models/quiz.dart';
 import 'package:exam_at/pages/homepage/homepage.dart';
 import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
 import 'package:exam_at/pages/homepage/pages.dart';
+import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
 
 import 'package:exam_at/pages/homepage/quiz/quiz.dart';
 import 'package:exam_at/widgets/sign.dart';
@@ -12,6 +14,7 @@ import '../pages/auth/login/login.dart';
 import '../pages/homepage/leaderboard/leaderboard.dart';
 import '../pages/homepage/purchases/purchases.dart';
 import '../pages/homepage/purchases/purchases_provider.dart';
+import '../pages/homepage/quiz/questions.dart';
 
 class AppRoutes {
   static const login = '/';
@@ -19,6 +22,7 @@ class AppRoutes {
   static const leaderBoard = '/leaderboard';
   static const pages = '/pages';
   static const quiz = '/quiz';
+  static const questions = '/questions';
   static const purchases = '/purchases';
 
   //// ------------
@@ -47,8 +51,11 @@ class AppRoutes {
             child: Purchases(),
           ),
 
-
-          ///////
+        ///////
+        AppRoutes.questions: (context) => ChangeNotifierProvider(
+            create: (context) => QuestionsProvider(),
+            child: QuestionsWidget(),
+      ),
         
         AppRoutes.sign: (context) => Sign(),
     };
