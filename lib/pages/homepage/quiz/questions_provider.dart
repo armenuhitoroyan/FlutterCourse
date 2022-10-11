@@ -14,6 +14,7 @@ class QuestionsProvider extends ChangeNotifier {
 
   int currentQuestionIndex = 0;
   bool showResult = false;
+  bool correctAnswer = false;
   PageController pageController = PageController();
 
   getData() async {
@@ -42,7 +43,37 @@ class QuestionsProvider extends ChangeNotifier {
     } else {
       pageController.animateToPage(currentQuestionIndex + 1,
           curve: Curves.easeInOut, duration: const Duration(milliseconds: 700));
+      
       notifyListeners();
     }
+  }
+
+  void correctAnswerMethod(answerId) {
+    // for (var i = 0, j = 0;
+    //     i < questionsData.length && j < questionsData[i].answers!.length;
+    //     i++, j++) {
+    //   if (questionsData[i].answers![j].correctAnswer == true) {
+    //     correctAnswer = true;
+    //     notifyListeners();
+    //   } else {
+    //     correctAnswer = false;
+    //     notifyListeners();
+    //   }
+    // }
+
+    for (var i = 0, j = 0;
+        i < questionsData.length && j < questionsData[i].answers!.length;
+        i++, j++) {
+      if (questionsData[i].answers![j].answerId == answerId) {
+        if (questionsData[i].answers![j].correctAnswer == true) {
+          correctAnswer = true;
+          notifyListeners();
+        }
+      } else {
+        correctAnswer = false;
+        notifyListeners();
+      }
+    }
+    print(correctAnswer);
   }
 }

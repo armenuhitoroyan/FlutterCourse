@@ -66,6 +66,7 @@ class BuildQuestions extends StatelessWidget {
           child: InkWell(
             onTap: () {
               provider.answerPressed(answerData.answerId);
+              provider.correctAnswerMethod(answerData.answerId);
             },
             onHover: (value) {
               
