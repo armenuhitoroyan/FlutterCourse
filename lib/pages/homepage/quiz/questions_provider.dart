@@ -43,7 +43,7 @@ class QuestionsProvider extends ChangeNotifier {
     } else {
       pageController.animateToPage(currentQuestionIndex + 1,
           curve: Curves.easeInOut, duration: const Duration(milliseconds: 700));
-      
+
       notifyListeners();
     }
   }
@@ -67,13 +67,16 @@ class QuestionsProvider extends ChangeNotifier {
       if (questionsData[i].answers![j].answerId == answerId) {
         if (questionsData[i].answers![j].correctAnswer == true) {
           correctAnswer = true;
+          print('true: $correctAnswer');
           notifyListeners();
+          return;
         }
       } else {
         correctAnswer = false;
+        print('false: $correctAnswer');
         notifyListeners();
+        return;
       }
     }
-    print(correctAnswer);
   }
 }
