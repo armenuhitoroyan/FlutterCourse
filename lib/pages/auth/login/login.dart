@@ -38,7 +38,7 @@ class LoginPage extends StatelessWidget {
                   child: TextField(
                     controller: value.usernameCtrl,
                     decoration: const InputDecoration(
-                      labelText: 'Email',    //at@gmail.com
+                      labelText: 'Email', //at@gmail.com
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -67,9 +67,9 @@ class LoginPage extends StatelessWidget {
                 Row(
                   children: [
                     Checkbox(
-                      checkColor: value.isChacked != true 
-                        ? Colors.white
-                        : const Color.fromRGBO(255, 102, 0, 0.8),
+                      checkColor: value.isChacked != true
+                          ? Colors.white
+                          : const Color.fromRGBO(255, 102, 0, 0.8),
                       value: value.isChacked,
                       onChanged: (bool? checked) {
                         value.checkCheckBox();
@@ -83,8 +83,13 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 RadButton(
+                  callback: () {
+                    value.onLogin();
+                    if (value.isChangePage == true) {
+                      Navigator.pushNamed(context, AppRoutes.pages);
+                    }
+                  },
                   context: context,
-                  click: value.isChangePage,
                   page: AppRoutes.pages,
                   textBtn: 'Login',
                   btnColor: const Color.fromRGBO(204, 0, 1, 0.8),
