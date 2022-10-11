@@ -50,9 +50,7 @@ class Quiz extends StatelessWidget {
                               style: const TextStyle(
                                   color: Colors.white, fontSize: 25),
                             )
-                          : Container(
-                              child: QuestionsWidget(),
-                            )
+                          : QuestionsWidget()
                     ),
                   ),
                 ),

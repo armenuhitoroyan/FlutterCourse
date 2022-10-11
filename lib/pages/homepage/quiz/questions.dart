@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../styles/style_of_container.dart';
+import '../../../widgets/diagonally_shaped_card.dart';
 
 class QuestionsWidget extends StatelessWidget {
   QuestionsWidget({super.key});
@@ -15,7 +16,7 @@ class QuestionsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: colorsContainer.colors.elementAt(index+3),
+        backgroundColor: colorsContainer.colors.elementAt(index + 3),
       ),
       body: ChangeNotifierProvider(
         create: (context) => QuestionsProvider(),
@@ -34,25 +35,43 @@ class QuestionsWidget extends StatelessWidget {
 
   Widget Question(questionProvider) {
     return Container(
-      child: Column(
-        children: [
-          Expanded(
-            child: PageView.builder(
-              onPageChanged: ((value) => questionProvider.onChangeIndex(value)),
-              itemBuilder: (context, index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    BuildQuestions(questionProvider.questionsData[index]),
-                  ],
-                );
-              },
-              itemCount: questionProvider.questionsData.length,
-              scrollDirection: Axis.horizontal,
-              controller: questionProvider.pageController,
+      child: Scrollbar(
+        child: Column(
+          children: <Widget> [
+            Row(
+              children: [ SizedBox(
+                width: 200,
+                height: 70,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: questionProvider.questionsData.length,
+                  ),
+                  itemCount: questionProvider.questionsData.length,
+                  itemBuilder: (context, index) {
+                    return DiagonallyShapedCard(index: index+1, width: 80, height: 50,);
+                  },
+                ),
+              ), ]
             ),
-          ),
-        ],
+            Expanded(
+              child: PageView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                onPageChanged: ((value) => questionProvider.onChangeIndex(value)),
+                itemBuilder: (context, index) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      BuildQuestions(questionProvider.questionsData[index]),
+                    ],
+                  );
+                },
+                itemCount: questionProvider.questionsData.length,
+                scrollDirection: Axis.horizontal,
+                controller: questionProvider.pageController,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

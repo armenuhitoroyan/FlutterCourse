@@ -8,7 +8,7 @@ class LeaderBord extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => LeaderBoarderProvider(),
       child: Consumer<LeaderBoarderProvider>(
-        builder: (context, value, child) => value.isLoading == false
+        builder: (context, value, child) => value.isLoading == true
             ? const Center(
                 child: CircularProgressIndicator.adaptive(),
               )
@@ -47,7 +47,7 @@ class LeaderBord extends StatelessWidget {
                             child: Row(
                               children: [
                                 Padding(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(7),
                                     child: Text('${index + 1}')),
                                 if (value.list[index].userImageUrl != null)
                                   CircleAvatar(
@@ -68,7 +68,7 @@ class LeaderBord extends StatelessWidget {
                                   ),
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 30, right: 10),
+                                      left: 20, right: 7),
                                   child: Text(
                                     '${value.list[index].firstName}',
                                     style: const TextStyle(

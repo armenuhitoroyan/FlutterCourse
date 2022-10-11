@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../styles/style_of_container.dart';
 
 class LeaderBoarderProvider extends ChangeNotifier {
-  bool isLoading = false;
+  bool isLoading = true;
   List<LeaderbordModel> list = [];
   List<Color> colors = [];
 
@@ -21,10 +21,11 @@ class LeaderBoarderProvider extends ChangeNotifier {
     if (!initial) notifyListeners();
 
     final result = await ProjectAPI().leaderbordApi.getLeaderBoardData();
+    print(result);
 
     if (result.isEmpty) {
     } else {
-      isLoading = true;
+      isLoading = false;
       list = result;
 
       notifyListeners();
@@ -35,7 +36,7 @@ class LeaderBoarderProvider extends ChangeNotifier {
     // print(imgModel.runtimeType);
     print(list.runtimeType);
     print(list.first.runtimeType);
-    print('list: ${list.first}');
+    print('list: ${list.first.firstName}');
   }
 
   void changeColors() {

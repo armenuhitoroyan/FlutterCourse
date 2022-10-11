@@ -50,7 +50,7 @@ class QuizProvider extends ChangeNotifier {
 
   void changeIndex() async {
     for (var i = 5; i > 0; i--) {
-      await Future.delayed(const Duration(seconds: 4), () {
+      await Future.delayed(const Duration(seconds: 1), () {
         index = index - 1;
         text = '$index';
         if (index == 0) {
