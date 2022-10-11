@@ -37,9 +37,9 @@ class QuestionsWidget extends StatelessWidget {
     return Container(
       child: Scrollbar(
         child: Column(
-          children: <Widget> [
-            Row(
-              children: [ SizedBox(
+          children: <Widget>[
+            Row(children: [
+              SizedBox(
                 width: 200,
                 height: 70,
                 child: GridView.builder(
@@ -48,15 +48,25 @@ class QuestionsWidget extends StatelessWidget {
                   ),
                   itemCount: questionProvider.questionsData.length,
                   itemBuilder: (context, index) {
-                    return DiagonallyShapedCard(index: index+1, width: 80, height: 50,);
+                    return DiagonallyShapedCard(
+                      index: index + 1,
+                      width: 80,
+                      height: 50,
+                      color: questionProvider.checkAnswer != true 
+                        ? const Color.fromRGBO(249, 249, 249, 0.8)
+                        : questionProvider.correctAnswer == true 
+                          ? const Color.fromRGBO(0,153,0, 0.8)
+                          : const Color.fromRGBO(204, 0, 1, 0.8),
+                    );
                   },
                 ),
-              ), ]
-            ),
+              ),
+            ]),
             Expanded(
               child: PageView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: ((value) => questionProvider.onChangeIndex(value)),
+                onPageChanged: ((value) =>
+                    questionProvider.onChangeIndex(value)),
                 itemBuilder: (context, index) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
