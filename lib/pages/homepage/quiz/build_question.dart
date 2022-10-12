@@ -68,9 +68,6 @@ class BuildQuestions extends StatelessWidget {
               provider.answerPressed(answerData.answerId);
               provider.correctAnswerMethod(answerData.answerId);
             },
-            onHover: (value) {
-              
-            },
             child: Card(
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
