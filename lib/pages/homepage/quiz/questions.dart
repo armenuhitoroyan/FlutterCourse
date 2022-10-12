@@ -9,6 +9,7 @@ import '../../../widgets/diagonally_shaped_card.dart';
 class QuestionsWidget extends StatelessWidget {
   QuestionsWidget({super.key});
   int index = 0;
+  bool checkAnswer = false;
 
   ColorsContainer colorsContainer = ColorsContainer();
 
@@ -47,15 +48,19 @@ class QuestionsWidget extends StatelessWidget {
                 ),
                 itemCount: questionProvider.questionsData.length,
                 itemBuilder: (context, index) {
-                  return DiagonallyShapedCard(
-                    index: index + 1,
-                    width: 80,
-                    height: 50,
-                    color: questionProvider.checkAnswer != true 
-                      ? const Color.fromRGBO(249, 249, 249, 0.8)
-                      : questionProvider.correctAnswer == true 
-                        ? const Color.fromRGBO(0,153,0, 0.8)
-                        : const Color.fromRGBO(204, 0, 1, 0.8),
+                  return Consumer<QuestionsProvider>(
+                    builder: (context, value, child) => DiagonallyShapedCard(
+                      index: index + 1,
+                      width: 80,
+                      height: 50,
+                      color: questionProvider.checkAnswer != true
+                          ? const Color.fromRGBO(249, 249, 249, 0.8)
+                          : index == value.currentQuestionIndex //
+                              ? value.correctAnswer == true
+                                  ? const Color.fromRGBO(0, 153, 0, 0.8)
+                                  : const Color.fromRGBO(204, 0, 1, 0.8)
+                              : const Color.fromRGBO(249, 249, 249, 0.8),
+                    ),
                   );
                 },
               ),
@@ -64,8 +69,7 @@ class QuestionsWidget extends StatelessWidget {
           Expanded(
             child: PageView.builder(
               physics: const NeverScrollableScrollPhysics(),
-              onPageChanged: ((value) =>
-                  questionProvider.onChangeIndex(value)),
+              onPageChanged: ((value) => questionProvider.onChangeIndex(value)),
               itemBuilder: (context, index) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,

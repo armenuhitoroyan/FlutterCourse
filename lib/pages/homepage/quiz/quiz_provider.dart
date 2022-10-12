@@ -35,7 +35,6 @@ class QuizProvider extends ChangeNotifier {
     if (result.questions!.isEmpty) {
     } else {
       isLoading = false;
-      // quizModel = result;
       questions = result.questions;
 
       notifyListeners();
@@ -71,23 +70,4 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // onChangeIndex(i) {
-  //   currentQuestionIndex = i;
-  //   notifyListeners();
-  // }
-
-  // onAnswerPressed() {
-  //   showResult = true;
-  //   notifyListeners();
-  // }
-
-  // answerPressed(answerId) {
-  //   if (currentQuestionIndex == questions!.length - 1) {
-  //     return onAnswerPressed();
-  //   } else {
-  //     pageController.animateToPage(currentQuestionIndex + 1,
-  //         curve: Curves.easeInOut, duration: const Duration(milliseconds: 700));
-  //     notifyListeners();
-  //   }
-  // }
 }

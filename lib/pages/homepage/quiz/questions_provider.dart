@@ -17,7 +17,7 @@ class QuestionsProvider extends ChangeNotifier {
   bool correctAnswer = false;
   bool checkAnswer = false;
   PageController pageController = PageController();
-  late var answers;
+  int questionIndex = 0;
 
   getData() async {
     isLoading = true;
@@ -50,53 +50,27 @@ class QuestionsProvider extends ChangeNotifier {
     }
   }
 
-  correctAnswerMethod(answerId) {
+  correctAnswerMethod(answerId) async {
     checkAnswer = true;
     int lengthAnswers = questionsData[currentQuestionIndex].answers!.length;
-
-    // if (currentQuestionIndex == questionsData.length - 1) {
-
-    //   return onAnswerPressed();
-    // }
 
     for (var i = 0; i < lengthAnswers; i++) {
       if (questionsData[currentQuestionIndex].answers![i].answerId ==
           answerId) {
-            if (questionsData[currentQuestionIndex].answers![i].correctAnswer == true) {
-              correctAnswer = true;
-            } else {
-              correctAnswer = false;
-            }
-        
-      } 
+        questionIndex = currentQuestionIndex;
+        if (questionsData[currentQuestionIndex].answers![i].correctAnswer ==
+            true) {
+          correctAnswer = true;
+          notifyListeners();
+          return;
+        } else {
+          correctAnswer = false;
+          notifyListeners();
+          return;
+        }
+      }
     }
-
-    // for (var i = 0, j = 0;
-    //     i < questionsData.length && j < questionsData[i].answers!.length;
-    //     i++, j++) {
-    //   if (questionsData[i].answers![j].answerId == answerId) {
-    //     print('answerId = $answerId');
-    //     if (questionsData[i].answers![j].correctAnswer == true) {
-    //       correctAnswer = true;
-    //       print('true: $correctAnswer');
-    //       notifyListeners();
-    //       return;
-    //     } else {
-    //       correctAnswer = false;
-    //       print('false: $correctAnswer');
-    //       notifyListeners();
-    //       return;
-    //     }
-    //     return;
-    //   } else {
-    //     print(questionsData[i].answers![j].answerId);
-    //     correctAnswer = false;
-    //     print('false: $correctAnswer');
-    //     notifyListeners();
-    //     return;
-    //   }
-    // }
-
+    notifyListeners();
     return correctAnswer;
   }
 }
