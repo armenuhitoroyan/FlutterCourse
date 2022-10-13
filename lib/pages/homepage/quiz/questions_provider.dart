@@ -18,6 +18,9 @@ class QuestionsProvider extends ChangeNotifier {
   bool checkAnswer = false;
   PageController pageController = PageController();
   int questionIndex = 0;
+  double scale = 1.0;
+  int seconds = 60;
+  String text = 'Go!';
 
   getData() async {
     isLoading = true;
@@ -73,4 +76,5 @@ class QuestionsProvider extends ChangeNotifier {
     notifyListeners();
     return correctAnswer;
   }
+
 }

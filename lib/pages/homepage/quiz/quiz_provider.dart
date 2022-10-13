@@ -17,6 +17,7 @@ class QuizProvider extends ChangeNotifier {
   int currentQuestionIndex = 0;
   bool showResult = false;
   PageController pageController = PageController();
+  int second = 60;
 
   ColorsContainer colorsContainer = ColorsContainer();
 
@@ -24,6 +25,7 @@ class QuizProvider extends ChangeNotifier {
     getData();
     changeColors();
     changeIndex();
+    changeSeconds();
   }
 
   void getData({bool initial = true}) async {
@@ -70,4 +72,15 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void changeSeconds() async {
+    for (var i = 60; i > 0; i--) {
+      await Future.delayed(const Duration(seconds: 3), () {
+        second = second - 1;
+        if (second == 0) {
+          return;
+        }
+        notifyListeners();
+      });
+    }
+  }
 }
