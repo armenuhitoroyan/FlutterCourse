@@ -34,19 +34,20 @@ class QuestionsWidget extends StatelessWidget {
           }),
         ),
       ),
+
       Consumer<QuizProvider>(
         builder: (context, value, child) => Row(
           mainAxisAlignment: MainAxisAlignment.center,
           // ignore: prefer_const_literals_to_create_immutables
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 20),
               child: Container(
                 width: 60.0,
                 height: 60.0,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(50.0)),
                   border: Border.all(
                     color: const Color.fromRGBO(255, 102, 0, 0.8),
                     width: 4.0,
@@ -54,7 +55,7 @@ class QuestionsWidget extends StatelessWidget {
                 ),
                 child: Center(
                     child: Text(
-                  '${value.second}',
+                   '${value.second}',
                   style: const TextStyle(
                       color: Color.fromRGBO(255, 102, 0, 0.8), fontSize: 20),
                 )),

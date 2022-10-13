@@ -1,4 +1,5 @@
 import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
+import 'package:exam_at/pages/homepage/quiz/quiz_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,7 @@ class BuildQuestions extends StatelessWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             '${questionData.questionText}',
@@ -35,7 +36,7 @@ class BuildQuestions extends StatelessWidget {
           questionData.questionImageUrl != null
               ? Image.network('${questionData.questionImageUrl}')
               : Container(),
-          const SizedBox(height: 20),
+          // const SizedBox(height: 20),
           Column(
             children: questionData.answers!
                 .map<Widget>(
@@ -67,7 +68,11 @@ class BuildQuestions extends StatelessWidget {
             onTap: () {
               provider.answerPressed(answerData.answerId);
               provider.correctAnswerMethod(answerData.answerId);
+
+              Provider.of<QuizProvider>(context, listen: true).changeSeconds();
+
             },
+
             child: Card(
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(

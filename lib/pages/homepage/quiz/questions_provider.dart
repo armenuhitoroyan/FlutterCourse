@@ -12,6 +12,8 @@ class QuestionsProvider extends ChangeNotifier {
   List<Questions> questionsData = [];
   bool isLoading = true;
 
+  
+
   int currentQuestionIndex = 0;
   bool showResult = false;
   bool correctAnswer = false;
@@ -21,6 +23,9 @@ class QuestionsProvider extends ChangeNotifier {
   double scale = 1.0;
   int seconds = 60;
   String text = 'Go!';
+  int second = 60;
+
+
 
   getData() async {
     isLoading = true;
@@ -77,4 +82,18 @@ class QuestionsProvider extends ChangeNotifier {
     return correctAnswer;
   }
 
+  changeSeconds(answerId) async {
+    for (var i = 60; i > 0; i--) {
+      await Future.delayed(const Duration(seconds: 1), () {
+        second = second - 1;
+        notifyListeners();
+        return second;
+      });
+
+      if (second == 35) {
+        notifyListeners();
+        break;
+      }
+    }
+  }
 }
