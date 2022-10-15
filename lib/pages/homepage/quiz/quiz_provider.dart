@@ -28,16 +28,20 @@ class QuizProvider extends ChangeNotifier {
   }
 
   void changeIndex() async {
-    for (var i = 5; i > 0; i--) {
-      await Future.delayed(const Duration(seconds: 1), () {
-        index = index - 1;
-        text = '$index';
-        if (index == 0) {
-          text = 'GO';
-        }
-        notifyListeners();
-      });
+    Duration interval = const Duration(seconds: 1);
+    Stream<int> stream = Stream<int>.periodic(interval, (it) => -1 * (it - 5));
+
+    await for (int i in stream) {
+      index = i;
+      text = '$index';
+      if (i == 0) {
+        text = 'GO';
+        break;
+      }
+      notifyListeners();
     }
+
+    notifyListeners();
   }
 
   void changeText() {
@@ -52,11 +56,13 @@ class QuizProvider extends ChangeNotifier {
 
   changeSeconds() async {
     Duration interval = const Duration(seconds: 1);
-    Stream<int> stream =
-        Stream<int>.periodic(interval, (it) => -1 * (it - 60));
+    Stream<int> stream = Stream<int>.periodic(interval, (it) => -1 * (it - 60));
     await for (int i in stream) {
       second = i;
-      // print(second);
+      if (i == 0) {
+        // i *= -1;
+        break;
+      }
       notifyListeners();
     }
 
