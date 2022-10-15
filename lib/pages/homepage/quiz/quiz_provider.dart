@@ -14,22 +14,34 @@ class QuizProvider extends ChangeNotifier {
   PageController pageController = PageController();
   int second = 60;
   List<int> timer = [];
+  Color color = Colors.white;
 
   ColorsContainer colorsContainer = ColorsContainer();
 
   QuizProvider() {
     changeColors();
     changeIndex();
-    changeSeconds();
   }
 
   void changeColors() {
     colors = colorsContainer.colors;
   }
 
+  void changeAppbarBGColor() async {
+    colors = colorsContainer.colors;
+    Duration interval = const Duration(seconds: 1);
+    Stream<int> stream = Stream<int>.periodic(interval, (it) => (it - 4));
+
+    await for (int i in stream) {
+      index = i;
+      color = colors[i];
+      notifyListeners();
+    }
+  }
+
   void changeIndex() async {
     Duration interval = const Duration(seconds: 1);
-    Stream<int> stream = Stream<int>.periodic(interval, (it) => -1 * (it - 5));
+    Stream<int> stream = Stream<int>.periodic(interval, (it) => -1 * (it - 4));
 
     await for (int i in stream) {
       index = i;
@@ -60,7 +72,13 @@ class QuizProvider extends ChangeNotifier {
     await for (int i in stream) {
       second = i;
       if (i == 0) {
-        // i *= -1;
+        second *= -1;
+        notifyListeners();
+        break;
+      }
+
+      if (i == 50) {
+        notifyListeners();
         break;
       }
       notifyListeners();

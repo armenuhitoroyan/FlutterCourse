@@ -19,7 +19,7 @@ class QuestionsWidget extends StatelessWidget {
     return Stack(alignment: Alignment.topCenter, children: <Widget>[
       Scaffold(
         appBar: AppBar(
-          backgroundColor: colorsContainer.colors.elementAt(index + 3),
+          backgroundColor: colorsContainer.colors[3],
         ),
         body: ChangeNotifierProvider(
           create: (context) => QuestionsProvider(),

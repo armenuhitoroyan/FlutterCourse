@@ -69,7 +69,7 @@ class BuildQuestions extends StatelessWidget {
               provider.answerPressed(answerData.answerId);
               provider.correctAnswerMethod(answerData.answerId);
 
-              Provider.of<QuizProvider>(context, listen: true).changeSeconds();
+              Provider.of<QuizProvider>(context, listen: false).changeSeconds();
 
             },
 

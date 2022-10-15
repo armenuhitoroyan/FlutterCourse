@@ -36,25 +36,25 @@ class Quiz extends StatelessWidget {
                   ),
                   child: Center(
                     child: TextButton(
-                      onPressed: value.index > 0
-                          ? null
-                          : () {
-                              value.changeText();
-                              clicked = true;
-                            },
-                      child: value.isChangeText != true
-                          ? Text(
-                              value.text,
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 25),
-                            )
-                          : QuestionsWidget()
-                    ),
+                        onPressed: value.index > 0
+                            ? null
+                            : () {
+                                value.changeText();
+                                clicked = true;
+                                value.changeSeconds();
+                                value.changeAppbarBGColor();
+                              },
+                        child: value.isChangeText != true
+                            ? Text(
+                                value.text,
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 25),
+                              )
+                            : QuestionsWidget()),
                   ),
                 ),
         ),
       ),
     );
   }
-
 }
