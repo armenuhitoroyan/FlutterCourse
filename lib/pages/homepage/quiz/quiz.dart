@@ -1,5 +1,6 @@
 import 'package:exam_at/base/routes.dart';
 import 'package:exam_at/pages/homepage/quiz/questions.dart';
+import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
 import 'package:exam_at/pages/homepage/quiz/quiz_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,9 @@ class Quiz extends StatelessWidget {
                             : () {
                                 value.changeText();
                                 clicked = true;
-                                value.changeSeconds();
+                                value.changeSeconds(
+                                  1
+                                );
                                 value.changeAppbarBGColor();
                               },
                         child: value.isChangeText != true

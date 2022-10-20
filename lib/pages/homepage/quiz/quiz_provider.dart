@@ -15,6 +15,8 @@ class QuizProvider extends ChangeNotifier {
   int second = 60;
   List<int> timer = [];
   Color color = Colors.white;
+  int swiftness = 0;
+  int length = 0;
 
   ColorsContainer colorsContainer = ColorsContainer();
 
@@ -66,7 +68,10 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  changeSeconds() async {
+  changeSeconds(answerId) async {
+    print("answerId: $answerId");
+    length += 1;
+
     Duration interval = const Duration(seconds: 1);
     Stream<int> stream = Stream<int>.periodic(interval, (it) => -1 * (it - 60));
     await for (int i in stream) {
@@ -78,9 +83,16 @@ class QuizProvider extends ChangeNotifier {
       }
 
       if (i == 50) {
+        swiftness += i;
+        print(swiftness);
         notifyListeners();
         break;
       }
+
+      // if (answerId) {
+      //   notifyListeners();
+      //   break;
+      // }
       notifyListeners();
     }
 

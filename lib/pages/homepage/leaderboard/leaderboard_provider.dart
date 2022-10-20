@@ -33,10 +33,7 @@ class LeaderBoarderProvider extends ChangeNotifier {
 
     notifyListeners();
 
-    // print(imgModel.runtimeType);
-    print(list.runtimeType);
-    print(list.first.runtimeType);
-    print('list: ${list.first.firstName}');
+
   }
 
   void changeColors() {

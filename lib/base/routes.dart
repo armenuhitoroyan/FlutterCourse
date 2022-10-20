@@ -5,6 +5,7 @@ import 'package:exam_at/pages/homepage/pages.dart';
 import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
 
 import 'package:exam_at/pages/homepage/quiz/quiz.dart';
+import 'package:exam_at/pages/homepage/quiz/score.dart';
 import 'package:exam_at/widgets/sign.dart';
 
 import 'package:flutter/material.dart';
@@ -24,10 +25,7 @@ class AppRoutes {
   static const quiz = '/quiz';
   static const questions = '/questions';
   static const purchases = '/purchases';
-
-  //// ------------
-
-  static const sign = '/sign';
+  static const score = '/score';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -50,14 +48,12 @@ class AppRoutes {
             create: (context) => PurchasesProvider(),
             child: Purchases(),
           ),
-
-        ///////
-        AppRoutes.questions: (context) => ChangeNotifierProvider(
+      AppRoutes.questions: (context) => ChangeNotifierProvider(
             create: (context) => QuestionsProvider(),
             child: QuestionsWidget(),
-      ),
-        
-        AppRoutes.sign: (context) => Sign(),
+          ),
+      AppRoutes.score:(context) => const Score()
+      
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

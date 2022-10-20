@@ -1,5 +1,6 @@
 import 'package:exam_at/pages/auth/login/login.dart';
 import 'package:exam_at/pages/homepage/homepage.dart';
+import 'package:exam_at/pages/homepage/quiz/score.dart';
 import 'package:exam_at/styles/style_of_appbar.dart';
 import 'package:flutter/material.dart';
 

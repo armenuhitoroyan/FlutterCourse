@@ -3,10 +3,13 @@ import 'package:exam_at/pages/homepage/quiz/quiz_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../base/routes.dart';
 import '../../../models/quiz.dart';
 
+// ignore: must_be_immutable
 class BuildQuestions extends StatelessWidget {
   Questions question;
+  int length = 0;
 
   BuildQuestions(
     this.question, {
@@ -69,10 +72,17 @@ class BuildQuestions extends StatelessWidget {
               provider.answerPressed(answerData.answerId);
               provider.correctAnswerMethod(answerData.answerId);
 
-              Provider.of<QuizProvider>(context, listen: false).changeSeconds();
+              Provider.of<QuizProvider>(context, listen: false)
+                  .changeSeconds(answerData.answerId);
 
+              if (provider.questionIndex == provider.questionsData.length-1) {
+                Navigator.pushNamed(context, AppRoutes.score);
+              }
+
+              length++;
+
+              print(provider.questionIndex);
             },
-
             child: Card(
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
