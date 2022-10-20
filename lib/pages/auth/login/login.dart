@@ -2,6 +2,7 @@ import 'package:exam_at/base/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../widgets/alertdialog.dart';
 import '../../../widgets/buttons/button.dart';
 import '../../../widgets/buttons/text_button.dart';
 import 'login_provider.dart';
@@ -56,6 +57,7 @@ class LoginPage extends StatelessWidget {
                             ? const Icon(
                                 Icons.visibility,
                               )
+                            // ignore: dead_code
                             : const Icon(
                                 Icons.visibility_off,
                               ),
@@ -87,6 +89,18 @@ class LoginPage extends StatelessWidget {
                     value.onLogin();
                     if (value.isChangePage == true) {
                       Navigator.pushNamed(context, AppRoutes.pages);
+                    } else {
+                      value.showDialog == true
+                          ? showDialog(
+                              context: context,
+                              builder: (context) {
+                                return _dialog(
+                                  context,
+                                  title: 'Error',
+                                  content: 'Username is invalid',
+                                );
+                              })
+                          : Container();
                     }
                   },
                   context: context,
@@ -105,6 +119,25 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _dialog(
+    context, {
+    required String title,
+    String? content,
+  }) {
+    return AlertDialog(
+      title: Text(title),
+      content: Text(content ?? 'Some of the credentials are empty'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('OK'),
+        ),
+      ],
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
+import '../../../base/regexp.dart';
+
 class LoginProvider extends ChangeNotifier {
   bool showPassword = false;
   TextEditingController usernameCtrl = TextEditingController();
@@ -7,7 +9,7 @@ class LoginProvider extends ChangeNotifier {
 
   bool isChacked = false;
   bool isChangePage = false;
-  // var context, page;
+  bool showDialog = false;
 
   LoginProvider() {
     // onLogin();
@@ -19,9 +21,15 @@ class LoginProvider extends ChangeNotifier {
   }
 
   onLogin() {
+    final regExp = RegExp(RegularExpressions.email);
+
     if (usernameCtrl.text.isNotEmpty && passwordCtrl.text.isNotEmpty) {
-      isChangePage = true;
-      // Navigator.pushNamed(context, page);
+      if (regExp.hasMatch(usernameCtrl.text)) {
+        isChangePage = true;
+      } else {
+        showDialog = true;
+      }
+
       notifyListeners();
     } else {
       isChangePage = false;
