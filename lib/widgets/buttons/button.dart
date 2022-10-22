@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../pages/auth/login/login_provider.dart';
 
@@ -44,16 +43,9 @@ class RadButton extends StatelessWidget {
               ),
             ),
           ),
-          child: Text('$textBtn'),
+          child: Text(textBtn),
         ),
       ),
     );
   }
-
-  // void onLogin();
-  // loginProvider.onLogin();
-  // Navigator.pushNamed(context, page);
-  // void callback() {
-  //   // Navigator.pushNamed(context, page);
-  // }
 }

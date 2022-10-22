@@ -17,12 +17,12 @@ class PurchasesModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['sub_title'] = this.subTitle;
-    data['price'] = this.price;
-    data['plays_count'] = this.playsCount;
-    data['show_badge'] = this.showBadge;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['sub_title'] = subTitle;
+    data['price'] = price;
+    data['plays_count'] = playsCount;
+    data['show_badge'] = showBadge;
     return data;
   }
 }

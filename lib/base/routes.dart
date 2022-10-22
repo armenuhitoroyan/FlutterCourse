@@ -1,4 +1,3 @@
-import 'package:exam_at/models/quiz.dart';
 import 'package:exam_at/pages/homepage/homepage.dart';
 import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
 import 'package:exam_at/pages/homepage/pages.dart';
@@ -6,7 +5,6 @@ import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
 
 import 'package:exam_at/pages/homepage/quiz/quiz.dart';
 import 'package:exam_at/pages/homepage/quiz/score.dart';
-import 'package:exam_at/widgets/sign.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

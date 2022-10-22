@@ -21,7 +21,6 @@ class LeaderBoarderProvider extends ChangeNotifier {
     if (!initial) notifyListeners();
 
     final result = await ProjectAPI().leaderbordApi.getLeaderBoardData();
-    print(result);
 
     if (result.isEmpty) {
     } else {

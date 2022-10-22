@@ -17,12 +17,12 @@ class LeaderbordModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_image_url'] = this.userImageUrl;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
-    data['score'] = this.score;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = id;
+    data['user_image_url'] = userImageUrl;
+    data['first_name'] = firstName;
+    data['last_name'] = lastName;
+    data['score'] = score;
     return data;
   }
 }

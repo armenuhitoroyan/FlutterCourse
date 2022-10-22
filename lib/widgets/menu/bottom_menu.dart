@@ -64,7 +64,6 @@ class BottomMenuWidget extends StatelessWidget {
               ),
             ),
             Center(
-              ////
               child: Container(
                 width: 150,
                 height: 150,

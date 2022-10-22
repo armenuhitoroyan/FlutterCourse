@@ -14,10 +14,10 @@ class Quiz extends StatelessWidget {
 
   Widget _buildContent() {
     return ChangeNotifierProvider(
-      create: (context) => QuizProvider(),
+      create: (context) => QuestionsProvider(),
       child: Scaffold(
         appBar: clicked == true ? AppBar() : null,
-        body: Consumer<QuizProvider>(
+        body: Consumer<QuestionsProvider>(
           builder: (context, value, child) => value.isLoading
               ? const Center(
                   child: CircularProgressIndicator.adaptive(),
@@ -43,7 +43,7 @@ class Quiz extends StatelessWidget {
                                 value.changeText();
                                 clicked = true;
                                 value.changeSeconds(
-                                  1
+                                  value.questionsData[0].answers![0].answerId
                                 );
                                 value.changeAppbarBGColor();
                               },

@@ -30,7 +30,6 @@ class DiagonallyShapedCard extends StatelessWidget {
           ),
         ),
         color: color,
-        // const Color.fromRGBO(249,249,249, 0.8),
         // ignore: prefer_const_constructors
         child: Center(
           child: Text(

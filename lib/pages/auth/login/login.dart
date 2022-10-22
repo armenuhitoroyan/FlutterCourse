@@ -2,7 +2,6 @@ import 'package:exam_at/base/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../widgets/alertdialog.dart';
 import '../../../widgets/buttons/button.dart';
 import '../../../widgets/buttons/text_button.dart';
 import 'login_provider.dart';
@@ -97,7 +96,9 @@ class LoginPage extends StatelessWidget {
                                 return _dialog(
                                   context,
                                   title: 'Error',
-                                  content: 'Username is invalid',
+                                  content: value.isEmpty == false
+                                      ? 'Username is invalid'
+                                      : 'Some of the credentials are empty',
                                 );
                               })
                           : Container();
@@ -135,7 +136,12 @@ class LoginPage extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('OK'),
+          child: const Text(
+            'OK',
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
         ),
       ],
     );

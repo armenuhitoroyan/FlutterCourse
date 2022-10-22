@@ -7,15 +7,15 @@ class QuizModel {
     if (json['questions'] != null) {
       questions = <Questions>[];
       json['questions'].forEach((v) {
-        questions!.add(new Questions.fromJson(v));
+        questions!.add(Questions.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.questions != null) {
-      data['questions'] = this.questions!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (questions != null) {
+      data['questions'] = questions!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -43,19 +43,19 @@ class Questions {
     if (json['answers'] != null) {
       answers = <Answers>[];
       json['answers'].forEach((v) {
-        answers!.add(new Answers.fromJson(v));
+        answers!.add(Answers.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['question_id'] = this.questionId;
-    data['question_text'] = this.questionText;
-    data['question_seconds'] = this.questionSeconds;
-    data['question_image_url'] = this.questionImageUrl;
-    if (this.answers != null) {
-      data['answers'] = this.answers!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['question_id'] = questionId;
+    data['question_text'] = questionText;
+    data['question_seconds'] = questionSeconds;
+    data['question_image_url'] = questionImageUrl;
+    if (answers != null) {
+      data['answers'] = answers!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -75,10 +75,10 @@ class Answers {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['answer_text'] = this.answerText;
-    data['answer_id'] = this.answerId;
-    data['correct_answer'] = this.correctAnswer;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['answer_text'] = answerText;
+    data['answer_id'] = answerId;
+    data['correct_answer'] = correctAnswer;
     return data;
   }
 }

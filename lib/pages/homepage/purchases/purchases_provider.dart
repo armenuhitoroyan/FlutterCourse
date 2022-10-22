@@ -23,10 +23,6 @@ class PurchasesProvider extends ChangeNotifier {
 
     final result = await ProjectAPI().purchasesApi.getPurchasesData();
 
-    print(result.last.price);
-    print(result.runtimeType);
-    // purchases = result;
-
     if (result.isEmpty) {
     } else {
       isLoading = false;

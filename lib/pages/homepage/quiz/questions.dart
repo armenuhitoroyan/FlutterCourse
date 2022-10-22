@@ -16,55 +16,50 @@ class QuestionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(alignment: Alignment.topCenter, children: <Widget>[
-      Scaffold(
-        appBar: AppBar(
-          backgroundColor: colorsContainer.colors[3],
+    return ChangeNotifierProvider(
+      create: (context) => QuestionsProvider(),
+      child: Stack(alignment: Alignment.topCenter, children: <Widget>[
+        Scaffold(
+          appBar: AppBar(
+            backgroundColor: colorsContainer.colors[3],
+          ),
+          body:
+            Consumer<QuestionsProvider>(builder: (context, value, child) {
+              if (value.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return Question(value);
+              }
+            }),
         ),
-        body: ChangeNotifierProvider(
-          create: (context) => QuestionsProvider(),
-          child: Consumer<QuestionsProvider>(builder: (context, value, child) {
-            if (value.isLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              return Question(value);
-            }
-          }),
-        ),
-      ),
-
-      Consumer<QuizProvider>(
-        builder: (context, value, child) => Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Container(
-                width: 60.0,
-                height: 60.0,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.all(Radius.circular(50.0)),
-                  border: Border.all(
-                    color: const Color.fromRGBO(255, 102, 0, 0.8),
-                    width: 4.0,
-                  ),
-                ),
-                child: Center(
-                    child: Text(
-                   '${value.second}',
-                  style: const TextStyle(
-                      color: Color.fromRGBO(255, 102, 0, 0.8), fontSize: 20),
-                )),
+        Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Container(
+            width: 60.0,
+            height: 60.0,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: const BorderRadius.all(Radius.circular(50.0)),
+              border: Border.all(
+                color: const Color.fromRGBO(255, 102, 0, 0.8),
+                width: 4.0,
               ),
             ),
-          ],
+            child: Center(
+              child: Consumer<QuestionsProvider>(builder: (context, value, child) =>
+                Text(
+                  '${value.second}',
+                    style: const TextStyle(
+                      color: Color.fromRGBO(255, 102, 0, 0.8), fontSize: 20),
+                ),
+              ),
+            ),
+          ),
         ),
-      ),
-    ]);
+      ]),
+    );
   }
 
   Widget Question(questionProvider) {

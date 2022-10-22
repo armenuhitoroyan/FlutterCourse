@@ -1,5 +1,4 @@
 import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
-import 'package:exam_at/pages/homepage/quiz/quiz_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -69,19 +68,19 @@ class BuildQuestions extends StatelessWidget {
           ),
           child: InkWell(
             onTap: () {
+              length++;
               provider.answerPressed(answerData.answerId);
               provider.correctAnswerMethod(answerData.answerId);
 
-              Provider.of<QuizProvider>(context, listen: false)
+              Provider.of<QuestionsProvider>(context, listen: false)
                   .changeSeconds(answerData.answerId);
 
-              if (provider.questionIndex == provider.questionsData.length-1) {
-                Navigator.pushNamed(context, AppRoutes.score);
+              // provider.changeSeconds(answerData.answerId);
+
+              if (provider.length == 3) {
+                Navigator.pushReplacementNamed(context, AppRoutes.score);
+                // print(provider.second);
               }
-
-              length++;
-
-              print(provider.questionIndex);
             },
             child: Card(
               shape: const RoundedRectangleBorder(

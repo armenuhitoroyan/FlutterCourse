@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
 import '../../../base/regexp.dart';
 
 class LoginProvider extends ChangeNotifier {
@@ -10,6 +9,7 @@ class LoginProvider extends ChangeNotifier {
   bool isChacked = false;
   bool isChangePage = false;
   bool showDialog = false;
+  bool isEmpty = false;
 
   LoginProvider() {
     // onLogin();
@@ -33,6 +33,8 @@ class LoginProvider extends ChangeNotifier {
       notifyListeners();
     } else {
       isChangePage = false;
+      showDialog = true;
+      isEmpty = true;
     }
 
     return isChangePage;
