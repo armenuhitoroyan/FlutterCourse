@@ -29,10 +29,10 @@ class QuestionsProvider extends ChangeNotifier {
   String text = 'Get Ready';
   int second = 60;
   int swiftness = 0;
-  int length = 0; 
+  int length = 0;
+  int answerIndex = 0;
 
-   ColorsContainer colorsContainer = ColorsContainer();
-
+  ColorsContainer colorsContainer = ColorsContainer();
 
   void changeColors() {
     colors = colorsContainer.colors;
@@ -67,7 +67,7 @@ class QuestionsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-   void changeText() {
+  void changeText() {
     isChangeText = true;
     notifyListeners();
   }
@@ -76,8 +76,6 @@ class QuestionsProvider extends ChangeNotifier {
     correctAnswer = true;
     notifyListeners();
   }
-
-
 
   getData() async {
     isLoading = true;
@@ -135,7 +133,6 @@ class QuestionsProvider extends ChangeNotifier {
   }
 
   changeSeconds(answerId) async {
-
     length += 1;
     Duration interval = const Duration(seconds: 1);
     Stream<int> stream = Stream<int>.periodic(interval, (it) => -1 * (it - 60));
@@ -143,17 +140,22 @@ class QuestionsProvider extends ChangeNotifier {
       second = i;
       if (i == 0) {
         second *= -1;
+
         notifyListeners();
         break;
       }
 
-      if (i == 50) {
-        swiftness += i;
+      if (questionsData[currentQuestionIndex].answers![answerIndex].answerId ==
+        answerId) {
+      swiftness += i;
         notifyListeners();
         break;
-      }
+    }
+
       notifyListeners();
     }
+
+    
     notifyListeners();
   }
 }

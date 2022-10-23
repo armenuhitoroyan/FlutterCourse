@@ -81,11 +81,13 @@ class QuizProvider extends ChangeNotifier {
         break;
       }
 
-      if (i == 50) {
-        swiftness += i;
-        notifyListeners();
-        break;
-      }
+      
+
+      // if (i == 50) {
+      //   swiftness += i;
+      //   notifyListeners();
+      //   break;
+      // }
       notifyListeners();
     }
     notifyListeners();

@@ -77,7 +77,7 @@ class BuildQuestions extends StatelessWidget {
 
               // provider.changeSeconds(answerData.answerId);
 
-              if (provider.length == 3) {
+              if (provider.length == provider.questionsData.length) {
                 Navigator.pushReplacementNamed(context, AppRoutes.score);
                 // print(provider.second);
               }

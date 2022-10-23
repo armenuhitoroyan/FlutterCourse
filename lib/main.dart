@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: appBarStyle.white,
         iconTheme: const IconThemeData(color:  Color.fromRGBO(204,0,1, 0.8),),
       ),
-      home: HomePage(),
+      home: LoginPage(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
