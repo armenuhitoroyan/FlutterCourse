@@ -146,16 +146,16 @@ class QuestionsProvider extends ChangeNotifier {
       }
 
       if (questionsData[currentQuestionIndex].answers![answerIndex].answerId ==
-        answerId) {
-      swiftness += i;
+          answerId) {
+        swiftness += i;
+        answerIndex += 1;
         notifyListeners();
         break;
-    }
+      }
 
       notifyListeners();
     }
 
-    
     notifyListeners();
   }
 }

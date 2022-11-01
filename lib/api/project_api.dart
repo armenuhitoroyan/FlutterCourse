@@ -28,3 +28,5 @@ class ProjectAPI {
     leaderbordApi = LeaderbordApi(appDioClient);
   }
 }
+
+class NetworkError extends Error {}

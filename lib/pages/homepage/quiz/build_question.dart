@@ -72,14 +72,14 @@ class BuildQuestions extends StatelessWidget {
               provider.answerPressed(answerData.answerId);
               provider.correctAnswerMethod(answerData.answerId);
 
-              Provider.of<QuestionsProvider>(context, listen: false)
-                  .changeSeconds(answerData.answerId);
+              provider.changeSeconds(answerData.answerId);
 
-              // provider.changeSeconds(answerData.answerId);
+              // Provider.of<QuestionsProvider>(context, listen: false)
+              //     .changeSeconds(answerData.answerId);
 
               if (provider.length == provider.questionsData.length) {
                 Navigator.pushReplacementNamed(context, AppRoutes.score);
-                // print(provider.second);
+                print(provider.second);
               }
             },
             child: Card(
