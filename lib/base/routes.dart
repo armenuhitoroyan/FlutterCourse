@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../pages/auth/login/login.dart';
+import '../pages/homepage/leaderboard/leader_board.dart';
 import '../pages/homepage/leaderboard/leaderboard.dart';
 import '../pages/homepage/purchases/purchases.dart';
 import '../pages/homepage/purchases/purchases_provider.dart';
@@ -24,6 +25,7 @@ class AppRoutes {
   static const questions = '/questions';
   static const purchases = '/purchases';
   static const score = '/score';
+  static const leaderboard = '/leaderboard';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -50,7 +52,9 @@ class AppRoutes {
             create: (context) => QuestionsProvider(),
             child: QuestionsWidget(),
           ),
-      AppRoutes.score:(context) => const Score()
+      AppRoutes.score:(context) => const Score(),
+
+      AppRoutes.leaderboard: (context) => LeaderBordS()
       
     };
 

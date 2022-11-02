@@ -1,5 +1,7 @@
+import 'package:exam_at/api/project_api.dart';
 import 'package:exam_at/widgets/menu/top_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../widgets/menu/bottom_menu.dart';
 import '../../widgets/drawer.dart';
@@ -25,7 +27,7 @@ class HomePage extends StatelessWidget {
         children: [
           Row(
             children: [
-               Expanded(
+              Expanded(
                 child: Image.asset(
                   'assets/asset161.png',
                   height: 70,
@@ -46,8 +48,7 @@ class HomePage extends StatelessWidget {
                     Center(child: TopMenuWidget())
                   ],
                 ),
-              )
-              ),
+              )),
           Expanded(child: Image.asset('assets/group4438.png'))
         ],
       ),

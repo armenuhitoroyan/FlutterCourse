@@ -1,6 +1,8 @@
+import 'package:exam_at/api/project_api.dart';
 import 'package:exam_at/base/routes.dart';
 import 'package:exam_at/widgets/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TopMenuWidget extends StatelessWidget {
   const TopMenuWidget({super.key});
@@ -36,23 +38,26 @@ class TopMenuWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Center(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.leaderBoard);
-                            },
-                            // ignore: sort_child_properties_last
-                            child: const Center(
-                              child: Icon(
-                                Icons.bar_chart_outlined,
-                                color: Color.fromRGBO(255, 102, 0, 0.8),
-                                size: 60,
+                          child: RepositoryProvider(
+                            create: (context) => ProjectAPI(),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, AppRoutes.leaderboard);
+                              },
+                              // ignore: sort_child_properties_last
+                              child: const Center(
+                                child: Icon(
+                                  Icons.bar_chart_outlined,
+                                  color: Color.fromRGBO(255, 102, 0, 0.8),
+                                  size: 60,
+                                ),
                               ),
+                              style: ElevatedButton.styleFrom(
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(0),
+                                  backgroundColor: null),
                             ),
-                            style: ElevatedButton.styleFrom(
-                                shape: const CircleBorder(),
-                                padding: const EdgeInsets.all(0),
-                                backgroundColor: null),
                           ),
                         ),
                         StyleText(text: 'Leaderboar', textColor: Colors.white)
@@ -80,9 +85,7 @@ class TopMenuWidget extends StatelessWidget {
                     children: [
                       Center(
                         child: ElevatedButton(
-                          onPressed: () {
-                           
-                          },
+                          onPressed: () {},
                           // ignore: sort_child_properties_last
                           child: const Center(
                             child: Icon(

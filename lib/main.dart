@@ -30,10 +30,7 @@ class MyApp extends StatelessWidget {
           color: Color.fromRGBO(204, 0, 1, 0.8),
         ),
       ),
-      home: RepositoryProvider(
-        create: (context) => ProjectAPI(),
-        child: LeaderBordS(),
-      ),
+      home: LoginPage(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
