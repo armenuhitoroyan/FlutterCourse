@@ -3,17 +3,22 @@ part of 'login_bloc.dart';
 abstract class LoginEvent extends Equatable {
   const LoginEvent();
 
+  // TextEditingController usernameCtrl = TextEditingController();
+  // TextEditingController passwordCtrl = TextEditingController();
+
   @override
   List<Object> get props => [];
 }
 
 class LogEvent extends LoginEvent {
-  bool isChecked = false;
-  TextEditingController usernameCtrl = TextEditingController();
-  TextEditingController passwordCtrl = TextEditingController();
+  bool isChecked;
+  
+  LogEvent(this.isChecked);
 
-  // LogEvent(this.isChecked);
+}
 
-  @override
-  List<Object> get props => [];
+class ShowPassword extends LoginEvent {
+  bool showPassword;
+
+  ShowPassword(this.showPassword);
 }

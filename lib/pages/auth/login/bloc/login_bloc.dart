@@ -6,14 +6,20 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  bool isChecked = false;
-  
-  LoginBloc() : super(LoginS(false)) {
+  LoginBloc() : super(LoginState()) {
     on<LogEvent>((event, emit) {
-      isChecked = event.isChecked;
-      if (isChecked) {
-        emit(LoginS(!isChecked));
-      }
+      emit(
+        state.copyWith(isChecked: event.isChecked),
+      );
+    });
+
+    on<ShowPassword>((event, emit) {
+      emit(
+        state.copyWith(showPassword: event.showPassword),
+       
+      );
+      print(event.showPassword);
+      
     });
   }
 }

@@ -1,8 +1,10 @@
-import 'package:exam_at/pages/auth/login/login.dart';
-import 'package:exam_at/pages/homepage/bloc/leaderboard_bloc.dart';
+import 'package:exam_at/pages/auth/login/bloc/login_bloc.dart';
+import 'package:exam_at/pages/auth/login/loginpage.dart';
 import 'package:exam_at/pages/homepage/homepage.dart';
 import 'package:exam_at/pages/homepage/leaderboard/leader_board.dart';
 import 'package:exam_at/pages/homepage/leaderboard/leaderboard.dart';
+import 'package:exam_at/pages/homepage/purchases/purchases.dart';
+import 'package:exam_at/pages/homepage/purchases/purchasespage.dart';
 import 'package:exam_at/styles/style_of_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +32,11 @@ class MyApp extends StatelessWidget {
           color: Color.fromRGBO(204, 0, 1, 0.8),
         ),
       ),
-      home: LoginPage(),
+      home: 
+      BlocProvider(
+        create: (context) => LoginBloc(),
+        child: LoginPageWidget(),
+      ),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }

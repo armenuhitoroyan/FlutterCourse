@@ -1,21 +1,25 @@
 part of 'login_bloc.dart';
 
-abstract class LoginState extends Equatable {
-  const LoginState();
-
-  @override
-  List<Object> get props => [];
-}
-
-class LoginInitial extends LoginState {}
-
-class LoginS extends LoginState {
-  bool isChacked = false;
+class LoginState extends Equatable {
+  bool isChecked;
+  bool showPassword;
   TextEditingController usernameCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();
 
-  LoginS(this.isChacked);
+  LoginState({
+    this.isChecked = false,
+    this.showPassword = false,
+  });
 
+  LoginState copyWith({bool? isChecked, bool? showPassword}) {
+    return LoginState(
+      isChecked: isChecked ?? this.isChecked,
+      showPassword: showPassword ?? this.showPassword);
+  }
+  
   @override
-  List<Object> get props => [];
+  List<Object> get props => [
+    isChecked,
+    showPassword,   
+  ];
 }

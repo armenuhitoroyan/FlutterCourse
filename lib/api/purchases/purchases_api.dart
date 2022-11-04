@@ -8,7 +8,7 @@ class PurchasesApi {
     this.appDioClient,
   );
 
-  Future<List<PurchasesModel>> getPurchasesData() async { 
+  Future<List<PurchasesModel>> getPurchasesData() async {  
     List<PurchasesModel> purchasesData = [];
 
     final result = await appDioClient.get(

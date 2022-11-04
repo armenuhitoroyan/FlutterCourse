@@ -1,12 +1,8 @@
-import 'dart:html';
-import 'dart:math';
-
 import 'package:exam_at/models/leaderboard.dart';
-import 'package:exam_at/pages/homepage/bloc/leaderboard_bloc.dart';
-import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
+
+import 'package:exam_at/pages/homepage/leaderboard/bloc/leaderboard_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../../api/project_api.dart';
 
