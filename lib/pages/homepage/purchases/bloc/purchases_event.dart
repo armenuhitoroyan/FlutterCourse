@@ -7,11 +7,11 @@ abstract class PurchasesEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class OnItemPurchases extends PurchasesEvent {
+class LoadPurchasesEvent extends PurchasesEvent {
   List<PurchasesModel>? purchases;
   // bool isLoading;
 
-  OnItemPurchases(
+  LoadPurchasesEvent(
     this.purchases,
     // this.isLoading,
   );

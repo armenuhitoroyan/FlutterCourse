@@ -7,12 +7,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../api/project_api.dart';
 
 class LeaderBordS extends StatelessWidget {
+  List<LeaderbordModel> leaderboardsList = [];
+
   @override
   Widget build(BuildContext context) {
+    return _buildContent(context);
+  }
+
+  Widget _buildContent(BuildContext context) {
     return BlocProvider(
-      create: (context) => LeaderboardBloc(
-        RepositoryProvider.of<ProjectAPI>(context),
-      )..add(LoadLeaderbordEvent()),
+      create: (context) =>
+          LeaderboardBloc()..add(LoadLeaderbordsEvent(leaderboardsList)),
       child: Scaffold(
         appBar: AppBar(
           title: const Center(
@@ -26,33 +31,86 @@ class LeaderBordS extends StatelessWidget {
         ),
         body: BlocBuilder<LeaderboardBloc, LeaderboardState>(
           builder: (context, state) {
-            if (state is LeaderboardLoadingState) {
-              //
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: Color.fromRGBO(255, 102, 0, 0.8),
+            print('state.leaderboardsList: ${state.leaderboards.length}');
+
+            return Container(
+              child: ListView.builder(
+            itemCount: state.leaderboards.length,
+            itemBuilder: (context, index) => Container(
+              child: 
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, top: 3, bottom: 3),
+                  child: Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(45),
+                        bottomRight: Radius.circular(45),
+                      ),
+                      side: BorderSide(
+                        color: Color.fromARGB(255, 189, 187, 187),
+                        //<-- SEE HERE
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5, bottom: 5, left: 10, right: 10),
+                      child: Row(
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.all(7),
+                              child: Text('${index + 1}')),
+                          if (state.leaderboards[index].userImageUrl != null)
+                            CircleAvatar(
+                              radius: 40, // Image radius
+                              backgroundImage: NetworkImage(
+                                  '${state.leaderboards[index].userImageUrl}'),
+                            )
+                          else
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundColor:
+                              const Color.fromRGBO(255, 102, 0, 0.8),
+                              child: Text(
+                                // ignore: unnecessary_string_interpolations
+                                '${state.leaderboards[index].firstName![0]}',
+                                style: const TextStyle(fontSize: 35),
+                              ),
+                            ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 7),
+                            child: Text(
+                              '${state.leaderboards[index].firstName}',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 25,
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Container(
+                              child: Text(
+                                '${state.leaderboards[index].score}',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 30,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              );
-            }
-
-            if (state is LeaderboardLoadedState) {
-              List<LeaderbordModel> listLeaderBoards = state.leaderboards;
-              return Container(
-                  child: ListView.builder(
-                itemCount: listLeaderBoards.length,
-                itemBuilder: (context, index) {
-                  return Text('${listLeaderBoards[index].firstName}');
-                },
-              ));
-            }
-
-            return Container();
-
-            if (state is LeaderboardErrorState) {
-              return Center(
-                child: Text('Error'),
-              );
-            }
+              ),
+            ),
+          ),
+            );
           },
         ),
       ),

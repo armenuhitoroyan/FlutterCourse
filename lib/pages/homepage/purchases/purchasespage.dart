@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PurchasesPage extends StatelessWidget {
-  List<PurchasesModel> pL = [];
-  // PurchasesModel? pM;
+  List<PurchasesModel> purchasesList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,7 @@ class PurchasesPage extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     return BlocProvider(
-      create: (context) => PurchasesBloc()..add(OnItemPurchases(pL)),
+      create: (context) => PurchasesBloc()..add(LoadPurchasesEvent(purchasesList)),
       child: Scaffold(
         appBar: AppBar(
           title: const Center(

@@ -8,10 +8,8 @@ part 'purchases_event.dart';
 part 'purchases_state.dart';
 
 class PurchasesBloc extends Bloc<PurchasesEvent, PurchasesState> {
-
   PurchasesBloc() : super(PurchasesState()) {
-    on<OnItemPurchases>((event, emit) async {
-
+    on<LoadPurchasesEvent>((event, emit) async {
       emit(
         state.copyWith(
           purchases: event.purchases,
@@ -28,7 +26,6 @@ class PurchasesBloc extends Bloc<PurchasesEvent, PurchasesState> {
           isLoading: false,
         ),
       );
-
     });
   }
 }

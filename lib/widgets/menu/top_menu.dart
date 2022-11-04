@@ -60,7 +60,7 @@ class TopMenuWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                        StyleText(text: 'Leaderboar', textColor: Colors.white)
+                        StyleText(text: 'Leaderboard', textColor: Colors.white)
                       ],
                     ),
                   ),

@@ -82,7 +82,7 @@ class BottomMenuWidget extends StatelessWidget {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, AppRoutes.purchases);
+                            Navigator.pushNamed(context, AppRoutes.purchasesProduct);
                           },
                           // ignore: sort_child_properties_last
                           child: const Center(

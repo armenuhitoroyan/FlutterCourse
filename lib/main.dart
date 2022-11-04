@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       home: 
       BlocProvider(
         create: (context) => LoginBloc(),
-        child: LoginPageWidget(),
+        child: HomePage(),
       ),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );

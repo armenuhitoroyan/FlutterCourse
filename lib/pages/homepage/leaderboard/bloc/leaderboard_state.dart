@@ -1,25 +1,27 @@
 part of 'leaderboard_bloc.dart';
 
-abstract class LeaderboardState extends Equatable {}
+class LeaderboardState extends Equatable {
+  List<LeaderbordModel> leaderboards;
+  bool isLoading;
 
-class LeaderboardLoadingState extends LeaderboardState {
+  LeaderboardState({
+    this.leaderboards = const [],
+    this.isLoading = false,
+  });
+
+  LeaderboardState copyWith({
+    List<LeaderbordModel>? leaderboards,
+    bool? isLoading,
+  }) {
+    return LeaderboardState(
+      leaderboards: leaderboards ?? this.leaderboards,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
+
   @override
-  List<Object> get props => [];
-}
-
-class LeaderboardLoadedState extends LeaderboardState {
-  final List<LeaderbordModel> leaderboards;
-
-  LeaderboardLoadedState(this.leaderboards);
-
-  @override
-  List<Object> get props => [leaderboards];
-}
-
-class LeaderboardErrorState extends LeaderboardState {
-  final String error;
-  LeaderboardErrorState(this.error);
-
-  @override
-  List<Object> get props => [error];
+  List<Object> get props => [
+    leaderboards,
+    isLoading,
+  ];
 }

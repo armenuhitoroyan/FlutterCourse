@@ -26,7 +26,8 @@ class LeaderBord extends StatelessWidget {
           body: ListView.builder(
             itemCount: value.list.length,
             itemBuilder: (context, index) => Container(
-              child: Container(
+              child: 
+              Container(
                 child: Padding(
                   padding: const EdgeInsets.only(
                       left: 10, right: 10, top: 3, bottom: 3),
