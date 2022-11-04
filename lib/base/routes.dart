@@ -16,6 +16,7 @@ import '../pages/homepage/purchases/purchases.dart';
 import '../pages/homepage/purchases/purchases_provider.dart';
 import '../pages/homepage/purchases/purchasespage.dart';
 import '../pages/homepage/quiz/questions.dart';
+import '../pages/homepage/quiz/quizpage.dart';
 
 class AppRoutes {
   static const login = '/';
@@ -28,6 +29,7 @@ class AppRoutes {
   static const score = '/score';
   static const leaderboard = '/leaderboard';
   static const purchasesProduct = '/purchases';
+  static const quizPage = '/quiz';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -57,7 +59,8 @@ class AppRoutes {
       AppRoutes.score: (context) => const Score(),
 
       AppRoutes.leaderboard: (context) => LeaderBordS(),
-      AppRoutes.purchasesProduct:(context) => PurchasesPage()
+      AppRoutes.purchasesProduct: (context) => PurchasesPage(),
+      AppRoutes.quizPage: (context) => QuizWidget(),
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;
