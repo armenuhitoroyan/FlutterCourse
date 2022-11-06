@@ -17,12 +17,13 @@ class QuizWidget extends StatelessWidget {
   bool checkAnswer = false;
 
   ColorsContainer colorsContainer = ColorsContainer();
+  PageController pgc = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.topCenter, children: <Widget>[
       BlocProvider(
-        create: (context) => QuizBloc()..add(LoadQuestionsEvent(questionsList)),
+        create: (context) => QuizBloc(pgc)..add(LoadQuestionsEvent(questionsList)),
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: const Color.fromRGBO(204, 0, 1, 0.8),

@@ -11,14 +11,14 @@ class QuestionW extends StatelessWidget {
   List<Questions> questionsList = [];
   int index = 0;
   bool checkAnswer = false;
+  PageController pgc = PageController();
 
   ColorsContainer colorsContainer = ColorsContainer();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => QuizBloc()
-        ..add(LoadQuestionsEvent(questionsList)),
+      create: (context) => QuizBloc(pgc)..add(LoadQuestionsEvent(questionsList)),
       child: Stack(alignment: Alignment.topCenter, children: <Widget>[
         Scaffold(
           appBar: AppBar(
@@ -81,8 +81,12 @@ class QuestionW extends StatelessWidget {
               ]),
               Expanded(
                 child: PageView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  onPageChanged: ((value) => state.currentQuestionIndex),
+                  // physics: const NeverScrollableScrollPhysics(),
+                  onPageChanged: ((value) {
+                    () {
+                      return state.questions;
+                    };
+                  }),
                   itemBuilder: (context, index) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,

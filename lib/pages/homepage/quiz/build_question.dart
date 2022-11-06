@@ -35,8 +35,8 @@ class BuildQuestions extends StatelessWidget {
             ),
           ),
           questionData.questionImageUrl != null
-            ? Image.network('${questionData.questionImageUrl}')
-            : Container(),
+              ? Image.network('${questionData.questionImageUrl}')
+              : Container(),
           Column(
             children: questionData.answers!
                 .map<Widget>(
@@ -67,9 +67,16 @@ class BuildQuestions extends StatelessWidget {
           child: InkWell(
             onTap: () {
               length++;
-              state.questions.isNotEmpty 
-                ? state.currentQuestionIndex
-                : state.questions.first.answers!.first.answerId; 
+              // state.questions.map((e) => e.answers!.map((e) => e.answerId));
+
+              state.pageController.animateToPage(
+                state.currentQuestionIndex+1,
+                duration: const Duration(milliseconds: 700),
+                curve: Curves.easeInOut,
+              );
+
+              // print(state.questions
+              //     .map((e) => e.answers!.map((e) => e.answerId)));
             },
             child: Card(
               shape: const RoundedRectangleBorder(

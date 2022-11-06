@@ -7,11 +7,16 @@ abstract class QuizEvent extends Equatable {
   List<Object> get props => [];
 }
 
-
 class LoadQuestionsEvent extends QuizEvent {
   List<Questions>? questions;
 
   LoadQuestionsEvent(
     this.questions,
   );
+}
+
+class OnChangePage extends QuizEvent { 
+  PageController pc = PageController();
+
+  OnChangePage(this.pc);
 }
