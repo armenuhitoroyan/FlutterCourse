@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:exam_at/models/quiz.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../../../api/project_api.dart';
 
@@ -19,8 +20,9 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       );
 
       final result = await ProjectAPI().quizApi.getQuizData();
+      print('blog type ${result.runtimeType}');
       event.questions = result.questions;
-      // print(event.questions!.length);
+      print('event type ${event.questions!.runtimeType}');
 
       emit(
         state.copyWith(

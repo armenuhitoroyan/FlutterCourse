@@ -24,28 +24,32 @@ class QuizWidget extends StatelessWidget {
       BlocProvider(
         create: (context) => QuizBloc()..add(LoadQuestionsEvent(questionsList)),
         child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: const Color.fromRGBO(204, 0, 1, 0.8),
-            ),
-            body: BlocBuilder<QuizBloc, QuizState>(
-              builder: (context, state) {
-                if (state.isLoading == true) {
-                  return const Center(
-                    child: CircularProgressIndicator.adaptive(
-                      backgroundColor: Color.fromRGBO(204, 0, 1, 0.8),
-                    ),
-                  );
-                } else {
-                  print(state.questions.length);
-                  return Container(
-                    child: Center(
-                      child: Text('${state.questions.length}'),
-                      // Text('${state.questions.last.questionId}'),
-                    ),
-                  );
-                }
-              },
-            )),
+          appBar: AppBar(
+            backgroundColor: const Color.fromRGBO(204, 0, 1, 0.8),
+          ),
+          body: BlocBuilder<QuizBloc, QuizState>(
+            builder: (context, state) {
+              if (state.isLoading == true) {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(
+                    backgroundColor: Color.fromRGBO(204, 0, 1, 0.8),
+                  ),
+                );
+              } else {
+                print('state type ${state.questions.runtimeType}');
+                return Container(
+                  child: Center(
+                    child:
+                        // Text('${state.questions.length}'),
+                        Text(state.questions.isNotEmpty
+                            ? '${state.questions.first.questionText}'
+                            : '${state.questions.length}'),
+                  ),
+                );
+              }
+            },
+          ),
+        ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 20),
@@ -65,25 +69,7 @@ class QuizWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Row(children: [
-            SizedBox(
-              width: 200,
-              height: 70,
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: questions.length,
-                ),
-                itemCount: questions.length,
-                itemBuilder: (context, index) {
-                  return Consumer<QuestionsProvider>(
-                    builder: (context, value, child) => DiagonallyShapedCard(
-                        index: index + 1,
-                        width: 80,
-                        height: 50,
-                        color: const Color.fromRGBO(249, 249, 249, 0.8)),
-                  );
-                },
-              ),
-            ),
+            SizedBox(width: 200, height: 70, child: Container()),
           ]),
           Expanded(
             child: PageView.builder(

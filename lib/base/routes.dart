@@ -2,6 +2,7 @@ import 'package:exam_at/pages/homepage/homepage.dart';
 import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
 import 'package:exam_at/pages/homepage/pages.dart';
 import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
+import 'package:exam_at/pages/homepage/quiz/questionspage.dart';
 
 import 'package:exam_at/pages/homepage/quiz/quiz.dart';
 import 'package:exam_at/pages/homepage/quiz/score.dart';
@@ -30,6 +31,7 @@ class AppRoutes {
   static const leaderboard = '/leaderboard';
   static const purchasesProduct = '/purchases';
   static const quizPage = '/quiz';
+  static const questionsPage = '/questions';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -61,6 +63,7 @@ class AppRoutes {
       AppRoutes.leaderboard: (context) => LeaderBordS(),
       AppRoutes.purchasesProduct: (context) => PurchasesPage(),
       AppRoutes.quizPage: (context) => QuizWidget(),
+      AppRoutes.questionsPage: (context) => QuestionW()
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

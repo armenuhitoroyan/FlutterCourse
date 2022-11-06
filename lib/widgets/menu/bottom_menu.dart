@@ -39,7 +39,7 @@ class BottomMenuWidget extends StatelessWidget {
                         Center(
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, AppRoutes.quizPage);
+                              Navigator.pushNamed(context, AppRoutes.questionsPage);
                               changeColors();
                             },
                             // ignore: sort_child_properties_last

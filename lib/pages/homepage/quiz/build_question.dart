@@ -1,8 +1,7 @@
-import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
+import 'package:exam_at/pages/homepage/quiz/bloc/quiz_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../base/routes.dart';
 import '../../../models/quiz.dart';
 
 // ignore: must_be_immutable
@@ -36,9 +35,8 @@ class BuildQuestions extends StatelessWidget {
             ),
           ),
           questionData.questionImageUrl != null
-              ? Image.network('${questionData.questionImageUrl}')
-              : Container(),
-          // const SizedBox(height: 20),
+            ? Image.network('${questionData.questionImageUrl}')
+            : Container(),
           Column(
             children: questionData.answers!
                 .map<Widget>(
@@ -55,8 +53,8 @@ class BuildQuestions extends StatelessWidget {
   Widget _answerOption(
     Answers answerData,
   ) {
-    return Consumer<QuestionsProvider>(
-      builder: ((context, provider, child) {
+    return BlocBuilder<QuizBloc, QuizState>(
+      builder: (context, state) {
         return Container(
           decoration: const BoxDecoration(
             boxShadow: [
@@ -69,18 +67,9 @@ class BuildQuestions extends StatelessWidget {
           child: InkWell(
             onTap: () {
               length++;
-              provider.answerPressed(answerData.answerId);
-              provider.correctAnswerMethod(answerData.answerId);
-
-              provider.changeSeconds(answerData.answerId);
-
-              // Provider.of<QuestionsProvider>(context, listen: false)
-              //     .changeSeconds(answerData.answerId);
-
-              if (provider.length == provider.questionsData.length) {
-                Navigator.pushReplacementNamed(context, AppRoutes.score);
-                print(provider.second);
-              }
+              state.questions.isNotEmpty 
+                ? state.currentQuestionIndex
+                : state.questions.first.answers!.first.answerId; 
             },
             child: Card(
               shape: const RoundedRectangleBorder(
@@ -102,7 +91,7 @@ class BuildQuestions extends StatelessWidget {
             ),
           ),
         );
-      }),
+      },
     );
   }
 }
