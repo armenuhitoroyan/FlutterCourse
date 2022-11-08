@@ -8,7 +8,7 @@ abstract class RegistrationEvent extends Equatable {
 }
 
 class CheckValidationEvent extends RegistrationEvent {
-  bool isValid = true;
+  final bool isValid;
 
-  CheckValidationEvent(this.isValid);
+  const CheckValidationEvent(this.isValid);
 }

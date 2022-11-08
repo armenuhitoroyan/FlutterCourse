@@ -43,7 +43,7 @@ class ClimePrize extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 25),
-                    child: RadButton(
+                    child: RadiusButton(
                       context: context,
                       callback: () {
                         Navigator.pushNamed(context, AppRoutes.homepage);

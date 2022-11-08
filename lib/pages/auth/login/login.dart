@@ -83,7 +83,7 @@ class LoginPage extends StatelessWidget {
                     )
                   ],
                 ),
-                RadButton(
+                RadiusButton(
                   callback: () {
                     value.onLogin();
                     if (value.isChangePage == true) {
@@ -110,11 +110,11 @@ class LoginPage extends StatelessWidget {
                   btnColor: const Color.fromRGBO(204, 0, 1, 0.8),
                 ),
                 TextBtn(
-                  onClick: (){},
+                  onClick: () {},
                   textBtn: 'Forget Passsword',
                 ),
                 TextBtn(
-                  onClick: (){},
+                  onClick: () {},
                   textBtn: 'Sign up',
                 )
               ],

@@ -33,11 +33,11 @@ class MyApp extends StatelessWidget {
           color: Color.fromRGBO(204, 0, 1, 0.8),
         ),
       ),
-      home: LoginPageWidget(),
-      // BlocProvider(
-      //   create: (context) => LoginBloc(),
-      //   child: HomePage(),
-      // ),
+      // home: LoginPageWidget(),
+      home: BlocProvider(
+        create: (context) => LoginBloc(),
+        child: LoginPageWidget(),
+      ),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }

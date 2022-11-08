@@ -1,5 +1,4 @@
 import 'package:exam_at/pages/auth/login/loginpage.dart';
-import 'package:exam_at/pages/auth/registration/bloc/registration_bloc.dart';
 import 'package:exam_at/pages/auth/registration/registration.dart';
 import 'package:exam_at/pages/homepage/homepage.dart';
 import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
@@ -11,7 +10,6 @@ import 'package:exam_at/pages/homepage/quiz/quiz.dart';
 import 'package:exam_at/pages/homepage/quiz/score.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../pages/auth/login/login.dart';
@@ -37,7 +35,7 @@ class AppRoutes {
   static const quizPage = '/quiz';
   static const questionsPage = '/questions';
   static const registration = '/registration';
-  static const loginpage = '/login';
+   static const loginpage = '/login';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -70,10 +68,7 @@ class AppRoutes {
       AppRoutes.purchasesProduct: (context) => PurchasesPage(),
       AppRoutes.quizPage: (context) => QuizWidget(),
       AppRoutes.questionsPage: (context) => QuestionW(),
-      AppRoutes.registration: (context) => BlocProvider(
-            create: (context) => RegistrationBloc(),
-            child: Registration(),
-      ),
+      AppRoutes.registration:(context) => Registration(),
       AppRoutes.loginpage: (context) => LoginPageWidget(),
     };
 

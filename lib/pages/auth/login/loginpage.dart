@@ -91,12 +91,9 @@ class LoginPageWidget extends StatelessWidget {
                         )
                       ],
                     ),
-                    RadButton(
+                    RadiusButton(
                       callback: () {
-                        // value.onLogin();
-                        // if (value.isChangePage == true) {
                         Navigator.pushNamed(context, AppRoutes.pages);
-                        // }
                       },
                       context: context,
                       page: AppRoutes.pages,
@@ -108,9 +105,10 @@ class LoginPageWidget extends StatelessWidget {
                       textBtn: 'Forget Passsword',
                     ),
                     InkWell(
-                      onTap: () => Navigator.pushNamed(context, AppRoutes.registration),
+                      onTap: () =>
+                          Navigator.pushNamed(context, AppRoutes.registration),
                       child: TextBtn(
-                        onClick: (){},
+                        onClick: () {},
                         textBtn: 'Sign up',
                       ),
                     )

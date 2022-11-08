@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../pages/auth/login/login_provider.dart';
 
-class RadButton extends StatelessWidget {
+class RadiusButton extends StatelessWidget {
   String page;
   String textBtn;
   Color btnColor;
-  // bool click;
   LoginProvider loginProvider = LoginProvider();
   BuildContext context;
   Function callback;
 
-  RadButton({
+  RadiusButton({
     super.key,
     required this.callback,
     required this.page,

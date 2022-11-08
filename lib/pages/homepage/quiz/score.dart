@@ -14,7 +14,6 @@ class Score extends StatelessWidget {
   }
 
   Widget score(BuildContext context) {
-
     return ChangeNotifierProvider(
       create: (context) => QuestionsProvider(),
       child: Consumer<QuestionsProvider>(
@@ -44,7 +43,7 @@ class Score extends StatelessWidget {
                       style: const TextStyle(fontSize: 70, color: Colors.white),
                     ),
                     const Spacer(),
-                    RadButton(
+                    RadiusButton(
                       callback: () {
                         Navigator.pushNamed(context, AppRoutes.homepage);
                       },
