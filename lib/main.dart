@@ -1,4 +1,5 @@
 import 'package:exam_at/pages/auth/login/bloc/login_bloc.dart';
+import 'package:exam_at/pages/auth/registration/registration.dart';
 import 'package:exam_at/pages/auth/login/loginpage.dart';
 import 'package:exam_at/pages/homepage/homepage.dart';
 import 'package:exam_at/pages/homepage/leaderboard/leader_board.dart';
@@ -32,11 +33,11 @@ class MyApp extends StatelessWidget {
           color: Color.fromRGBO(204, 0, 1, 0.8),
         ),
       ),
-      home: 
-      BlocProvider(
-        create: (context) => LoginBloc(),
-        child: HomePage(),
-      ),
+      home: LoginPageWidget(),
+      // BlocProvider(
+      //   create: (context) => LoginBloc(),
+      //   child: HomePage(),
+      // ),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }

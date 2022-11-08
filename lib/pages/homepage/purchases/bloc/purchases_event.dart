@@ -16,3 +16,11 @@ class LoadPurchasesEvent extends PurchasesEvent {
     // this.isLoading,
   );
 }
+
+class onChangeColor extends PurchasesEvent {
+  List<Color>? colors;
+
+  onChangeColor(
+    this.colors,
+  );
+}

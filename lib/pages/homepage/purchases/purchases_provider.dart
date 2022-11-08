@@ -8,7 +8,7 @@ class PurchasesProvider extends ChangeNotifier {
   PurchasesModel? purchasesModel;
   List<PurchasesModel>? purchases;
   bool isLoading = false;
-   List<Color> colors = [];
+  List<Color> colors = [];
 
   ColorsContainer colorsContainer = ColorsContainer();
 

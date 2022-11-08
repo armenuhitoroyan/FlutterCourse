@@ -13,7 +13,8 @@ class PurchasesPage extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     return BlocProvider(
-      create: (context) => PurchasesBloc()..add(LoadPurchasesEvent(purchasesList)),
+      create: (context) => PurchasesBloc()
+        ..add(LoadPurchasesEvent(purchasesList)),
       child: Scaffold(
         appBar: AppBar(
           title: const Center(

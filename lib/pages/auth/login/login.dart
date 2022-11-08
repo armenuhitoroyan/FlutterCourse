@@ -110,9 +110,11 @@ class LoginPage extends StatelessWidget {
                   btnColor: const Color.fromRGBO(204, 0, 1, 0.8),
                 ),
                 TextBtn(
+                  onClick: (){},
                   textBtn: 'Forget Passsword',
                 ),
                 TextBtn(
+                  onClick: (){},
                   textBtn: 'Sign up',
                 )
               ],
