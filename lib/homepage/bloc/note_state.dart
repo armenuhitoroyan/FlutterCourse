@@ -7,26 +7,36 @@ abstract class NoteState extends Equatable {
 
 class NoteInitial extends NoteState {
   bool onClicked;
-  FormArray<String>? name;
+  // FormArray<String>? relationship;
   int count;
+  FormArray? formArray;
   FormGroup? formGroup;
 
-  NoteInitial(
-      {this.onClicked = false, this.name, this.count = 1, this.formGroup});
+  NoteInitial({
+    this.onClicked = false,
+    // this.relationship,
+    this.count = 1,
+    this.formArray,
+    this.formGroup,
+  });
 
   NoteInitial copyWith({
     bool? onClicked,
-    FormArray<String>? name,
+    // FormArray<String>? relationship,
     int? count,
+    FormArray? formArray,
     FormGroup? formGroup,
   }) {
     return NoteInitial(
-        onClicked: onClicked ?? this.onClicked,
-        name: name ?? this.name,
-        count: count ?? this.count,
-        formGroup: formGroup ?? formGroup);
+      onClicked: onClicked ?? this.onClicked,
+      // relationship: relationship ?? this.relationship,
+      count: count ?? this.count,
+      formArray: formArray ?? formArray,
+      formGroup: formGroup ?? formGroup,
+    );
   }
 
   @override
-  List<Object?> get props => [onClicked, name, count, formGroup];
+  List<Object?> get props =>
+      [onClicked, /* relationship, */ count, formArray, formGroup];
 }

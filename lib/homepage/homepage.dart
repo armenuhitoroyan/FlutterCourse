@@ -7,17 +7,14 @@ class HomePage extends StatelessWidget {
   bool onClicked = false;
   HomePage({super.key});
   int count = 5;
+  FormArray? formArray;
   FormGroup? formGroup;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NoteBloc()
-        ..add(AddNote(
-          onClicked,
-          count,
-          formGroup
-        )),
+      create: (context) =>
+          NoteBloc()..add(AddNote(onClicked, count, formArray, formGroup)),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Reactive Forms'),
@@ -25,7 +22,7 @@ class HomePage extends StatelessWidget {
         body: BlocBuilder<NoteBloc, NoteState>(
           builder: (context, state) {
             if (state is NoteInitial) {
-              // print(state.formGroup!.control('name').value);
+              // print(state.formGroup!.control('relationship').value);
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -59,10 +56,28 @@ class HomePage extends StatelessWidget {
                                         if (state.onClicked == true) {
                                           count += 1;
                                           print(count);
-                                          // print(state.name!.controls
+                                          // print(state.relationship!.controls
                                           //     .map((e) => e.value));
-                                          // print(state.name!.parent!.value);
-                                          print(state.formGroup!.control('name').value);
+                                          // print(state.relationship!.parent!.value);
+
+                                          // print(state.formGroup!
+                                          //     .control('relationship')
+                                          //     .value);
+
+                                          // state.formGroup!.controls.addAll(
+                                          //     state.formGroup!.controls);
+
+                                          // print(state.formGroup!
+                                          //     .control('relationship')
+                                          //     .value);
+
+                                          print(
+                                              state.formArray!.controls.length);
+                                          state.formArray!.add(
+                                              state.formArray!.controls.first);
+
+                                          print(
+                                              state.formArray!.controls.length);
                                         } else {
                                           print(count);
                                         }
