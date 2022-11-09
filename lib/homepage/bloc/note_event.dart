@@ -8,6 +8,7 @@ abstract class NoteEvent extends Equatable {
 class AddNote extends NoteEvent {
   bool onClicked;
   final int count;
+  FormGroup? formGroup;
 
-  AddNote(this.onClicked, this.count);
+  AddNote(this.onClicked, this.count, this.formGroup);
 }

@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note/homepage/bloc/note_bloc.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class HomePage extends StatelessWidget {
   bool onClicked = false;
   HomePage({super.key});
   int count = 5;
+  FormGroup? formGroup;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NoteBloc()..add(AddNote(onClicked, count)),
+      create: (context) => NoteBloc()
+        ..add(AddNote(
+          onClicked,
+          count,
+          formGroup
+        )),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Reactive Forms'),
@@ -18,6 +25,7 @@ class HomePage extends StatelessWidget {
         body: BlocBuilder<NoteBloc, NoteState>(
           builder: (context, state) {
             if (state is NoteInitial) {
+              // print(state.formGroup!.control('name').value);
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -51,9 +59,10 @@ class HomePage extends StatelessWidget {
                                         if (state.onClicked == true) {
                                           count += 1;
                                           print(count);
-                                          // print(state.list!.controls
+                                          // print(state.name!.controls
                                           //     .map((e) => e.value));
-                                          // print(state.list!.parent!.value);
+                                          // print(state.name!.parent!.value);
+                                          print(state.formGroup!.control('name').value);
                                         } else {
                                           print(count);
                                         }
