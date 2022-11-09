@@ -7,10 +7,10 @@ part 'registration_state.dart';
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   RegistrationBloc() : super(RegistrationState()) {
     on<CheckValidationEvent>((event, emit) {
-      state.isValid = event.isValid;
+      state.isLoading = event.isLoading;
 
       state.copyWith(
-        isValid: event.isValid,
+        isLoading: event.isLoading,
       );
     });
   }

@@ -1,20 +1,18 @@
 part of 'registration_bloc.dart';
 
 class RegistrationState extends Equatable {
-  bool isValid;
+  bool isLoading;
 
   RegistrationState({
-    this.isValid = false,
+    this.isLoading = false,
   });
 
-  RegistrationState copyWith({bool? isValid}) {
+  RegistrationState copyWith({bool? isLoading}) {
     return RegistrationState(
-      isValid: isValid ?? this.isValid,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 
   @override
-  List<Object> get props => [
-    isValid
-  ];
+  List<Object> get props => [isLoading];
 }

@@ -100,12 +100,12 @@ class Registration extends StatelessWidget {
                               builder: (context, formGroup, child) {
                             // print(formGroup.valid);
                             return RadiusButton(
-                              callback: () async {
-                                state.isValid = formGroup.valid;
+                              callback: () {
+                                state.isLoading = formGroup.valid;
                                 // regBloc
                                 //     .add(CheckValidationEvent(formGroup.valid));
                                 //  print(formGroup.valid);
-                                state.isValid
+                                state.isLoading
                                     // formGroup.valid
                                     ? Navigator.pushNamed(
                                         context,
