@@ -8,14 +8,14 @@ abstract class NoteState extends Equatable {
 class NoteInitial extends NoteState {
   bool onClicked;
   // FormArray<String>? relationship;
-  int count;
+  int index;
   FormArray? formArray;
   FormGroup? formGroup;
 
   NoteInitial({
     this.onClicked = false,
     // this.relationship,
-    this.count = 1,
+    this.index = 0,
     this.formArray,
     this.formGroup,
   });
@@ -23,14 +23,14 @@ class NoteInitial extends NoteState {
   NoteInitial copyWith({
     bool? onClicked,
     // FormArray<String>? relationship,
-    int? count,
+    int? index,
     FormArray? formArray,
     FormGroup? formGroup,
   }) {
     return NoteInitial(
       onClicked: onClicked ?? this.onClicked,
       // relationship: relationship ?? this.relationship,
-      count: count ?? this.count,
+      index: index ?? this.index,
       formArray: formArray ?? formArray,
       formGroup: formGroup ?? formGroup,
     );
@@ -38,5 +38,5 @@ class NoteInitial extends NoteState {
 
   @override
   List<Object?> get props =>
-      [onClicked, /* relationship, */ count, formArray, formGroup];
+      [onClicked, /* relationship, */ index, formArray, formGroup];
 }

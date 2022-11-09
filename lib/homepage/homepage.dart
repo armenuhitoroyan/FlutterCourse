@@ -6,7 +6,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 class HomePage extends StatelessWidget {
   bool onClicked = false;
   HomePage({super.key});
-  int count = 5;
+  int index = 0;
   FormArray? formArray;
   FormGroup? formGroup;
 
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          NoteBloc()..add(AddNote(onClicked, count, formArray, formGroup)),
+          NoteBloc()..add(AddNote(onClicked, index, formArray, formGroup)),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Reactive Forms'),
@@ -54,8 +54,8 @@ class HomePage extends StatelessWidget {
                                   ElevatedButton(
                                       onPressed: () {
                                         if (state.onClicked == true) {
-                                          count += 1;
-                                          print(count);
+                                          index += 1;
+                                          print(index);
                                           // print(state.relationship!.controls
                                           //     .map((e) => e.value));
                                           // print(state.relationship!.parent!.value);
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                                           print(
                                               state.formArray!.controls.length);
                                         } else {
-                                          print(count);
+                                          print(index);
                                         }
                                       },
                                       child: const Icon(Icons.plus_one))
