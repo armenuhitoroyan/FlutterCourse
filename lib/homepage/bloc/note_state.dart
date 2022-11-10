@@ -1,6 +1,8 @@
 part of 'note_bloc.dart';
 
 class NoteState extends Equatable {
+
+  
   // final form = formState.form;
 
   bool onClicked;
@@ -10,13 +12,13 @@ class NoteState extends Equatable {
   FormGroup? formGroup;
   // FormsState? formsState;
 
-  NoteState({
-    this.onClicked = false,
-    // this.relationship,
-    this.index = 0,
-    this.formArray,
-    this.formGroup,
-  });
+  NoteState(
+      {this.onClicked = false,
+      // this.relationship,
+      this.index = 0,
+      this.formArray,
+      this.formGroup,
+      });
 
   NoteState copyWith({
     bool? onClicked,
