@@ -10,10 +10,8 @@ class AddNote extends NoteEvent {
   bool onClicked;
   final int index;
 
-  FormArray? formArray;
+  FormArray formArray;
   @override
-  FormGroup? formGroup;
  
-
-  AddNote(this.onClicked, this.index, this.formArray,  this.formGroup);
+  AddNote(this.onClicked, this.index, this.formArray, );
 }

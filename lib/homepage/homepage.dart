@@ -4,19 +4,20 @@ import 'package:note/homepage/bloc/note_bloc.dart';
 import 'package:note/homepage/forms.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+FormsState formsState = FormsState();
+
 class HomePage extends StatelessWidget {
   bool onClicked = false;
-  HomePage({super.key, this.formArray});
+  HomePage({super.key, required this.formArray});
   int index = 0;
-  FormArray? formArray;
-  FormGroup? formGroup;
-  FormsState formsState = FormsState();
+
+  FormArray formArray = formsState.form;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          NoteBloc()..add(AddNote(onClicked, index, formArray, formGroup)),
+          NoteBloc()..add(AddNote(onClicked, index, formArray)),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Reactive Forms'),
@@ -25,16 +26,15 @@ class HomePage extends StatelessWidget {
           builder: (context, state) {
             if (state is NoteState) {
               // print(state.formGroup!.control('relationship').value);
-              print(formsState.form.controls.first.value);
-              print('start ${formsState.form.controls.first.runtimeType}');
+              // print(formsState.form.controls.first.value);
+              // print('start ${formsState.form.controls.first.runtimeType}');
               return ReactiveFormArray(
-                formArray:
-                    state.formArray ,
+                formArray: state.formArray,
                 builder: (context, formArray, child) => Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(
-                      width: double.infinity,
+                    ReactiveForm(
+                      formGroup: state.formArray.controls.first as FormGroup,
                       child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -80,18 +80,22 @@ class HomePage extends StatelessWidget {
                                                 //     .control('relationship')
                                                 //     .value);
 
-                                                print(state.formArray!.controls
-                                                    .length);
-                                                state.formArray!.add(state
-                                                    .formArray!.controls.first);
+                                                // print(state
+                                                //     .formArray.controls.length);
+                                                state.formArray.add(state
+                                                    .formArray.controls.first);
 
-                                                print(state.formArray!.controls
-                                                    .length);
+                                                print(state
+                                                    .formArray.controls.length);
+                                                    
+                                                print(state
+                                                    .formArray.controls);
                                               } else {
-                                                print(index);
+                                                // print(index);
                                               }
 
-                                              print('formArray: ${state.formArray!.controls}');
+                                              print(
+                                                  'formArray: ${state.formArray.controls}');
                                             },
                                             child: const Icon(Icons.plus_one))
                                       ],
@@ -102,26 +106,51 @@ class HomePage extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(10.0),
-                              child: ReactiveForm(
-                                formGroup: state.formGroup ?? formsState.form.controls.first as FormGroup,
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      side: const BorderSide(
-                                        color: Colors.greenAccent,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: const BorderSide(
+                                    color: Colors.greenAccent,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    children: [
+                                      ReactiveTextField(
+                                        formControlName: 'relationship',
+                                        decoration: const InputDecoration(
+                                          labelText: 'Relationship',
+                                        ),
+                                        textCapitalization:
+                                            TextCapitalization.words,
+                                        style: const TextStyle(
+                                          backgroundColor: Colors.white,
+                                        ),
                                       ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(children: [
-                                        // ReactiveTextField(
-                                        //   formControlName: 'relationship',
-                                        // )
-                                        Text('data')
-                                      ],),
-                                    ),
+                                      ReactiveTextField(
+                                        formControlName: 'position',
+                                        decoration: const InputDecoration(
+                                          labelText: 'Position',
+                                        ),
+                                        textCapitalization:
+                                            TextCapitalization.words,
+                                        style: const TextStyle(
+                                          backgroundColor: Colors.white,
+                                        ),
+                                      ),
+                                      ReactiveTextField(
+                                        formControlName: 'note',
+                                        decoration: const InputDecoration(
+                                          labelText: 'Note',
+                                        ),
+                                        textCapitalization:
+                                            TextCapitalization.words,
+                                        style: const TextStyle(
+                                          backgroundColor: Colors.white,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:note/homepage/forms.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 part 'note_event.dart';
@@ -7,15 +8,9 @@ part 'note_state.dart';
 
 final form = FormArray([
   FormGroup({
-    'relationship': FormArray<String>([
-      FormControl<String>(value: 'rel'),
-    ]),
-    'position': FormArray<String>([
-      FormControl<String>(),
-    ]),
-    'note': FormArray<String>([
-      FormControl<String>(),
-    ]),
+    'relationship': FormControl<String>(value: ''),
+    'position': FormControl<String>(value: 'position'),
+    'note': FormControl<String>(value: ''),
   })
 ]);
 
@@ -35,7 +30,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
           onClicked: false,
           // relationship: relationship,
           formArray: event.formArray,
-          formGroup: event.formGroup,
+          formGroup: event.formArray.controls.first as FormGroup,
         ),
       );
 
@@ -64,13 +59,14 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
           onClicked: true,
           // relationship: relationship,
           formArray: event.formArray,
-          formGroup: event.formGroup,
+          formGroup: event.formArray.controls.first as FormGroup,
         ),
       );
 
       print('state in bloc: ${state.formGroup!.value}');
 
-      state.formArray!.add(state.formArray!.controls.first);
+      state.formArray.add(state.formArray.controls.first);
+      print(state.formArray.controls.first);
 
       // print(state.formGroup!.controls.values.first.value);
     });
