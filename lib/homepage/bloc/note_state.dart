@@ -1,18 +1,16 @@
 part of 'note_bloc.dart';
 
-abstract class NoteState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
+class NoteState extends Equatable {
+  // final form = formState.form;
 
-class NoteInitial extends NoteState {
   bool onClicked;
   // FormArray<String>? relationship;
   int index;
   FormArray? formArray;
   FormGroup? formGroup;
+  // FormsState? formsState;
 
-  NoteInitial({
+  NoteState({
     this.onClicked = false,
     // this.relationship,
     this.index = 0,
@@ -20,14 +18,14 @@ class NoteInitial extends NoteState {
     this.formGroup,
   });
 
-  NoteInitial copyWith({
+  NoteState copyWith({
     bool? onClicked,
     // FormArray<String>? relationship,
     int? index,
     FormArray? formArray,
     FormGroup? formGroup,
   }) {
-    return NoteInitial(
+    return NoteState(
       onClicked: onClicked ?? this.onClicked,
       // relationship: relationship ?? this.relationship,
       index: index ?? this.index,

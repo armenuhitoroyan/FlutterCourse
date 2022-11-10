@@ -19,13 +19,15 @@ final form = FormArray([
   })
 ]);
 
-class NoteBloc extends Bloc<NoteEvent, NoteInitial> {
-  NoteBloc() : super(NoteInitial()) {
+class NoteBloc extends Bloc<NoteEvent, NoteState> {
+  NoteBloc() : super(NoteState()) {
     // final relationship = form.control('relationship') as FormArray<String>;
     // final position = form.control('position') as FormArray<String>;
     // final note = form.control('note') as FormArray<String>;
     final formArray = form;
     // FormArray? formArray ;
+
+    print(state.formGroup.runtimeType);
 
     on<AddNote>((event, emit) {
       emit(
@@ -38,7 +40,15 @@ class NoteBloc extends Bloc<NoteEvent, NoteInitial> {
       );
 
       // print(form.runtimeType);
+      print(form.controls.first.runtimeType);
+      print(form.controls.first.value);
+
+      print(event.formGroup.runtimeType);
+      event.formGroup = form.controls.first as FormGroup;
+
       event.formArray = form;
+      // event.formGroup = form.controls.first.value as FormGroup;
+      print(event.formGroup.runtimeType);
 
       // adding another relationship
 
@@ -57,6 +67,8 @@ class NoteBloc extends Bloc<NoteEvent, NoteInitial> {
           formGroup: event.formGroup,
         ),
       );
+
+      print(state.formGroup.runtimeType);
 
       // print(state.formGroup!.controls.values.first.value);
     });

@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         ),
         body: BlocBuilder<NoteBloc, NoteState>(
           builder: (context, state) {
-            if (state is NoteInitial) {
+            if (state is NoteState) {
               // print(state.formGroup!.control('relationship').value);
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -81,6 +81,8 @@ class HomePage extends StatelessWidget {
                                         } else {
                                           print(index);
                                         }
+
+                                        print(state.formGroup!.value);
                                       },
                                       child: const Icon(Icons.plus_one))
                                 ],
