@@ -1,9 +1,9 @@
 part of 'note_bloc.dart';
 
 abstract class NoteEvent extends Equatable {
-  // FormGroup? formGroup;
+
   @override
-  List<Object?> get props => [/* formGroup */];
+  List<Object?> get props => [];
 }
 
 class AddNote extends NoteEvent {

@@ -24,9 +24,6 @@ class HomePage extends StatelessWidget {
         body: BlocBuilder<NoteBloc, NoteState>(
           builder: (context, state) {
             if (state is NoteState) {
-              // print(state.formGroup!.control('relationship').value);
-              // print(formsState.form.controls.first.value);
-              // print('start ${formsState.form.controls.first.runtimeType}');
               return ReactiveFormArray(
                 formArray: state.formArray,
                 builder: (context, formArray, child) => SingleChildScrollView(
@@ -34,11 +31,8 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       ReactiveForm(
-                        formGroup: state.formArray.controls.first as FormGroup,
+                        formGroup: state.formArray!.controls.first as FormGroup,
                         child: Container(
-                          // shape: RoundedRectangleBorder(
-                          //   borderRadius: BorderRadius.circular(10.0),
-                          // ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
@@ -70,40 +64,11 @@ class HomePage extends StatelessWidget {
                                                 if (state.onClicked == true) {
                                                   i += 1;
                                                   state.index++;
-                                                  print(i);
-                                                  // print(state.relationship!.controls
-                                                  //     .map((e) => e.value));
-                                                  // print(state.relationship!.parent!.value);
-
-                                                  // print(state.formGroup!
-                                                  //     .control('relationship')
-                                                  //     .value);
-
-                                                  // state.formGroup!.controls.addAll(
-                                                  //     state.formGroup!.controls);
-
-                                                  // print(state.formGroup!
-                                                  //     .control('relationship')
-                                                  //     .value);
-
-                                                  // print(state
-                                                  //     .formArray.controls.length);
-                                                  state.formArray.add(state
-                                                      .formArray
+                                                  state.formArray!.add(state
+                                                      .formArray!
                                                       .controls
                                                       .first);
-
-                                                  print(state.formArray.controls
-                                                      .length);
-
-                                                  print(
-                                                      state.formArray.controls);
-                                                } else {
-                                                  // print(index);
                                                 }
-
-                                                print(
-                                                    'formArray: ${state.formArray.controls}');
                                               },
                                               child: const Icon(Icons.plus_one))
                                         ],
@@ -113,8 +78,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                               ListView.builder(
-                                itemCount: state.formArray.controls.length,
-                                // scrollDirection: Axis.vertical,
+                                itemCount: state.formArray!.controls.length,
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) =>
                                     _buildcontent(),
@@ -183,6 +147,9 @@ Widget _buildcontent() {
               backgroundColor: Colors.white,
             ),
           ),
+          ElevatedButton(onPressed: (){
+
+          }, child: const Text('remove'))
         ],
       ),
     ),

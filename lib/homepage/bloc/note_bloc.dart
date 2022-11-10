@@ -66,7 +66,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       // print('state in bloc: ${state.formGroup!.value}');
 
       // state.formArray.add(state.formArray.controls.first);
-      print(state.formArray.controls.first);
+      print(state.formArray!.controls.first);
 
       // print(state.formGroup!.controls.values.first.value);
     });
