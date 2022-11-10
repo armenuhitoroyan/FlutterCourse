@@ -78,10 +78,16 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                               ListView.builder(
-                                itemCount: state.formArray!.controls.length,
+                                itemCount: state.formArray!.controls.length-1,
                                 shrinkWrap: true,
-                                itemBuilder: (context, index) =>
-                                    _buildcontent(),
+                                itemBuilder: (context, index) => Dismissible(
+                                  key:
+                                      Key(state.formArray!.controls.toString()),
+                                  onDismissed: (direction) {
+                                    state.formArray!.removeAt(index);
+                                  },
+                                  child: _buildcontent(index),
+                                ),
                               )
                             ],
                           ),
@@ -105,7 +111,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-Widget _buildcontent() {
+Widget _buildcontent(index) {
   return Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -147,9 +153,10 @@ Widget _buildcontent() {
               backgroundColor: Colors.white,
             ),
           ),
-          ElevatedButton(onPressed: (){
-
-          }, child: const Text('remove'))
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Remove'),
+          )
         ],
       ),
     ),
