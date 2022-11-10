@@ -22,7 +22,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     final formArray = form;
     // FormArray? formArray ;
 
-    print(state.formGroup.runtimeType);
+    // print(state.formGroup.runtimeType);
 
     on<AddNote>((event, emit) {
       emit(
@@ -30,7 +30,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
           onClicked: false,
           // relationship: relationship,
           formArray: event.formArray,
-          formGroup: event.formArray.controls.first as FormGroup,
+          // formGroup: event.formArray.controls.first as FormGroup,
         ),
       );
 
@@ -38,12 +38,12 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       print(form.controls.first.runtimeType);
       print(form.controls.first.value);
 
-      print(event.formGroup.runtimeType);
-      event.formGroup = form.controls.first as FormGroup;
+      // print(event.formGroup.runtimeType);
+      // event.formGroup = form.controls.first as FormGroup;
 
       event.formArray = form;
       // event.formGroup = form.controls.first.value as FormGroup;
-      print(event.formGroup.runtimeType);
+      // print(event.formGroup.runtimeType);
 
       // adding another relationship
 
@@ -59,11 +59,11 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
           onClicked: true,
           // relationship: relationship,
           formArray: event.formArray,
-          formGroup: event.formArray.controls.first as FormGroup,
+          // formGroup: event.formArray.controls.first as FormGroup,
         ),
       );
 
-      print('state in bloc: ${state.formGroup!.value}');
+      // print('state in bloc: ${state.formGroup!.value}');
 
       state.formArray.add(state.formArray.controls.first);
       print(state.formArray.controls.first);

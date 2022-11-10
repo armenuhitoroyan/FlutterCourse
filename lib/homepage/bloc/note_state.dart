@@ -9,7 +9,7 @@ class NoteState extends Equatable {
   // FormArray<String>? relationship;
   int index;
   FormArray formArray;
-  FormGroup? formGroup;
+  // FormGroup? formGroup;
   // FormsState? formsState;
 
   NoteState({
@@ -17,7 +17,7 @@ class NoteState extends Equatable {
     // this.relationship,
     this.index = 0,
     required this.formArray,
-    this.formGroup,
+    // this.formGroup,
   });
 
   NoteState copyWith({
@@ -25,18 +25,18 @@ class NoteState extends Equatable {
     // FormArray<String>? relationship,
     int? index,
     required FormArray formArray,
-    FormGroup? formGroup,
+    // FormGroup? formGroup,
   }) {
     return NoteState(
       onClicked: onClicked ?? this.onClicked,
       // relationship: relationship ?? this.relationship,
       index: index ?? this.index,
       formArray: formArray,
-      formGroup: formGroup ?? formGroup,
+      // formGroup: formGroup ?? formGroup,
     );
   }
 
   @override
   List<Object?> get props =>
-      [onClicked, /* relationship, */ index, formArray, formGroup];
+      [onClicked, /* relationship, */ index, formArray, /* formGroup */ ];
 }
