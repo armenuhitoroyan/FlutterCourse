@@ -100,7 +100,8 @@ class HomePage extends StatelessWidget {
                               onDismissed: (direction) {
                                 state.formArray!.removeAt(index);
                               },
-                              child: _buildcontent(formArray.controls[index], state, index),
+                              child: _buildcontent(
+                                  formArray.controls[index], state, index),
                             ),
                           )
                         ],
@@ -134,7 +135,6 @@ Widget _buildcontent(formGroup, state, i) {
     color: Colors.grey[100],
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
-     
     ),
     child: Padding(
       padding: const EdgeInsets.all(10.0),
@@ -205,7 +205,9 @@ Widget _buildcontent(formGroup, state, i) {
                       Row(
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              formGroup.reset();
+                            },
                             icon: const Icon(
                               Icons.close,
                             ),
