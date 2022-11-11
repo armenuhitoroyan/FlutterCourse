@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        iconTheme: const IconThemeData(color:  Color.fromRGBO(204,0,1, 0.8),),
       ),
       home: HomePage(formArray: formsState.form,),
     );

@@ -8,10 +8,9 @@ abstract class NoteEvent extends Equatable {
 
 class AddNote extends NoteEvent {
   bool onClicked;
-  final int index;
 
   FormArray formArray;
   @override
  
-  AddNote(this.onClicked, this.index, this.formArray, );
+  AddNote(this.onClicked, this.formArray, );
 }
