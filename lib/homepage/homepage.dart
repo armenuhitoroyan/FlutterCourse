@@ -8,6 +8,7 @@ FormsState formsState = FormsState();
 
 class HomePage extends StatelessWidget {
   bool onClicked = false;
+  int index = 0;
   HomePage({super.key, required this.formArray});
 
   FormArray formArray = formsState.form;
@@ -15,10 +16,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NoteBloc()..add(AddNote(onClicked, formArray)),
+      create: (context) =>
+          NoteBloc()..add(AddNote(onClicked, index, formArray)),
       child: Scaffold(
         body: BlocBuilder<NoteBloc, NoteState>(
           builder: (context, state) {
+            index = state.index;
             return ReactiveFormArray(
               formArray: state.formArray,
               builder: (context, formArray, child) => SingleChildScrollView(
@@ -70,12 +73,27 @@ class HomePage extends StatelessWidget {
                                         child: IconButton(
                                           onPressed: () {
                                             // if (state.onClicked == true) {
-                                            state.formArray!.add(FormGroup({
-                                              'relationship':
-                                                  FormControl<String>(),
-                                              'position': FormControl<String>(),
-                                              'note': FormControl<String>(),
-                                            }));
+                                            state.formArray!.add(
+                                              FormGroup({
+                                                'relationship':
+                                                    FormControl<String>(),
+                                                'position':
+                                                    FormControl<String>(),
+                                                'note': FormControl<String>(),
+                                              }),
+
+                                              // state.formArray!
+                                              //     .controls[state.index]
+
+                                              // formsState.form.controls[index],
+                                            );
+
+                                            state.index++;
+                                            index = state.index;
+
+                                            // index = index + 1;
+                                            // print(formsState.form);
+                                            print(state.index);
                                             // }
                                           },
                                           style: const ButtonStyle(),
@@ -101,7 +119,9 @@ class HomePage extends StatelessWidget {
                                 state.formArray!.removeAt(index);
                               },
                               child: _buildcontent(
-                                  formArray.controls[index], state, index),
+                                  formArray.controls[index] as FormGroup,
+                                  state,
+                                  index),
                             ),
                           )
                         ],
@@ -118,13 +138,14 @@ class HomePage extends StatelessWidget {
   }
 }
 
-Widget _buildcontent(formGroup, state, i) {
+Widget _buildcontent(FormGroup formGroup, NoteState state, int i) {
   List<DropdownMenuItem<dynamic>> list = <String>[
     'One',
     'Two',
     'Free',
     'Four',
   ].map<DropdownMenuItem<String>>((String value) {
+    print(state.runtimeType);
     return DropdownMenuItem<String>(
       value: value,
       child: Text(value),
@@ -230,7 +251,10 @@ Widget _buildcontent(formGroup, state, i) {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // state.formArray!.removeAt(state.index);
+                    removeGroup(formGroup.parent as FormArray, i);
+                  },
                   icon: const Icon(Icons.delete),
                 ),
               ],
@@ -240,4 +264,10 @@ Widget _buildcontent(formGroup, state, i) {
       ),
     ),
   );
+}
+
+removeGroup(FormArray fa, int num) {
+  // remove address from the list
+  fa.removeAt(num);
+ 
 }

@@ -16,6 +16,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       emit(
         state.copyWith(
           onClicked: false,
+          index: event.i,
           formArray: event.formArray,
         ),
       );
@@ -25,6 +26,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       emit(
         state.copyWith(
           onClicked: true,
+          index: event.i,
           formArray: event.formArray,
         ),
       );
