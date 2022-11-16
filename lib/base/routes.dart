@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/info/info.dart';
-import 'package:ranger/pages/qr_scanner/brc_scaner.dart';
+import 'package:ranger/pages/qr_scanner/brc_scanner.dart';
 import 'package:ranger/pages/qr_scanner/qr_scanner.dart';
 
 class AppRoutes {
   static const homepage = '/';
   static const info = '/info';
   static const qrScan = '/scaner';
-  static const brScan = '/scan';
+  // static const brScan = '/scan';
+  static const mobScan = '/scan';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -20,9 +21,10 @@ class AppRoutes {
       AppRoutes.homepage: (context) => const HomePage(
             title: '',
           ),
-      AppRoutes.info: (context) => const Information(),
+      AppRoutes.info: (context) => Information(),
       // AppRoutes.qrScan: (context) => QrScanner(),
-      AppRoutes.brScan: (context) => BrCScaner()
+      // AppRoutes.brScan: (context) => BrCScanner()
+      AppRoutes.mobScan:(context) => MobScan()
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

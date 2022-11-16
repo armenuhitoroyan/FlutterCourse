@@ -37,12 +37,14 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          
                           IconButton(
+                            
                             onPressed: () {
-                              Navigator.pushNamed(context, AppRoutes.brScan);
+                              Navigator.pushNamed(context, AppRoutes.mobScan);
                             },
                             icon: const Icon(
-                              Icons.camera,
+                              Icons.camera, 
                               color: Colors.white,
                             ),
                           ),
