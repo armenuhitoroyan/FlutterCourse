@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ranger/base/regexp.dart';
 
-part 'qr_icfo_event.dart';
-part 'qr_icfo_state.dart';
+part 'q_info_event.dart';
+part 'q_info_state.dart';
 
 class QrInfoBloc extends Bloc<QrInfoEvent, QrInfoState> {
   QrInfoBloc() : super(QrIcfoInitial()) {

@@ -1,4 +1,4 @@
-part of 'qr_icfo_bloc.dart';
+part of 'q_info_bloc.dart';
 
 abstract class QrInfoState extends Equatable {
   const QrInfoState();

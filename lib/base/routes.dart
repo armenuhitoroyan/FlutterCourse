@@ -6,7 +6,7 @@ import 'package:ranger/pages/info/info.dart';
 import 'package:ranger/pages/qr_scanner/brc_scanner.dart';
 import 'package:ranger/pages/qr_scanner/qr_scanner.dart';
 
-import '../pages/info/bloc/qr_icfo_bloc.dart';
+import '../pages/info/bloc/q_info_bloc.dart';
 
 class AppRoutes {
   static const homepage = '/';

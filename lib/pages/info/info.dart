@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/app_style.dart';
 import 'package:ranger/config/colors.dart';
-import 'package:ranger/pages/info/bloc/qr_icfo_bloc.dart';
+import 'package:ranger/pages/info/bloc/q_info_bloc.dart';
 
 class Information extends StatelessWidget {
   AppStyle appStyle = AppStyle();
