@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                               Navigator.pushNamed(context, AppRoutes.mobScan);
                             },
                             icon: const Icon(
-                              Icons.camera,
+                              Icons.photo_camera_rounded,
                               color: Colors.white,
                             ),
                           ),

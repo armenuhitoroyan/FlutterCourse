@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ranger/pages/devices/devices.dart';
 import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/info/info.dart';
 import 'package:ranger/pages/qr_scanner/brc_scanner.dart';
@@ -10,6 +11,7 @@ class AppRoutes {
   static const qrScan = '/scaner';
   // static const brScan = '/scan';
   static const mobScan = '/scan';
+  static const devices = '/devices';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -24,7 +26,8 @@ class AppRoutes {
       AppRoutes.info: (context) => Information(),
       // AppRoutes.qrScan: (context) => QrScanner(),
       // AppRoutes.brScan: (context) => BrCScanner()
-      AppRoutes.mobScan:(context) => MobScan()
+      AppRoutes.mobScan: (context) => MobScan(),
+      AppRoutes.devices:(context) => Devices()
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

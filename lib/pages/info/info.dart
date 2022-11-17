@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/app_style.dart';
 import 'package:ranger/config/colors.dart';
 import 'package:ranger/pages/info/bloc/info_bloc.dart';
@@ -21,7 +22,8 @@ class Information extends StatelessWidget {
           title: const Center(
               child: Text(
             'Enter Q Info',
-            style: TextStyle(color: Colors.black, backgroundColor: Colors.white),
+            style:
+                TextStyle(color: Colors.black, backgroundColor: Colors.white),
           )),
         ),
         body: Center(
@@ -81,7 +83,9 @@ class Information extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, AppRoutes.devices);
+                          },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: RangerColors.blueBtn),
                           child: const Text(
