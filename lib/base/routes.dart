@@ -4,7 +4,6 @@ import 'package:ranger/pages/devices/devices.dart';
 import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/info/info.dart';
 import 'package:ranger/pages/qr_scanner/brc_scanner.dart';
-import 'package:ranger/pages/qr_scanner/qr_scanner.dart';
 
 import '../pages/info/bloc/q_info_bloc.dart';
 
