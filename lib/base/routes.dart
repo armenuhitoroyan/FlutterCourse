@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ranger/pages/devices/devices.dart';
 import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/info/info.dart';
 import 'package:ranger/pages/qr_scanner/brc_scanner.dart';
 import 'package:ranger/pages/qr_scanner/qr_scanner.dart';
+
+import '../pages/info/bloc/qr_icfo_bloc.dart';
 
 class AppRoutes {
   static const homepage = '/';
@@ -23,11 +26,14 @@ class AppRoutes {
       AppRoutes.homepage: (context) => const HomePage(
             title: '',
           ),
-      AppRoutes.info: (context) => Information(),
+      AppRoutes.info: (context) => BlocProvider(
+            create: (context) => QrInfoBloc(),
+            child: Information(),
+          ),
       // AppRoutes.qrScan: (context) => QrScanner(),
       // AppRoutes.brScan: (context) => BrCScanner()
       AppRoutes.mobScan: (context) => MobScan(),
-      AppRoutes.devices:(context) => Devices()
+      AppRoutes.devices: (context) => Devices()
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

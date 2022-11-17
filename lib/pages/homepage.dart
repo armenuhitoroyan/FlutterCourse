@@ -30,52 +30,54 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 width: double.infinity,
                 child: Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: RangerColors.blueBtn),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, AppRoutes.mobScan);
-                            },
-                            icon: const Icon(
-                              Icons.photo_camera_rounded,
-                              color: Colors.white,
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: RangerColors.blueBtn),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, AppRoutes.mobScan);
+                          },
+                          icon: const Icon(
+                            Icons.photo_camera_rounded,
+                            color: Colors.white,
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () => showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text(
+                                  '"Levven" Would Like to Access the Camera'),
+                              content: const Text('AlertDialog description'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(context, 'Cancel'),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'OK'),
+                                  child: const Text('OK'),
+                                ),
+                              ],
                             ),
                           ),
-                          ElevatedButton(
-                            onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: const Text('"Levven" Would Like to Access the Camera'),
-                                content: const Text('AlertDialog description'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context, 'OK'),
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: RangerColors.yellowBtn),
-                            child: const Text(
-                              'SCAN',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          )
-                        ],
-                      ),
-                    )),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: RangerColors.yellowBtn),
+                          child: const Text(
+                            'SCAN',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
               const Text('or'),
               SizedBox(
