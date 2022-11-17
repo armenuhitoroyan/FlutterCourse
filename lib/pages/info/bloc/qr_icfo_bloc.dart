@@ -9,9 +9,7 @@ class QrInfoBloc extends Bloc<QrInfoEvent, QrInfoState> {
   QrInfoBloc() : super(QrIcfoInitial()) {
     on<QrInfoTextChangedEvent>(_onValidate);
 
-    on<QrInfoSubmittedEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<QrInfoSubmittedEvent>(_onSubmitBtn);
   }
 
   _onValidate(QrInfoTextChangedEvent event, Emitter<QrInfoState> emit) {
