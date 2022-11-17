@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/colors.dart';
 
@@ -37,19 +38,34 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          
                           IconButton(
-                            
                             onPressed: () {
                               Navigator.pushNamed(context, AppRoutes.mobScan);
                             },
                             icon: const Icon(
-                              Icons.camera, 
+                              Icons.camera,
                               color: Colors.white,
                             ),
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('"Levven" Would Like to Access the Camera'),
+                                content: const Text('AlertDialog description'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'OK'),
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: RangerColors.yellowBtn),
                             child: const Text(
