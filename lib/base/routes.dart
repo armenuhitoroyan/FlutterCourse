@@ -10,13 +10,12 @@ import '../pages/q_info/bloc/q_info_bloc.dart';
 class AppRoutes {
   static const homepage = '/';
   static const info = '/info';
-  static const qrScan = '/scaner';
   static const mobScan = '/scan';
   static const devices = '/devices';
+  static const brScan = '/scanner';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
-    if (settings.arguments != null) {
-    }
+    if (settings.arguments != null) {}
 
     var routes = <String, WidgetBuilder>{
       AppRoutes.homepage: (context) => const HomePage(

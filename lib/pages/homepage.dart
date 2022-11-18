@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/colors.dart';
@@ -13,6 +14,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String _data = '';
+
+  _scan() async {
+    await FlutterBarcodeScanner.scanBarcode(
+      '#000000',
+      'Cansel',
+      true,
+      ScanMode.BARCODE,
+    ).then((value) => setState(
+          () => _data = value,
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +42,13 @@ class _HomePageState extends State<HomePage> {
               ),
               Image.asset('assets/qbacklabel.png'),
               SizedBox(
+                height: 20,
+                child: Text(
+                  _data,
+                  style: const TextStyle(color: RangerColors.blueBtn),
+                ),
+              ),
+              SizedBox(
                 width: double.infinity,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15),
@@ -39,9 +60,11 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, AppRoutes.mobScan);
-                          },
+                          // onPressed: () {
+
+                          //   // Navigator.pushNamed(context, AppRoutes.mobScan);
+                          // },
+                          onPressed: () async => _scan(),
                           icon: const Icon(
                             Icons.photo_camera_rounded,
                             color: RangerColors.white,
