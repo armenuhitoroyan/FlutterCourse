@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/app_style.dart';
 import 'package:ranger/config/colors.dart';
-import 'package:ranger/pages/info/bloc/q_info_bloc.dart';
+import 'package:ranger/pages/q_info/bloc/q_info_bloc.dart';
 
 class Information extends StatelessWidget {
   AppStyle appStyle = AppStyle();
@@ -14,12 +14,13 @@ class Information extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: RangerColors.white,
       appBar: AppBar(
         title: const Center(
             child: Text(
           'Enter Q Info',
-          style: TextStyle(color: Colors.black, backgroundColor: Colors.white),
+          style: TextStyle(
+              color: RangerColors.black, backgroundColor: RangerColors.white),
         )),
       ),
       body: Center(
@@ -103,7 +104,7 @@ class Information extends StatelessWidget {
                         //   color: Colors.red
                         // ),
 
-                        // focusColor: Colors.black
+                        // focusColor: RangerColors.black
                       ),
                     ),
                   ),
@@ -116,13 +117,11 @@ class Information extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: BlocBuilder<QrInfoBloc, QrInfoState>(
                     builder: (context, state) {
-
                       if (state is QrInfoLoadingState) {
                         return CircularProgressIndicator();
                       }
                       return ElevatedButton(
                         onPressed: () {
-
                           if (state is QrInfoValidState) {
                             BlocProvider.of<QrInfoBloc>(context).add(
                                 QrInfoSubmittedEvent(addressController.text,
@@ -136,10 +135,10 @@ class Information extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             backgroundColor: (state is QrInfoValidState)
                                 ? RangerColors.blueBtn
-                                : Colors.grey),
+                                : RangerColors.greyBottomBar),
                         child: const Text(
                           'SUBMIT',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: RangerColors.white),
                         ),
                       );
                     },

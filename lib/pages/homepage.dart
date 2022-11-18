@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: RangerColors.white,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           icon: const Icon(
                             Icons.photo_camera_rounded,
-                            color: Colors.white,
+                            color: RangerColors.white,
                           ),
                         ),
                         ElevatedButton(
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                               backgroundColor: RangerColors.yellowBtn),
                           child: const Text(
                             'SCAN',
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(color: RangerColors.black),
                           ),
                         )
                       ],
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
+                            color: RangerColors.white,
                             border: Border.all(color: RangerColors.blueBtn)),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10, bottom: 10),

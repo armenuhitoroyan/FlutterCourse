@@ -158,7 +158,6 @@ class _DevicesState extends State<Devices> {
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home,
-                  // color: Colors.black,
                 ),
                 label: 'Home'),
             BottomNavigationBarItem(
