@@ -1,22 +1,16 @@
 part of 'q_info_bloc.dart';
 
-abstract class QrInfoEvent extends Equatable {
-  const QrInfoEvent();
+abstract class QInfoEvent extends Equatable {
+  const QInfoEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class QrInfoTextChangedEvent extends QrInfoEvent {
+class QInfoTextChangedEvent extends QInfoEvent {
   final String addressValue;
   final String pinCodeValue;
 
-  QrInfoTextChangedEvent(this.addressValue, this.pinCodeValue);
+  QInfoTextChangedEvent(this.addressValue, this.pinCodeValue);
 }
 
-class QrInfoSubmittedEvent extends QrInfoEvent {
-  final String address;
-  final String pinCode;
-
-  QrInfoSubmittedEvent(this.address, this.pinCode);
-}

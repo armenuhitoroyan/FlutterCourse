@@ -1,19 +1,36 @@
 part of 'q_info_bloc.dart';
 
-abstract class QrInfoState extends Equatable {
-  const QrInfoState();
+class QInfoValidState extends Equatable {
+  final bool? loading;
+  final bool isValid;
+  final String? errorMessage;
+  final String? errorEmail;
+  final String? errorPin;
+
+  QInfoValidState({
+    this.loading,
+    this.isValid = false,
+    this.errorMessage,
+    this.errorEmail,
+    this.errorPin
+  });
+
+  QInfoValidState copyWith({
+    bool? loading,
+    bool? isValid,
+    String? errorMessage,
+    String? errorEmail,
+    String? errorPin,
+  }) {
+    return QInfoValidState(
+      loading: loading ?? this.loading,
+      isValid: isValid ?? this.isValid,
+      errorMessage: errorMessage ?? this.errorMessage,
+      errorEmail: errorEmail ?? this.errorEmail,
+      errorPin: errorPin ?? this.errorEmail
+    );
+  }
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [isValid];
 }
-
-class QrIcfoInitial extends QrInfoState {}
-
-class QrInfoValidState extends QrInfoState {}
-
-class QrInfoErrorState extends QrInfoState {
-  final String errorMessage;
-  QrInfoErrorState(this.errorMessage);
-}
-
-class QrInfoLoadingState extends QrInfoState {}
