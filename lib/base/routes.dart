@@ -12,7 +12,7 @@ class AppRoutes {
   static const info = '/info';
   static const mobScan = '/scan';
   static const devices = '/devices';
-  static const brScan = '/scanner';
+  static const brScan = '/scanner'; 
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     if (settings.arguments != null) {}

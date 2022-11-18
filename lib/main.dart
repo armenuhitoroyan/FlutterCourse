@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/app_style.dart';
 import 'package:ranger/pages/homepage.dart';
-import 'package:ranger/pages/qr_scanner/scanner.dart';
 
 
 void main() {
