@@ -12,3 +12,10 @@ class SelectMenuItemEvent extends DeviceEvent {
 
   const SelectMenuItemEvent(this.index);
 }
+
+class SelectDropdownItemEvent extends DeviceEvent {
+  // List<String> items;
+  final String item;
+
+   SelectDropdownItemEvent(this.item);
+}

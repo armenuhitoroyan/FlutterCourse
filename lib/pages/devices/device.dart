@@ -7,6 +7,15 @@ import 'package:ranger/pages/devices/bloc/device_bloc.dart';
 import '../../config/colors.dart';
 
 class Device extends StatelessWidget {
+  var items = [
+    'See 1 More',
+    'See 2 More',
+    'See 3 More',
+    'See 4 More',
+    'See 5 More',
+  ];
+
+  String dropdownvalue = 'See 1 More';
 
   @override
   Widget build(BuildContext context) {
@@ -25,35 +34,77 @@ class Device extends StatelessWidget {
                         border: Border.all(color: RangerColors.blueBtn),
                       ),
                       child: Column(
-                        children: const [
-                          // const
-                          Text(
-                            '123 Oak Grove Dr.',
-                            style: TextStyle(fontSize: 30, color: Colors.white),
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(left: 15),
+                            child: Text(
+                              '123 Oak Grove Dr.',
+                              style:
+                                  TextStyle(fontSize: 30, color: Colors.white),
+                            ),
                           ),
-                          // const
-                          Text(
-                            '4 lights on',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 25),
+                            child: Text(
+                              '4 lights on',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
                           ),
-                          // const
-                          Text(
-                            '1 fan running',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 25),
+                            child: Text(
+                              '1 fan running',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
                           ),
-                          // const
-                          Text(
-                            '1 outlet on',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 25),
+                            child: Text(
+                              '1 outlet on',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
                           ),
-                          SizedBox(
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(bottom: 15, left: 25),
+                            child: DropdownButton(
+                              dropdownColor: RangerColors.blueBtn,
+                              value: state.dropdownvalue,
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right,
+                                color: RangerColors.white,
+                              ),
+                              items: 
+                              items.map((String item) {
+                                return DropdownMenuItem(
+                                  value: item,
+                                  child: Text(
+                                    item,
+                                    style: const TextStyle(
+                                        color: RangerColors.white),
+                                  ),
+                                  
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                BlocProvider.of<DeviceBloc>(context)
+                                  .add(SelectDropdownItemEvent(value!));
+                                state.dropdownvalue = value;
+                              },
+                            ),
+                          ),
+                          const SizedBox(
                             height: 40,
                           )
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 130.0),
+                      padding: const EdgeInsets.only(top: 150.0),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -151,8 +202,8 @@ class Device extends StatelessWidget {
             showUnselectedLabels: false,
             currentIndex: state.selectedIndex,
             onTap: (value) {
-              BlocProvider.of<DeviceBloc>(context).add(SelectMenuItemEvent(
-                value));
+              BlocProvider.of<DeviceBloc>(context)
+                  .add(SelectMenuItemEvent(value));
             },
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(

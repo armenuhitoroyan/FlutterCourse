@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ranger/pages/devices/devices.dart';
 import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/q_info/q_info.dart';
 import 'package:ranger/pages/qr_scanner/brc_scanner.dart';
@@ -13,7 +12,6 @@ class AppRoutes {
   static const homepage = '/';
   static const info = '/info';
   static const mobScan = '/scan';
-  static const devices = '/devices';
   static const brScan = '/scanner';
   static const device = '/device';
 
@@ -29,7 +27,6 @@ class AppRoutes {
             child: Information(),
           ),
       AppRoutes.mobScan: (context) => MobScan(),
-      AppRoutes.devices: (context) => Devices(),
       
       AppRoutes.device: (context) => BlocProvider(
             create: (context) => DeviceBloc(),
