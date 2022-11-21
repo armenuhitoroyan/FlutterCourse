@@ -34,7 +34,8 @@ class QrInfoBloc extends Bloc<QInfoEvent, QInfoValidState> with Texts {
       emit(
         QInfoValidState(
           isValid: false,
-          errorMessage: super.emailErr,
+          isValidAddress: true,
+          errorAddress: super.emailErr,
         ),
       );
     }
@@ -44,7 +45,8 @@ class QrInfoBloc extends Bloc<QInfoEvent, QInfoValidState> with Texts {
       emit(
         QInfoValidState(
           isValid: false,
-          errorMessage: super.pinCodeError,
+          isValidPinCode: true,
+          errorPin: super.pinCodeError,
         ),
       );
     } 

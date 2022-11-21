@@ -55,7 +55,11 @@ class Information extends StatelessWidget {
                               helperText:
                                   'Enter last 6 characters 4827589XXXXXX',
                               errorText: 
-                                   state.errorMessage,
+                                   state.isValid == false && state.isValidAddress == false
+                              ? state.errorMessage 
+                              :  state.isValidAddress == true 
+                                ? state.errorAddress
+                                : '',
                               errorStyle: TextStyle(
                                 color: state.isValid
                                   ? RangerColors.blueBtn
@@ -87,7 +91,11 @@ class Information extends StatelessWidget {
                             labelText: 'PIN',
                             suffixIcon: const Icon(Icons.cancel_outlined),
                             helperText: 'XXX-XXXX-XXX',
-                            errorText: state.errorMessage,
+                            errorText: state.isValid == false && state.isValidPinCode == false
+                              ? state.errorMessage 
+                              :  state.isValidPinCode == true 
+                                ? state.errorPin
+                                : '',
                             errorStyle: TextStyle(
                               color: state.isValid
                                   ? RangerColors.blueBtn
