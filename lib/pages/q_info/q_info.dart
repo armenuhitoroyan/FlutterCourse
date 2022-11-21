@@ -113,7 +113,7 @@ class Information extends StatelessWidget {
                               QInfoTextChangedEvent(addressController.text,
                                   pinCodeController.text));
                           state.isValid == true
-                              ? Navigator.pushNamed(context, AppRoutes.devices)
+                              ? Navigator.pushNamed(context, AppRoutes.device)
                               : null;
 
                           // BlocProvider.of<InfoBloc>(context)

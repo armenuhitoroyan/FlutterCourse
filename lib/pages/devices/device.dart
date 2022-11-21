@@ -1,35 +1,20 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ranger/pages/devices/bloc/device_bloc.dart';
 
 import '../../config/colors.dart';
 
-class Devices extends StatefulWidget {
-  @override
-  State<Devices> createState() => _DevicesState();
-}
-
-class _DevicesState extends State<Devices> {
-  int _selectedIndex = 0;
-  String dropdownvalue = 'Item 1';
-
-  var items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-  ];
+class Device extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Container(
-          child: SafeArea(
+    return BlocBuilder<DeviceBloc, DeviceState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Stack(
                   children: <Widget>[
@@ -39,64 +24,36 @@ class _DevicesState extends State<Devices> {
                         color: RangerColors.blueBtn,
                         border: Border.all(color: RangerColors.blueBtn),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              '123 Oak Grove Dr.',
-                              style:
-                                  TextStyle(fontSize: 30, color: Colors.white),
-                            ),
-                            const Text(
-                              '4 lights on',
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
-                            ),
-                            const Text(
-                              '1 fan running',
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
-                            ),
-                            const Text(
-                              '1 outlet on',
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: DropdownButton(
-                                value: dropdownvalue,
-                                icon: const Icon(
-                                  Icons.keyboard_arrow_right,
-                                  color: RangerColors.white,
-                                ),
-                                items: items.map((String items) {
-                                  return DropdownMenuItem(
-                                    value: items,
-                                    child: Text(
-                                      items,
-                                      style: const TextStyle(
-                                        color: RangerColors.white
-                                      ),
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    dropdownvalue = newValue!;
-                                  });
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
+                      child: Column(
+                        children: const [
+                          // const
+                          Text(
+                            '123 Oak Grove Dr.',
+                            style: TextStyle(fontSize: 30, color: Colors.white),
+                          ),
+                          // const
+                          Text(
+                            '4 lights on',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                          // const
+                          Text(
+                            '1 fan running',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                          // const
+                          Text(
+                            '1 outlet on',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                          SizedBox(
+                            height: 40,
+                          )
+                        ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 150.0),
+                      padding: const EdgeInsets.only(top: 130.0),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -183,54 +140,48 @@ class _DevicesState extends State<Devices> {
                       ),
                     )
                   ],
-                ),
+                )
               ],
             ),
           ),
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        // fixedColor: RangerColors.blueBtn,
-        selectedItemColor: RangerColors.blueBtn,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
-        showUnselectedLabels: false,
-
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: RangerColors.blueBtn,
+            unselectedItemColor: Colors.grey,
+            backgroundColor: Colors.white,
+            showUnselectedLabels: false,
+            currentIndex: state.selectedIndex,
+            onTap: (value) {
+              BlocProvider.of<DeviceBloc>(context).add(SelectMenuItemEvent(
+                value));
+            },
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
+                  ),
+                  label: 'Home'),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.branding_watermark_outlined,
+                ),
+                label: 'Rooms',
               ),
-              label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.branding_watermark_outlined,
-            ),
-            label: 'Rooms',
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.play_circle_outline,
+                ),
+                label: 'Automations',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.more_vert,
+                ),
+                label: 'More',
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.play_circle_outline,
-            ),
-            label: 'Automations',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.more_vert,
-            ),
-            label: 'More',
-          ),
-        ],
-      ),
+        );
+      },
     );
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 }

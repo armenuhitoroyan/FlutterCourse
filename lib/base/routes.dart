@@ -5,6 +5,8 @@ import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/q_info/q_info.dart';
 import 'package:ranger/pages/qr_scanner/brc_scanner.dart';
 
+import '../pages/devices/bloc/device_bloc.dart';
+import '../pages/devices/device.dart';
 import '../pages/q_info/bloc/q_info_bloc.dart';
 
 class AppRoutes {
@@ -12,7 +14,8 @@ class AppRoutes {
   static const info = '/info';
   static const mobScan = '/scan';
   static const devices = '/devices';
-  static const brScan = '/scanner'; 
+  static const brScan = '/scanner';
+  static const device = '/device';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     if (settings.arguments != null) {}
@@ -26,7 +29,12 @@ class AppRoutes {
             child: Information(),
           ),
       AppRoutes.mobScan: (context) => MobScan(),
-      AppRoutes.devices: (context) => Devices()
+      AppRoutes.devices: (context) => Devices(),
+      
+      AppRoutes.device: (context) => BlocProvider(
+            create: (context) => DeviceBloc(),
+            child: Device(),
+          ),
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;
