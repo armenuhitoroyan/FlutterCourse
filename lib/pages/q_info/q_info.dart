@@ -20,7 +20,7 @@ class Information extends StatelessWidget {
             child: Text(
           'Enter Q Info',
           style: TextStyle(
-              color: RangerColors.black, backgroundColor: RangerColors.white),
+              color: RangerColors.black, ),
         )),
       ),
       body: Center(

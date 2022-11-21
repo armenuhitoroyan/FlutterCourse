@@ -10,8 +10,16 @@ class Devices extends StatefulWidget {
 }
 
 class _DevicesState extends State<Devices> {
-
   int _selectedIndex = 0;
+  String dropdownvalue = 'Item 1';
+
+  var items = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+    'Item 5',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +28,6 @@ class _DevicesState extends State<Devices> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
-            
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -37,37 +44,66 @@ class _DevicesState extends State<Devices> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               '123 Oak Grove Dr.',
-                              style: TextStyle(fontSize: 30, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 30, color: Colors.white),
                             ),
-                            Text(
+                            const Text(
                               '4 lights on',
-                              style: TextStyle(fontSize: 18, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
                             ),
-                            Text(
+                            const Text(
                               '1 fan running',
-                              style: TextStyle(fontSize: 18, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
                             ),
-                            Text(
+                            const Text(
                               '1 outlet on',
-                              style: TextStyle(fontSize: 18, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: DropdownButton(
+                                value: dropdownvalue,
+                                icon: const Icon(
+                                  Icons.keyboard_arrow_right,
+                                  color: RangerColors.white,
+                                ),
+                                items: items.map((String items) {
+                                  return DropdownMenuItem(
+                                    value: items,
+                                    child: Text(
+                                      items,
+                                      style: const TextStyle(
+                                        color: RangerColors.white
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    dropdownvalue = newValue!;
+                                  });
+                                },
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 115.0),
+                      padding: const EdgeInsets.only(top: 150.0),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            
+                            color: RangerColors.white,
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -89,8 +125,12 @@ class _DevicesState extends State<Devices> {
                                     Flexible(
                                       flex: 1,
                                       child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
                                         children: const [
-                                          Icon(Icons.edit_rounded)
+                                          Icon(
+                                            Icons.edit_rounded,
+                                          )
                                         ],
                                       ),
                                     ),
@@ -98,26 +138,30 @@ class _DevicesState extends State<Devices> {
                                 ),
                               ),
                               const Padding(
-                                padding: EdgeInsets.only(left: 20, right: 20, top: 100),
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 100),
                                 child: Text(
                                   'No favorite devices added yet',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(fontSize: 40),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 20, right: 20, top: 70, bottom: 70),
+                                padding: const EdgeInsets.only(
+                                    left: 20, right: 20, top: 70, bottom: 70),
                                 child: Container(
                                   width: max(200, 70),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Colors.white,
-                                      border:
-                                          Border.all(color: RangerColors.blueBtn)),
+                                      border: Border.all(
+                                          color: RangerColors.blueBtn)),
                                   child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 10, bottom: 10),
+                                    padding: const EdgeInsets.only(
+                                        top: 10, bottom: 10),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: const [
                                         Icon(
                                           Icons.add,
@@ -165,7 +209,6 @@ class _DevicesState extends State<Devices> {
                 Icons.branding_watermark_outlined,
               ),
               label: 'Rooms',
-
             ),
             BottomNavigationBarItem(
               icon: Icon(
@@ -174,13 +217,12 @@ class _DevicesState extends State<Devices> {
               label: 'Automations',
             ),
             BottomNavigationBarItem(
-              icon: Icon( 
+              icon: Icon(
                 Icons.more_vert,
               ),
               label: 'More',
             ),
           ],
-
         ),
       ),
     );
@@ -192,5 +234,3 @@ class _DevicesState extends State<Devices> {
     });
   }
 }
-
-
