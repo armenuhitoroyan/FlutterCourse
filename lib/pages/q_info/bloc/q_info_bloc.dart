@@ -61,31 +61,4 @@ class QrInfoBloc extends Bloc<QInfoEvent, QInfoValidState> with Texts {
     }
   }
 
-  // _onValidateAddress(ChangedAddressEvent event, Emitter<QInfoValidState> emit) {
-  //   final regExpAdd = RegExp(RegularExpressions.address);
-
-  //   if (regExpAdd.hasMatch(event.addressValue) == false ||
-  //       event.addressValue.length != 13) {
-  //     emit(
-  //       QInfoValidState(
-  //         isValid: false,
-  //         errorMessage: super.emailErr,
-  //       ),
-  //     );
-  //   } 
-  // }
-
-  // _onValidatePin(ChangedpinEvent event, Emitter<QInfoValidState> emit) {
-  //   final regExpPin = RegExp(RegularExpressions.address);
-
-  //   if (regExpPin.hasMatch(event.pinCodeValue) == false ||
-  //       event.pinCodeValue.length != 10) {
-  //     emit(
-  //       QInfoValidState(
-  //         isValid: false,
-  //         errorMessage: super.emailErr,
-  //       ),
-  //     );
-  //   }
-  // }
 }
