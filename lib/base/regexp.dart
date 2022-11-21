@@ -1,4 +1,4 @@
 class RegularExpressions {
-  static String address = r"^(?=.*[a-z]).{8,32}$";
+  static String address = r"^[a-zA-Z0-9_.-]*$";
   static String pinCode = r'^[0-9]+$';
 }
