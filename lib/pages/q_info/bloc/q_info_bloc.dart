@@ -2,14 +2,18 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ranger/base/regexp.dart';
 
+import '../../../config/str.dart';
+
 part 'q_info_event.dart';
 part 'q_info_state.dart';
 
-class QrInfoBloc extends Bloc<QInfoEvent, QInfoValidState> {
+class QrInfoBloc extends Bloc<QInfoEvent, QInfoValidState> with Texts {
   QrInfoBloc() : super(QInfoValidState()) {
     on<QInfoTextChangedEvent>(_onValidate);
 
     // on<QrInfoSubmittedEvent>(_onSubmitBtn);
+    // on<ChangedAddressEvent>(_onValidateAddress);
+    // on<ChangedpinEvent>(_onValidatePin);
   }
 
   _onValidate(QInfoTextChangedEvent event, Emitter<QInfoValidState> emit) {
@@ -19,37 +23,67 @@ class QrInfoBloc extends Bloc<QInfoEvent, QInfoValidState> {
     if (event.addressValue.isEmpty && event.pinCodeValue.isEmpty) {
       emit(
         QInfoValidState(
-            isValid: false,
-            errorMessage: 'Field must not be empty',
-            errorEmail: '',
-            errorPin: ''),
+          isValid: false,
+          errorMessage: super.errorMessage,
+        ),
       );
-    } else {
+    } 
+
+    else if (event.addressValue.length != 13 ||
+        (regExpAdd.hasMatch(event.addressValue) == false)) {
       emit(
         QInfoValidState(
-            isValid: true, errorMessage: '', errorEmail: '', errorPin: ''),
+          isValid: false,
+          errorMessage: super.emailErr,
+        ),
       );
     }
 
-    if (regExpAdd.hasMatch(event.addressValue) == false ||
-        event.addressValue.length != 13) {
+    else if (event.pinCodeValue.length != 10 || 
+      (regExpPin.hasMatch(event.pinCodeValue) == false)) {
       emit(
         QInfoValidState(
-            isValid: false,
-            errorMessage: '',
-            errorEmail: 'Please enter a valid address',
-            errorPin: ''),
+          isValid: false,
+          errorMessage: super.pinCodeError,
+        ),
       );
-    }
-    if (regExpPin.hasMatch(event.pinCodeValue) == false ||
-        event.pinCodeValue.length != 10) {
+    } 
+
+    else {
       emit(
         QInfoValidState(
-            isValid: false,
-            errorMessage: '',
-            errorEmail: '',
-            errorPin: 'Please enter a valid pin code'),
+          isValid: true,
+          errorMessage: '',
+        ),
       );
     }
   }
+
+  // _onValidateAddress(ChangedAddressEvent event, Emitter<QInfoValidState> emit) {
+  //   final regExpAdd = RegExp(RegularExpressions.address);
+
+  //   if (regExpAdd.hasMatch(event.addressValue) == false ||
+  //       event.addressValue.length != 13) {
+  //     emit(
+  //       QInfoValidState(
+  //         isValid: false,
+  //         errorMessage: super.emailErr,
+  //       ),
+  //     );
+  //   } 
+  // }
+
+  // _onValidatePin(ChangedpinEvent event, Emitter<QInfoValidState> emit) {
+  //   final regExpPin = RegExp(RegularExpressions.address);
+
+  //   if (regExpPin.hasMatch(event.pinCodeValue) == false ||
+  //       event.pinCodeValue.length != 10) {
+  //     emit(
+  //       QInfoValidState(
+  //         isValid: false,
+  //         errorMessage: super.emailErr,
+  //       ),
+  //     );
+  //   }
+  // }
 }

@@ -44,8 +44,7 @@ class Information extends StatelessWidget {
                           controller: addressController,
                           onChanged: (value) {
                             BlocProvider.of<QrInfoBloc>(context).add(
-                                QInfoTextChangedEvent(addressController.text,
-                                    pinCodeController.text));
+                                QInfoTextChangedEvent(addressController.text, pinCodeController.text));
                           },
                           decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -55,11 +54,8 @@ class Information extends StatelessWidget {
                               label: const Text('MAC Address'),
                               helperText:
                                   'Enter last 6 characters 4827589XXXXXX',
-                              errorText: state.isValid != true && state.errorMessage != '' 
-                                  ? state.errorMessage
-                                  : state.isValid != true 
-                                    ? state.errorEmail
-                                    : '',
+                              errorText: 
+                                   state.errorMessage,
                               errorStyle: TextStyle(
                                 color: state.isValid
                                   ? RangerColors.blueBtn
@@ -81,8 +77,7 @@ class Information extends StatelessWidget {
                           controller: pinCodeController,
                           onChanged: (value) {
                             BlocProvider.of<QrInfoBloc>(context).add(
-                                QInfoTextChangedEvent(addressController.text,
-                                    pinCodeController.text));
+                                QInfoTextChangedEvent(addressController.text, pinCodeController.text));
                           },
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -92,10 +87,7 @@ class Information extends StatelessWidget {
                             labelText: 'PIN',
                             suffixIcon: const Icon(Icons.cancel_outlined),
                             helperText: 'XXX-XXXX-XXX',
-                            errorText: state.errorMessage != '' ||
-                                    state.errorMessage != null
-                                ? state.errorMessage
-                                : state.errorPin,
+                            errorText: state.errorMessage,
                             errorStyle: TextStyle(
                               color: state.isValid
                                   ? RangerColors.blueBtn

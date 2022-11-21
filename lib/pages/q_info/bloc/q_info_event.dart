@@ -11,6 +11,18 @@ class QInfoTextChangedEvent extends QInfoEvent {
   final String addressValue;
   final String pinCodeValue;
 
-  QInfoTextChangedEvent(this.addressValue, this.pinCodeValue);
+  const QInfoTextChangedEvent(this.addressValue, this.pinCodeValue);
 }
 
+
+class ChangedAddressEvent extends QInfoEvent {
+  final String addressValue;
+
+  ChangedAddressEvent(this.addressValue);
+}
+
+class ChangedpinEvent extends QInfoEvent {
+  final String pinCodeValue;
+
+  ChangedpinEvent(this.pinCodeValue);
+}
