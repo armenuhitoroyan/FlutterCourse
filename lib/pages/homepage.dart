@@ -3,6 +3,8 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/colors.dart';
+import 'package:ranger/config/images.dart';
+import 'package:ranger/config/str.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -13,13 +15,13 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with RangerImages {
   String _data = '';
 
   _scan() async {
     await FlutterBarcodeScanner.scanBarcode(
-      '#000000',
-      'Cansel',
+      '${RangerColors.white}',
+      RangerTexts.cansel,
       true,
       ScanMode.BARCODE,
     ).then((value) => setState(
@@ -40,11 +42,11 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Text(
-                    'Let\'s get conected!',
+                    RangerTexts.letsConnect,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline4,
                   ),
-                  Image.asset('assets/qbacklabel.png'),
+                  Image.asset('assets/${super.q_back_label}'),
                   SizedBox(
                     height: 20,
                     child: Text(
@@ -64,10 +66,7 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
-                              // onPressed: () {
-                
-                              //   // Navigator.pushNamed(context, AppRoutes.mobScan);
-                              // },
+                             
                               onPressed: () async => _scan(),
                               icon: const Icon(
                                 Icons.photo_camera_rounded,
@@ -79,17 +78,17 @@ class _HomePageState extends State<HomePage> {
                                 context: context,
                                 builder: (BuildContext context) => AlertDialog(
                                   title: const Text(
-                                      '"Levven" Would Like to Access the Camera'),
-                                  content: const Text('AlertDialog description'),
+                                      RangerTexts.accessCamera),
+                                  content: const Text(RangerTexts.dialogDescription),
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () =>
-                                          Navigator.pop(context, 'Cancel'),
-                                      child: const Text('Cancel'),
+                                          Navigator.pop(context, RangerTexts.cansel),
+                                      child: const Text(RangerTexts.cansel),
                                     ),
                                     TextButton(
-                                      onPressed: () => Navigator.pop(context, 'OK'),
-                                      child: const Text('OK'),
+                                      onPressed: () => Navigator.pop(context, RangerTexts.ok),
+                                      child: const Text(RangerTexts.ok),
                                     ),
                                   ],
                                 ),
@@ -97,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: RangerColors.yellowBtn),
                               child: const Text(
-                                'SCAN',
+                                RangerTexts.scan,
                                 style: TextStyle(color: RangerColors.black),
                               ),
                             )
@@ -108,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                    child: Text('or'),
+                    child: Text(RangerTexts.or),
                   ),
                   SizedBox(
                     width: double.infinity,
@@ -129,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
                                   Text(
-                                    'ENTER MANUALLY',
+                                    RangerTexts.enterManually,
                                     style: TextStyle(color: RangerColors.blueBtn),
                                   )
                                 ],
@@ -144,14 +143,14 @@ class _HomePageState extends State<HomePage> {
                       const Padding (
                         padding: EdgeInsets.all(10.0),
                         child: Text(
-                            'If you are having trouble getting set up, please '),
+                            RangerTexts.gettingSetUp),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
-                          Text('contact us at'),
+                          Text(RangerTexts.contact),
                           Text(
-                            ' support@levven.com',
+                            RangerTexts.emailAdd,
                             style: TextStyle(color: RangerColors.blueBtn),
                           ),
                         ],

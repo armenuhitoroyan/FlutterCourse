@@ -3,10 +3,12 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/colors.dart';
+import 'package:ranger/config/images.dart';
+import 'package:ranger/config/str.dart';
 
 import 'bloc/scanner_bloc.dart';
 
-class HomePageState extends StatelessWidget {
+class HomePageState extends StatelessWidget with RangerImages {
   HomePageState({
     super.key,
     required this.title,
@@ -32,11 +34,11 @@ class HomePageState extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Text(
-                          'Let\'s get conected!',
+                          RangerTexts.letsConnect,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.headline4,
                         ),
-                        Image.asset('assets/qbacklabel.png'),
+                        Image.asset('assets/${super.q_back_label}'),
                         SizedBox(
                           height: 20,
                           child: Text(
@@ -57,8 +59,9 @@ class HomePageState extends StatelessWidget {
                                 children: [
                                   IconButton(
                                     onPressed: () {
-                                      BlocProvider.of<ScannerBloc>(context)
-                                          .add(ScanEvent(() async => state.scan!.call()));
+                                      BlocProvider.of<ScannerBloc>(context).add(
+                                          ScanEvent(
+                                              () async => state.scan!.call()));
                                       print('state.data: ${state.scan}');
                                     },
                                     // state.scan,
@@ -73,19 +76,20 @@ class HomePageState extends StatelessWidget {
                                       builder: (BuildContext context) =>
                                           AlertDialog(
                                         title: const Text(
-                                            '"Levven" Would Like to Access the Camera'),
+                                            RangerTexts.accessCamera),
                                         content: const Text(
-                                            'AlertDialog description'),
+                                            RangerTexts.dialogDescription),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () => Navigator.pop(
-                                                context, 'Cancel'),
-                                            child: const Text('Cancel'),
+                                                context, RangerTexts.cansel),
+                                            child:
+                                                const Text(RangerTexts.cansel),
                                           ),
                                           TextButton(
-                                            onPressed: () =>
-                                                Navigator.pop(context, 'OK'),
-                                            child: const Text('OK'),
+                                            onPressed: () => Navigator.pop(
+                                                context, RangerTexts.ok),
+                                            child: const Text(RangerTexts.ok),
                                           ),
                                         ],
                                       ),
@@ -94,7 +98,7 @@ class HomePageState extends StatelessWidget {
                                         backgroundColor:
                                             RangerColors.yellowBtn),
                                     child: const Text(
-                                      'SCAN',
+                                      RangerTexts.scan,
                                       style:
                                           TextStyle(color: RangerColors.black),
                                     ),
@@ -106,7 +110,7 @@ class HomePageState extends StatelessWidget {
                         ),
                         const Padding(
                           padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                          child: Text('or'),
+                          child: Text(RangerTexts.or),
                         ),
                         SizedBox(
                           width: double.infinity,
@@ -131,7 +135,7 @@ class HomePageState extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: const [
                                         Text(
-                                          'ENTER MANUALLY',
+                                          RangerTexts.enterManually,
                                           style: TextStyle(
                                               color: RangerColors.blueBtn),
                                         )
@@ -146,15 +150,14 @@ class HomePageState extends StatelessWidget {
                           children: [
                             const Padding(
                               padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                  'If you are having trouble getting set up, please '),
+                              child: Text(RangerTexts.gettingSetUp),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Text('contact us at'),
+                                Text(RangerTexts.contact),
                                 Text(
-                                  ' support@levven.com',
+                                  RangerTexts.emailAdd,
                                   style: TextStyle(color: RangerColors.blueBtn),
                                 ),
                               ],

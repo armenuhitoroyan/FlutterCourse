@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/app_style.dart';
 import 'package:ranger/config/colors.dart';
+import 'package:ranger/config/images.dart';
 import 'package:ranger/pages/q_info/bloc/q_info_bloc.dart';
 
 import '../../config/str.dart';
 
-class Information extends StatelessWidget {
+class Information extends StatelessWidget with RangerImages {
   AppStyle appStyle = AppStyle();
   Information({super.key});
 
@@ -23,7 +24,7 @@ class Information extends StatelessWidget {
       appBar: AppBar(
         title: const Center(
             child: Text(
-          'Enter Q Info',
+          RangerTexts.titleInfoPage,
           style: TextStyle(
             color: RangerColors.black,
           ),
@@ -36,7 +37,7 @@ class Information extends StatelessWidget {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Image.asset('assets/qbacklabel.png'),
+                  Image.asset('assets/${super.q_back_label}'),
                   const SizedBox(
                     height: 10,
                   ),
@@ -59,8 +60,7 @@ class Information extends StatelessWidget {
                             enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
                                 width: 1,
-                                color: 
-                                  RangerColors.greyBottomBar,
+                                color: RangerColors.greyBottomBar,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
@@ -73,7 +73,8 @@ class Information extends StatelessWidget {
                                     ? state.errorAddress
                                     : '',
                             focusedErrorBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(color: RangerColors.blueBtn),
+                              borderSide:
+                                  BorderSide(color: RangerColors.blueBtn),
                             ),
                             errorStyle: TextStyle(
                               color: !state.isValid && !state.isValidPinCode
@@ -116,8 +117,7 @@ class Information extends StatelessWidget {
                             enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
                                 width: 1,
-                                color:
-                                  RangerColors.greyBottomBar,
+                                color: RangerColors.greyBottomBar,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
@@ -146,7 +146,8 @@ class Information extends StatelessWidget {
                                       : RangerColors.blueBtn,
                             ),
                             focusedErrorBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(color: RangerColors.blueBtn),
+                              borderSide:
+                                  BorderSide(color: RangerColors.blueBtn),
                             ),
                             // focusColor: RangerColors.black
                           ),
@@ -173,7 +174,7 @@ class Information extends StatelessWidget {
                                 ? RangerColors.blueBtn
                                 : RangerColors.greyBottomBar),
                         child: const Text(
-                          'SUBMIT',
+                          RangerTexts.submit,
                           style: TextStyle(color: RangerColors.white),
                         ),
                       ),
@@ -183,13 +184,13 @@ class Information extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                          'If you are having trouble getting set up, please '),
+                          RangerTexts.gettingSetUp),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
-                          Text('contact us at'),
+                          Text(RangerTexts.contact),
                           Text(
-                            ' support@levven.com',
+                            RangerTexts.emailAdd,
                             style: TextStyle(color: RangerColors.blueBtn),
                           ),
                         ],

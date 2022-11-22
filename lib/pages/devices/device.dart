@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/devices/bloc/device_bloc.dart';
 
 import '../../config/colors.dart';
@@ -14,8 +15,6 @@ class Device extends StatelessWidget {
     'See 4 More',
     'See 5 More',
   ];
-
-  String dropdownvalue = 'See 1 More';
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class Device extends StatelessWidget {
                           const Padding(
                             padding: EdgeInsets.only(left: 15),
                             child: Text(
-                              '123 Oak Grove Dr.',
+                              RangerTexts.grove,
                               style:
                                   TextStyle(fontSize: 30, color: Colors.white),
                             ),
@@ -47,7 +46,7 @@ class Device extends StatelessWidget {
                           const Padding(
                             padding: EdgeInsets.only(left: 25),
                             child: Text(
-                              '4 lights on',
+                              RangerTexts.lightsOn,
                               style:
                                   TextStyle(fontSize: 18, color: Colors.white),
                             ),
@@ -55,7 +54,7 @@ class Device extends StatelessWidget {
                           const Padding(
                             padding: EdgeInsets.only(left: 25),
                             child: Text(
-                              '1 fan running',
+                              RangerTexts.running,
                               style:
                                   TextStyle(fontSize: 18, color: Colors.white),
                             ),
@@ -63,7 +62,7 @@ class Device extends StatelessWidget {
                           const Padding(
                             padding: EdgeInsets.only(left: 25),
                             child: Text(
-                              '1 outlet on',
+                              RangerTexts.outlet,
                               style:
                                   TextStyle(fontSize: 18, color: Colors.white),
                             ),
@@ -78,8 +77,7 @@ class Device extends StatelessWidget {
                                 Icons.keyboard_arrow_right,
                                 color: RangerColors.white,
                               ),
-                              items: 
-                              items.map((String item) {
+                              items: items.map((String item) {
                                 return DropdownMenuItem(
                                   value: item,
                                   child: Text(
@@ -87,12 +85,11 @@ class Device extends StatelessWidget {
                                     style: const TextStyle(
                                         color: RangerColors.white),
                                   ),
-                                  
                                 );
                               }).toList(),
                               onChanged: (value) {
                                 BlocProvider.of<DeviceBloc>(context)
-                                  .add(SelectDropdownItemEvent(value!));
+                                    .add(SelectDropdownItemEvent(value!));
                                 state.dropdownvalue = value;
                               },
                             ),
@@ -126,7 +123,7 @@ class Device extends StatelessWidget {
                                       flex: 1,
                                       child: Row(
                                         children: const [
-                                          Text('Favorite'),
+                                          Text(RangerTexts.favorite),
                                         ],
                                       ),
                                     ),
@@ -149,7 +146,7 @@ class Device extends StatelessWidget {
                                 padding: EdgeInsets.only(
                                     left: 20, right: 20, top: 100),
                                 child: Text(
-                                  'No favorite devices added yet',
+                                  RangerTexts.favDevs,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(fontSize: 40),
                                 ),
@@ -176,7 +173,7 @@ class Device extends StatelessWidget {
                                           color: RangerColors.blueBtn,
                                         ),
                                         Text(
-                                          'ADD A FAVORITE',
+                                          RangerTexts.addFav ,
                                           style: TextStyle(
                                               color: RangerColors.blueBtn),
                                         )
@@ -210,24 +207,24 @@ class Device extends StatelessWidget {
                   icon: Icon(
                     Icons.home,
                   ),
-                  label: 'Home'),
+                  label: RangerTexts.home),
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.branding_watermark_outlined,
                 ),
-                label: 'Rooms',
+                label: RangerTexts.rooms,
               ),
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.play_circle_outline,
                 ),
-                label: 'Automations',
+                label: RangerTexts.automations,
               ),
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.more_vert,
                 ),
-                label: 'More',
+                label: RangerTexts.settings,
               ),
             ],
           ),
