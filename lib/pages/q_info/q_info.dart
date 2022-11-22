@@ -5,12 +5,17 @@ import 'package:ranger/config/app_style.dart';
 import 'package:ranger/config/colors.dart';
 import 'package:ranger/pages/q_info/bloc/q_info_bloc.dart';
 
+import '../../config/str.dart';
+
 class Information extends StatelessWidget {
   AppStyle appStyle = AppStyle();
   Information({super.key});
 
   TextEditingController addressController = TextEditingController();
   TextEditingController pinCodeController = TextEditingController();
+
+  String addressErrorMsg = '';
+  String pincodeErrorMsg = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +25,8 @@ class Information extends StatelessWidget {
             child: Text(
           'Enter Q Info',
           style: TextStyle(
-              color: RangerColors.black, ),
+            color: RangerColors.black,
+          ),
         )),
       ),
       body: Center(
@@ -44,28 +50,48 @@ class Information extends StatelessWidget {
                           controller: addressController,
                           onChanged: (value) {
                             BlocProvider.of<QrInfoBloc>(context).add(
-                                QInfoTextChangedEvent(addressController.text, pinCodeController.text));
+                                QInfoTextChangedEvent(addressController.text,
+                                    pinCodeController.text));
+
+                            addressErrorMsg = state.errorAddress!;
                           },
                           decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(width: 1),
-                                borderRadius: BorderRadius.circular(8.0),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                width: 1,
+                                color: 
+                                  RangerColors.greyBottomBar,
                               ),
-                              label: const Text('MAC Address'),
-                              helperText:
-                                  'Enter last 6 characters 4827589XXXXXX',
-                              errorText: 
-                                   state.isValid == false && state.isValidAddress == false
-                              ? state.errorMessage 
-                              :  state.isValidAddress == true 
-                                ? state.errorAddress
-                                : '',
-                              errorStyle: TextStyle(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            labelText: RangerTexts.macAddress,
+                            border: const OutlineInputBorder(),
+                            helperText: RangerTexts.helperTextAddress,
+                            errorText: !state.isValid && !state.isValidAddress
+                                ? state.errorMessage
+                                : state.isValidAddress
+                                    ? state.errorAddress
+                                    : '',
+                            focusedErrorBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(color: RangerColors.blueBtn),
+                            ),
+                            errorStyle: TextStyle(
+                              color: !state.isValid && !state.isValidPinCode
+                                  ? RangerColors.errorColor
+                                  : state.isValidPinCode
+                                      ? RangerColors.errorColor
+                                      : RangerColors.blueBtn,
+                            ),
+                            suffixIcon: InkWell(
+                              onTap: () => addressController.clear(),
+                              child: Icon(
+                                Icons.cancel_outlined,
                                 color: state.isValid
-                                  ? RangerColors.blueBtn
-                                  : RangerColors.errorColor,
+                                    ? RangerColors.blueBtn
+                                    : RangerColors.greyBottomBar,
                               ),
-                              suffixIcon: const Icon(Icons.cancel_outlined)),
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -81,28 +107,46 @@ class Information extends StatelessWidget {
                           controller: pinCodeController,
                           onChanged: (value) {
                             BlocProvider.of<QrInfoBloc>(context).add(
-                                QInfoTextChangedEvent(addressController.text, pinCodeController.text));
+                                QInfoTextChangedEvent(addressController.text,
+                                    pinCodeController.text));
+
+                            pincodeErrorMsg = state.errorPin!;
                           },
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(width: 1),
+                              borderSide: const BorderSide(
+                                width: 1,
+                                color:
+                                  RangerColors.greyBottomBar,
+                              ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
-                            labelText: 'PIN',
-                            suffixIcon: const Icon(Icons.cancel_outlined),
-                            helperText: 'XXX-XXXX-XXX',
-                            errorText: state.isValid == false && state.isValidPinCode == false
-                              ? state.errorMessage 
-                              :  state.isValidPinCode == true 
-                                ? state.errorPin
-                                : '',
+                            border: const OutlineInputBorder(),
+                            labelText: RangerTexts.pin,
+                            suffixIcon: InkWell(
+                              onTap: () => pinCodeController.clear(),
+                              child: Icon(
+                                Icons.cancel_outlined,
+                                color: state.isValid
+                                    ? RangerColors.blueBtn
+                                    : RangerColors.greyBottomBar,
+                              ),
+                            ),
+                            helperText: RangerTexts.helperTextPin,
+                            errorText: !state.isValid && !state.isValidPinCode
+                                ? state.errorMessage
+                                : state.isValidPinCode
+                                    ? state.errorPin
+                                    : '',
                             errorStyle: TextStyle(
-                              color: state.isValid
-                                  ? RangerColors.blueBtn
-                                  : RangerColors.errorColor,
+                              color: !state.isValid && !state.isValidPinCode
+                                  ? RangerColors.errorColor
+                                  : state.isValidPinCode
+                                      ? RangerColors.errorColor
+                                      : RangerColors.blueBtn,
                             ),
                             focusedErrorBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide.none,
+                              borderSide: BorderSide(color: RangerColors.blueBtn),
                             ),
                             // focusColor: RangerColors.black
                           ),
@@ -123,9 +167,6 @@ class Information extends StatelessWidget {
                           state.isValid == true
                               ? Navigator.pushNamed(context, AppRoutes.device)
                               : null;
-
-                          // BlocProvider.of<InfoBloc>(context)
-                          //     .add(SubmitEvent(macController.text, pinController.text));
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: state.isValid

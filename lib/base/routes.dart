@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/q_info/q_info.dart';
-import 'package:ranger/pages/qr_scanner/brc_scanner.dart';
 
 import '../pages/devices/bloc/device_bloc.dart';
 import '../pages/devices/device.dart';
@@ -26,7 +25,6 @@ class AppRoutes {
             create: (context) => QrInfoBloc(),
             child: Information(),
           ),
-      AppRoutes.mobScan: (context) => MobScan(),
       
       AppRoutes.device: (context) => BlocProvider(
             create: (context) => DeviceBloc(),
