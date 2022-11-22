@@ -2,7 +2,6 @@ part of 'scanner_bloc.dart';
 
 abstract class ScannerEvent extends Equatable {
   const ScannerEvent();
-  
 
   @override
   List<Object> get props => [];
@@ -10,6 +9,10 @@ abstract class ScannerEvent extends Equatable {
 
 class ScanEvent extends ScannerEvent {
   Function scan;
+  String data;
 
-  ScanEvent(this.scan,);
+  ScanEvent(
+    this.scan,
+    this.data
+  );
 }

@@ -18,8 +18,12 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
           true,
           ScanMode.BARCODE,
         ).then((value) => () => data = value);
-    emit(state.copyWith(data: data, scan: result));
+    emit(state.copyWith(data: event.data, scan: result));
+
+    event.scan = result;
+
+    emit(state.copyWith(data: event.data, scan: event.scan));
+
     // add(event.scan as ScannerEvent);
   }
-  
 }
