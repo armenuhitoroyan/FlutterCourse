@@ -20,10 +20,6 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
         ).then((value) => () => data = value);
     emit(state.copyWith(data: event.data, scan: result));
 
-    event.scan = result;
-
-    emit(state.copyWith(data: event.data, scan: event.scan));
-
     // add(event.scan as ScannerEvent);
   }
 }

@@ -61,8 +61,10 @@ class HomePageState extends StatelessWidget with RangerImages {
                                     onPressed: () {
                                       BlocProvider.of<ScannerBloc>(context).add(
                                           ScanEvent(
-                                              () => state.scan!, state.data));
-                                      print('state.data: ${state.scan!.call()}');
+                                              () async => state.scan!,
+                                              state.data));
+                                      state.scan!.call();
+                                      print('state.data: ${state.data}');
                                     },
                                     // state.scan,
                                     icon: const Icon(
