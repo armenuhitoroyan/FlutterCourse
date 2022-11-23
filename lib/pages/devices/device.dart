@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/devices/bloc/device_bloc.dart';
 
@@ -173,7 +174,7 @@ class Device extends StatelessWidget {
                                           color: RangerColors.blueBtn,
                                         ),
                                         Text(
-                                          RangerTexts.addFav ,
+                                          RangerTexts.addFav,
                                           style: TextStyle(
                                               color: RangerColors.blueBtn),
                                         )
@@ -202,25 +203,30 @@ class Device extends StatelessWidget {
               BlocProvider.of<DeviceBloc>(context)
                   .add(SelectMenuItemEvent(value));
             },
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
+            items: <BottomNavigationBarItem>[
+              const BottomNavigationBarItem(
                   icon: Icon(
                     Icons.home,
                   ),
                   label: RangerTexts.home),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(
                   Icons.branding_watermark_outlined,
                 ),
                 label: RangerTexts.rooms,
               ),
               BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.play_circle_outline,
+                icon: InkWell(
+                  onTap:() {
+                    Navigator.pushNamed(context, AppRoutes.automations);
+                  },
+                  child: const Icon(
+                    Icons.play_circle_outline,
+                  ),
                 ),
                 label: RangerTexts.automations,
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(
                   Icons.more_vert,
                 ),

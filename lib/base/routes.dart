@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ranger/pages/automations/automations.dart';
 import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/q_info/q_info.dart';
 
@@ -13,6 +14,7 @@ class AppRoutes {
   static const mobScan = '/scan';
   static const brScan = '/scanner';
   static const device = '/device';
+  static const automations = '/automations';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     if (settings.arguments != null) {}
@@ -25,11 +27,12 @@ class AppRoutes {
             create: (context) => QrInfoBloc(),
             child: Information(),
           ),
-      
       AppRoutes.device: (context) => BlocProvider(
             create: (context) => DeviceBloc(),
             child: Device(),
           ),
+
+      AppRoutes.automations: (context) => Automations()
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;
