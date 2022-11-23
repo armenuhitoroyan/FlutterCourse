@@ -7,12 +7,4 @@ abstract class ScannerEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ScanEvent extends ScannerEvent {
-  Function scan;
-  String data;
-
-  ScanEvent(
-    this.scan,
-    this.data
-  );
-}
+class ScanEvent extends ScannerEvent {}

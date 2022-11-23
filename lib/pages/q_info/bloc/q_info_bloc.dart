@@ -64,10 +64,5 @@ class QrInfoBloc extends Bloc<QInfoEvent, QInfoValidState> with RangerTexts {
       ),
     );
 
-    // emit(QInfoValidState(
-    //     errorAddress: addressErrorMessage,
-    //     errorMessage: message,
-    //     errorPin: pincodeErrorMessage,
-    //     isValid: isValid));
   }
 }

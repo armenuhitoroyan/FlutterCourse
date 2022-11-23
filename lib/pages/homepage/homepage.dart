@@ -15,6 +15,7 @@ class HomePageState extends StatelessWidget with RangerImages {
   });
 
   final String title;
+  String data = '';
   Function? scan;
 
   @override
@@ -30,6 +31,8 @@ class HomePageState extends StatelessWidget with RangerImages {
               child: SafeArea(
                 child: BlocBuilder<ScannerBloc, ScannerState>(
                   builder: (context, state) {
+
+                    
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
@@ -59,14 +62,9 @@ class HomePageState extends StatelessWidget with RangerImages {
                                 children: [
                                   IconButton(
                                     onPressed: () {
-                                      BlocProvider.of<ScannerBloc>(context).add(
-                                          ScanEvent(
-                                              () async => state.scan!,
-                                              state.data));
-                                      state.scan!.call();
-                                      print('state.data: ${state.data}');
+                                      BlocProvider.of<ScannerBloc>(context)
+                                          .add(ScanEvent());
                                     },
-                                    // state.scan,
                                     icon: const Icon(
                                       Icons.photo_camera_rounded,
                                       color: RangerColors.white,
