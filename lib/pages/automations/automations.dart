@@ -17,6 +17,7 @@ class Automations extends StatefulWidget {
 class _AutomationsState extends State<Automations> {
   TextEditingController searchController = TextEditingController();
   bool isLoaded = false;
+  bool isSubmitted = false;
 
   Timer? _debounce;
 
@@ -56,6 +57,7 @@ class _AutomationsState extends State<Automations> {
                     alignment: Alignment.topCenter,
                     child: TextField(
                       controller: searchController,
+                      onSubmitted: (value) => isSubmitted == true,
                       onChanged: _onSearchChanged,
                       decoration: InputDecoration(
                         filled: true,
@@ -85,9 +87,12 @@ class _AutomationsState extends State<Automations> {
                       child: Center(
                         child: isLoaded
                             ? Text(searchController.text)
-                            : const CircularProgressIndicator(
-                                color: RangerColors.blueBtn,
-                              ),
+                            : isSubmitted == true
+                                ? 
+                                const CircularProgressIndicator(
+                                    color: RangerColors.blueBtn,
+                                  )
+                                : null,
                       ),
                     ),
 
@@ -152,14 +157,13 @@ class _AutomationsState extends State<Automations> {
     _debounce = Timer(const Duration(milliseconds: 500), () {
       setState(() {
         if (query.isNotEmpty) {
-          // text = query;
           isLoaded = true;
         } else {
           isLoaded = false;
+          // isSubmitted = true;
         }
       });
-
-      print(query);
     });
   }
+
 }

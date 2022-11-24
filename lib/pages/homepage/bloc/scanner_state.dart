@@ -5,7 +5,7 @@ class ScannerState extends Equatable {
   
   ScannerState({ this.data = '',});
 
-  ScannerState copyWith({String? data, Function? scan}) {
+  ScannerState copyWith({String? data}) {
     return ScannerState(
       data: data ?? this.data,
     );
