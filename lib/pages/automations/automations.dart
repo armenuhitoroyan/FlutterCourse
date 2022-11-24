@@ -57,7 +57,7 @@ class _AutomationsState extends State<Automations> {
                     alignment: Alignment.topCenter,
                     child: TextField(
                       controller: searchController,
-                      onSubmitted: (value) => isSubmitted == true,
+                      onSubmitted: (value) => _onSearchChanged,
                       onChanged: _onSearchChanged,
                       decoration: InputDecoration(
                         filled: true,
@@ -160,7 +160,7 @@ class _AutomationsState extends State<Automations> {
           isLoaded = true;
         } else {
           isLoaded = false;
-          // isSubmitted = true;
+          isSubmitted = true;
         }
       });
     });
