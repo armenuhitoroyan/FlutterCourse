@@ -1,11 +1,30 @@
+import 'dart:async';
+
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:ranger/config/colors.dart';
 import 'package:ranger/config/images.dart';
 import 'package:ranger/config/str.dart';
+import 'package:rxdart/rxdart.dart';
 
-class Automations extends StatelessWidget {
+import '../../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 
+class Automations extends StatefulWidget {
+  @override
+  State<Automations> createState() => _AutomationsState();
+}
+
+class _AutomationsState extends State<Automations> {
   TextEditingController searchController = TextEditingController();
+  bool isLoaded = false;
+
+  Timer? _debounce;
+
+  @override
+  void dispose() {
+    _debounce!.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,51 +37,61 @@ class Automations extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                width: double.infinity,
-                decoration: const BoxDecoration(color: RangerColors.blueBtn),
-                child: const Padding(
-                  padding: EdgeInsets.only(
-                      left: 10.0, right: 10.0, top: 40.0, bottom: 40.0),
-                  child: Text(
-                    RangerTexts.automations,
-                    style: TextStyle(fontSize: 30, color: RangerColors.white),
+              Stack(children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(color: RangerColors.blueBtn),
+                  child: const Padding(
+                    padding: EdgeInsets.only(
+                        left: 10.0, right: 10.0, top: 40.0, bottom: 40.0),
+                    child: Text(
+                      RangerTexts.automations,
+                      style: TextStyle(fontSize: 30, color: RangerColors.white),
+                    ),
                   ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: TextField(
+                      controller: searchController,
+                      onChanged: _onSearchChanged,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: RangerColors.white,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            width: 1,
+                            color: RangerColors.greyBottomBar,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        prefixIcon: const Icon(Icons.search),
+                        // icon: const Icon(Icons.search),
+                        hintText: 'Search by name, ...',
+                        border: const OutlineInputBorder(),
+                        suffixIcon: const Icon(Icons.arrow_right_sharp),
+                      ),
+                    ),
+                  ),
+                ),
+              ]),
               Container(
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: TextField(
-                            controller: searchController,
-                            onChanged: (value) {
-                              
-                            },
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  width: 1,
-                                  color: RangerColors.greyBottomBar,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
+                    SizedBox(
+                      height: 120,
+                      child: Center(
+                        child: isLoaded
+                            ? Text(searchController.text)
+                            : const CircularProgressIndicator(
+                                color: RangerColors.blueBtn,
                               ),
-                              labelText: 'Search by name, ...',
-                              border: const OutlineInputBorder(),
-                            
-                              focusedErrorBorder: const UnderlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: RangerColors.blueBtn),
-                              ),
-                             
-                            ),
-                          ),
+                      ),
                     ),
-                    const SizedBox(
-                      height: 150,
-                    ),
-                    // Spacer(),
+
+                    //  Spacer(flex: 2,),
                     const Text(
                       'No Automation added yet',
                       style: TextStyle(
@@ -86,15 +115,14 @@ class Automations extends StatelessWidget {
                       height: 100,
                       child: RangerImages.circularLineArrow,
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      // crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(15.0),
+                          padding:
+                              const EdgeInsets.only(right: 20.0, bottom: 20.0),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 shape: const CircleBorder(),
@@ -115,6 +143,23 @@ class Automations extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavBar(),
     );
+  }
+
+  _onSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      setState(() {
+        if (query.isNotEmpty) {
+          // text = query;
+          isLoaded = true;
+        } else {
+          isLoaded = false;
+        }
+      });
+
+      print(query);
+    });
   }
 }
