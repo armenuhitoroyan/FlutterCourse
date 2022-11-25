@@ -3,15 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ranger/config/colors.dart';
 import 'package:ranger/config/images.dart';
 import 'package:ranger/config/str.dart';
+import 'package:ranger/pages/automations/searching/bloc/gsearch_bloc.dart';
 
-import '../../widgets/bottom_nav_bar/bottom_nav_bar.dart';
+import '../../../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 
-import 'bloc/searching_bloc.dart';
-
-class SearchedState extends StatelessWidget {
+class SearchWords extends StatelessWidget {
   TextEditingController searchController = TextEditingController();
-
+  bool isLoaded = false;
   bool isSubmitted = false;
+  String data = '';
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +20,11 @@ class SearchedState extends StatelessWidget {
 
   Widget _buildContent() {
     return BlocProvider(
-      create: (context) => SearchingBloc(),
+      create: (context) => GsearchBloc(),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            child: BlocBuilder<SearchingBloc, SearchingState>(
+            child: BlocBuilder<GsearchBloc, GsearchState>(
               builder: (context, state) {
                 return Column(
                   children: [
@@ -50,14 +50,9 @@ class SearchedState extends StatelessWidget {
                           alignment: Alignment.topCenter,
                           child: TextField(
                             controller: searchController,
-                            // onSubmitted: (value) => isSubmitted == true,
-                            onChanged: (value) async {
-                               BlocProvider.of<SearchingBloc>(context)
-                                  .add(SearchedEvent(
-                                searchController.text,
-                              ));
-                              // print('0:  ${await state.data}');
-                              // print(state.isLoaded);
+                            onChanged: (value) {
+                              BlocProvider.of<GsearchBloc>(context)
+                                .add(GsearchedEvent(searchController.text));
                             },
                             decoration: InputDecoration(
                               filled: true,
@@ -86,16 +81,13 @@ class SearchedState extends StatelessWidget {
                             height: 120,
                             child: Center(
                                 child: state.isLoaded
-                                    ? Text(state.data)
-                                    :
-                                    //isSubmitted == true
-                                    // ?
-                                    const CircularProgressIndicator(
+                                    ? Text(state.searchValue)
+                                    : const CircularProgressIndicator(
                                         color: RangerColors.blueBtn,
-                                      )
-                                // : null,
-                                ),
+                                      )),
                           ),
+
+                          //  Spacer(flex: 2,),
                           const Text(
                             'No Automation added yet',
                             style: TextStyle(
@@ -120,6 +112,7 @@ class SearchedState extends StatelessWidget {
                             height: 100,
                             child: RangerImages.circularLineArrow,
                           ),
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             // crossAxisAlignment: CrossAxisAlignment.end,

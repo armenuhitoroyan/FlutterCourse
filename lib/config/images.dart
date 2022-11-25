@@ -10,6 +10,6 @@ class RangerImages {
   }
 
    static Image circularLineArrow = Image.asset(
-    'circular_line_arrow.png',
+    'assets/circular_line_arrow.png',
   );
 }
