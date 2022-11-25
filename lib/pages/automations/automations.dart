@@ -18,6 +18,7 @@ class _AutomationsState extends State<Automations> {
   TextEditingController searchController = TextEditingController();
   bool isLoaded = false;
   bool isSubmitted = false;
+  String data = '';
 
   Timer? _debounce;
 
@@ -86,10 +87,9 @@ class _AutomationsState extends State<Automations> {
                       height: 120,
                       child: Center(
                         child: isLoaded
-                            ? Text(searchController.text)
+                            ? Text(data)
                             : isSubmitted == true
-                                ? 
-                                const CircularProgressIndicator(
+                                ? const CircularProgressIndicator(
                                     color: RangerColors.blueBtn,
                                   )
                                 : null,
@@ -157,13 +157,14 @@ class _AutomationsState extends State<Automations> {
     _debounce = Timer(const Duration(milliseconds: 500), () {
       setState(() {
         if (query.isNotEmpty) {
+          data = query;
           isLoaded = true;
         } else {
           isLoaded = false;
+          data = '';
           isSubmitted = true;
         }
       });
     });
   }
-
 }

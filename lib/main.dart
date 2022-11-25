@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home:
-          Automations(),
-          // SearchedState(),
+          // Automations(),
+          SearchedState(),
 
       // HomePageState(title: 'Flutter Demo Home Page',),
       onGenerateRoute: AppRoutes.onGenerateRoute,

@@ -56,8 +56,8 @@ class SearchedState extends StatelessWidget {
                                   .add(SearchedEvent(
                                 searchController.text,
                               ));
-                              print('0:  ${await state.data}');
-                              print(state.isLoaded);
+                              // print('0:  ${await state.data}');
+                              // print(state.isLoaded);
                             },
                             decoration: InputDecoration(
                               filled: true,
