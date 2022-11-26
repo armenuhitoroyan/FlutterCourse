@@ -49,7 +49,7 @@ class SearchWords extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: TextField(
-                            controller: searchController,
+                            controller: searchController,   
                             onChanged: (value) {
                               BlocProvider.of<GsearchBloc>(context)
                                 .add(GsearchedEvent(searchController.text));
