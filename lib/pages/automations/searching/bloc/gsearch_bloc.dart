@@ -6,9 +6,10 @@ import 'package:rxdart/transformers.dart';
 part 'gsearch_event.dart';
 part 'gsearch_state.dart';
 
-bool isLoaded = true;
+
 
 class GsearchBloc extends Bloc<GsearchEvent, GsearchState> {
+  late bool isLoaded;
   String data = '';
 
   GsearchBloc() : super(GsearchState()) {
