@@ -14,8 +14,13 @@ class SelectMenuItemEvent extends DeviceEvent {
 }
 
 class SelectDropdownItemEvent extends DeviceEvent {
-  // List<String> items;
   final String item;
 
-   SelectDropdownItemEvent(this.item);
+  SelectDropdownItemEvent(this.item);
+}
+
+class ChangeColor extends DeviceEvent {
+  bool isChanged;
+
+  ChangeColor(this.isChanged);
 }

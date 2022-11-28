@@ -21,9 +21,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
       items: <BottomNavigationBarItem>[
-        const BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
+         BottomNavigationBarItem(
+            icon: InkWell(
+              onTap: () {
+                _selectedIndex = _selectedIndex;
+              Navigator.pushNamed(context, AppRoutes.device);
+              },
+              child: const Icon(
+                Icons.home,
+              ),
             ),
             label: RangerTexts.home),
         const BottomNavigationBarItem(

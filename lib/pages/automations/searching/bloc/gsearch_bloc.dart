@@ -8,7 +8,7 @@ import 'package:rxdart/transformers.dart';
 part 'gsearch_event.dart';
 part 'gsearch_state.dart';
 
-Timer? _debounce;
+// Timer? _debounce;
 
 class GsearchBloc extends Bloc<GsearchEvent, GsearchState> {
   late bool isLoaded;

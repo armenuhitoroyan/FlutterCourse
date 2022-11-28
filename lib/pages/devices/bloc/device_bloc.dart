@@ -12,12 +12,12 @@ var items = [
   'See 5 More',
 ];
 
-
-
 class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
+  bool onOff = false;
   DeviceBloc() : super(DeviceState()) {
     on<SelectMenuItemEvent>(_selectMenuItem);
     on<SelectDropdownItemEvent>(_selectDropdownItemEvent);
+    on<ChangeColor>(_changeColorEvent);
   }
 
   _selectMenuItem(SelectMenuItemEvent event, Emitter<DeviceState> emit) {
@@ -27,5 +27,9 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
   _selectDropdownItemEvent(
       SelectDropdownItemEvent event, Emitter<DeviceState> emit) {
     emit(state.copyWith(dropdownvalue: event.item));
+  }
+
+  _changeColorEvent(ChangeColor event, Emitter<DeviceState> emit) {
+    emit(state.copyWith(onOff: event.isChanged));
   }
 }
