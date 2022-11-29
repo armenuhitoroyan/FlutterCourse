@@ -7,6 +7,7 @@ import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/devices/bloc/device_bloc.dart';
 
 import '../../config/colors.dart';
+import '../../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 
 class Device extends StatelessWidget {
   var items = [
@@ -157,9 +158,13 @@ class Device extends StatelessWidget {
 
                                         print('direction -> ${state.index}, ' ' ${state.isStarted} ');
 
-                                        isChanged = true;
+                                        BlocProvider.of<DeviceBloc>(context)
+                                            .add(ChangeSlideColor());
+
+                                        // isChanged = true;
                                         // print(isChanged);
-                                        print('It was pressed');
+                                       
+                                        
                                       },
                                       onHorizontalDragStart: (details) => 0,
                                       //  state.index,
@@ -194,12 +199,10 @@ class Device extends StatelessWidget {
                                                   children: [
                                                     InkWell(
                                                       onTap: () {
-                                                        BlocProvider.of<
-                                                                    DeviceBloc>(
-                                                                context)
-                                                            .add(ChangeColor(
-                                                                !isChanged));
-                                                        isChanged = !isChanged;
+                                                        BlocProvider.of<DeviceBloc>(context)
+                                                            .add(ChangeColor(isChanged));
+                                                        BlocProvider.of<DeviceBloc>(context)
+                                                            .add(ChangeSlideColor());  
                                                       },
                                                       child: state.onOff
                                                           ? const Icon(
@@ -216,10 +219,10 @@ class Device extends StatelessWidget {
                                                 )),
                                             Row(
                                               children: [
-                                                state.onOff
-                                                    ?  Text('${state.index}')
-                                                    // : state.isStarted == true
-                                                    //     ? Text('${state.index}')
+                                                state.onOff || state.index > 0
+                                                    ? Text('${state.index.round()}')
+                                                    : state.isStarted == true && state.index == 0
+                                                        ? const Text('0')
                                                         : const Text('On'),
                                                 const Icon(Icons
                                                     .arrow_forward_ios_outlined)
@@ -282,53 +285,54 @@ class Device extends StatelessWidget {
               ),
             ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor: RangerColors.blueBtn,
-            unselectedItemColor: Colors.grey,
-            backgroundColor: Colors.white,
-            showUnselectedLabels: false,
-            currentIndex: state.selectedIndex,
-            onTap: (value) {
-              BlocProvider.of<DeviceBloc>(context)
-                  .add(SelectMenuItemEvent(value));
-            },
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                  icon: InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.device);
-                    },
-                    child: const Icon(
-                      Icons.home,
-                    ),
-                  ),
-                  label: RangerTexts.home),
-              const BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.branding_watermark_outlined,
-                ),
-                label: RangerTexts.rooms,
-              ),
-              BottomNavigationBarItem(
-                icon: InkWell(
-                  onTap: () {
-                    // state.selectedIndex =
-                    Navigator.pushNamed(context, AppRoutes.automations);
-                  },
-                  child: const Icon(
-                    Icons.play_circle_outline,
-                  ),
-                ),
-                label: RangerTexts.automations,
-              ),
-              const BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.more_vert,
-                ),
-                label: RangerTexts.settings,
-              ),
-            ],
-          ),
+          bottomNavigationBar: BottomNavBar()
+          // BottomNavigationBar(
+          //   selectedItemColor: RangerColors.blueBtn,
+          //   unselectedItemColor: Colors.grey,
+          //   backgroundColor: Colors.white,
+          //   showUnselectedLabels: false,
+          //   currentIndex: state.selectedIndex,
+          //   onTap: (value) {
+          //     BlocProvider.of<DeviceBloc>(context)
+          //         .add(SelectMenuItemEvent(value));
+          //   },
+          //   items: <BottomNavigationBarItem>[
+          //     BottomNavigationBarItem(
+          //         icon: InkWell(
+          //           onTap: () {
+          //             Navigator.pushNamed(context, AppRoutes.device);
+          //           },
+          //           child: const Icon(
+          //             Icons.home,
+          //           ),
+          //         ),
+          //         label: RangerTexts.home),
+          //     const BottomNavigationBarItem(
+          //       icon: Icon(
+          //         Icons.branding_watermark_outlined,
+          //       ),
+          //       label: RangerTexts.rooms,
+          //     ),
+          //     BottomNavigationBarItem(
+          //       icon: InkWell(
+          //         onTap: () {
+          //           // state.selectedIndex =
+          //           Navigator.pushNamed(context, AppRoutes.automations);
+          //         },
+          //         child: const Icon(
+          //           Icons.play_circle_outline,
+          //         ),
+          //       ),
+          //       label: RangerTexts.automations,
+          //     ),
+          //     const BottomNavigationBarItem(
+          //       icon: Icon(
+          //         Icons.more_vert,
+          //       ),
+          //       label: RangerTexts.settings,
+          //     ),
+          //   ],
+          // ),
         );
       },
     );

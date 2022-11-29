@@ -32,7 +32,9 @@ class DetermineTheSize extends DeviceEvent {
 }
 
 class ChangeSlideColor extends DeviceEvent {
-  bool isStarted;
+  // bool isStarted;
 
-  ChangeSlideColor(this.isStarted);
+  ChangeSlideColor(
+    // this.isStarted,
+  );
 }

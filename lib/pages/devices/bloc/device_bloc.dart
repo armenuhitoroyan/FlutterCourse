@@ -34,7 +34,8 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
   }
 
   _changeColorEvent(ChangeColor event, Emitter<DeviceState> emit) {
-    emit(state.copyWith(onOff: event.isChanged));
+    onOff = !onOff;
+    emit(state.copyWith(onOff: onOff));
   }
 
   _onDetermineSize(DetermineTheSize event, Emitter<DeviceState> emit) {
@@ -47,6 +48,6 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
   }
 
   _onChangeColorEvent(ChangeSlideColor event, Emitter<DeviceState> emit) {
-    emit(state.copyWith(isStarted: event.isStarted));
+    emit(state.copyWith(isStarted: true));
   }
 }
