@@ -18,6 +18,8 @@ class Device extends StatelessWidget {
   ];
 
   bool isChanged = false;
+  double direction = 0.0;
+  bool isStarted = true;
 
   @override
   Widget build(BuildContext context) {
@@ -152,14 +154,28 @@ class Device extends StatelessWidget {
                                     child: GestureDetector(
                                       behavior: HitTestBehavior.translucent,
                                       onTap: () {
+
+                                        print('direction -> ${state.index}, ' ' ${state.isStarted} ');
+
+                                        isChanged = true;
+                                        // print(isChanged);
                                         print('It was pressed');
                                       },
                                       onHorizontalDragStart: (details) => 0,
+                                      //  state.index,
                                       onHorizontalDragEnd:
-                                          (DragEndDetails details) {
-                                        if (details.primaryVelocity! > 0) {
-                                          print('right');
-                                        }
+                                          (details) {
+                                        BlocProvider.of<DeviceBloc>(context)
+                                            .add(DetermineTheSize(details.primaryVelocity!));
+
+                                            direction = details.primaryVelocity!;
+                                            print('right ${direction} ');
+
+
+                                        state.index = direction;
+                                        state.isStarted = isStarted;
+                                        print(state.index);
+                                        // print(state.isStarted);
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -183,7 +199,6 @@ class Device extends StatelessWidget {
                                                                 context)
                                                             .add(ChangeColor(
                                                                 !isChanged));
-
                                                         isChanged = !isChanged;
                                                       },
                                                       child: state.onOff
@@ -202,9 +217,11 @@ class Device extends StatelessWidget {
                                             Row(
                                               children: [
                                                 state.onOff
-                                                    ? const Text('On')
-                                                    : const Text('Off'),
-                                                Icon(Icons
+                                                    ?  Text('${state.index}')
+                                                    // : state.isStarted == true
+                                                    //     ? Text('${state.index}')
+                                                        : const Text('On'),
+                                                const Icon(Icons
                                                     .arrow_forward_ios_outlined)
                                               ],
                                             ),

@@ -24,3 +24,15 @@ class ChangeColor extends DeviceEvent {
 
   ChangeColor(this.isChanged);
 }
+
+class DetermineTheSize extends DeviceEvent {
+  double direction;
+
+  DetermineTheSize(this.direction);
+}
+
+class ChangeSlideColor extends DeviceEvent {
+  bool isStarted;
+
+  ChangeSlideColor(this.isStarted);
+}
