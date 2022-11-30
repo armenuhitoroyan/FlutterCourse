@@ -16,7 +16,9 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
   bool onOff = false;
   double? direction;
   double? width;
-  var value;
+  double? value;
+  double? percent;
+  double? contWidth;
 
   DeviceBloc() : super(DeviceState()) {
     on<SelectMenuItemEvent>(_selectMenuItem);
@@ -42,21 +44,21 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
   }
 
   _onDetermineSize(DetermineTheSize event, Emitter<DeviceState> emit) {
-    
     emit(state.copyWith(index: direction));
   }
 
   _onUpdateWidth(UpdateTheWidth event, Emitter<DeviceState> emit) {
-     
     if (event.width > 0) {
-      
-      value = event.width / 3.3;
-      
-    } else if (event.width < 0){
+      contWidth = event.screenWidth - 30;
+      value = event.width;
+
+      percent = (100 * value!) / contWidth!;
+    } else if (event.width < 0) {
       value = 0;
     }
 
-    emit(state.copyWith(index: value));
+    emit(
+        state.copyWith(index: value, screenWidth: contWidth, percent: percent));
   }
 
   _onChangeColorEvent(ChangeSlideColor event, Emitter<DeviceState> emit) {

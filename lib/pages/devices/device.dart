@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/devices/bloc/device_bloc.dart';
 
@@ -192,7 +191,7 @@ class Device extends StatelessWidget {
                                           onHorizontalDragUpdate: (details) {
                                             BlocProvider.of<DeviceBloc>(context)
                                                 .add(UpdateTheWidth(
-                                                    details.globalPosition.dx));
+                                                    details.globalPosition.dx, contWidth));
 
                                             direction =
                                                 details.globalPosition.dx;
@@ -272,7 +271,7 @@ class Device extends StatelessWidget {
                                                     state.onOff ||
                                                             state.index > 0
                                                         ? Text(
-                                                            '${(state.index).round()}%')
+                                                            '${(state.percent).round()}%')
                                                         : state.isStarted ==
                                                                     true &&
                                                                 state.index == 0
