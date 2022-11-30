@@ -1,4 +1,3 @@
-import 'dart:js_util';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -24,8 +23,10 @@ class Device extends StatelessWidget {
   bool isStarted = true;
   double width = 0;
 
+
   @override
   Widget build(BuildContext context) {
+ 
     return BlocBuilder<DeviceBloc, DeviceState>(
       builder: (context, state) {
         return Scaffold(
@@ -148,9 +149,10 @@ class Device extends StatelessWidget {
                                 ),
                                 Stack(children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 20, right: 20),
+                                    padding: const EdgeInsets.only(
+                                        left: 20, right: 20),
                                     child: SizedBox(
-                                      width: width,
+                                      width: width > 0 ? width : 0,
                                       height: 70,
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -175,29 +177,29 @@ class Device extends StatelessWidget {
                                         padding: const EdgeInsets.only(
                                             left: 15.0, right: 15.0),
                                         child: GestureDetector(
-                                          behavior:
-                                              HitTestBehavior.translucent,
+                                          // behavior: HitTestBehavior.translucent,
                                           onTap: () {
+                                            print(super.key);
+                                          
                                             print(
                                                 'direction -> ${state.index}, '
                                                 ' ${state.isStarted} ');
-
-                                            BlocProvider.of<DeviceBloc>(
-                                                    context)
-                                                .add(ChangeSlideColor());
+                                            
                                           },
                                           onHorizontalDragStart: (details) =>
                                               state.index,
                                           //  state.index,
                                           onHorizontalDragEnd: (details) {
-                                            BlocProvider.of<DeviceBloc>(
-                                                    context)
-                                                .add(DetermineTheSize(details
-                                                    .primaryVelocity!));
+                                            BlocProvider.of<DeviceBloc>(context)
+                                                .add(DetermineTheSize(
+                                                    details.primaryVelocity!));
 
                                             direction =
                                                 details.primaryVelocity!;
                                             print('right ${direction} ');
+
+                                            BlocProvider.of<DeviceBloc>(context)
+                                                .add(ChangeSlideColor());
 
                                             state.index = direction;
                                             state.isStarted = isStarted;
@@ -251,14 +253,12 @@ class Device extends StatelessWidget {
                                                     state.onOff ||
                                                             state.index > 0
                                                         ? Text(
-                                                            '${(state.index / 2).round()}%')
+                                                            '${(state.index).round()}%')
                                                         : state.isStarted ==
                                                                     true &&
-                                                                state.index ==
-                                                                    0
+                                                                state.index == 0
                                                             ? const Text('0%')
-                                                            : const Text(
-                                                                'On'),
+                                                            : const Text('On'),
                                                     const Icon(Icons
                                                         .arrow_forward_ios_outlined)
                                                   ],

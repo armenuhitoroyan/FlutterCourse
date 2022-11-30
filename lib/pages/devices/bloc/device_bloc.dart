@@ -40,7 +40,7 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
 
   _onDetermineSize(DetermineTheSize event, Emitter<DeviceState> emit) {
     if (event.direction > 0) {
-      direction = event.direction;
+      direction = event.direction / 3.3;
     } else if (event.direction < 0) {
       direction = 0;
     }
