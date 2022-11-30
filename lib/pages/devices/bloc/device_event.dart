@@ -31,6 +31,12 @@ class DetermineTheSize extends DeviceEvent {
   DetermineTheSize(this.direction);
 }
 
+class UpdateTheWidth extends DeviceEvent {
+  double width;
+
+  UpdateTheWidth(this.width);
+}
+
 class ChangeSlideColor extends DeviceEvent {
   // int? width;
 

@@ -15,12 +15,15 @@ var items = [
 class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
   bool onOff = false;
   double? direction;
+  double? width;
+  var value;
 
   DeviceBloc() : super(DeviceState()) {
     on<SelectMenuItemEvent>(_selectMenuItem);
     on<SelectDropdownItemEvent>(_selectDropdownItemEvent);
     on<ChangeColor>(_changeColorEvent);
     on<DetermineTheSize>(_onDetermineSize);
+    on<UpdateTheWidth>(_onUpdateWidth);
     on<ChangeSlideColor>(_onChangeColorEvent);
   }
 
@@ -39,12 +42,21 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
   }
 
   _onDetermineSize(DetermineTheSize event, Emitter<DeviceState> emit) {
-    if (event.direction > 0) {
-      direction = event.direction / 3.3;
-    } else if (event.direction < 0) {
-      direction = 0;
-    }
+    
     emit(state.copyWith(index: direction));
+  }
+
+  _onUpdateWidth(UpdateTheWidth event, Emitter<DeviceState> emit) {
+     
+    if (event.width > 0) {
+      
+      value = event.width / 3.3;
+      
+    } else if (event.width < 0){
+      value = 0;
+    }
+
+    emit(state.copyWith(index: value));
   }
 
   _onChangeColorEvent(ChangeSlideColor event, Emitter<DeviceState> emit) {

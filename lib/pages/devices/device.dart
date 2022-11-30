@@ -20,13 +20,14 @@ class Device extends StatelessWidget {
 
   bool isChanged = false;
   double direction = 0.0;
+
   bool isStarted = true;
   double width = 0;
 
-
   @override
   Widget build(BuildContext context) {
- 
+    double contWidth = MediaQuery.of(context).size.width;
+    print(contWidth);
     return BlocBuilder<DeviceBloc, DeviceState>(
       builder: (context, state) {
         return Scaffold(
@@ -150,7 +151,7 @@ class Device extends StatelessWidget {
                                 Stack(children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 20, right: 20),
+                                        left: 15, right: 15),
                                     child: SizedBox(
                                       width: width > 0 ? width : 0,
                                       height: 70,
@@ -179,17 +180,35 @@ class Device extends StatelessWidget {
                                         child: GestureDetector(
                                           // behavior: HitTestBehavior.translucent,
                                           onTap: () {
-                                            print(super.key);
-                                          
-                                            print(
-                                                'direction -> ${state.index}, '
-                                                ' ${state.isStarted} ');
-                                            
+                                            // print(super.key);
+
+                                            // print(
+                                            //     'direction -> ${state.index}, '
+                                            //     ' ${state.isStarted} ');
                                           },
-                                          onHorizontalDragStart: (details) =>
-                                              state.index,
+                                          onHorizontalDragStart:
+                                              (DragStartDetails details) => 0,
+
+                                          onHorizontalDragUpdate: (details) {
+                                            BlocProvider.of<DeviceBloc>(context)
+                                                .add(UpdateTheWidth(
+                                                    details.globalPosition.dx));
+
+                                            direction =
+                                                details.globalPosition.dx;
+                                            print(direction);
+
+                                            BlocProvider.of<DeviceBloc>(context)
+                                                .add(ChangeSlideColor());
+
+                                            state.index = direction;
+                                            state.isStarted = isStarted;
+                                            width = direction.roundToDouble();
+                                            print(state.index);
+                                          },
                                           //  state.index,
-                                          onHorizontalDragEnd: (details) {
+                                          /* onHorizontalDragEnd:
+                                              (DragEndDetails details) {
                                             BlocProvider.of<DeviceBloc>(context)
                                                 .add(DetermineTheSize(
                                                     details.primaryVelocity!));
@@ -205,7 +224,7 @@ class Device extends StatelessWidget {
                                             state.isStarted = isStarted;
                                             width = direction.roundToDouble();
                                             print(state.index);
-                                          },
+                                          },  */
                                           child: Container(
                                             decoration: BoxDecoration(
                                               borderRadius:
