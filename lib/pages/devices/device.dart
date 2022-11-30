@@ -26,7 +26,7 @@ class Device extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double contWidth = MediaQuery.of(context).size.width;
-    print(contWidth);
+
     return BlocBuilder<DeviceBloc, DeviceState>(
       builder: (context, state) {
         return Scaffold(
@@ -156,14 +156,14 @@ class Device extends StatelessWidget {
                                       height: 70,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                              // stops: [0, 1],
-                                              colors: [
-                                                RangerColors.white,
-                                                state.onOff
-                                                    ? Colors.yellow
-                                                    : RangerColors.greyBottomBar
-                                              ], tileMode: TileMode.decal),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          gradient: LinearGradient(colors: [
+                                            RangerColors.white,
+                                            state.onOff
+                                                ? Colors.yellow
+                                                : RangerColors.greyBottomBar
+                                          ], tileMode: TileMode.decal),
                                         ),
                                       ),
                                     ),
@@ -177,53 +177,26 @@ class Device extends StatelessWidget {
                                         padding: const EdgeInsets.only(
                                             left: 15.0, right: 15.0),
                                         child: GestureDetector(
-                                          // behavior: HitTestBehavior.translucent,
-                                          onTap: () {
-                                            // print(super.key);
-
-                                            // print(
-                                            //     'direction -> ${state.index}, '
-                                            //     ' ${state.isStarted} ');
-                                          },
                                           onHorizontalDragStart:
                                               (DragStartDetails details) => 0,
-
                                           onHorizontalDragUpdate: (details) {
                                             BlocProvider.of<DeviceBloc>(context)
                                                 .add(UpdateTheWidth(
-                                                    details.globalPosition.dx, contWidth));
+                                                    details.globalPosition.dx,
+                                                    contWidth));
 
                                             direction =
                                                 details.globalPosition.dx;
-                                            print(direction);
-
-                                            BlocProvider.of<DeviceBloc>(context)
-                                                .add(ChangeSlideColor());
 
                                             state.index = direction;
                                             state.isStarted = isStarted;
                                             width = direction.roundToDouble();
-                                            print(state.index);
                                           },
-                                          //  state.index,
-                                          /* onHorizontalDragEnd:
-                                              (DragEndDetails details) {
-                                            BlocProvider.of<DeviceBloc>(context)
-                                                .add(DetermineTheSize(
-                                                    details.primaryVelocity!));
-
-                                            direction =
-                                                details.primaryVelocity!;
-                                            print('right ${direction} ');
-
-                                            BlocProvider.of<DeviceBloc>(context)
-                                                .add(ChangeSlideColor());
-
-                                            state.index = direction;
-                                            state.isStarted = isStarted;
-                                            width = direction.roundToDouble();
-                                            print(state.index);
-                                          },  */
+                                          onHorizontalDragEnd: (details) {
+                                            if (state.percent == 100) {
+                                              return;
+                                            }
+                                          },
                                           child: Container(
                                             decoration: BoxDecoration(
                                               borderRadius:
@@ -268,13 +241,11 @@ class Device extends StatelessWidget {
                                                     )),
                                                 Row(
                                                   children: [
-                                                    state.onOff ||
+                                                    state.onOff &&
                                                             state.index > 0
                                                         ? Text(
                                                             '${(state.percent).round()}%')
-                                                        : state.isStarted ==
-                                                                    true &&
-                                                                state.index == 0
+                                                        : state.isStarted
                                                             ? const Text('0%')
                                                             : const Text('On'),
                                                     const Icon(Icons

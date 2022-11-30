@@ -44,15 +44,22 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
   }
 
   _onDetermineSize(DetermineTheSize event, Emitter<DeviceState> emit) {
+    if (event.direction < 0) {
+      direction = 0;
+    }
     emit(state.copyWith(index: direction));
   }
 
   _onUpdateWidth(UpdateTheWidth event, Emitter<DeviceState> emit) {
     if (event.width > 0) {
       contWidth = event.screenWidth - 30;
-      value = event.width;
+      value = event.width - 1;
 
-      percent = (100 * value!) / contWidth!;
+      percent = (100 * value!) / contWidth! - 1;
+
+      if (percent! > 100) {
+        percent = 100;
+      }
     } else if (event.width < 0) {
       value = 0;
     }

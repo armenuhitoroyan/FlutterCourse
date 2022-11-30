@@ -39,9 +39,6 @@ class UpdateTheWidth extends DeviceEvent {
 }
 
 class ChangeSlideColor extends DeviceEvent {
-  // int? width;
 
-  ChangeSlideColor(
-      // this.width
-      );
+  ChangeSlideColor();
 }
