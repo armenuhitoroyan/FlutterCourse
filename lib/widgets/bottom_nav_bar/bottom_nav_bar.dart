@@ -15,7 +15,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-   
     return BottomNavigationBar(
       selectedItemColor: RangerColors.blueBtn,
       unselectedItemColor: Colors.grey,
@@ -46,7 +45,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           icon: InkWell(
             onTap: () {
               i = 1;
-              
+
               Navigator.pushNamed(context, AppRoutes.automations);
               _selectedIndex = 2;
             },

@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/q_info/q_info.dart';
+import 'package:ranger/pages/rooms/rooms.dart';
+import 'package:ranger/pages/settings/settings.dart';
 
 import '../pages/automations/searching/search_words.dart';
 import '../pages/devices/bloc/device_bloc.dart';
@@ -15,7 +17,9 @@ class AppRoutes {
   static const mobScan = '/scan';
   static const brScan = '/scanner';
   static const device = '/device';
+  static const rooms = '/rooms';
   static const automations = '/automations';
+  static const settings = '/setting';
   
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
@@ -34,7 +38,9 @@ class AppRoutes {
             child: Device(),
           ),
 
-      AppRoutes.automations: (context) => SearchWords()
+      AppRoutes.rooms: (context) => Rooms(),
+      AppRoutes.automations: (context) => SearchWords(),
+      AppRoutes.settings: (context) => Settings()
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

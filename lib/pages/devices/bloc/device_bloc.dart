@@ -55,11 +55,7 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
       contWidth = event.screenWidth - 30;
       value = event.width - 1;
 
-      percent = (100 * value!) / contWidth! - 1;
-
-      if (percent! > 100) {
-        percent = 100;
-      }
+      percent = ((100 * value!) / contWidth! - 1).clamp(0, 100);
     } else if (event.width < 0) {
       value = 0;
     }

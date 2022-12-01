@@ -42,6 +42,8 @@ class Device extends StatelessWidget {
                             color: RangerColors.blueBtn,
                             border: Border.all(color: RangerColors.blueBtn),
                           ),
+
+
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -110,6 +112,7 @@ class Device extends StatelessWidget {
                             ],
                           ),
                         ),
+                        
                         Padding(
                           padding: const EdgeInsets.only(top: 150.0),
                           child: Container(
@@ -191,11 +194,12 @@ class Device extends StatelessWidget {
                                             state.index = direction;
                                             state.isStarted = isStarted;
                                             width = direction.roundToDouble();
+                                            print(state.index);
                                           },
                                           onHorizontalDragEnd: (details) {
-                                            if (state.percent == 100) {
-                                              return;
-                                            }
+                                            // if (state.percent == 100) {
+                                            //   return;
+                                            // }
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -205,7 +209,8 @@ class Device extends StatelessWidget {
                                                   color: state.onOff
                                                       ? Colors.amber
                                                       : RangerColors
-                                                          .greyBottomBar),
+                                                          .greyBottomBar,
+                                                  width: 2),
                                             ),
                                             child: Row(
                                               children: [
@@ -241,7 +246,7 @@ class Device extends StatelessWidget {
                                                     )),
                                                 Row(
                                                   children: [
-                                                    state.onOff &&
+                                                    state.onOff ||
                                                             state.index > 0
                                                         ? Text(
                                                             '${(state.percent).round()}%')

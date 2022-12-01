@@ -2,7 +2,7 @@ part of 'device_bloc.dart';
 
 class DeviceState extends Equatable {
   final int selectedIndex;
-  // final List<String> items;
+
   String? dropdownvalue;
   bool onOff;
   double index;
@@ -11,28 +11,27 @@ class DeviceState extends Equatable {
   double screenWidth;
   double percent;
 
-  DeviceState({
-    this.selectedIndex = 0,
-    // this.items = const [],
-    this.dropdownvalue,
-    this.onOff = false,
-    this.index = 0,
-    this.isStarted = false,
-    this.width = 0,
-    this.screenWidth = 0,
-    this.percent = 0
-  });
+  DeviceState(
+      {this.selectedIndex = 0,
 
-  DeviceState copyWith(
-      {int? selectedIndex,
-      String? dropdownvalue,
-      bool? onOff,
-      double? index,
-      bool? isStarted,
-      double? width,
-      double? screenWidth,
-      double? percent,
-      }) {
+      this.dropdownvalue,
+      this.onOff = false,
+      this.index = 0,
+      this.isStarted = false,
+      this.width = 0,
+      this.screenWidth = 0,
+      this.percent = 0});
+
+  DeviceState copyWith({
+    int? selectedIndex,
+    String? dropdownvalue,
+    bool? onOff,
+    double? index,
+    bool? isStarted,
+    double? width,
+    double? screenWidth,
+    double? percent,
+  }) {
     return DeviceState(
         selectedIndex: selectedIndex ?? this.selectedIndex,
         dropdownvalue: dropdownvalue ?? this.dropdownvalue,
@@ -41,18 +40,10 @@ class DeviceState extends Equatable {
         isStarted: isStarted ?? this.isStarted,
         width: width ?? this.width,
         screenWidth: screenWidth ?? this.screenWidth,
-        percent: percent ?? this.percent
-        );
+        percent: percent ?? this.percent);
   }
 
   @override
-  List<Object> get props => [
-        selectedIndex,
-        onOff,
-        index,
-        isStarted,
-        width,
-        screenWidth,
-        percent
-      ];
+  List<Object> get props =>
+      [selectedIndex, onOff, index, isStarted, width, screenWidth, percent];
 }
