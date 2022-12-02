@@ -4,12 +4,12 @@ import 'package:ranger/config/str.dart';
 import '../../base/routes.dart';
 import '../../config/colors.dart';
 
-class BottomNavBar extends StatefulWidget {
+class BottomNavbar extends StatefulWidget {
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
+  State<BottomNavbar> createState() => _BottomNavbarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class _BottomNavbarState extends State<BottomNavbar> {
   int index = 0;
   int  _selectedIndex = 0;
 

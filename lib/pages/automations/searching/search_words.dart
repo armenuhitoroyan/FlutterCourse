@@ -5,7 +5,11 @@ import 'package:ranger/config/images.dart';
 import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/automations/searching/bloc/gsearch_bloc.dart';
 
-import '../../../widgets/bottom_nav_bar/bottom_nav_bar.dart';
+import '../../../widgets/bottom_nav_bar/bottom_navbar.dart';
+
+
+
+
 
 class SearchWords extends StatelessWidget {
   TextEditingController searchController = TextEditingController();
@@ -142,7 +146,7 @@ class SearchWords extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavBar(),
+        bottomNavigationBar: BottomNavbar(),
       ),
     );
   }

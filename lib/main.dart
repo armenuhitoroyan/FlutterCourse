@@ -4,9 +4,10 @@ import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/app_style.dart';
 import 'package:ranger/pages/automations/searching/search_words.dart';
 import 'package:ranger/pages/devices/bloc/device_bloc.dart';
-import 'package:ranger/pages/devices/dev.dart';
+
 
 import 'package:ranger/pages/devices/device.dart';
+import 'package:ranger/pages/devices/dev.dart';
 import 'package:ranger/pages/homepage.dart';
 
 import 'pages/homepage/homepage.dart';

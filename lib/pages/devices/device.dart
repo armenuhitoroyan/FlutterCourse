@@ -8,6 +8,7 @@ import 'package:ranger/pages/devices/bloc/device_bloc.dart';
 import '../../config/colors.dart';
 import '../../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 
+
 class Device extends StatelessWidget {
   var items = [
     'See 1 More',
@@ -26,6 +27,7 @@ class Device extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double contWidth = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
 
     return BlocBuilder<DeviceBloc, DeviceState>(
       builder: (context, state) {
@@ -42,8 +44,6 @@ class Device extends StatelessWidget {
                             color: RangerColors.blueBtn,
                             border: Border.all(color: RangerColors.blueBtn),
                           ),
-
-
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -112,11 +112,11 @@ class Device extends StatelessWidget {
                             ],
                           ),
                         ),
-                        
                         Padding(
                           padding: const EdgeInsets.only(top: 150.0),
                           child: Container(
                             width: double.infinity,
+                            height: height,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: RangerColors.white,
@@ -253,8 +253,8 @@ class Device extends StatelessWidget {
                                                         : state.isStarted
                                                             ? const Text('0%')
                                                             : const Text('On'),
-                                                    const Icon(Icons
-                                                        .arrow_forward_ios_outlined)
+                                                    const Icon(
+                                                        Icons.import_export)
                                                   ],
                                                 ),
                                               ],

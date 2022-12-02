@@ -8,6 +8,8 @@ import 'package:ranger/pages/settings/settings.dart';
 
 import '../pages/automations/searching/search_words.dart';
 import '../pages/devices/bloc/device_bloc.dart';
+
+import '../pages/devices/dev.dart';
 import '../pages/devices/device.dart';
 import '../pages/q_info/bloc/q_info_bloc.dart';
 
@@ -20,7 +22,14 @@ class AppRoutes {
   static const rooms = '/rooms';
   static const automations = '/automations';
   static const settings = '/setting';
-  
+  static const devices = '/devices';
+
+  // static List<GetPage> routes = [
+  //   GetPage(name: device, page: () => DevicesState()),
+  //   GetPage(name: rooms, page: () => Rooms()),
+  //   GetPage(name: automations, page: () => SearchWords()),
+  //   GetPage(name: settings, page: () => Settings()),
+  // ];
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     if (settings.arguments != null) {}
@@ -37,10 +46,10 @@ class AppRoutes {
             create: (context) => DeviceBloc(),
             child: Device(),
           ),
-
       AppRoutes.rooms: (context) => Rooms(),
       AppRoutes.automations: (context) => SearchWords(),
-      AppRoutes.settings: (context) => Settings()
+      AppRoutes.settings: (context) => Settings(),
+      AppRoutes.devices:(context) => DevicesState()
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

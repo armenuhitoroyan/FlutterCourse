@@ -3,6 +3,10 @@ import 'package:ranger/config/colors.dart';
 import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/devices/widgets/appbar_textts.dart';
 
+
+import '../../widgets/bottom_nav_bar/bottom_navbar.dart';
+
+
 class DevicesState extends StatefulWidget {
   @override
   State<DevicesState> createState() => _DevicesStateState();
@@ -20,6 +24,7 @@ class _DevicesStateState extends State<DevicesState> {
   String dropdownValue = 'See More 1';
   double width = 0;
   bool isTurned = false;
+  bool isTurnOn = false;
   double percent = 0;
 
   @override
@@ -29,6 +34,7 @@ class _DevicesStateState extends State<DevicesState> {
 
   Widget _contentBuilder() {
     double contWidth = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -54,6 +60,10 @@ class _DevicesStateState extends State<DevicesState> {
                         padding: const EdgeInsets.all(15.0),
                         child: DropdownButton<String>(
                           dropdownColor: RangerColors.blueBtn,
+                          icon: const Icon(
+                            Icons.keyboard_arrow_right,
+                            color: RangerColors.white,
+                          ),
                           value: dropdownValue,
                           elevation: 16,
                           style: const TextStyle(color: RangerColors.white),
@@ -79,12 +89,31 @@ class _DevicesStateState extends State<DevicesState> {
                     alignment: Alignment.topCenter,
                     child: Container(
                       width: double.infinity,
-                      height: 200,
+                      height: height,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
                           color: RangerColors.white),
                       child: Column(
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15.0, right: 15.0, top: 15.0),
+                            child: Row(
+                              children: [
+                                Flexible(
+                                  flex: 1,
+                                  child: Row(
+                                    children: const [
+                                      Text(RangerTexts.favorite)
+                                    ],
+                                  ),
+                                ),
+                                Row(
+                                  children: const [Icon(Icons.edit_rounded)],
+                                )
+                              ],
+                            ),
+                          ),
                           Padding(
                             padding:
                                 const EdgeInsets.only(left: 15.0, top: 20.0),
@@ -123,9 +152,10 @@ class _DevicesStateState extends State<DevicesState> {
                                   top: 20, left: 15, right: 15),
                               child: GestureDetector(
                                 onHorizontalDragStart: (details) => 0,
-                                onHorizontalDragUpdate: (details) =>
-                                    _onDecideIllumination(
-                                        contWidth, details.globalPosition.dx),
+                                onHorizontalDragUpdate: (details) => isTurnOn
+                                    ? _onDecideIllumination(
+                                        contWidth, details.globalPosition.dx)
+                                    : null,
                                 child: Container(
                                   width: double.infinity,
                                   height: 70,
@@ -157,16 +187,16 @@ class _DevicesStateState extends State<DevicesState> {
                                                   : const Icon(
                                                       Icons.lightbulb_outline),
                                             ),
+                                            const Text('DP motik')
                                           ],
                                         ),
                                       ),
                                       Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 15.0),
-                                            child: Text('${percent.round()}'),
-                                          )
+                                          isTurned || isTurnOn
+                                              ? Text('${percent.round()}')
+                                              : const Text('On'),
+                                          const Icon(Icons.import_export)
                                         ],
                                       )
                                     ],
@@ -174,7 +204,43 @@ class _DevicesStateState extends State<DevicesState> {
                                 ),
                               ),
                             )
-                          ])
+                          ]),
+                          const Padding(
+                            padding:
+                                EdgeInsets.only(left: 20, right: 20, top: 100),
+                            child: Text(
+                              RangerTexts.favDevs,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 30.0),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 70),
+                            child: Container(
+                              width: 200,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: RangerColors.white,
+                                  border:
+                                      Border.all(color: RangerColors.blueBtn)),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.add,
+                                    color: RangerColors.blueBtn,
+                                  ),
+                                  Text(
+                                    RangerTexts.addFav,
+                                    style:
+                                        TextStyle(color: RangerColors.blueBtn),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -185,6 +251,7 @@ class _DevicesStateState extends State<DevicesState> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavbar(),
     );
   }
 
@@ -197,6 +264,7 @@ class _DevicesStateState extends State<DevicesState> {
   bool _onTurnLight() {
     setState(() {
       isTurned = !isTurned;
+      isTurnOn = true;
     });
 
     return isTurned;
