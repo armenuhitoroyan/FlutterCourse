@@ -18,7 +18,7 @@ class _DevicesStateState extends State<DevicesState> {
   ];
 
   String dropdownValue = 'See More 1';
-  double width = 150;
+  double width = 0;
   bool isTurned = false;
   double percent = 0;
 
@@ -86,7 +86,8 @@ class _DevicesStateState extends State<DevicesState> {
                       child: Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 15.0, top: 20.0),
+                            padding:
+                                const EdgeInsets.only(left: 15.0, top: 20.0),
                             child: Row(
                               children: const [
                                 Text(
@@ -120,21 +121,56 @@ class _DevicesStateState extends State<DevicesState> {
                             Padding(
                               padding: const EdgeInsets.only(
                                   top: 20, left: 15, right: 15),
-                              child: Container(
-                                width: double.infinity,
-                                height: 70,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  border: Border.all(
-                                      color: isTurned
-                                          ? RangerColors.yellowBtn
-                                          : RangerColors.greyBottomBar),
-                                ),
-                                child: GestureDetector(
-                                  onHorizontalDragStart: (details) => 0,
-                                  onHorizontalDragUpdate: (details) =>
-                                      _onDecideEnlightenment(contWidth,
-                                          details.globalPosition.dx, percent),
+                              child: GestureDetector(
+                                onHorizontalDragStart: (details) => 0,
+                                onHorizontalDragUpdate: (details) =>
+                                    _onDecideIllumination(
+                                        contWidth, details.globalPosition.dx),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    border: Border.all(
+                                        color: isTurned
+                                            ? RangerColors.yellowBtn
+                                            : RangerColors.greyBottomBar),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            IconButton(
+                                              onPressed: _onTurnLight,
+                                              icon: isTurned
+                                                  ? const Icon(
+                                                      Icons.lightbulb_sharp,
+                                                      color: RangerColors
+                                                          .yellowBtn,
+                                                    )
+                                                  : const Icon(
+                                                      Icons.lightbulb_outline),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 15.0),
+                                            child: Text('${percent.round()}'),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             )
@@ -158,21 +194,26 @@ class _DevicesStateState extends State<DevicesState> {
     });
   }
 
-  void _onDecideEnlightenment(
-      double contWidth, double? slideErWidth, double percent) {
+  bool _onTurnLight() {
+    setState(() {
+      isTurned = !isTurned;
+    });
+
+    return isTurned;
+  }
+
+  _onDecideIllumination(double contWidth, double? slideErWidth) {
     setState(() {
       if (slideErWidth! > 0) {
         contWidth = contWidth - 30;
-        slideErWidth = (slideErWidth!);
-        print('s1 $slideErWidth');
-        percent = ((100 * slideErWidth!) / contWidth - 1).clamp(0, 100);
-        print('p1 ${percent.round()}');
-      } else if (slideErWidth! < 0) {
-        slideErWidth = 0;
+        width = (slideErWidth);
+        percent = ((100 * slideErWidth) / contWidth - 1).clamp(0, 100);
+      } else if (slideErWidth < 0) {
+        width = 0;
         percent = 0;
-        print('p2 0');
-        print('s2 $slideErWidth');
       }
     });
+
+    return percent;
   }
 }
