@@ -3,6 +3,10 @@ import 'package:ranger/config/str.dart';
 
 import '../../base/routes.dart';
 import '../../config/colors.dart';
+import '../../pages/automations/searching/search_words.dart';
+import '../../pages/devices/dev.dart';
+import '../../pages/rooms/rooms.dart';
+import '../../pages/settings/settings.dart';
 
 class BottomNavbar extends StatefulWidget {
   @override
@@ -10,64 +14,52 @@ class BottomNavbar extends StatefulWidget {
 }
 
 class _BottomNavbarState extends State<BottomNavbar> {
-  int index = 0;
-  int  _selectedIndex = 0;
+  int _selectedIndex = 0;
+  static final List<Widget> _widgetOptions = [
+    DevicesState(),
+    Rooms(),
+    SearchWords(),
+    Settings(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    Future<void> changeIndex() async {
-      _selectedIndex = await _selectedIndex > 0 ? _selectedIndex : 0;
-    }
-
-    return BottomNavigationBar(
-      selectedItemColor: RangerColors.blueBtn,
-      unselectedItemColor: Colors.grey,
-      backgroundColor: Colors.white,
-      showUnselectedLabels: false,
-      currentIndex: _selectedIndex,
-      onTap: _onItemTapped,
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            icon: IconButton(
-              onPressed: () => Navigator.pushNamed(context, AppRoutes.devices),
-              icon: const Icon(
-                Icons.home,
-              ),
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: RangerColors.blueBtn,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.white,
+        showUnselectedLabels: false,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
             ),
-            label: RangerTexts.home),
-        BottomNavigationBarItem(
-          icon: IconButton(
-            onPressed: () => Navigator.pushNamed(context, AppRoutes.rooms),
-            icon: const Icon(
+            label: RangerTexts.home,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.branding_watermark_outlined,
             ),
+            label: RangerTexts.rooms,
           ),
-          label: RangerTexts.rooms,
-        ),
-        BottomNavigationBarItem(
-          icon: IconButton(
-            onPressed: () =>
-                Navigator.pushNamed(context, AppRoutes.automations),
-                
-            icon: const Icon(
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.play_circle_outline,
             ),
+            label: RangerTexts.automations,
           ),
-          label: RangerTexts.automations,
-        ),
-        BottomNavigationBarItem(
-          icon: IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, AppRoutes.settings);
-              changeIndex();
-            },
-            icon: const Icon(
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.more_vert,
             ),
+            label: RangerTexts.settings,
           ),
-          label: RangerTexts.settings,
-        ),
-      ],
+        ],
+      ),
+      body: _widgetOptions.elementAt(_selectedIndex),
     );
   }
 
@@ -75,6 +67,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
     setState(() {
       _selectedIndex = index;
     });
+
+    print(_selectedIndex);
 
     return _selectedIndex;
   }

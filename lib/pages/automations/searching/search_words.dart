@@ -146,7 +146,7 @@ class SearchWords extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavbar(),
+        // bottomNavigationBar: BottomNavbar(),
       ),
     );
   }

@@ -251,7 +251,7 @@ class _DevicesStateState extends State<DevicesState> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavbar(),
+      // bottomNavigationBar: BottomNavbar(),
     );
   }
 

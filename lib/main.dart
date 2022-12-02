@@ -9,6 +9,7 @@ import 'package:ranger/pages/devices/bloc/device_bloc.dart';
 import 'package:ranger/pages/devices/device.dart';
 import 'package:ranger/pages/devices/dev.dart';
 import 'package:ranger/pages/homepage.dart';
+import 'package:ranger/widgets/bottom_nav_bar/bottom_navbar.dart';
 
 import 'pages/homepage/homepage.dart';
 
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DevicesState(),
+      home: BottomNavbar(),
+      // DevicesState(),
       // BlocProvider(
       //   create: (context) => DeviceBloc(),
       //   child: Device(),
