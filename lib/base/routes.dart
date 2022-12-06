@@ -9,7 +9,7 @@ import 'package:ranger/pages/settings/settings.dart';
 import '../pages/automations/searching/search_words.dart';
 import '../pages/devices/bloc/device_bloc.dart';
 
-import '../pages/devices/dev.dart';
+import '../pages/devices/devices.dart';
 import '../pages/devices/device.dart';
 import '../pages/q_info/bloc/q_info_bloc.dart';
 

@@ -4,7 +4,7 @@ import 'package:ranger/config/str.dart';
 import '../../base/routes.dart';
 import '../../config/colors.dart';
 import '../../pages/automations/searching/search_words.dart';
-import '../../pages/devices/dev.dart';
+import '../../pages/devices/devices.dart';
 import '../../pages/rooms/rooms.dart';
 import '../../pages/settings/settings.dart';
 
