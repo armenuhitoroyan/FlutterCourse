@@ -6,33 +6,35 @@ import '../../widgets/bottom_nav_bar/bottom_navbar.dart';
 import 'container.dart';
 
 class Settings extends StatelessWidget {
+  static int count = 0;
+  Color bgC3 = const Color(0xff151b3c);
+  Color bgC2 = const Color(0xff2a3679);
+  Color bgC1 = const Color(0xff344397);
+  Color bgC0 = const Color(0xff344397);
+
   List<Color> colors = [];
   Settings({
     super.key,
   });
   @override
   Widget build(BuildContext context) {
-    return _buildContent(const Color.fromARGB(255, 63, 81, 181), 4);
+    return _buildContent(const Color.fromARGB(255, 63, 81, 181), 7);
   }
 
   Widget _buildContent(Color? bgColor, int itemCount) {
+    count = itemCount;
     gradient(bgColor!, itemCount);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SafeArea(
-          child: GridView.builder(
-            itemCount: itemCount,
-            itemBuilder: (context, index) => ContainerState(
-              bgColor: index == 0 ? Colors.black : colors[index],
-            ),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: itemCount,
-                childAspectRatio: 1.5,
-                crossAxisSpacing: 0.5,
-                mainAxisSpacing: 0.5),
-          ),
-        ),
+            child: Wrap(
+                children: List.generate(
+                    itemCount,
+                    (index) => ContainerState(
+                      
+                          bgColor: index == 0 ? Colors.black : colors[index],
+                        )))),
       ),
     );
   }
@@ -44,18 +46,17 @@ class Settings extends StatelessWidget {
     int r = bgColor.red;
     int g = bgColor.green;
     int b = bgColor.blue;
-    int a = 255, cR, cG, cB;
+    int a = bgColor.alpha, cR, cG, cB;
     int index = itemCount;
-    cR = (r / index).round();
-    cG = (g / index).round();
-    cB = (b / index).round();
+    cR = (r/itemCount).round();
+    cG = (g/itemCount).round();
+    cB = (b/itemCount).round();
 
-    // print(bgColor);
 
     while (index > 0) {
-      r = (cR / index).round();
-      g = (cG / index).round();
-      b = (cB / index).round();
+      r = (cR / (index)).round();
+      g = (cG / (index)).round();
+      b = (cB / (index)).round();
       cR = r + cR;
       cG = g + cG;
       cB = b + cB;
@@ -71,5 +72,7 @@ class Settings extends StatelessWidget {
 
       index--;
     }
+
+
   }
 }
