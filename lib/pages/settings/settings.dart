@@ -24,6 +24,7 @@ class Settings extends StatelessWidget {
   Widget _buildContent(Color? bgColor, int itemCount) {
     count = itemCount;
     gradient(bgColor!, itemCount);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -32,7 +33,6 @@ class Settings extends StatelessWidget {
                 children: List.generate(
                     itemCount,
                     (index) => ContainerState(
-                      
                           bgColor: index == 0 ? Colors.black : colors[index],
                         )))),
       ),
@@ -48,10 +48,9 @@ class Settings extends StatelessWidget {
     int b = bgColor.blue;
     int a = bgColor.alpha, cR, cG, cB;
     int index = itemCount;
-    cR = (r/itemCount).round();
-    cG = (g/itemCount).round();
-    cB = (b/itemCount).round();
-
+    cR = (r / itemCount).round();
+    cG = (g / itemCount).round();
+    cB = (b / itemCount).round();
 
     while (index > 0) {
       r = (cR / (index)).round();
@@ -72,7 +71,7 @@ class Settings extends StatelessWidget {
 
       index--;
     }
-
-
   }
+
+
 }
