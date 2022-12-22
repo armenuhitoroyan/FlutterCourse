@@ -5,11 +5,8 @@ import 'package:ranger/config/images.dart';
 import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/automations/searching/bloc/gsearch_bloc.dart';
 
+import '../../../base/routes.dart';
 import '../../../widgets/bottom_nav_bar/bottom_navbar.dart';
-
-
-
-
 
 class SearchWords extends StatelessWidget {
   TextEditingController searchController = TextEditingController();
@@ -53,10 +50,10 @@ class SearchWords extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: TextField(
-                            controller: searchController,   
+                            controller: searchController,
                             onChanged: (value) {
                               BlocProvider.of<GsearchBloc>(context)
-                                .add(GsearchedEvent(searchController.text));
+                                  .add(GsearchedEvent(searchController.text));
                             },
                             decoration: InputDecoration(
                               filled: true,
@@ -132,7 +129,10 @@ class SearchWords extends StatelessWidget {
                                     Icons.add,
                                     size: 20,
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, AppRoutes.automation);
+                                  },
                                 ),
                               ),
                             ],

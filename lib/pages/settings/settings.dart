@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ranger/config/colors.dart';
 
-import '../../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../widgets/bottom_nav_bar/bottom_navbar.dart';
 import 'container.dart';
 

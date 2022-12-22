@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ranger/pages/automations/automation.dart';
 
 import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/q_info/q_info.dart';
@@ -21,8 +22,10 @@ class AppRoutes {
   static const device = '/device';
   static const rooms = '/rooms';
   static const automations = '/automations';
+  static const automation = '/new_automation';
   static const settings = '/setting';
   static const devices = '/devices';
+
 
   // static List<GetPage> routes = [
   //   GetPage(name: device, page: () => DevicesState()),
@@ -48,6 +51,7 @@ class AppRoutes {
           ),
       AppRoutes.rooms: (context) => Rooms(),
       AppRoutes.automations: (context) => SearchWords(),
+      AppRoutes.automation: (context) => AutomationPage(),
       AppRoutes.settings: (context) => Settings(),
       AppRoutes.devices:(context) => DevicesState()
     };

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/app_style.dart';
+import 'package:ranger/pages/automations/automation.dart';
 import 'package:ranger/pages/automations/searching/search_words.dart';
 import 'package:ranger/pages/devices/bloc/device_bloc.dart';
 
@@ -38,14 +39,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Settings(),
-      // DevicesState(),
-      // BlocProvider(
-      //   create: (context) => DeviceBloc(),
-      //   child: Device(),
-      // ),
-      // SearchWords(),
+      home:
+          //  Settings(),
+          // DevicesState(),
+          // BlocProvider(
+          //   create: (context) => DeviceBloc(),
+          //   child: Device(),
+          // ),
 
+
+          AutomationPage(),
+          // SearchWords(),
+
+          // BottomNavbar(),
       // HomePageState(title: 'Flutter Demo Home Page',),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
