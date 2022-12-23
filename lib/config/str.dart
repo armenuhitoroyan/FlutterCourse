@@ -49,6 +49,7 @@ class RangerTexts {
   static const String save = 'Save';
 
   static const String chooseTimer = 'Choose Timer';
+  static const String chooseDay = 'Choose Days';
 
   String get email {
     return _email;

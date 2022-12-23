@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class TimeProvider extends ChangeNotifier {
   int val = 1;
@@ -15,9 +16,31 @@ class TimeProvider extends ChangeNotifier {
     'Daytime auto-off '
   ];
 
+   List<String> listDAtes = [
+    'Sunrise',
+    'Sunset',
+    'Time'
+  ];
+
+  List<IconData> listIcons = [
+    Icons.sunny,
+    Icons.sunny_snowing,
+    Icons.timelapse_rounded
+  ];
+
   List<String> ab = [
     'After',
     'Before',
+  ];
+
+  List<String> days = [
+    'S',
+    'M',
+    'T',
+    'W',
+    'T',
+    'F',
+    's'
   ];
 
   TimeProvider() {
@@ -66,8 +89,4 @@ class TimeProvider extends ChangeNotifier {
     return isVisible;
   }
 
-  List<String> afterBeforeTime() {
-    notifyListeners();
-    return ab;
-  }
 }

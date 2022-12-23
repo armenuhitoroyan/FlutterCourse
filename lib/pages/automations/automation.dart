@@ -23,7 +23,7 @@ class AutomationPage extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios)),
+            icon: const Icon(Icons.arrow_back)),
         iconTheme: const IconThemeData(
           color: RangerColors.white,
         ),
@@ -162,7 +162,7 @@ class AutomationPage extends StatelessWidget {
                                                 return dialog(
                                                   context,
                                                   title:
-                                                      RangerTexts.chooseTimer,
+                                                      RangerTexts.chooseDay,
                                                 );
                                               },
                                             ),
