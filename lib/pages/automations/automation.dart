@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ranger/base/routes.dart';
@@ -222,7 +220,11 @@ class AutomationPage extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  Save()
+                  Save(
+                    callback: () {
+                      print('Data saved');
+                    },
+                  )
                 ],
               ),
             ),
@@ -237,17 +239,22 @@ class AutomationPage extends StatelessWidget {
     required String title,
     Widget? content,
   }) {
-    return AlertDialog(
-      title: Text(title),
-      content: Column(
-        children: [
-          Expanded(child: content ?? TimePicker()),   
+    return SizedBox(
+      height: 200,
+      child: AlertDialog(
+        title: Text(title),
+        content: Column(
+          children: [
+            Expanded(child: content ?? TimePicker()),
+          ],
+        ),
+        actions: [
+          // TimePicker(),
+          Save(callback: () {
+            Navigator.pop(context);
+          }),
         ],
       ),
-      actions: [
-        // TimePicker(),
-        Save(),
-      ],
     );
   }
 }

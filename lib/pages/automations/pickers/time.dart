@@ -1,13 +1,9 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ranger/config/colors.dart';
-import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/automations/pickers/timer_provider.dart';
 import 'package:ranger/pages/automations/pickers/widgets/hours.dart';
 import 'package:ranger/pages/automations/pickers/widgets/minuts.dart';
-import 'package:ranger/widgets/save_btn.dart';
 
 class TimePicker extends StatelessWidget {
   int i = 0;
@@ -19,70 +15,65 @@ class TimePicker extends StatelessWidget {
   Widget _buildContent() {
     return ChangeNotifierProvider(
       create: (context) => TimeProvider(),
-      child: Container(
-        color: RangerColors.lightGrey,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Consumer<TimeProvider>(
-            builder: (context, value, child) => Card(
-              child: ListView.builder(
-                itemCount: value.list.length,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Consumer<TimeProvider>(
+          builder: (context, value, child) => ListView.builder(
+            itemCount: value.list.length,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                value.onpressed();
-                                value.i = index;
-                                value.onVisibleTime();
-                              },
-                              icon: value.i == index && value.color == 'blue'
-                                  ? const Icon(
-                                      Icons.task_alt_outlined,
-                                      color: RangerColors.lightBlue,
-                                    )
-                                  : const Icon(
-                                      Icons.circle_outlined,
-                                      color: RangerColors.black,
-                                    )),
-                          Text(value.list[index]),
-                        ],
-                      ),
-                      index == 0 && value.color == 'blue'
-                          ? Visibility(
-                              visible: value.isVisible,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 60,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 2.5),
-                                        child: Hours(),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 60,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 2.5),
-                                        child: Minutes(),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : Container()
+                      IconButton(
+                          onPressed: () {
+                            value.onpressed();
+                            value.i = index;
+                            value.onVisibleTime();
+                          },
+                          icon: value.i == index && value.color == 'blue'
+                              ? const Icon(
+                                  Icons.task_alt_outlined,
+                                  color: RangerColors.lightBlue,
+                                )
+                              : const Icon(
+                                  Icons.circle_outlined,
+                                  color: RangerColors.black,
+                                )),
+                      Text(value.list[index]),
                     ],
                   ),
-                ),
+                  index == 0 && value.color == 'blue'
+                      ? Visibility(
+                          visible: value.isVisible,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: SizedBox(
+                                  height: 60,
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.only(right: 2.5),
+                                    child: Hours(),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: SizedBox(
+                                  height: 60,
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 2.5),
+                                    child: Minutes(),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : Container()
+                ],
               ),
             ),
           ),
