@@ -40,6 +40,14 @@ class RangerTexts {
   static const String addFav = 'ADD A FAVORITE';
   static const String favDevs = 'No favorite devices added yet';
 
+  static const String indefinitePeriodOfTime = 'When...';
+  static const String tigger = 'Select a tigger';
+  static const String timer = 'Timer';
+  static const String autoOff = 'Auto-off after ... 1h 3m';
+  static const String timeOfDay = 'Time of Day';
+  static const String time = 'e.g. sunrise, sunset, 6:45 pm';
+   static const String save = 'Save';
+
   String get email {
     return _email;
   }

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Timepicker extends StatelessWidget {
+class TimePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return _buildContent(context);
   }
-  
+
+  Widget _buildContent(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: const Text('Time'),
+      ),
+    );
+  }
 }

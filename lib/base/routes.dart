@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ranger/pages/automations/automation.dart';
+import 'package:ranger/pages/automations/pickers/date.dart';
+import 'package:ranger/pages/automations/pickers/time.dart';
 
 import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/q_info/q_info.dart';
@@ -25,7 +27,8 @@ class AppRoutes {
   static const automation = '/new_automation';
   static const settings = '/setting';
   static const devices = '/devices';
-
+  static const timePicker = '/time_picker';
+  static const datePicker = '/date_picker';
 
   // static List<GetPage> routes = [
   //   GetPage(name: device, page: () => DevicesState()),
@@ -53,7 +56,9 @@ class AppRoutes {
       AppRoutes.automations: (context) => SearchWords(),
       AppRoutes.automation: (context) => AutomationPage(),
       AppRoutes.settings: (context) => Settings(),
-      AppRoutes.devices:(context) => DevicesState()
+      AppRoutes.devices: (context) => DevicesState(),
+      AppRoutes.timePicker: (context) => TimePicker(),
+      AppRoutes.datePicker: (context) => DatePicker()
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;
