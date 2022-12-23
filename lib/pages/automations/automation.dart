@@ -4,6 +4,7 @@ import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/colors.dart';
 import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/automations/automation_provider.dart';
+import 'package:ranger/pages/automations/pickers/date.dart';
 import 'package:ranger/pages/automations/pickers/time.dart';
 
 import '../../widgets/save_btn.dart';
@@ -155,8 +156,16 @@ class AutomationPage extends StatelessWidget {
                                           padding: const EdgeInsets.only(
                                               top: 8.0, right: 10.0),
                                           child: InkWell(
-                                            onTap: () => Navigator.pushNamed(
-                                                context, AppRoutes.datePicker),
+                                            onTap: () => showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return dialog(
+                                                  context,
+                                                  title:
+                                                      RangerTexts.chooseTimer,
+                                                );
+                                              },
+                                            ),
                                             child: Container(
                                               width: double.infinity,
                                               decoration: BoxDecoration(
@@ -249,7 +258,29 @@ class AutomationPage extends StatelessWidget {
           ],
         ),
         actions: [
-          // TimePicker(),
+          Save(callback: () {
+            Navigator.pop(context);
+          }),
+        ],
+      ),
+    );
+  }
+
+   Widget dialog(
+    context, {
+    required String title,
+    Widget? content,
+  }) {
+    return SizedBox(
+      height: 200,
+      child: AlertDialog(
+        title: Text(title),
+        content: Column(
+          children: [
+            Expanded(child: content ?? DatePicker()),
+          ],
+        ),
+        actions: [
           Save(callback: () {
             Navigator.pop(context);
           }),

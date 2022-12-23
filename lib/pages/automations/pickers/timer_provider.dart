@@ -14,6 +14,12 @@ class TimeProvider extends ChangeNotifier {
     'Auto-on after...',
     'Daytime auto-off '
   ];
+
+  List<String> ab = [
+    'After',
+    'Before',
+  ];
+
   TimeProvider() {
     setIndex();
     getData();
@@ -60,5 +66,8 @@ class TimeProvider extends ChangeNotifier {
     return isVisible;
   }
 
-
+  List<String> afterBeforeTime() {
+    notifyListeners();
+    return ab;
+  }
 }
