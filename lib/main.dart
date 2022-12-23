@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/app_style.dart';
 import 'package:ranger/pages/automations/automation.dart';
+import 'package:ranger/pages/automations/pickers/time.dart';
 import 'package:ranger/pages/automations/searching/search_words.dart';
 import 'package:ranger/pages/devices/bloc/device_bloc.dart';
 
@@ -48,7 +49,8 @@ class MyApp extends StatelessWidget {
           // ),
 
 
-          AutomationPage(),
+          TimePicker(),
+          // AutomationPage(),
           // SearchWords(),
 
           // BottomNavbar(),

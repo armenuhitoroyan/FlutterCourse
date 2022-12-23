@@ -1,9 +1,14 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/colors.dart';
 import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/automations/automation_provider.dart';
+import 'package:ranger/pages/automations/pickers/time.dart';
+
+import '../../widgets/save_btn.dart';
 
 class AutomationPage extends StatelessWidget {
   @override
@@ -88,8 +93,16 @@ class AutomationPage extends StatelessWidget {
                                           padding: const EdgeInsets.only(
                                               top: 8.0, right: 10.0),
                                           child: InkWell(
-                                            onTap: () => Navigator.pushNamed(
-                                                context, AppRoutes.timePicker),
+                                            onTap: () => showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return _dialog(
+                                                  context,
+                                                  title:
+                                                      RangerTexts.chooseTimer,
+                                                );
+                                              },
+                                            ),
                                             child: Container(
                                               width: double.infinity,
                                               decoration: BoxDecoration(
@@ -97,8 +110,8 @@ class AutomationPage extends StatelessWidget {
                                                       BorderRadius.circular(10),
                                                   color: RangerColors.white,
                                                   border: Border.all(
-                                                      color:
-                                                          RangerColors.blueBtn)),
+                                                      color: RangerColors
+                                                          .blueBtn)),
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.all(10.0),
@@ -209,24 +222,32 @@ class AutomationPage extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                      child: ElevatedButton(
-                        onPressed: () => print('button'),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: RangerColors.blueBtn),
-                        child: const Text(RangerTexts.save),
-                      ),
-                    ),
-                  )
+                  Save()
                 ],
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _dialog(
+    context, {
+    required String title,
+    Widget? content,
+  }) {
+    return AlertDialog(
+      title: Text(title),
+      content: Column(
+        children: [
+          content ?? Text('Text'),   
+        ],
+      ),
+      actions: [
+        // TimePicker(),
+        Save(),
+      ],
     );
   }
 }

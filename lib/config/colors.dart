@@ -11,4 +11,6 @@ class RangerColors {
   static const Color lightGreyBack = Color.fromARGB(204, 235, 233, 233);
   static const Color greyBottomBar = Color.fromRGBO(110, 110, 110, 0.8);
   static const Color greenGradient = Color.fromRGBO(6,103,22, 0.8);
+  static const Color lightBlue = Color.fromARGB(204, 115, 192, 243);
+  static const Color rowsBlue = Color.fromARGB(204, 181, 220, 247);
 }

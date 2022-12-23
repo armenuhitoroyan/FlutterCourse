@@ -46,7 +46,9 @@ class RangerTexts {
   static const String autoOff = 'Auto-off after ... 1h 3m';
   static const String timeOfDay = 'Time of Day';
   static const String time = 'e.g. sunrise, sunset, 6:45 pm';
-   static const String save = 'Save';
+  static const String save = 'Save';
+
+  static const String chooseTimer = 'Choose Timer';
 
   String get email {
     return _email;
