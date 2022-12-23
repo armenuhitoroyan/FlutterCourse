@@ -241,7 +241,7 @@ class AutomationPage extends StatelessWidget {
       title: Text(title),
       content: Column(
         children: [
-          content ?? Text('Text'),   
+          Expanded(child: content ?? TimePicker()),   
         ],
       ),
       actions: [

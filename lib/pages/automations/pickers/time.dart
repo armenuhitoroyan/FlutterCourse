@@ -51,31 +51,35 @@ class TimePicker extends StatelessWidget {
                           Text(value.list[index]),
                         ],
                       ),
-                      Visibility(
-                        visible: value.isVisible,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: SizedBox(
-                                height: 60,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 2.5),
-                                  child: Hours(),
-                                ),
+                      index == 0 && value.color == 'blue'
+                          ? Visibility(
+                              visible: value.isVisible,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: 60,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 2.5),
+                                        child: Hours(),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: 60,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 2.5),
+                                        child: Minutes(),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Expanded(
-                              child: SizedBox(
-                                height: 60,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 2.5),
-                                  child: Hours(),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
+                            )
+                          : Container()
                     ],
                   ),
                 ),

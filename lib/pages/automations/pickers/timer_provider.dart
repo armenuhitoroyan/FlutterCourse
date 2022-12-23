@@ -55,8 +55,10 @@ class TimeProvider extends ChangeNotifier {
   }
 
   bool onVisibleTime() {
-    isVisible = true;
+    isVisible = i == 0 && color == 'blue' ? true : false;
     notifyListeners();
     return isVisible;
   }
+
+
 }

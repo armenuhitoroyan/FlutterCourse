@@ -49,8 +49,8 @@ class MyApp extends StatelessWidget {
           // ),
 
 
-          TimePicker(),
-          // AutomationPage(),
+          // TimePicker(),
+          AutomationPage(),
           // SearchWords(),
 
           // BottomNavbar(),
