@@ -14,14 +14,14 @@ class DaysContainer extends StatelessWidget {
       child: Consumer<TimeProvider>(
         builder: (context, value, child) =>
         GridView.builder(
-          itemCount: value.days.length,
+          itemCount: value.weekDays.length,
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 7),
           itemBuilder: (context, index) => ElevatedButton(
             style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(), padding: const EdgeInsets.all(15)),
-            child: Text(value.days[index]),
+            child: Text(value.weekDays[index]),
             onPressed: () {
-              print('M');
+              print(value.weekDays[index]);
             },
           ),
         ),

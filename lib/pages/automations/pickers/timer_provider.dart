@@ -33,7 +33,7 @@ class TimeProvider extends ChangeNotifier {
     'Before',
   ];
 
-  List<String> days = [
+  List<String> weekDays = [
     'S',
     'M',
     'T',
