@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AutomationProvider extends ChangeNotifier {
-
-  AutomationProvider() {
-    
-  }
   bool isShow = false;
+  String alertDialog = 'temerDialog';
 
   bool onShowButtons() {
     isShow = !isShow;

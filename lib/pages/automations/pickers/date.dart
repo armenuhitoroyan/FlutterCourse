@@ -10,10 +10,10 @@ class DatePicker extends StatelessWidget {
   int i = 0;
   @override
   Widget build(BuildContext context) {
-    return _buildContent();
+    return _buildContent(context);
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => TimeProvider(),
       child: Scaffold(

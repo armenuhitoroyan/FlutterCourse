@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 class TimeProvider extends ChangeNotifier {
@@ -9,6 +9,7 @@ class TimeProvider extends ChangeNotifier {
   String message = 'success';
   String color = 'black';
   bool isVisible = false;
+  String alertDialog = '';
 
   List<String> list = [
     'Auto-off after...',
@@ -16,11 +17,7 @@ class TimeProvider extends ChangeNotifier {
     'Daytime auto-off '
   ];
 
-   List<String> listDAtes = [
-    'Sunrise',
-    'Sunset',
-    'Time'
-  ];
+  List<String> listDAtes = ['Sunrise', 'Sunset', 'Time'];
 
   List<IconData> listIcons = [
     Icons.sunny,
@@ -33,15 +30,7 @@ class TimeProvider extends ChangeNotifier {
     'Before',
   ];
 
-  List<String> weekDays = [
-    'S',
-    'M',
-    'T',
-    'W',
-    'T',
-    'F',
-    's'
-  ];
+  List<String> weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   TimeProvider() {
     setIndex();
@@ -88,5 +77,4 @@ class TimeProvider extends ChangeNotifier {
     notifyListeners();
     return isVisible;
   }
-
 }

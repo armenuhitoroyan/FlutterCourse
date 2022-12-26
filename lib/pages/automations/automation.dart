@@ -6,10 +6,12 @@ import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/automations/automation_provider.dart';
 import 'package:ranger/pages/automations/pickers/date.dart';
 import 'package:ranger/pages/automations/pickers/time.dart';
+import 'package:ranger/pages/automations/pickers/widgets/dialog.dart';
 
 import '../../widgets/save_btn.dart';
 
 class AutomationPage extends StatelessWidget {
+  static String dialogAlert = '';
   @override
   Widget build(BuildContext context) {
     return _buildContent(context);
@@ -23,7 +25,7 @@ class AutomationPage extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back )),
+            icon: const Icon(Icons.arrow_back)),
         iconTheme: const IconThemeData(
           color: RangerColors.white,
         ),
@@ -92,16 +94,21 @@ class AutomationPage extends StatelessWidget {
                                           padding: const EdgeInsets.only(
                                               top: 8.0, right: 10.0),
                                           child: InkWell(
-                                            onTap: () => showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return _dialog(
-                                                  context,
-                                                  title:
-                                                      RangerTexts.chooseTimer,
-                                                );
-                                              },
-                                            ),
+                                            onTap: () async {
+                                              value.alertDialog = 'temerDialog';
+                                              dialogAlert = value.alertDialog;
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return DialogState(
+                                                    context,
+                                                    title:
+                                                        RangerTexts.chooseTimer,
+                                                  );
+                                                },
+                                              );
+                                            },
                                             child: Container(
                                               width: double.infinity,
                                               decoration: BoxDecoration(
@@ -156,16 +163,21 @@ class AutomationPage extends StatelessWidget {
                                           padding: const EdgeInsets.only(
                                               top: 8.0, right: 10.0),
                                           child: InkWell(
-                                            onTap: () => showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return dialog(
-                                                  context,
-                                                  title:
-                                                      RangerTexts.chooseDay,
-                                                );
-                                              },
-                                            ),
+                                            onTap: () async {
+                                              value.alertDialog = 'dateDialog';
+                                              dialogAlert = value.alertDialog;
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return DialogState(
+                                                    context,
+                                                    title:
+                                                        RangerTexts.chooseDay,
+                                                  );
+                                                },
+                                              );
+                                            },
                                             child: Container(
                                               width: double.infinity,
                                               decoration: BoxDecoration(
@@ -266,7 +278,7 @@ class AutomationPage extends StatelessWidget {
     );
   }
 
-   Widget dialog(
+  Widget dialog(
     context, {
     required String title,
     Widget? content,
