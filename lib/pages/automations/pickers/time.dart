@@ -55,7 +55,7 @@ class TimePicker extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: SizedBox(
-                                      height: 60,
+                                      height: 45,
                                       child: Padding(
                                         padding:
                                             const EdgeInsets.only(right: 2.5),
@@ -65,7 +65,7 @@ class TimePicker extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: SizedBox(
-                                      height: 60,
+                                      height: 45,
                                       child: Padding(
                                         padding:
                                             const EdgeInsets.only(left: 2.5),

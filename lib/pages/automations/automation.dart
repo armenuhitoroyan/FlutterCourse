@@ -272,6 +272,7 @@ class AutomationPage extends StatelessWidget {
         actions: [
           Save(callback: () {
             Navigator.pop(context);
+            
           }),
         ],
       ),

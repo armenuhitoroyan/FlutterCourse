@@ -10,15 +10,20 @@ class AfterBefore extends StatelessWidget {
       create: (context) => TimeProvider(),
       child: Consumer<TimeProvider>(
         builder: (context, value, child) =>
-        ListView.builder(
-          itemCount: value.ab.length,
-          itemBuilder: (context, index) => SizedBox(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                  color: index == 1 
-                    ? RangerColors.rowsBlue 
-                    : RangerColors.white),
-              child: Text(value.ab[index]),
+        InkWell(
+          onHover: (value) {
+            print(value);
+          },
+          child: ListView.builder(
+            itemCount: value.ab.length,
+            itemBuilder: (context, index) => SizedBox(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                    color: index == 1 
+                      ? RangerColors.rowsBlue 
+                      : RangerColors.white),
+                child: Text(value.ab[index]),
+              ),
             ),
           ),
         ),
