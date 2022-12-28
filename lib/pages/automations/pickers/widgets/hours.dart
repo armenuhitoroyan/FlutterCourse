@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:ranger/config/colors.dart';
 import 'package:ranger/pages/automations/pickers/widgets/providers/listview_provider.dart';
+
+import '../../../../config/maps/map_time.dart';
 
 class Hours extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScrollController _scrollController =
         ScrollController(keepScrollOffset: true);
-    String item = '';
-    List<String> list = [];
 
     return ChangeNotifierProvider(
       create: (context) => ListProvider(),
@@ -22,19 +21,15 @@ class Hours extends StatelessWidget {
               itemExtent: 15.0,
               itemBuilder: (context, index) {
                 value.items.add('${_scrollController.position.pixels}');
-                value.index = index;
-                // value.position = _scrollController.position.pixels;
-                // value.position =
-                //     value.getPosition(_scrollController.position.pixels);
                 return InkWell(
                   onTap: () {
-                    value.animateToIndex(index);
+                    value.getValue(index);
+                    MapTime.map['hours'] = '${value.i}';
                   },
                   child: SizedBox(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                          color: value.index == 0 ||
-                                value.index == index
+                          color: index == value.i
                               ? RangerColors.rowsBlue
                               : RangerColors.white),
                       child: Text('$index h'),
@@ -42,20 +37,23 @@ class Hours extends StatelessWidget {
                   ),
                 );
               }),
-          // onNotification: (notification) {
-          //   if (notification is ScrollEndNotification) {
-          //     if (double.tryParse(value.items[value.items.length - 1])! <=
-          //         _scrollController.position.maxScrollExtent) {
-          //       value.onHoverText(true);
-          //       return value.isHover;
-          //     } else {
-          //       value.onHoverText(false);
-          //     }
-          //   }
+          onNotification: (notification) {
+            if (notification is ScrollEndNotification) {
+              if (notification.metrics.pixels ==
+                  _scrollController.position.pixels) {
+                value.h = notification.metrics.pixels;
+                value.isSelected = true;
+                return value.isSelected;
+              } else {
+                value.isSelected = false;
+              }
+            } else {
+              value.isSelected = false;
+              value.h = 0.0;
+            }
 
-          //   print(value.items);
-          //   return value.isHover;
-          // },
+            return value.isSelected;
+          },
         ),
       ),
     );

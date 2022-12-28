@@ -237,9 +237,10 @@ class AutomationPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
+                  
                   const Spacer(),
                   Save(
                     callback: () {
@@ -272,7 +273,6 @@ class AutomationPage extends StatelessWidget {
         actions: [
           Save(callback: () {
             Navigator.pop(context);
-            
           }),
         ],
       ),

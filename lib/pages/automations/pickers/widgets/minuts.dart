@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../config/colors.dart';
+import '../../../../config/maps/map_time.dart';
 
 class Minutes extends StatefulWidget {
   @override
@@ -9,71 +10,80 @@ class Minutes extends StatefulWidget {
 
 class _MinutesState extends State<Minutes> {
   ScrollController _scrollController = ScrollController();
-  late List<bool> _selected;
+  // late List<bool> _selected;
+  List<double> items = [];
   final int listLength = 60;
-  double _height = 1.0;
-  int? i;
+  double _height = 0.0;
+  double h = 0.0;
+  int i = 0;
+  bool isSelected = false;
+  late double dif;
+  bool _selected = false;
 
   @override
   void initState() {
     super.initState();
     setState(() {
-      
+      _height = h;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 60,
-        controller: _scrollController,
-        itemBuilder: (context, index) {
-          //
+    return NotificationListener(
+      child: ListView.builder(
+          itemCount: 60,
+          controller: _scrollController,
+          itemBuilder: (context, index) {
+            print(_height);
 
-          return InkWell(
-            onTap: () {
-              print(index);
+            return InkWell(
+              // onHover: (value) {
+              //   setState(() {
+              //     _selected = value;
+              //     print(_selected);
+              //     i = index;
+              //     print(i);
+              //   });
+              // },
 
-              _animateToIndex(index);
-
-              setState(() {
-                i = index;
-              });
-
-              if (index <= 5) {
-                _height = index * 2.0;
-              } else if (index > 5 && index <= 10) {
-                _height = index * 2.0;
-              } else if (index > 10 && index <= 15) {
-                _height = (index + 1) * 1.0;
-              } else if (index > 15 && index <= 20) {
-                _height = (index - 1) * 0.5;
-              } 
-              // else if (index > 20 && index <= 25) {
-              //   _height = (index - 1) * 0.3;
-              // } else if (index > 25 && index < 30) {
-              //   _height = (index - 1) * 0.2;
-              // }
-            },
-            child: SizedBox(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                    color: index == i
-                        ? RangerColors.rowsBlue
-                        : RangerColors.white),
-                child: Text('$index min'),
+              onTap: () {
+                setState(() {
+                  i = index;
+                  MapTime.map['minutes'] = '$i';
+                });
+              },
+              child: SizedBox(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                      color: index == i
+                          // ||
+                          //         // (_height != 0.0 && index.isFinite) ||
+                          //         //  (_height != 0.0 && _scrollController.position.pixels == _height)
+                          //         (isSelected)
+                          ? RangerColors.rowsBlue
+                          : RangerColors.white),
+                  child: Text('$index min'),
+                ),
               ),
-            ),
-          );
-        });
-  }
+            );
+          }),
+      onNotification: (notification) {
+        if (notification is ScrollEndNotification) {
+          if (notification.metrics.pixels ==
+              _scrollController.position.pixels) {
+            h = notification.metrics.pixels;
 
-  void _animateToIndex(int index) {
-    _scrollController.jumpTo(0.0);
-    _scrollController.animateTo(
-      index * _height,
-      duration: const Duration(seconds: 2),
-      curve: Curves.fastOutSlowIn,
+            isSelected = true;
+            return isSelected;
+          }
+        } else {
+          isSelected = false;
+          h = 0.0;
+        }
+
+        return isSelected;
+      },
     );
   }
 }

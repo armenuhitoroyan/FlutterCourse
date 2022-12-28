@@ -16,6 +16,7 @@ class TimePicker extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => TimeProvider(),
       child: Scaffold(
+        backgroundColor: RangerColors.white,
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Consumer<TimeProvider>(
@@ -35,6 +36,8 @@ class TimePicker extends StatelessWidget {
                                 value.onpressed();
                                 value.i = index;
                                 value.onVisibleTime();
+                                value.setIndex();
+                                value.isVisible = !value.isVisible;
                               },
                               icon: value.i == index && value.color == 'blue'
                                   ? const Icon(
@@ -48,35 +51,33 @@ class TimePicker extends StatelessWidget {
                           Text(value.list[index]),
                         ],
                       ),
-                      index == 0 && value.color == 'blue'
-                          ? Visibility(
-                              visible: value.isVisible,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 45,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 2.5),
-                                        child: Hours(),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 45,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 2.5),
-                                        child: Minutes(),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                      Visibility(
+                        visible: value.i == index && value.color == 'blue'
+                            ? value.isVisible
+                            : false,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: SizedBox(
+                                height: 45,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 2.5),
+                                  child: Hours(),
+                                ),
                               ),
-                            )
-                          : Container()
+                            ),
+                            Expanded(
+                              child: SizedBox(
+                                height: 45,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 2.5),
+                                  child: Minutes(),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

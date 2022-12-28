@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class ListProvider extends ChangeNotifier {
   bool isHover = false;
   int index = 0;
+  int i = 0;
   double height = 0.0;
   double pos = 0.0;
   double position = 0.0;
-  // ViewportOffset? position;
+
+  bool isSelected = false;
   ScrollController scrollController = ScrollController();
   List<String> items = [];
+  double h = 0.0;
+
+  ListProvider() {
+    onSelected();
+    getIndex();
+  }
+
   int onHover(int val) {
     index = val;
     notifyListeners();
@@ -33,16 +40,22 @@ class ListProvider extends ChangeNotifier {
     return height;
   }
 
-  // ViewportOffset onHoverPosition(ViewportOffset pos) {
-  //   position = pos;
-  //   notifyListeners();
-  //   return position!;
-  // }
+   int getValue(int val) {
+    i = val;
+    notifyListeners();
+    return i;
+  }
 
   double getPosition(double pos) {
     position = pos;
     notifyListeners();
     return position;
+  }
+
+  int getIndex() {
+    i = i;
+    notifyListeners();
+    return i;
   }
 
   animateToIndex(int index) {
@@ -69,48 +82,9 @@ class ListProvider extends ChangeNotifier {
     return pos;
   }
 
-  // getList(String item) {
-  //   items[0] = item;
-  //   notifyListeners();
-  //   // return items;
-  // }
-
-  // void scrollUp(double s) {
-  //   final double start = s;
-  //   scrollController.jumpTo(start);
-
-  //   // scrollController.animateTo(
-  //   //   start,
-  //   //   duration: Duration(seconds: 1),
-  //   //   curve: Curves.easeIn,
-  //   // );
-  // }
-
-  // void scrollDown(double e) {
-  //   final double end = e;
-
-  //   scrollController.jumpTo(end);
-
-  //   scrollController.animateTo(
-  //     end,
-  //     duration: Duration(seconds: 1),
-  //     curve: Curves.easeIn,
-  //   );
-  // }
-
-  // void listenScrolling(context) {
-  //   if (scrollController.position.atEdge) {
-  //     final isTop = scrollController.position.pixels == 0;
-
-  //     if (isTop) {
-  //       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-  //         content: Text('Reached start'),
-  //       ));
-  //     } else {
-  //        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-  //         content: Text('Reached end'),
-  //       ));
-  //     }
-  //   }
-  // }
+  bool onSelected() {
+    isSelected = true;
+    notifyListeners();
+    return isSelected;
+  }
 }

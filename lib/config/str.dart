@@ -50,6 +50,7 @@ class RangerTexts {
 
   static const String chooseTimer = 'Choose Timer';
   static const String chooseDay = 'Choose Days';
+  static const String dialogAlert = 'dateDialog';
 
   String get email {
     return _email;

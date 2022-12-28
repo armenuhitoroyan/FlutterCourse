@@ -179,11 +179,11 @@ class _DevicesStateState extends State<DevicesState> {
                               ),
                             ),
                           ),
-                          Text(
-                            value != null ? '$value' : '0',
-                            style: const TextStyle(
-                                color: Colors.amber, fontSize: 30),
-                          )
+                          // Text(
+                          //   value != null ? '$value' : '0',
+                          //   style: const TextStyle(
+                          //       color: Colors.amber, fontSize: 30),
+                          // )
                         ],
                       ),
                     ),

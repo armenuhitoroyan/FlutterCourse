@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class TimeProvider extends ChangeNotifier {
@@ -6,10 +5,12 @@ class TimeProvider extends ChangeNotifier {
   int i = 0;
   int index = 0;
   bool isPressed = false;
-  String message = 'success';
+  String message = 'error';
   String color = 'black';
   bool isVisible = false;
   String alertDialog = '';
+  bool ab = false;
+  bool ampm = false;
 
   List<String> list = [
     'Auto-off after...',
@@ -25,19 +26,35 @@ class TimeProvider extends ChangeNotifier {
     Icons.timelapse_rounded
   ];
 
-  List<String> ab = [
+  List<String> afterBefore = [
     'After',
     'Before',
+  ];
+
+  List<String> amPm = [
+    'AM',
+    'PM',
   ];
 
   List<String> weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   TimeProvider() {
-    setIndex();
+    // setIndex();
     getData();
   }
 
-  int setIndex() {
+  setIndex() async {
+    if (i == 2) {
+      ampm = true;
+      ab = false;
+      return ampm;
+      notifyListeners();
+    } else {
+      ampm = false;
+      ab = true;
+      return ab;
+      notifyListeners();
+    }
     notifyListeners();
     return i;
   }
@@ -48,23 +65,32 @@ class TimeProvider extends ChangeNotifier {
     return val;
   }
 
+  int getValue(int val) {
+    i = val;
+    notifyListeners();
+    return i;
+  }
+
   List<String> getData() {
     notifyListeners();
     return list;
   }
 
   void onpressed() {
-    if (message == 'success' && isPressed == false) {
+    if (message == 'error' && isPressed == false) {
       message = 'success';
       color = 'blue';
+      isPressed = !isPressed;
       notifyListeners();
     } else if (message == 'success' && isPressed == false) {
-      color = 'black';
-      message = 'error';
-      notifyListeners();
-    } else if (message == 'error' && isPressed == true) {
       color = 'blue';
       message = 'success';
+      isPressed = !isPressed;
+      notifyListeners();
+    } else if (message == 'success' && isPressed == true) {
+      color = 'black';
+      message = 'error';
+      isPressed = !isPressed;
       notifyListeners();
     }
 
@@ -73,7 +99,7 @@ class TimeProvider extends ChangeNotifier {
   }
 
   bool onVisibleTime() {
-    isVisible = i == 0 && color == 'blue' ? true : false;
+    isVisible = false;
     notifyListeners();
     return isVisible;
   }

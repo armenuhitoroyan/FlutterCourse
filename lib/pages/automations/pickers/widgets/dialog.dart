@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ranger/config/colors.dart';
+import 'package:ranger/config/maps/map_time.dart';
 import 'package:ranger/pages/automations/pickers/date.dart';
 import 'package:ranger/pages/automations/pickers/time.dart';
 
@@ -22,7 +24,6 @@ class _DialogStateState extends State<DialogState> {
 
   @override
   void initState() {
-    
     super.initState();
   }
 
@@ -33,23 +34,24 @@ class _DialogStateState extends State<DialogState> {
 
   Widget _dialog(String title, BuildContext context, Widget? content) {
     return SizedBox(
-      child: 
-        AlertDialog(
-          title: Text(title),
-          content: Column(
-            children: [
-              Expanded(
-                  child: AutomationPage.dialogAlert == 'dateDialog'
-                      ? DatePicker()
-                      : TimePicker()),
-            ],
-          ),
-          actions: [
-            Save(callback: () {
-              Navigator.pop(context);
-            }),
+      child: AlertDialog(
+        backgroundColor: RangerColors.white,
+        title: Text(title),
+        content: Column(
+          children: [
+            Expanded(
+                child: AutomationPage.dialogAlert == RangerTexts.dialogAlert
+                    ? DatePicker()
+                    : TimePicker()),
           ],
         ),
+        actions: [
+          Save(callback: () {
+            print(MapTime.map);
+            Navigator.pop(context);
+          }),
+        ],
+      ),
     );
   }
 }

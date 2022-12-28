@@ -50,10 +50,10 @@ class MyApp extends StatelessWidget {
 
 
           // TimePicker(),
-          AutomationPage(),
+          // AutomationPage(),
           // SearchWords(),
 
-          // BottomNavbar(),
+          BottomNavbar(),
       // HomePageState(title: 'Flutter Demo Home Page',),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
