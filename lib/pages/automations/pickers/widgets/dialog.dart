@@ -47,8 +47,8 @@ class _DialogStateState extends State<DialogState> {
         ),
         actions: [
           Save(callback: () {
-            print(MapTime.map);
             Navigator.pop(context);
+            print(MapTime.map);
           }),
         ],
       ),

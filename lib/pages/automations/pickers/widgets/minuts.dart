@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../config/colors.dart';
 import '../../../../config/maps/map_time.dart';
+import '../../../../config/pixels.dart';
 
 class Minutes extends StatefulWidget {
   @override
@@ -32,32 +33,49 @@ class _MinutesState extends State<Minutes> {
   Widget build(BuildContext context) {
     return NotificationListener(
       child: ListView.builder(
+          // onHover:(value) => print(value),
+          // onTap: () {
+          //   setState(() {
+          //     i = index;
+          //   });
+          //   MapTime.map['minutes'] = '$i';
+          // },
+
           itemCount: 60,
           controller: _scrollController,
           itemBuilder: (context, index) {
             print(_height);
 
             return InkWell(
-              // onHover: (value) {
-              //   setState(() {
-              //     _selected = value;
-              //     print(_selected);
-              //     i = index;
-              //     print(i);
-              //   });
-              // },
+              onTap: () {},
 
-              onTap: () {
+              // onTap: () {
+              //   setState(() {
+              //     i = index;
+              //   });
+              //   MapTime.map['minutes'] = '$i';
+              // },
+              // onLongPress: () => print('******'),
+              onHover: (value) {
                 setState(() {
                   i = index;
-                  MapTime.map['minutes'] = '$i';
+                  return ;
                 });
+                
+                // i = value ? index : 0;
+
+                MapTime.map['minutes'] = '$i';
+                print(i);
+
+                print("On Hover");
               },
+              // onTapUp: (details) => print(details.localPosition),
+              // onFocusChange: (value) => print('#################'),
               child: SizedBox(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                      color: index == i
-                          // ||
+                      color: index == 0 && index == i
+                          // || Pixels.pixel > 0.0
                           //         // (_height != 0.0 && index.isFinite) ||
                           //         //  (_height != 0.0 && _scrollController.position.pixels == _height)
                           //         (isSelected)
@@ -73,9 +91,14 @@ class _MinutesState extends State<Minutes> {
           if (notification.metrics.pixels ==
               _scrollController.position.pixels) {
             h = notification.metrics.pixels;
+            Pixels.pixel = h;
+            print(Pixels.pixel);
 
             isSelected = true;
             return isSelected;
+          } else {
+            h = 0.0;
+            Pixels.pixel = h;
           }
         } else {
           isSelected = false;

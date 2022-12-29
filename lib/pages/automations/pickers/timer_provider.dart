@@ -11,6 +11,9 @@ class TimeProvider extends ChangeNotifier {
   String alertDialog = '';
   bool ab = false;
   bool ampm = false;
+  ScrollController scrollController = ScrollController(keepScrollOffset: true);
+  double h = 0.0;
+  bool isSelected = false;
 
   List<String> list = [
     'Auto-off after...',
@@ -96,6 +99,26 @@ class TimeProvider extends ChangeNotifier {
 
     isPressed = !isPressed;
     notifyListeners();
+  }
+
+  onCheckNotification(notification) {
+    if (notification is ScrollEndNotification) {
+      if (notification.metrics.pixels == scrollController.position.pixels) {
+        h = notification.metrics.pixels;
+        isSelected = true;
+        notifyListeners();
+        return isSelected;
+      } else {
+        isSelected = false;
+        notifyListeners();
+      }
+    } else {
+      isSelected = false;
+      h = 0.0;
+      notifyListeners();
+    }
+
+    return isSelected;
   }
 
   bool onVisibleTime() {

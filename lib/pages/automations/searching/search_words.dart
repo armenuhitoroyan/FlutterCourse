@@ -6,7 +6,6 @@ import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/automations/searching/bloc/gsearch_bloc.dart';
 
 import '../../../base/routes.dart';
-import '../../../widgets/bottom_nav_bar/bottom_navbar.dart';
 
 class SearchWords extends StatelessWidget {
   TextEditingController searchController = TextEditingController();
@@ -124,7 +123,7 @@ class SearchWords extends StatelessWidget {
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       shape: const CircleBorder(),
-                                      padding: const EdgeInsets.all(30)),
+                                      padding: const EdgeInsets.all(20)),
                                   child: const Icon(
                                     Icons.add,
                                     size: 20,

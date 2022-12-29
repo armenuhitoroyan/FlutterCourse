@@ -14,8 +14,8 @@ class ListProvider extends ChangeNotifier {
   double h = 0.0;
 
   ListProvider() {
-    onSelected();
     getIndex();
+    onSelected();
   }
 
   int onHover(int val) {
@@ -40,7 +40,7 @@ class ListProvider extends ChangeNotifier {
     return height;
   }
 
-   int getValue(int val) {
+  int getValue(int val) {
     i = val;
     notifyListeners();
     return i;
@@ -80,6 +80,26 @@ class ListProvider extends ChangeNotifier {
     pos = index * height;
     notifyListeners();
     return pos;
+  }
+
+  onCheckNotification(notification) {
+    if (notification is ScrollEndNotification) {
+      if (notification.metrics.pixels == scrollController.position.pixels) {
+        h = notification.metrics.pixels;
+        isSelected = true;
+        notifyListeners();
+        return isSelected;
+      } else {
+        isSelected = false;
+        notifyListeners();
+      }
+    } else {
+      isSelected = false;
+      h = 0.0;
+      notifyListeners();
+    }
+
+    return isSelected;
   }
 
   bool onSelected() {

@@ -47,6 +47,7 @@ class RangerTexts {
   static const String timeOfDay = 'Time of Day';
   static const String time = 'e.g. sunrise, sunset, 6:45 pm';
   static const String save = 'Save';
+  static const bool tr = true;
 
   static const String chooseTimer = 'Choose Timer';
   static const String chooseDay = 'Choose Days';
