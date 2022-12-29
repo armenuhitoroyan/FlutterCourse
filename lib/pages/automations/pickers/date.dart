@@ -7,6 +7,7 @@ import 'package:ranger/pages/automations/pickers/widgets/after_before.dart';
 import 'package:ranger/pages/automations/pickers/widgets/hours.dart';
 import 'package:ranger/pages/automations/pickers/widgets/minuts.dart';
 import 'package:ranger/pages/automations/pickers/widgets/time.dart';
+import 'package:ranger/pages/automations/pickers/widgets/timer.dart';
 import 'package:ranger/pages/automations/pickers/widgets/weekdays.dart';
 
 class DatePicker extends StatelessWidget {
@@ -88,34 +89,10 @@ class DatePicker extends StatelessWidget {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: SizedBox(
-                                    height: 45,
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 2.5),
-                                      child: Hours(),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: SizedBox(
-                                    height: 45,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 2.5, right: 2.5),
-                                      child: Minutes(),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: SizedBox(
-                                    height: 45,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 2.5, right: 2.5),
-                                      child:
-                                          value.i != 2 ? AfterBefore() : AmPm(),
-                                    ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 2.5, right: 2.5),
+                                    child: TimerWidget(),
                                   ),
                                 ),
                               ],

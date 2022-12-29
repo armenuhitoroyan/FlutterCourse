@@ -4,6 +4,7 @@ import 'package:ranger/config/colors.dart';
 import 'package:ranger/pages/automations/pickers/timer_provider.dart';
 import 'package:ranger/pages/automations/pickers/widgets/hours.dart';
 import 'package:ranger/pages/automations/pickers/widgets/minuts.dart';
+import 'package:ranger/pages/automations/pickers/widgets/timer.dart';
 
 class TimePicker extends StatelessWidget {
   int i = 0;
@@ -56,26 +57,7 @@ class TimePicker extends StatelessWidget {
                             ? value.isVisible
                             : false,
                         child: Row(
-                          children: [
-                            Expanded(
-                              child: SizedBox(
-                                height: 45,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 2.5),
-                                  child: Hours(),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: SizedBox(
-                                height: 45,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 2.5),
-                                  child: Minutes(),
-                                ),
-                              ),
-                            ),
-                          ],
+                          children: [Expanded(child: TimerWidget())],
                         ),
                       )
                     ],
