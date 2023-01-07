@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:ranger/config/colors.dart';
 import 'package:ranger/pages/automations/pickers/widgets/providers/listview_provider.dart';
 
-import '../../../../config/maps/map_time.dart';
-
 class Hours extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,10 @@ class Hours extends StatelessWidget {
                           color: index == value.i || value.isSelected
                               ? RangerColors.rowsBlue
                               : RangerColors.white),
-                      child: Text('$index h'),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: Text('$index h'),
+                      ),
                     ),
                   ),
                 );

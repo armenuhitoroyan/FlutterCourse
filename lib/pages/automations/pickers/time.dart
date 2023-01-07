@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ranger/config/colors.dart';
 import 'package:ranger/pages/automations/pickers/timer_provider.dart';
-import 'package:ranger/pages/automations/pickers/widgets/hours.dart';
-import 'package:ranger/pages/automations/pickers/widgets/minuts.dart';
 import 'package:ranger/pages/automations/pickers/widgets/timer.dart';
+
+import 'custom/custom_time_picker.dart';
 
 class TimePicker extends StatelessWidget {
   int i = 0;
@@ -18,50 +18,47 @@ class TimePicker extends StatelessWidget {
       create: (context) => TimeProvider(),
       child: Scaffold(
         backgroundColor: RangerColors.white,
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Consumer<TimeProvider>(
-            builder: (context, value, child) => ListView.builder(
-              itemCount: value.list.length,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                value.onpressed();
-                                value.i = index;
-                                value.onVisibleTime();
-                                value.setIndex();
-                                value.isVisible = !value.isVisible;
-                              },
-                              icon: value.i == index && value.color == 'blue'
-                                  ? const Icon(
-                                      Icons.task_alt_outlined,
-                                      color: RangerColors.lightBlue,
-                                    )
-                                  : const Icon(
-                                      Icons.circle_outlined,
-                                      color: RangerColors.black,
-                                    )),
-                          Text(value.list[index]),
-                        ],
-                      ),
-                      Visibility(
+        body: Consumer<TimeProvider>(
+          builder: (context, value, child) => ListView.builder(
+            itemCount: value.list.length,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: SizedBox(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              value.onpressed();
+                              value.i = index;
+                              value.onVisibleTime();
+                              value.setIndex();
+                              value.isVisible = !value.isVisible;
+                            },
+                            icon: value.i == index && value.color == 'blue'
+                                ? const Icon(
+                                    Icons.task_alt_outlined,
+                                    color: RangerColors.lightBlue,
+                                  )
+                                : const Icon(
+                                    Icons.circle_outlined,
+                                    color: RangerColors.black,
+                                  )),
+                        Text(value.list[index]),
+                      ],
+                    ),
+                    Visibility(
                         visible: value.i == index && value.color == 'blue'
                             ? value.isVisible
                             : false,
-                        child: Row(
-                          children: [Expanded(child: TimerWidget())],
-                        ),
-                      )
-                    ],
-                  ),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: CustomTimePicker(),
+                        ))
+                  ],
                 ),
               ),
             ),

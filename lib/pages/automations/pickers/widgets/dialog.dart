@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:ranger/config/colors.dart';
 import 'package:ranger/config/maps/map_time.dart';
 import 'package:ranger/pages/automations/pickers/date.dart';
@@ -8,7 +7,6 @@ import 'package:ranger/pages/automations/pickers/time.dart';
 import '../../../../config/str.dart';
 import '../../../../widgets/save_btn.dart';
 import '../../automation.dart';
-import '../../automation_provider.dart';
 
 class DialogState extends StatefulWidget {
   String title;

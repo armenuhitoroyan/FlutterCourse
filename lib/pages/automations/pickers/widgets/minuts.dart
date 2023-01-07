@@ -11,95 +11,89 @@ class Minutes extends StatefulWidget {
 
 class _MinutesState extends State<Minutes> {
   ScrollController _scrollController = ScrollController();
-  // late List<bool> _selected;
-  List<double> items = [];
+
   final int listLength = 60;
   double _height = 0.0;
+  double height = 0.0;
   double h = 0.0;
   int i = 0;
+  int ind = 0;
+  double physics = 0.0;
   bool isSelected = false;
   late double dif;
-  bool _selected = false;
+  int diff = 1;
 
   @override
   void initState() {
-    super.initState();
     setState(() {
-      _height = h;
+      super.initState();
     });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return NotificationListener(
       child: ListView.builder(
-          // onHover:(value) => print(value),
-          // onTap: () {
-          //   setState(() {
-          //     i = index;
-          //   });
-          //   MapTime.map['minutes'] = '$i';
-          // },
-
           itemCount: 60,
           controller: _scrollController,
           itemBuilder: (context, index) {
-            print(_height);
-
+            height = _scrollController.position.pixels;
             return InkWell(
-              onTap: () {},
-
-              // onTap: () {
-              //   setState(() {
-              //     i = index;
-              //   });
-              //   MapTime.map['minutes'] = '$i';
-              // },
-              // onLongPress: () => print('******'),
-              onHover: (value) {
-                setState(() {
-                  i = index;
-                  return ;
-                });
-                
-                // i = value ? index : 0;
-
-                MapTime.map['minutes'] = '$i';
-                print(i);
-
-                print("On Hover");
+              onTap: () {
+                print(index);
+                print(index == getIndex(index));
+                print(getIndex(index) / 2);
+                // height = _scrollController.position.pixels;
+                print(height);
               },
-              // onTapUp: (details) => print(details.localPosition),
-              // onFocusChange: (value) => print('#################'),
               child: SizedBox(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                      color: index == 0 && index == i
-                          // || Pixels.pixel > 0.0
-                          //         // (_height != 0.0 && index.isFinite) ||
-                          //         //  (_height != 0.0 && _scrollController.position.pixels == _height)
-                          //         (isSelected)
+                      color: index == 0 || (index == getIndex(index))
                           ? RangerColors.rowsBlue
                           : RangerColors.white),
-                  child: Text('$index min'),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5.0),
+                    child: Text(
+                      '$index min',
+                      style: TextStyle(
+                          color: _height == _scrollController.position.pixels
+                              ? Colors.red
+                              : Colors.black),
+                    ),
+                  ),
                 ),
               ),
             );
           }),
       onNotification: (notification) {
         if (notification is ScrollEndNotification) {
-          if (notification.metrics.pixels ==
-              _scrollController.position.pixels) {
-            h = notification.metrics.pixels;
-            Pixels.pixel = h;
-            print(Pixels.pixel);
+          // if (notification.metrics.pixels ==
+          //     _scrollController.position.pixels) {
+          h = notification.metrics.pixels;
+          Pixels.pixel = h;
+          print(h);
 
-            isSelected = true;
-            return isSelected;
-          } else {
-            h = 0.0;
-            Pixels.pixel = h;
-          }
+          setState(() {
+            _height = getPixels(h);
+          });
+
+          isSelected = true;
+          return isSelected;
+          // } else {
+          //   h = 0.0;
+          //   Pixels.pixel = h;
+
+          //   setState(() {
+          //     _height = getPixels(h);
+          //   });
+          // }
         } else {
           isSelected = false;
           h = 0.0;
@@ -108,5 +102,21 @@ class _MinutesState extends State<Minutes> {
         return isSelected;
       },
     );
+  }
+
+  getPixels(double pixels) {
+    _height = pixels;
+    return _height;
+  }
+
+  getIndex(int index) {
+    
+    // print(diff);
+    // ind = (height / (height / index).round()).round() + 1;
+    ind = height >= 30
+        ? (((height / 20).round() - 1) + ((height / index).round() - 1)) - 1
+        : (((height / 20).round() - 1) + ((height / index).round() - 1)) + 1;
+    print('i => $ind');
+    return ind;
   }
 }
