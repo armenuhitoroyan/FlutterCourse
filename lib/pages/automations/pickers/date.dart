@@ -20,16 +20,21 @@ class DatePicker extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => TimeProvider(),
-      child: Scaffold(
+      child: 
+      Scaffold(
         backgroundColor: RangerColors.white,
-        body: Consumer<TimeProvider>(
+        body: 
+        Consumer<TimeProvider>(
           builder: (context, value, child) => Column(
             children: [
               WeekDays(),
-              Row(
-                children: const [
-                  Text(RangerTexts.chooseTimer),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Row(
+                  children: const [
+                    Text(RangerTexts.chooseTimer),
+                  ],
+                ),
               ),
               Expanded(
                 child: ListView.builder(

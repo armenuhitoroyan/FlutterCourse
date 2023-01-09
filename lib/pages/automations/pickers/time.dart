@@ -18,7 +18,8 @@ class TimePicker extends StatelessWidget {
       create: (context) => TimeProvider(),
       child: Scaffold(
         backgroundColor: RangerColors.white,
-        body: Consumer<TimeProvider>(
+        body: 
+        Consumer<TimeProvider>(
           builder: (context, value, child) => ListView.builder(
             itemCount: value.list.length,
             itemBuilder: (context, index) => Padding(

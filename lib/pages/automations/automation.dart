@@ -240,7 +240,6 @@ class AutomationPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  
                   const Spacer(),
                   Save(
                     callback: () {
@@ -284,21 +283,20 @@ class AutomationPage extends StatelessWidget {
     required String title,
     Widget? content,
   }) {
-    return SizedBox(
-      height: 200,
-      child: AlertDialog(
-        title: Text(title),
-        content: Column(
-          children: [
-            Expanded(child: content ?? DatePicker()),
-          ],
-        ),
-        actions: [
-          Save(callback: () {
-            Navigator.pop(context);
-          }),
+    return AlertDialog(
+      title: Text(title),
+      content: Column(
+        children: [
+          Expanded(
+            child: content ?? DatePicker(),
+          ),
         ],
       ),
+      actions: [
+        Save(callback: () {
+          Navigator.pop(context);
+        }),
+      ],
     );
   }
 }

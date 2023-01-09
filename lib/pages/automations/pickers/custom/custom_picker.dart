@@ -8,13 +8,19 @@ class CustomPicker extends StatefulWidget {
 }
 
 class _CustomPickerPageState extends State<CustomPicker> {
-  Duration initialTimerDuration = Duration();
-  String time = '';
-  double cupertinoPickerHeight = 225;
-  int _selectedValue = 0;
-
-  String selectedItem = '';
-  int index = 0;
+  late TimeOfDay initialTime;
+  TransitionBuilder? builder;
+  bool useRootNavigator = true;
+  TimePickerEntryMode initialEntryMode = TimePickerEntryMode.dial;
+  String? cancelText;
+  String? confirmText;
+  String? helpText;
+  String? errorInvalidText;
+  String? hourLabelText;
+  String? minuteLabelText;
+  RouteSettings? routeSettings;
+  EntryModeChangeCallback? onEntryModeChanged;
+  Offset? anchorPoint;
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +37,17 @@ class _CustomPickerPageState extends State<CustomPicker> {
                 children: [
                   InkWell(
                     onTap: () {
-                      showCupertinoModalPopup<void>(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Center(
-                              child: SizedBox(
-                                height: 240,
-                                child: Card(
-                                  child: widgetCupertinoPickerUI(
-                                      widgetCupertinoTimePicker()),
-                                ),
-                              ),
-                            );
-                          });
+                      showDialog<TimeOfDay>(
+                        context: context,
+                        useRootNavigator: useRootNavigator,
+                        builder: (BuildContext context) {
+                          return builder == null
+                              ? dialog
+                              : builder!(context, dialog);
+                        },
+                        routeSettings: routeSettings,
+                        anchorPoint: anchorPoint,
+                      );
                     },
                     child: Column(
                       children: [
@@ -71,45 +75,18 @@ class _CustomPickerPageState extends State<CustomPicker> {
         ));
   }
 
-  Widget widgetCupertinoPickerUI(Widget picker) {
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.only(top: 7),
-        color: CupertinoColors.white,
-        height: 240,
-        child: DefaultTextStyle(
-          style: const TextStyle(
-            color: CupertinoColors.black,
-            fontSize: 20,
-          ),
-          child: GestureDetector(
-            child: SafeArea(
-              top: false,
-              child: picker,
-            ),
-            onTap: () {
-              // print('$index');
-            },
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget widgetCupertinoTimePicker() {
-    Duration initialTimerDuration = const Duration();
-    return CupertinoTimerPicker(
-      minuteInterval: 1,
-      secondInterval: 1,
-      // backgroundColor: RangerColors.rowsBlue,
-      initialTimerDuration: initialTimerDuration,
-      mode: CupertinoTimerPickerMode.values.elementAt(index),
-      onTimerDurationChanged: (Duration duration) {
-        setState(() {
-          initialTimerDuration = duration;
-          time = '${duration.inHours} ${duration.inMinutes % 60}';
-        });
-      },
-    );
-  }
+  // TimePickerEntryMode initialEntryMode = TimePickerEntryMode.dial;
+  final Widget dialog = TimePickerDialog(
+    initialTime: TimeOfDay.now(),
+    initialEntryMode: TimePickerEntryMode.dial,
+    cancelText: 'cancelText',
+    confirmText: 'confirmText',
+    helpText: 'helpText',
+    errorInvalidText: 'errorInvalidText',
+    hourLabelText: 'hourLabelText',
+    minuteLabelText: 'minuteLabelText',
+    onEntryModeChanged: (p0) {
+      print(p0);
+    },
+  );
 }

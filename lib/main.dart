@@ -6,6 +6,7 @@ import 'package:ranger/config/app_style.dart';
 import 'package:ranger/pages/automations/automation.dart';
 import 'package:ranger/pages/automations/pickers/custom/custom_time_picker.dart';
 import 'package:ranger/pages/automations/pickers/custom/custom_picker.dart';
+import 'package:ranger/pages/automations/pickers/date.dart';
 import 'package:ranger/pages/automations/pickers/time.dart';
 import 'package:ranger/pages/automations/pickers/widgets/timer.dart';
 import 'package:ranger/pages/automations/searching/search_words.dart';
@@ -17,6 +18,7 @@ import 'package:ranger/pages/homepage.dart';
 import 'package:ranger/pages/settings/settings.dart';
 import 'package:ranger/widgets/bottom_nav_bar/bottom_navbar.dart';
 
+import 'pages/automations/pickers/custom/ex.dart';
 import 'pages/homepage/homepage.dart';
 
 void main() async {
@@ -53,15 +55,16 @@ class MyApp extends StatelessWidget {
 
 
           // TimePicker(),
-          // AutomationPage(),
+          AutomationPage(),
           // SearchWords(),
+          // DatePicker(),
 
           // MyHomePage(),
           // CustomPicker(),
 
           
-
-          BottomNavbar(),
+          // ExPage(),
+          // BottomNavbar(),
       // HomePageState(title: 'Flutter Demo Home Page',),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );

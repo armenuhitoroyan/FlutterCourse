@@ -21,7 +21,7 @@ class WeekDays extends StatelessWidget {
                 crossAxisCount: value.weekDays.length),
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.only(left: 1.5, right: 1.5),
+                padding: const EdgeInsets.only(left: 1.5, right: 1.5,),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(45),

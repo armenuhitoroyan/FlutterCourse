@@ -21,17 +21,11 @@ class Hours extends StatelessWidget {
                 value.items.add('${_scrollController.position.pixels}');
                 return InkWell(
                   // onTap: () {
+                  // print('*******');
                   //   value.getValue(index);
                   //   MapTime.map['hours'] = '${value.i}';
                   // },
-                  onLongPress: () {
-                    print('*******');
-                  },
-                  // onHover: (val) {
-                  //   // value.onSelected();
-                  //   value.isSelected = val;
-                  //   print(value.isSelected);
-                  // },
+
                   child: SizedBox(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
@@ -50,15 +44,10 @@ class Hours extends StatelessWidget {
             if (notification is ScrollEndNotification) {
               if (notification.metrics.pixels ==
                   _scrollController.position.pixels) {
-                // if (_scrollController.hasClients) {
                 value.h = notification.metrics.pixels;
                 value.isSelected = true;
-                // _scrollController.animateTo(_scrollController.offset,
-                //     duration: const Duration(seconds: 2), curve: Curves.easeIn);
 
                 return value.isSelected;
-                // }
-
               } else {
                 value.isSelected = false;
               }

@@ -21,51 +21,51 @@ class _TimerWidgetState extends State<TimerWidget> {
   }
 
   Widget _buildContent() {
-    // return Row(
-    //   children: [
-    //     Expanded(
-    //       child: SizedBox(
-    //         height: 45,
-    //         child: Padding(
-    //           padding: const EdgeInsets.only(right: 2.5),
-    //           child: Hours(),
-    //         ),
-    //       ),
-    //     ),
-    //     Expanded(
-    //       child: SizedBox(
-    //         height: 45,
-    //         child: Padding(
-    //           padding: const EdgeInsets.only(left: 2.5),
-    //           child: Minutes(),
-    //         ),
-    //       ),
-    //     ),
-    //   ],
-    // );
-    return TimePickerSpinner(
-      is24HourMode: false,
-      isShowSeconds: false,
-      itemWidth: 50.0,
-      normalTextStyle: TextStyle(
-          fontSize: 20,
-          decorationThickness: 50.0,
-          color: RangerColors.black,
-          background: Paint()..color = RangerColors.white),
-      highlightedTextStyle: TextStyle(
-        fontSize: 20,
-        color: RangerColors.white,
-        background: Paint()..color = RangerColors.rowsBlue,
-      ),
-      spacing: 15,
-      itemHeight: 30,
-      isForce2Digits: true,
-      alignment: Alignment.centerLeft,
-      onTimeChange: (time) {
-        setState(() {
-          _dateTime = time;
-        });
-      },
+    return Row(
+      children: [
+        Expanded(
+          child: SizedBox(
+            height: 45,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 2.5),
+              child: Hours(),
+            ),
+          ),
+        ),
+        Expanded(
+          child: SizedBox(
+            height: 45,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 2.5),
+              child: Minutes(),
+            ),
+          ),
+        ),
+      ],
     );
+    // return TimePickerSpinner(
+    //   is24HourMode: false,
+    //   isShowSeconds: false,
+    //   itemWidth: 50.0,
+    //   normalTextStyle: TextStyle(
+    //       fontSize: 20,
+    //       decorationThickness: 50.0,
+    //       color: RangerColors.black,
+    //       background: Paint()..color = RangerColors.white),
+    //   highlightedTextStyle: TextStyle(
+    //     fontSize: 20,
+    //     color: RangerColors.white,
+    //     background: Paint()..color = RangerColors.rowsBlue,
+    //   ),
+    //   spacing: 15,
+    //   itemHeight: 30,
+    //   isForce2Digits: true,
+    //   alignment: Alignment.centerLeft,
+    //   onTimeChange: (time) {
+    //     setState(() {
+    //       _dateTime = time;
+    //     });
+    //   },
+    // );
   }
 }
