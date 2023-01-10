@@ -26,8 +26,11 @@ class AfterBefore extends StatelessWidget {
                   onHover: (value) {
                     print('1');
                   },
-                  child: Text(
-                    value.afterBefore[index],
+                  child: Padding(
+                    padding:   EdgeInsets.only(left: 5),
+                    child: Text(
+                      value.afterBefore[index],
+                    ),
                   ),
                 ),
               ),

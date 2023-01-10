@@ -33,7 +33,7 @@ class _DialogStateState extends State<DialogState> {
   Widget _dialog(String title, BuildContext context, Widget? content) {
 
     return Padding(
-      padding: const EdgeInsets.only(top: 70, bottom: 70),
+      padding: const EdgeInsets.only(top: 110, bottom: 110),
       child: AlertDialog(
         title: Text(title),
         // backgroundColor: RangerColors.white,

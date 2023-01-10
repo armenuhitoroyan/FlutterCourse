@@ -14,6 +14,7 @@ class TimeProvider extends ChangeNotifier {
   ScrollController scrollController = ScrollController(keepScrollOffset: true);
   double h = 0.0;
   bool isSelected = false;
+  double height = 0.0;
 
   List<String> list = [
     'Auto-off after...',
@@ -126,4 +127,7 @@ class TimeProvider extends ChangeNotifier {
     notifyListeners();
     return isVisible;
   }
+
+
+ 
 }

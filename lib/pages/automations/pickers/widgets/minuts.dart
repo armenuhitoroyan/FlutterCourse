@@ -44,14 +44,14 @@ class _MinutesState extends State<Minutes> {
           itemCount: 60,
           controller: _scrollController,
           itemBuilder: (context, index) {
-            height = _scrollController.position.pixels;
+            height = _scrollController.position.pixels; // --------
             return InkWell(
               onTap: () {
                 print('index = $index');
                 print('get index == ${getIndex(index)}');
-                // print(getIndex(index) / 2);
-                // height = _scrollController.position.pixels;
+
                 print(height);
+                print(_scrollController.position.pixels);
               },
               child: SizedBox(
                 child: DecoratedBox(
@@ -75,8 +75,6 @@ class _MinutesState extends State<Minutes> {
           }),
       onNotification: (notification) {
         if (notification is ScrollEndNotification) {
-          // if (notification.metrics.pixels ==
-          //     _scrollController.position.pixels) {
           h = notification.metrics.pixels;
           Pixels.pixel = h;
           print(h);
@@ -87,14 +85,6 @@ class _MinutesState extends State<Minutes> {
 
           isSelected = true;
           return isSelected;
-          // } else {
-          //   h = 0.0;
-          //   Pixels.pixel = h;
-
-          //   setState(() {
-          //     _height = getPixels(h);
-          //   });
-          // }
         } else {
           isSelected = false;
           h = 0.0;
@@ -124,22 +114,18 @@ class _MinutesState extends State<Minutes> {
 
     if (index > 15 && index < 17) {
       ind = ((height / (index)).round() + 1);
-    } 
+    }
 
-    // else if (index > 33) {
-    //   ind = ((height / (index/2)).round()+2);
-    // }
+    if (index > 30 && index < 45) {
+      ind = (height / 15.5).round();
+      print(ind);
+    }
+    if (index > 46 && index < 60) {
+      ind = ((height / 15.5).round()-1);
+      print(ind);
+    }
 
-    // else if (index >= 10 && index < 15) {
-    //   ind = ((height / (2*index)).round()+2);
-    //   print('ind = $ind');
-    // }
-    // else if (index >= 16 && index < 23) {
-    //   ind = ((height / (2*index)).round()+3);
-    //   print('ind = $ind');
-    // }
-
-    // ind = index;
+   
     print('i => $ind');
     return ind;
   }

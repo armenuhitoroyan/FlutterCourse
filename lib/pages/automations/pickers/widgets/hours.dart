@@ -14,27 +14,43 @@ class Hours extends StatelessWidget {
       child: Consumer<ListProvider>(
         builder: (context, value, child) => NotificationListener(
           child: ListView.builder(
-              controller: _scrollController,
+              controller: value.scrollController,
               itemCount: 12,
               itemExtent: 15.0,
               itemBuilder: (context, index) {
-                value.items.add('${_scrollController.position.pixels}');
-                return InkWell(
-                  // onTap: () {
-                  // print('*******');
-                  //   value.getValue(index);
-                  //   MapTime.map['hours'] = '${value.i}';
-                  // },
+                value.height = value.scrollController.position.pixels;
+                value.i = index;
+                
 
+                print('//////////////////');
+                print(value.i);
+                print(value.height);
+
+                // value.animateToIndex(value.i);
+
+                return InkWell(
+                  onTap: () {
+                    print('*******');
+
+                    print(index);
+                    print('height: ${value.height}');
+                    print(value.animateToIndex(index));
+
+                    // MapTime.map['hours'] = '${value.i}';
+                  },
                   child: SizedBox(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                          color: index == value.i || value.isSelected
+                          color: index == 0   // || index == value.animateToIndex(value.i+1)
                               ? RangerColors.rowsBlue
                               : RangerColors.white),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 5.0),
-                        child: Text('$index h'),
+                        child: Text(
+                          '$index h',
+                          style: TextStyle(
+                              color: index == 0 ? Colors.white : Colors.black),
+                        ),
                       ),
                     ),
                   ),
@@ -43,7 +59,7 @@ class Hours extends StatelessWidget {
           onNotification: (notification) {
             if (notification is ScrollEndNotification) {
               if (notification.metrics.pixels ==
-                  _scrollController.position.pixels) {
+                  value.scrollController.position.pixels) {
                 value.h = notification.metrics.pixels;
                 value.isSelected = true;
 

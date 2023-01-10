@@ -4,6 +4,8 @@ import 'package:ranger/config/colors.dart';
 import 'package:ranger/pages/automations/pickers/widgets/hours.dart';
 import 'package:ranger/pages/automations/pickers/widgets/minuts.dart';
 
+import 'after_before.dart';
+
 class TimerWidget extends StatefulWidget {
   @override
   State<TimerWidget> createState() => _TimerWidgetState();
@@ -23,21 +25,30 @@ class _TimerWidgetState extends State<TimerWidget> {
   Widget _buildContent() {
     return Row(
       children: [
-        Expanded(
+       Expanded(
           child: SizedBox(
-            height: 45,
+            height: 50,
             child: Padding(
-              padding: const EdgeInsets.only(right: 2.5),
+              padding: const EdgeInsets.only(right: 1.5, top: 1, bottom: 1),
               child: Hours(),
             ),
           ),
         ),
         Expanded(
           child: SizedBox(
-            height: 45,
+            height: 50,
             child: Padding(
-              padding: const EdgeInsets.only(left: 2.5),
+              padding: const EdgeInsets.only(left: 1.5, right: 1.5),
               child: Minutes(),
+            ),
+          ),
+        ),
+        Expanded(
+          child: SizedBox(
+            height: 50,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 1.5),
+              child: AfterBefore(),
             ),
           ),
         ),

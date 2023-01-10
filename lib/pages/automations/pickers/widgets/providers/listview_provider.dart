@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 class ListProvider extends ChangeNotifier {
   bool isHover = false;
   int index = 0;
+  int ind = 0;
   int i = 0;
   double height = 0.0;
   double pos = 0.0;
   double position = 0.0;
 
   bool isSelected = false;
-  ScrollController scrollController = ScrollController();
+  // ScrollController scrollController = ScrollController();
+  ScrollController scrollController = ScrollController(keepScrollOffset: true);
   List<String> items = [];
   double h = 0.0;
 
   ListProvider() {
     getIndex();
     onSelected();
+    // onChangeHeight();
   }
 
   int onHover(int val) {
@@ -32,12 +35,6 @@ class ListProvider extends ChangeNotifier {
     }
     notifyListeners();
     return isHover;
-  }
-
-  double onHoverSB(double sb) {
-    height = sb;
-    notifyListeners();
-    return height;
   }
 
   int getValue(int val) {
@@ -58,28 +55,34 @@ class ListProvider extends ChangeNotifier {
     return i;
   }
 
+  // onChangeHeight() {
+  //   height = scrollController.position.pixels;
+  //   notifyListeners();
+  //   return height;
+  // }
+
   animateToIndex(int index) {
-    this.index = index;
-
-    if (index <= 5) {
-      height = index * 2.0;
-    } else if (index > 5 && index <= 10) {
-      height = index * 2.0;
-    } else if (index > 10 && index <= 15) {
-      height = (index + 1) * 1.0;
-    } else if (index > 15 && index <= 20) {
-      height = (index - 1) * 0.5;
+    // this.index = index;
+    height = scrollController.position.pixels;
+    if (index > 0 && index <= 5) {
+      ind = ((height / (2 * index)).round()) - 1;
+      print('ind = $ind');
+      print(height);
+      notifyListeners();
     }
-    scrollController.jumpTo(0.0); // _scrollController.initialScrollOffset
-    scrollController.animateTo(
-      index * height,
-      duration: const Duration(seconds: 2),
-      curve: Curves.fastOutSlowIn,
-    );
+    //  else if (index > 6 && index <= 7) {
+    //   ind = ((height / (4 * index)).round());
+    //   print('ind = $ind');
+    //   notifyListeners();
+    // } else if (index > 7 && index < 10) {
+    //   ind = ((height / (4 * index)).round() + 2);
+    //   print('ind = $ind');
+    //   notifyListeners();
+    // }
 
-    pos = index * height;
+    print('i => $ind');
     notifyListeners();
-    return pos;
+    return ind;
   }
 
   onCheckNotification(notification) {

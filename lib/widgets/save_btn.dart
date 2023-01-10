@@ -13,7 +13,7 @@ class Save extends StatefulWidget {
 }
 
 class _SaveState extends State<Save> {
-  double sideLength = 50;
+  double sideLength = 30;
   @override
   void initState() {
     // TODO: implement initState

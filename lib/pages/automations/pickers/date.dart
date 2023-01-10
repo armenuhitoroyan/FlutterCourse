@@ -20,16 +20,14 @@ class DatePicker extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => TimeProvider(),
-      child: 
-      Scaffold(
+      child: Scaffold(
         backgroundColor: RangerColors.white,
-        body: 
-        Consumer<TimeProvider>(
+        body: Consumer<TimeProvider>(
           builder: (context, value, child) => Column(
             children: [
               WeekDays(),
               Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 0),
                 child: Row(
                   children: const [
                     Text(RangerTexts.chooseTimer),
@@ -39,70 +37,74 @@ class DatePicker extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   itemCount: value.listDAtes.length,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  value.onpressed();
-                                  value.getValue(index);
-                                  value.i = index;
-                                  value.onVisibleTime();
-                                  value.isVisible = !value.isVisible;
-                                },
-                                icon:
-                                    value.i == index && value.color == 'blue'
-                                        ? const Icon(
-                                            Icons.task_alt_outlined,
-                                            color: RangerColors.lightBlue,
-                                          )
-                                        : const Icon(
-                                            Icons.circle_outlined,
-                                            color: RangerColors.black,
-                                          )),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20.0, right: 10.0),
-                              child: Icon(
+                  itemBuilder: (context, index) => Column(
+                    children: [
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              IconButton(
+                                  onPressed: () {
+                                    value.onpressed();
+                                    value.getValue(index);
+                                    value.i = index;
+                                    value.onVisibleTime();
+                                    value.isVisible = !value.isVisible;
+                                  },
+                                  icon:
+                                      value.i == index && value.color == 'blue'
+                                          ? const Icon(
+                                              Icons.task_alt_outlined,
+                                              color: RangerColors.lightBlue,
+                                            )
+                                          : const Icon(
+                                              Icons.circle_outlined,
+                                              color: RangerColors.black,
+                                            )),
+                              Icon(
                                 value.listIcons[index],
-                                color:
-                                    value.i == index && value.color == 'blue'
-                                        ? RangerColors.lightBlue
-                                        : RangerColors.black,
+                                color: value.i == index &&
+                                        value.color == 'blue'
+                                    ? RangerColors.lightBlue
+                                    : RangerColors.black,
+                              ),
+                            ],
+                          ),
+                          Expanded(
+                            child: SizedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 10.0),
+                                child: Text(
+                                  value.listDAtes[index],
+                                  style: TextStyle(
+                                    color:
+                                        value.i == index && value.color == 'blue'
+                                            ? RangerColors.lightBlue
+                                            : RangerColors.black,
+                                  ),
+                                ),
                               ),
                             ),
-                            Text(
-                              value.listDAtes[index],
-                              style: TextStyle(
-                                color:
-                                    value.i == index && value.color == 'blue'
-                                        ? RangerColors.lightBlue
-                                        : RangerColors.black,
+                          ),
+                        ],
+                      ),
+                      Visibility(
+                        visible: value.i == index && value.color == 'blue'
+                            ? value.isVisible
+                            : false,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 1.5, right: 1.5),
+                                child: TimerWidget(),
                               ),
                             ),
                           ],
                         ),
-                        Visibility(
-                          visible: value.i == index && value.color == 'blue'
-                              ? value.isVisible
-                              : false,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 2.5, right: 2.5),
-                                  child: TimerWidget(),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
               ),
