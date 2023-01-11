@@ -12,17 +12,13 @@ class Minutes extends StatefulWidget {
 class _MinutesState extends State<Minutes> {
   ScrollController _scrollController = ScrollController();
 
-  final int listLength = 60;
   double _height = 0.0;
   double height = 0.0;
   double h = 0.0;
+
   int i = 0;
-  int idx = 0;
-  int ind = 0;
-  double physics = 0.0;
+
   bool isSelected = false;
-  late double dif;
-  int diff = 1;
 
   @override
   void initState() {
@@ -70,8 +66,10 @@ class _MinutesState extends State<Minutes> {
                           )
                         : Text(
                             MapTime.hour == false
-                              ? '$index min' 
-                              : index >= 0 &&  index < 10 ? '0$index' :'$index',
+                                ? '$index min'
+                                : index >= 0 && index < 10
+                                    ? '0$index'
+                                    : '$index',
                             style: TextStyle(
                                 color:
                                     index == 0 || (index == getIndex(index + 1))
@@ -112,29 +110,37 @@ class _MinutesState extends State<Minutes> {
 
   getIndex(int index) {
     if (index <= 5) {
-      ind = ((height / (2 * index)).round()) - 1;
+      i = ((height / (2 * index)).round()) - 1;
     } else if (index > 6 && index < 8) {
-      ind = ((height / (2 * index)).round());
+      i = ((height / (2 * index)).round());
     } else if (index > 8 && index < 10) {
-      ind = ((height / (2 * index)).round() + 2);
+      i = ((height / (2 * index)).round() + 2);
     }
 
+    if (index > 13 && index < 15) {
+      i = (height / 15.5).round() + 1;
+    }
     if (index > 15 && index < 17) {
-      ind = ((height / (index)).round() + 1);
+      i = ((height / (index)).round() + 1);
     }
 
     if (index > 30 && index < 45) {
-      ind = (height / 15.5).round();
-      // print(ind);
-    }
-    if (index > 46 && index < 60) {
-      ind = ((height / 15.5).round() - 1);
-      // print(ind);
+      i = (height / 15.5).round();
+      // print(i);
     }
 
-    // print('i => $ind');
+    if (index > 46 && index <= 50) {
+      i = (height / 15.5).round();
+    }
 
-    MapTime.map['miutes'] = '$ind';
-    return ind;
+    if (index > 50 && index < 60) {
+      i = ((height / 15.5).round() - 1);
+      // print(i);
+    }
+
+    // print('i => $i');
+
+    MapTime.map['miutes'] = '$i';
+    return i;
   }
 }

@@ -99,13 +99,13 @@ class _HoursState extends State<Hours> {
   }
 
   getIndex(int index) {
-    if (index > 0 && index <= 5) {
+    if (index <= 5) {
       i = ((height / (2 * index)).round()) - 1;
     } 
-   
-    else if (index > 6 && index <= 8) {
-      i = ((height / (2 * index)).round()+1);
-    } 
+
+    if (index > 5) {
+      i = (height / 15.5).round()+1;
+    }
    
     MapTime.map['hours'] = '$i';
     return i;
