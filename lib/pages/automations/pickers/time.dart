@@ -5,7 +5,7 @@ import 'package:ranger/pages/automations/pickers/timer_provider.dart';
 import 'package:ranger/pages/automations/pickers/widgets/timer.dart';
 
 import '../../../config/maps/map_time.dart';
-import 'custom/custom_time_picker.dart';
+
 
 class TimePicker extends StatelessWidget {
   int i = 0;
