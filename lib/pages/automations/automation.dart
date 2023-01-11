@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ranger/base/routes.dart';
 import 'package:ranger/config/colors.dart';
+import 'package:ranger/config/maps/map_time.dart';
 import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/automations/automation_provider.dart';
 import 'package:ranger/pages/automations/pickers/date.dart';
@@ -37,9 +38,9 @@ class AutomationPage extends StatelessWidget {
       ),
       body: ChangeNotifierProvider(
         create: (context) => AutomationProvider(),
-        child: Container(
+        child: SizedBox(
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
             child: Consumer<AutomationProvider>(
               builder: (context, value, child) => Column(
                 children: [
@@ -47,15 +48,42 @@ class AutomationPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: const CircleBorder(),
-                                padding: const EdgeInsets.all(7)),
-                            child: const Text('1'),
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.automation);
-                            },
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: value.isShow == false ? 10.0 : 0.0),
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(7)),
+                                  child: const Text('1'),
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, AppRoutes.automation);
+                                  },
+                                ),
+                              ),
+                              IntrinsicHeight(
+                                  child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  VerticalDivider(
+                                    indent: 0,
+                                    endIndent: value.isShow == false ? 20 : 130,
+                                  ),
+                                  const VerticalDivider(
+                                    color: RangerColors.black,
+                                    thickness: 2,
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 17.0),
+                                    child: Text(''),
+                                  ),
+                                ],
+                              ))
+                            ],
                           ),
                         ],
                       ),
@@ -71,7 +99,7 @@ class AutomationPage extends StatelessWidget {
                                   Text(
                                     RangerTexts.indefinitePeriodOfTime,
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 30,
                                     ),
                                   ),
                                   Text(
@@ -97,6 +125,8 @@ class AutomationPage extends StatelessWidget {
                                             onTap: () async {
                                               value.alertDialog = 'temerDialog';
                                               dialogAlert = value.alertDialog;
+                                              MapTime.date = false;
+                                              MapTime.time = true;
                                               showDialog(
                                                 context: context,
                                                 builder:
@@ -166,6 +196,8 @@ class AutomationPage extends StatelessWidget {
                                             onTap: () async {
                                               value.alertDialog = 'dateDialog';
                                               dialogAlert = value.alertDialog;
+                                              MapTime.date = true;
+                                              MapTime.time = false;
                                               showDialog(
                                                 context: context,
                                                 builder:

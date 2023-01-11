@@ -4,6 +4,7 @@ import 'package:ranger/config/colors.dart';
 import 'package:ranger/pages/automations/pickers/widgets/hours.dart';
 import 'package:ranger/pages/automations/pickers/widgets/minuts.dart';
 
+import '../../../../config/maps/map_time.dart';
 import 'after_before.dart';
 
 class TimerWidget extends StatefulWidget {
@@ -43,12 +44,15 @@ class _TimerWidgetState extends State<TimerWidget> {
             ),
           ),
         ),
-        Expanded(
-          child: SizedBox(
-            height: 50,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 1.5),
-              child: AfterBefore(),
+        Visibility(
+          visible: MapTime.date == true ? true : false,
+          child: Expanded(
+            child: SizedBox(
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 1.5),
+                child: AfterBefore(),
+              ),
             ),
           ),
         ),

@@ -1,81 +1,113 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:ranger/config/colors.dart';
-import 'package:ranger/pages/automations/pickers/widgets/providers/listview_provider.dart';
 
-class Hours extends StatelessWidget {
+import '../../../../config/colors.dart';
+import '../../../../config/maps/map_time.dart';
+import '../../../../config/pixels.dart';
+
+class Hours extends StatefulWidget {
+  @override
+  State<Hours> createState() => _HoursState();
+}
+
+class _HoursState extends State<Hours> {
+  ScrollController _scrollController = ScrollController();
+
+  double _height = 0.0;
+  double height = 0.0;
+  double h = 0.0;
+
+  int i = 0;
+
+  bool isSelected = false;
+
+  @override
+  void initState() {
+    setState(() {
+      super.initState();
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    ScrollController _scrollController =
-        ScrollController(keepScrollOffset: true);
-
-    return ChangeNotifierProvider(
-      create: (context) => ListProvider(),
-      child: Consumer<ListProvider>(
-        builder: (context, value, child) => NotificationListener(
-          child: ListView.builder(
-              controller: value.scrollController,
-              itemCount: 12,
-              itemExtent: 15.0,
-              itemBuilder: (context, index) {
-                value.height = value.scrollController.position.pixels;
-                value.i = index;
-                
-
-                print('//////////////////');
-                print(value.i);
-                print(value.height);
-
-                // value.animateToIndex(value.i);
-
-                return InkWell(
-                  onTap: () {
-                    print('*******');
-
-                    print(index);
-                    print('height: ${value.height}');
-                    print(value.animateToIndex(index));
-
-                    // MapTime.map['hours'] = '${value.i}';
-                  },
-                  child: SizedBox(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                          color: index == 0   // || index == value.animateToIndex(value.i+1)
-                              ? RangerColors.rowsBlue
-                              : RangerColors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5.0),
-                        child: Text(
-                          '$index h',
-                          style: TextStyle(
-                              color: index == 0 ? Colors.white : Colors.black),
-                        ),
-                      ),
-                    ),
+    return NotificationListener(
+      child: ListView.builder(
+          itemCount: 13,
+          controller: _scrollController,
+          itemBuilder: (context, index) {
+            height = _scrollController.position.pixels; // --------
+            return InkWell(
+              onTap: () {},
+              child: SizedBox(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: index == 0 || (index == getIndex(index + 1))
+                        ? RangerColors.rowsBlue
+                        : RangerColors.white,
+                    borderRadius: BorderRadius.circular(5.0),
                   ),
-                );
-              }),
-          onNotification: (notification) {
-            if (notification is ScrollEndNotification) {
-              if (notification.metrics.pixels ==
-                  value.scrollController.position.pixels) {
-                value.h = notification.metrics.pixels;
-                value.isSelected = true;
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5.0),
+                    child: index == 12
+                        ? const Text(
+                            '',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        : Text(
+                             MapTime.hour == false 
+                              ? '$index h' 
+                              : 
+                                index >= 0 &&  index < 10 ? '0$index' :'$index',
+                            style: TextStyle(
+                                color:
+                                    index == 0 || (index == getIndex(index + 1))
+                                        ? Colors.white
+                                        : Colors.black),
+                          ),
+                  ),
+                ),
+              ),
+            );
+          }),
+      onNotification: (notification) {
+        if (notification is ScrollEndNotification) {
+          h = notification.metrics.pixels;
+          Pixels.pixel = h;
+          setState(() {
+            _height = getPixels(h);
+          });
+          isSelected = true;
+          return isSelected;
+        } else {
+          isSelected = false;
+          h = 0.0;
+        }
 
-                return value.isSelected;
-              } else {
-                value.isSelected = false;
-              }
-            } else {
-              value.isSelected = false;
-              value.h = 0.0;
-            }
-
-            return value.isSelected;
-          },
-        ),
-      ),
+        return isSelected;
+      },
     );
+  }
+
+  getPixels(double pixels) {
+    _height = pixels;
+    return _height;
+  }
+
+  getIndex(int index) {
+    if (index > 0 && index <= 5) {
+      i = ((height / (2 * index)).round()) - 1;
+    } 
+   
+    else if (index > 6 && index <= 8) {
+      i = ((height / (2 * index)).round()+1);
+    } 
+   
+    MapTime.map['hours'] = '$i';
+    return i;
   }
 }

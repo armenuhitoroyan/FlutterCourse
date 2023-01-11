@@ -41,33 +41,43 @@ class _MinutesState extends State<Minutes> {
   Widget build(BuildContext context) {
     return NotificationListener(
       child: ListView.builder(
-          itemCount: 60,
+          itemCount: 61,
           controller: _scrollController,
           itemBuilder: (context, index) {
             height = _scrollController.position.pixels; // --------
             return InkWell(
               onTap: () {
-                print('index = $index');
-                print('get index == ${getIndex(index)}');
+                // print('index = $index');
+                // print('get index == ${getIndex(index)}');
 
-                print(height);
-                print(_scrollController.position.pixels);
+                // print(height);
+                // print(_scrollController.position.pixels);
               },
               child: SizedBox(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                      color: index == 0 || (index == getIndex(index + 1))
-                          ? RangerColors.rowsBlue
-                          : RangerColors.white),
+                    color: index == 0 || (index == getIndex(index + 1))
+                        ? RangerColors.rowsBlue
+                        : RangerColors.white,
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5.0),
-                    child: Text(
-                      '$index min',
-                      style: TextStyle(
-                          color: index == 0 || (index == getIndex(index + 1))
-                              ? Colors.white
-                              : Colors.black),
-                    ),
+                    child: index == 60
+                        ? const Text(
+                            '',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        : Text(
+                            MapTime.hour == false
+                              ? '$index min' 
+                              : index >= 0 &&  index < 10 ? '0$index' :'$index',
+                            style: TextStyle(
+                                color:
+                                    index == 0 || (index == getIndex(index + 1))
+                                        ? Colors.white
+                                        : Colors.black),
+                          ),
                   ),
                 ),
               ),
@@ -77,7 +87,7 @@ class _MinutesState extends State<Minutes> {
         if (notification is ScrollEndNotification) {
           h = notification.metrics.pixels;
           Pixels.pixel = h;
-          print(h);
+          // print(h);
 
           setState(() {
             _height = getPixels(h);
@@ -103,13 +113,10 @@ class _MinutesState extends State<Minutes> {
   getIndex(int index) {
     if (index <= 5) {
       ind = ((height / (2 * index)).round()) - 1;
-      print('ind = $ind');
-    } else if (index > 6 && index <= 7) {
+    } else if (index > 6 && index < 8) {
       ind = ((height / (2 * index)).round());
-      print('ind = $ind');
-    } else if (index > 7 && index < 10) {
+    } else if (index > 8 && index < 10) {
       ind = ((height / (2 * index)).round() + 2);
-      print('ind = $ind');
     }
 
     if (index > 15 && index < 17) {
@@ -118,15 +125,16 @@ class _MinutesState extends State<Minutes> {
 
     if (index > 30 && index < 45) {
       ind = (height / 15.5).round();
-      print(ind);
+      // print(ind);
     }
     if (index > 46 && index < 60) {
-      ind = ((height / 15.5).round()-1);
-      print(ind);
+      ind = ((height / 15.5).round() - 1);
+      // print(ind);
     }
 
-   
-    print('i => $ind');
+    // print('i => $ind');
+
+    MapTime.map['miutes'] = '$ind';
     return ind;
   }
 }

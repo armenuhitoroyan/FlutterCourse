@@ -33,19 +33,22 @@ class _DialogStateState extends State<DialogState> {
   Widget _dialog(String title, BuildContext context, Widget? content) {
 
     return Padding(
-      padding: const EdgeInsets.only(top: 110, bottom: 110),
-      child: AlertDialog(
-        title: Text(title),
-        // backgroundColor: RangerColors.white,
-        content: AutomationPage.dialogAlert == RangerTexts.dialogAlert
-            ? DatePicker()
-            : TimePicker(),
-        actions: <Widget>[
-          Save(callback: () {
-            Navigator.pop(context);
-            print(MapTime.map);
-          }),
-        ],
+      padding: const EdgeInsets.only(top: 100, bottom: 100),
+      child: SizedBox(
+        width: double.infinity,
+        child: AlertDialog(
+          title: Text(title),
+         
+          content: AutomationPage.dialogAlert == RangerTexts.dialogAlert
+              ? DatePicker()
+              : TimePicker(),
+          actions: <Widget>[
+            Save(callback: () {
+              Navigator.pop(context);
+              print(MapTime.map);
+            }),
+          ],
+        ),
       ),
     );
   }

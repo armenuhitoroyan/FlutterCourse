@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:ranger/pages/automations/pickers/timer_provider.dart';
 
 import '../../../../config/colors.dart';
+import '../../../../config/maps/map_time.dart';
 
 class WeekDays extends StatelessWidget {
   @override
@@ -30,7 +31,8 @@ class WeekDays extends StatelessWidget {
                   child: Center(
                     child: TextButton(
                       onPressed: () {
-                        print(value.weekDays[index]);
+                        // print(value.weekDays[index]);
+                        MapTime.map['weekday'] = value.weekDays[index];
                       },
                       child: Text(
                         value.weekDays[index],

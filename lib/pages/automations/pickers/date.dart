@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ranger/config/colors.dart';
+import 'package:ranger/config/maps/map_time.dart';
 import 'package:ranger/config/str.dart';
 import 'package:ranger/pages/automations/pickers/timer_provider.dart';
 import 'package:ranger/pages/automations/pickers/widgets/after_before.dart';
 import 'package:ranger/pages/automations/pickers/widgets/hours.dart';
 import 'package:ranger/pages/automations/pickers/widgets/minuts.dart';
-import 'package:ranger/pages/automations/pickers/widgets/time.dart';
+
 import 'package:ranger/pages/automations/pickers/widgets/timer.dart';
 import 'package:ranger/pages/automations/pickers/widgets/weekdays.dart';
 
@@ -50,6 +51,7 @@ class DatePicker extends StatelessWidget {
                                     value.i = index;
                                     value.onVisibleTime();
                                     value.isVisible = !value.isVisible;
+                                    MapTime.apm = value.i != 2 ? false : true;
                                   },
                                   icon:
                                       value.i == index && value.color == 'blue'
@@ -63,8 +65,7 @@ class DatePicker extends StatelessWidget {
                                             )),
                               Icon(
                                 value.listIcons[index],
-                                color: value.i == index &&
-                                        value.color == 'blue'
+                                color: value.i == index && value.color == 'blue'
                                     ? RangerColors.lightBlue
                                     : RangerColors.black,
                               ),
@@ -77,10 +78,10 @@ class DatePicker extends StatelessWidget {
                                 child: Text(
                                   value.listDAtes[index],
                                   style: TextStyle(
-                                    color:
-                                        value.i == index && value.color == 'blue'
-                                            ? RangerColors.lightBlue
-                                            : RangerColors.black,
+                                    color: value.i == index &&
+                                            value.color == 'blue'
+                                        ? RangerColors.lightBlue
+                                        : RangerColors.black,
                                   ),
                                 ),
                               ),
