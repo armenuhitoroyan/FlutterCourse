@@ -9,57 +9,90 @@ class SharedPreferencesDemo extends StatefulWidget {
 }
 
 class SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  late Future<int> _counter;
+  late SharedPreferences prefs;
 
-  Future<void> _incrementCounter() async {
-    final SharedPreferences prefs = await _prefs;
-    final int counter = (prefs.getInt('counter') ?? 0) + 1;
-
-    setState(() {
-      _counter = prefs.setInt('counter', counter).then((bool success) {
-        return counter;
-      });
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _counter = _prefs.then((SharedPreferences prefs) {
-      return prefs.getInt('counter') ?? 0;
-    });
-  }
+  TextEditingController controller = TextEditingController();
+  String email = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SharedPreferences Demo'),
-      ),
-      body: Center(
-          child: FutureBuilder<int>(
-              future: _counter,
-              builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    return const CircularProgressIndicator();
-                  default:
-                    if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else {
-                      return Text(
-                        'Button tapped ${snapshot.data} time${snapshot.data == 1 ? '' : 's'}.\n\n'
-                        'This should persist across restarts.',
-                      );
-                    }
-                }
-              })),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('SharedPreferences Demo'),
+        ),
+        body: Container(
+          margin: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: controller,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Email',
+                  hintText: 'Enter Email',
+                ),
+              ),
+              Text(
+                email,
+                style: const TextStyle(fontSize: 20, color: Colors.blue),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    print(controller.text);
+                    save();
+                  },
+                  child: const Text('Save'),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    print(email);
+                    retrieve();
+                  },
+                  child: const Text('Retrieve'),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    print(email);
+                    delete();
+                  },
+                  child: const Text('Delete'),
+                ),
+              )
+            ],
+          ),
+        ));
+  }
+
+  save() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setString('email', controller.text.toString());
+    });
+  }
+
+  retrieve() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      email = prefs.getString('email')!;
+    });
+  }
+
+  delete() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.remove('email');
+      email = '';
+    });
   }
 }
