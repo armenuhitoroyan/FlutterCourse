@@ -1,4 +1,6 @@
+import 'package:appemails/shared_preferences/shared_preferences_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesDemo extends StatefulWidget {
@@ -9,90 +11,74 @@ class SharedPreferencesDemo extends StatefulWidget {
 }
 
 class SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
-  late SharedPreferences prefs;
-
-  TextEditingController controller = TextEditingController();
-  String email = "";
-
+  int index = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('SharedPreferences Demo'),
-        ),
-        body: Container(
-          margin: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              TextField(
-                controller: controller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                  hintText: 'Enter Email',
-                ),
-              ),
-              Text(
-                email,
-                style: const TextStyle(fontSize: 20, color: Colors.blue),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    print(controller.text);
-                    save();
-                  },
-                  child: const Text('Save'),
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    print(email);
-                    retrieve();
-                  },
-                  child: const Text('Retrieve'),
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    print(email);
-                    delete();
-                  },
-                  child: const Text('Delete'),
-                ),
-              )
-            ],
+    return ChangeNotifierProvider(
+      create: (context) => SharedPreferencesProvider(),
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text('SharedPreferences Demo'),
           ),
-        ));
-  }
-
-  save() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      prefs.setString('email', controller.text.toString());
-    });
-  }
-
-  retrieve() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      email = prefs.getString('email')!;
-    });
-  }
-
-  delete() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      prefs.remove('email');
-      email = '';
-    });
+          body: Consumer<SharedPreferencesProvider>(
+            builder: (context, value, child) => Container(
+              margin: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: value.controller,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Email',
+                      hintText: 'Enter Email',
+                    ),
+                  ),
+                  // List<Text>.generate(value.listEmails.length, (index) => Text('$index')),
+                  Flexible(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: value.listEmails.length,
+                      itemBuilder:(context, index) => Text(value.listEmails[index]),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print(value.controller.text);
+                        // value.check_if_already_login();
+                        value.save();
+                      },
+                      child: const Text('Save'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print(value.listEmails.asMap());
+                        value.retrieve();
+                      },
+                      child: const Text('Retrieve'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print(value.email);
+                        value.delete();
+                      },
+                      child: const Text('Delete'),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )),
+    );
   }
 }
