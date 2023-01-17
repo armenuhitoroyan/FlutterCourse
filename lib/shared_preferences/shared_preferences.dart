@@ -1,3 +1,5 @@
+import 'package:appemails/base/routes.dart';
+import 'package:appemails/otp.dart';
 import 'package:appemails/shared_preferences/shared_preferences_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,20 +27,34 @@ class SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
               margin: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
-                  TextField(
-                    controller: value.controller,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email',
-                      hintText: 'Enter Email',
+                  // value.textFieldOTP(true, false),
+                  // TextField(
+                  //   controller: value.controller,
+                  //   decoration: const InputDecoration(
+                  //     border: OutlineInputBorder(),
+                  //     labelText: 'Email',
+                  //     hintText: 'Enter Email',
+                  //   ),
+                  // ),
+                  SizedBox(
+                    width: 700,
+                    child: TextField(
+                      controller: value.controller,
+                      showCursor: true,
+                      decoration: const InputDecoration(
+                        // border: OutlineInputBorder(),
+                        border: InputBorder.none,
+                        labelText: '',
+                        hintText: 'Enter Email',
+                      ),
                     ),
                   ),
-                  // List<Text>.generate(value.listEmails.length, (index) => Text('$index')),
                   Flexible(
                     child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: value.listEmails.length,
-                      itemBuilder:(context, index) => Text(value.listEmails[index]),
+                      itemBuilder: (context, index) =>
+                          Text(value.listEmails[index]),
                     ),
                   ),
                   const SizedBox(
@@ -50,7 +66,8 @@ class SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
                       onPressed: () {
                         print(value.controller.text);
                         // value.check_if_already_login();
-                        value.save();
+                        value.onValidateEmail();
+                        // MaterialPageRoute(builder: (context) => OTP());
                       },
                       child: const Text('Save'),
                     ),
@@ -74,6 +91,24 @@ class SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
                       },
                       child: const Text('Delete'),
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoutes.otpState);
+                        },
+                        child: const Text(
+                          'Verify',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.black38),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),
