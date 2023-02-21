@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<title>Sample</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/froala-editor@3.1.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+</head> 
+<body>
+    <form method="post">
+    <textarea id='edit' style="margin-top: 30px;"></textarea>
+  </form>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@3.1.0/js/froala_editor.pkgd.min.js"></script>
+  <style>
+    span.fr-emoticon{
+      background-repeat: no-repeat !important;
+      font-size: 28px;
+    }
+  </style>
+  <script>
+    (function () {
+      new FroalaEditor("#edit", {
+        theme: 'royal',
+        height: 450
+      })
+    })()
+    
+   parent.connect_content_to_flutter && parent.connect_content_to_flutter(window)
+    function getValue(){
+        return $('#edit').val();
+    }
+window.addEventListener("message", (message) => {
+             if (message.data.id === "value") {
+              quill.root.innerHTML = message.data.msg;
+             }
+           }) 
+ </script>
+</body>
+</html>

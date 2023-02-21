@@ -1,6 +1,8 @@
 import 'package:appemails/base/routes.dart';
+import 'package:appemails/homepage/homepage.dart';
 import 'package:appemails/otp.dart';
 import 'package:appemails/shared_preferences/shared_preferences.dart';
+import 'package:appemails/text_editor/text_editor.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +22,9 @@ class MyApp extends StatelessWidget {
         
         primarySwatch: Colors.blue,
       ),
-      home: const SharedPreferencesDemo(),
+      home: HtmlEditorExample(title: 'HtmlEditorExample',),
+      // HomePage(title: 'Range Slider',),
+      // const SharedPreferencesDemo(),
       // home: const OTP(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );

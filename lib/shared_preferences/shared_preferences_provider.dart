@@ -14,23 +14,27 @@ class SharedPreferencesProvider extends ChangeNotifier {
   String email = "";
   String message = '';
   var userEmail;
-  List<String> listEmails = [];
   List<String> listEmail = [];
+  List<String> listEmails = [];
+  List<String> list = [];
+
   String stringValue = '';
   late SharedPreferences prefsh;
 
   Future<String> onValidateEmail() async {
     final regExp = RegExp(RegularExpressions.email); // at@gmail.com
     userEmail = await getStringValueSF().then((value) => value);
-   
-    print('userEmail: $userEmail');
+    //
 
     if (controller.text.isNotEmpty) {
       if (regExp.hasMatch(controller.text)) {
-        email = '${controller.text}@gmail.com';
+        email = controller.text;
+        //
         //  email = controller.text;
+
         if (userEmail != email) {
           message = 'Email is valid!';
+          // listEmails = await getStringValuesSF().then((value) => value);
           await save(email);
         } else {
           message = 'Email already exists!'; // toroyan.armenuhi@yahoo.com
@@ -41,6 +45,7 @@ class SharedPreferencesProvider extends ChangeNotifier {
         email = '';
         print(email);
         message = 'Email is not valid!';
+        print(message);
         controller.text = '';
       }
 
@@ -56,35 +61,45 @@ class SharedPreferencesProvider extends ChangeNotifier {
     return message;
   }
 
-  // save() async {
-  //   prefs = await SharedPreferences.getInstance();
-  //   listEmails = prefs.getStringList('my_string_list_key') ?? [];
-  //   listEmails.add(controller.text.toString());
-
-  //   prefs.setStringList('my_string_list_key', listEmails);
-  //   // check_if_already_login().then((value) => print(value));
-
-  //   notifyListeners();
-  // }
-
-  Future<String> save(String email) async {
+  Future<List<String>> save(String email) async {
     prefs = await SharedPreferences.getInstance();
-    await prefs.setString('email', email);
-    listEmails.add(email);
-    print(listEmails);
-    notifyListeners();
-    return email;
-  }
+    // await prefs.setString('email', email);
+    bool isSave = false;
+    list.add(email);
+    listEmails = await getStringValuesSF().then((value) => value);
 
-  retrieve() async {
-    prefs = await SharedPreferences.getInstance();
-    listEmails = prefs.getStringList('my_string_list_key')!;
+    if (listEmails.isNotEmpty) {
+      listEmails.forEach((element) async {
+        print(element);
+        if (element != controller.text) {
+          isSave = true;
+          print(isSave);
+        } else {
+          isSave = false;
+          print(isSave);
+          return;
+        }
+      });
+    } else {
+      await prefs.setStringList('emails', list);
+    }
+
+    if (isSave != false) {
+      await prefs.setStringList('emails', list);
+      print('Success!');
+    } else {
+      print('Failed');
+    }
+
     notifyListeners();
+    return listEmails;
   }
 
   delete() async {
     prefs = await SharedPreferences.getInstance();
     prefs.remove('email');
+    prefs.clear();
+    listEmails = [];
     email = '';
     notifyListeners();
   }
@@ -107,13 +122,12 @@ class SharedPreferencesProvider extends ChangeNotifier {
   Future<List<String>> getStringValuesSF() async {
     prefsh = await SharedPreferences.getInstance();
 
-    // final myStringList = prefs.getStringList('my_string_list_key') ?? [];
-
-    if (prefsh.getStringList('my_string_list_key') == null) {
+    if (prefsh.getStringList('emails') == null) {
       listEmail = [];
     } else {
-      listEmail = prefsh.getStringList('my_string_list_key')!;
+      listEmail = prefsh.getStringList('emails')!;
     }
+
     return listEmail;
   }
 }

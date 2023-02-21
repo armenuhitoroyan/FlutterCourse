@@ -72,16 +72,7 @@ class SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
                       child: const Text('Save'),
                     ),
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        print(value.listEmails.asMap());
-                        value.retrieve();
-                      },
-                      child: const Text('Retrieve'),
-                    ),
-                  ),
+                  
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
